@@ -1,5 +1,5 @@
 {
-  "source": "https://schedule-boston-animated-discounts.trycloudflare.com/_site/",
-  "files_sha256": "cc774879a85012485069d5d1fc4d72511421cec463431073f1f72e7727073060",
-  "note": "radar 2026-09-28 · 129 files · 202609290056"
+  "bundle": "https://schedule-boston-animated-discounts.trycloudflare.com/_publish/site-952c4521ca2134c6.tar.gz",
+  "bundle_sha256": "952c4521ca2134c64d308b07ac22ec7efdd89181c994ebacf7bbe78a4b063254",
+  "note": "radar 2026-09-28 · 129 files · 202609280959"
 }
