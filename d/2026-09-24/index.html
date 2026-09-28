@@ -13,24 +13,24 @@
   <meta property="og:title" content="Momiji · 设计雷达 2026-09-24" />
   <meta property="og:description" content="今日最炫：Momiji — 湖边枫树从黎明转到月色；拨落叶、晃灯笼，最好开着声音慢慢玩。 另有 7 个网站 / App UI / 小游戏灵感。" />
   <meta property="og:url" content="https://sunxiaoxi2039-star.github.io/d/2026-09-24/" />
-  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-24.jpg?v=202609281001" />
-  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-09-24.jpg?v=202609281001" />
+  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-24.jpg?v=202609290746" />
+  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-09-24.jpg?v=202609290746" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Momiji · 设计雷达 2026-09-24" />
   <meta name="twitter:description" content="今日最炫：Momiji — 湖边枫树从黎明转到月色；拨落叶、晃灯笼，最好开着声音慢慢玩。 另有 7 个网站 / App UI / 小游戏灵感。" />
-  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-24.jpg?v=202609281001" />
+  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-24.jpg?v=202609290746" />
   <meta itemprop="name" content="Momiji · 设计雷达 2026-09-24" />
   <meta itemprop="description" content="今日最炫：Momiji — 湖边枫树从黎明转到月色；拨落叶、晃灯笼，最好开着声音慢慢玩。 另有 7 个网站 / App UI / 小游戏灵感。" />
-  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-24.jpg?v=202609281001" />
-  <link rel="stylesheet" href="../../styles.css?v=202609281001" />
+  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-24.jpg?v=202609290746" />
+  <link rel="stylesheet" href="../../styles.css?v=202609290746" />
 </head>
 <body class="dp-body">
   <header class="dp-top">
     <a class="dp-home" href="../../"><span>✦</span>设计雷达</a>
-    <button type="button" class="dp-share-mini" data-share>分享</button>
+    <div class="dp-top-r"><a class="dp-maplink" href="../../map/">知识地图</a><button type="button" class="dp-share-mini" data-share>分享</button></div>
   </header>
   <main class="dp">
     <div class="dp-kicker">2026-09-24 · 今日最炫</div>
@@ -127,6 +127,92 @@ on UI:
 <li><code>maple-tree.glb.head</code>、<code>lantern.glb.head</code>（各 1 KB 字节头）</li>
 <li><code>og-image.jpg</code>（官方 OG；面板缩略图另用 mesh3d CDN preview，因 headless 无 WebGPU adapter）</li>
 </ul></div></details>
+    
+    <section class="xb" id="xiaobai">
+      <div class="xb-head">
+        <div class="xb-badge">小白课</div>
+        <p class="xb-sub">零基础也能看懂。先认识这件作品用到的技术，再学一个知识点。</p>
+      </div>
+
+      <h2 class="xb-h2"><span>1</span>技术栈小白版</h2>
+      <p class="xb-note">只列拆解里在源码中确认过的技术。点开看它在这件作品里做了什么。</p>
+      
+      <details class="xb-tech" open>
+        <summary><span class="xb-tech-name">Three.js r183（WebGPU 渲染器）</span><span class="xb-tech-meta">3D 网页界最常用的「全能工具箱」：场景、相机、灯光、材质都是现成的零件，拿来就能搭。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>用新一代的 WebGPU 路径，画出整座红枫小岛、水面和灯笼。</p>
+          <p><span class="xb-k">怎么认出来</span>在控制台输入 __THREE__ 能看到版本号（这里是 &quot;183&quot;）。如果浏览器不支持 WebGPU，这个站会显示「场景不可用」。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">TSL 节点材质</span><span class="xb-tech-meta">用「搭积木」的方式调材质和着色器，一块块节点拼出效果。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>岛上各种物体的材质都用这类节点材质来做；调试面板里还有一组水面参数（折射、涟漪、落叶浮力）。</p>
+          <p><span class="xb-k">怎么认出来</span>水面会折射、会起涟漪，材质在不同光线下有细腻变化。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">BloomNode 泛光</span><span class="xb-tech-meta">相机对着灯拍时，亮处向外「溢」出一圈柔光。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>让灯笼的光向外渗开；灯笼还有自己单独的泛光和闪烁参数，所以夜里格外温暖。</p>
+          <p><span class="xb-k">怎么认出来</span>亮的东西边缘有柔和的光晕，尤其在暗背景上。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">React 19.3.0（界面外壳）</span><span class="xb-tech-meta">搭网页界面的「乐高底板」。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>负责音量、日弧和出错时的提示这些普通界面；3D 画面由 Three.js 负责。</p>
+          <p><span class="xb-k">怎么认出来</span>看不出来，它管的是 3D 画面以外的那层界面。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">Howler（网页音效库）</span><span class="xb-tech-meta">网页的「音效播放器」：一行代码就能播一个声音。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>风铃声、寺庙钟声，还有拖动日弧时的小音效。</p>
+          <p><span class="xb-k">怎么认出来</span>你一操作就有配合的声音。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">GLTFLoader + 模型 / 贴图压缩</span><span class="xb-tech-meta">3D 模型的「真空压缩袋」：运输时压小，到了再展开。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>加载枫树（maple-tree.glb）和灯笼（lantern.glb）这些模型，并支持几种压缩格式（Draco、KTX2、Meshopt）。</p>
+          <p><span class="xb-k">怎么认出来</span>模型很精细，但加载不算慢。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">Web Worker（后台计算）</span><span class="xb-tech-meta">请一位「后厨帮手」在后台切菜，前台上菜的人不用停下来等。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>在后台算一大块噪声数据（128×256×128）。拆解推测它用于雾一类的体积效果。</p>
+          <p><span class="xb-k">怎么认出来</span>看不出来，但它让页面在计算时不卡。</p>
+        </div>
+      </details>
+
+      <h2 class="xb-h2"><span>2</span>今日知识点</h2>
+      <div class="xb-lesson">
+        <div class="xb-crumb">平面设计 · 第 8 课</div>
+        <h3 class="xb-title">色彩基础：色相、明度、饱和度（还有色温）</h3>
+        <div class="xb-prose"><p>描述任何一个颜色，只需要问三个问题：</p><ul><li><b>色相</b>：它是哪一「家」的颜色？红、橙、黄、绿、蓝、紫……</li><li><b>明度</b>：它有多亮？加白变亮，加黑变暗。</li><li><b>饱和度</b>：它有多「纯」？越纯越鲜艳，越灰越低调。</li></ul><p>再加一个特别好用的概念：<b>色温</b>。偏橙黄的光让人觉得暖（烛光、夕阳），偏蓝的光让人觉得冷（阴天、月夜）。色温几乎直接决定画面的情绪。</p><p>Momiji 的「黎明 → 月色」就是一堂色彩课。代码里有一个叫 timeOfDay（一天中的时间）的数字一直在往前走，它同时控制太阳的方向、太阳的亮度、曝光和雾的浓度。于是一天之中，画面的明度、色调和氛围都在慢慢变化。</p><p>特别值得看的是夜里：整个画面暗下来、偏冷，只有灯笼那一点暖光——<b>冷色大背景里的一小块暖色</b>，你的眼睛会第一时间被它吸过去。这是一个在海报、电影里都很常用的配色技巧。</p><p>一句话记住：<b>色相</b>决定是什么颜色，<b>明度</b>决定亮不亮，<b>饱和度</b>决定艳不艳；<b>色温</b>决定暖还是冷，也就决定了情绪。</p></div>
+        <h4 class="xb-h4">它从哪里来</h4>
+        <div class="xb-prose"><p>包豪斯的老师约翰内斯·伊顿（Johannes Itten）把色彩对比整理成一套可以教的方法，后来写成《色彩艺术》（1961）。</p><p>在包豪斯上过伊顿的课、后来也在那里任教的约瑟夫·阿尔伯斯（Josef Albers），写了《色彩的互动》（Interaction of Color，1963）。他用一个个彩色纸片实验说明：同一个颜色放在不同的背景上，看起来会很不一样。</p><p>印象派画家莫奈在 1890 年代画了一组《鲁昂大教堂》：同一座教堂的正面，在不同的时间和天气下画了三十多幅。主题不变，光和颜色一变，情绪就全变了——和 Momiji 的日夜循环是同一个想法。</p></div>
+        <h4 class="xb-h4">经典参考</h4>
+        <ul class="xb-refs"><li><b>约瑟夫·阿尔伯斯《色彩的互动》（1963）</b><span>色彩入门最经典的一本书，用纸片实验讲颜色之间怎么互相影响。</span></li><li><b>莫奈《鲁昂大教堂》系列（1890 年代）</b><span>同一座建筑在不同光线下的几十种颜色，网上搜「Rouen Cathedral Monet」可以并排看。</span></li><li><b><a href="https://color.adobe.com/" target="_blank" rel="noopener">Adobe Color</a></b><span>上传一张照片就能提取出它的配色，还能看到每个颜色的色相、明度、饱和度。</span></li></ul>
+        <div class="xb-callout">
+          <div class="xb-callout-t">怎么看 / 怎么练 · 约 10 分钟</div>
+          <ol><li>在 Momiji 里截两张图：一张白天，一张夜里（可以拖动日弧，或者等它自己转到夜里）。</li><li>打开手机相册的「编辑」，用亮度、饱和度、色温（暖色调）几个滑杆，试着把白天那张调成「像夜里」。你会发现，主要就是在降低明度、把色温往冷调。</li><li>在夜里那张截图上，找出唯一的暖色在哪里。想一想：为什么你的眼睛第一眼落在那儿？</li><li>用一句话写下：「这张图的色相主要是___，明度___，饱和度___，色温偏___。」</li></ol>
+        </div>
+        <h4 class="xb-h4">小词典</h4>
+        <dl class="xb-gloss"><div><dt>色相（hue）</dt><dd>颜色的「种类」，比如红、黄、蓝。</dd></div><div><dt>明度（value）</dt><dd>颜色有多亮或多暗。</dd></div><div><dt>饱和度（saturation）</dt><dd>颜色有多鲜艳；饱和度低就接近灰色。</dd></div><div><dt>色温</dt><dd>光偏暖（橙黄）还是偏冷（蓝）。</dd></div><div><dt>曝光（exposure）</dt><dd>整个画面被「提亮」或「压暗」的程度，像相机的进光量。</dd></div></dl>
+      </div>
+
+      <h2 class="xb-h2"><span>3</span>知识地图进度</h2>
+      <div class="xb-prog">
+        <div class="xb-prog-row"><b>平面设计</b><span>第 8 课 / 共 16 课</span></div>
+        <div class="bar"><i style="width:6%"></i></div>
+        <div class="xb-prog-row small"><span>这条线已学 1 课</span><span>全部已学 5 / 89</span></div>
+        <a class="xb-next" href="../../map/#g-01"><span>下一课建议</span><b>平面 第 1 课 · 看见设计：什么是平面设计</b></a>
+        <a class="xb-maplink" href="../../map/#g-08">打开知识地图 ›</a>
+      </div>
+    </section>
     <div class="dp-sec">当天另外 7 个</div>
     <a class="mini" href="https://cozyjournal.app/" target="_blank" rel="noopener">
       <img src="../../thumbs/cozy-journal.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />

@@ -13,24 +13,24 @@
   <meta property="og:title" content="NIMBÉ · 设计雷达 2026-09-26" />
   <meta property="og:description" content="今日最炫：NIMBÉ — 四章 WebGL 枕头秀：按压棉花、透镜下到织纹、再看夜幕落下——没有一张产品照片。 另有 7 个网站 / App UI / 小游戏灵感。" />
   <meta property="og:url" content="https://sunxiaoxi2039-star.github.io/d/2026-09-26/" />
-  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-26.jpg?v=202609281001" />
-  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-09-26.jpg?v=202609281001" />
+  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-26.jpg?v=202609290746" />
+  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-09-26.jpg?v=202609290746" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="NIMBÉ · 设计雷达 2026-09-26" />
   <meta name="twitter:description" content="今日最炫：NIMBÉ — 四章 WebGL 枕头秀：按压棉花、透镜下到织纹、再看夜幕落下——没有一张产品照片。 另有 7 个网站 / App UI / 小游戏灵感。" />
-  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-26.jpg?v=202609281001" />
+  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-26.jpg?v=202609290746" />
   <meta itemprop="name" content="NIMBÉ · 设计雷达 2026-09-26" />
   <meta itemprop="description" content="今日最炫：NIMBÉ — 四章 WebGL 枕头秀：按压棉花、透镜下到织纹、再看夜幕落下——没有一张产品照片。 另有 7 个网站 / App UI / 小游戏灵感。" />
-  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-26.jpg?v=202609281001" />
-  <link rel="stylesheet" href="../../styles.css?v=202609281001" />
+  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-26.jpg?v=202609290746" />
+  <link rel="stylesheet" href="../../styles.css?v=202609290746" />
 </head>
 <body class="dp-body">
   <header class="dp-top">
     <a class="dp-home" href="../../"><span>✦</span>设计雷达</a>
-    <button type="button" class="dp-share-mini" data-share>分享</button>
+    <div class="dp-top-r"><a class="dp-maplink" href="../../map/">知识地图</a><button type="button" class="dp-share-mini" data-share>分享</button></div>
   </header>
   <main class="dp">
     <div class="dp-kicker">2026-09-26 · 今日最炫</div>
@@ -107,6 +107,78 @@ on UI:
 </ol>
 <h2>一句话</h2>
 <p>NIMBÉ 用 Three r180 + 自研泡沫着色 + 四章镜头，把「没有照片的产品页」做成可按、可窥、可入夜的 WebGL 小品。</p></div></details>
+    
+    <section class="xb" id="xiaobai">
+      <div class="xb-head">
+        <div class="xb-badge">小白课</div>
+        <p class="xb-sub">零基础也能看懂。先认识这件作品用到的技术，再学一个知识点。</p>
+      </div>
+
+      <h2 class="xb-h2"><span>1</span>技术栈小白版</h2>
+      <p class="xb-note">只列拆解里在源码中确认过的技术。点开看它在这件作品里做了什么。</p>
+      
+      <details class="xb-tech" open>
+        <summary><span class="xb-tech-name">Three.js r180（WebGL 渲染器）</span><span class="xb-tech-meta">3D 网页界最常用的「全能工具箱」：场景、相机、灯光、材质都是现成的零件，拿来就能搭。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>用成熟的 WebGL 路径画出那只枕头和四个章节的场景（这次没有用 WebGPU）。</p>
+          <p><span class="xb-k">怎么认出来</span>很多 3D 网页都用它。在控制台输入 __THREE__ 能看到版本号（这里是 &quot;180&quot;）。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">自定义着色器 + 物理材质</span><span class="xb-tech-meta">现成的「物理材质」像买来的成衣；自定义着色器就是自己动手改衣服。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>泡沫材质上有作者自己加的三个旋钮：按压量、纤维、孔洞。你按下去时，表面会凹陷。</p>
+          <p><span class="xb-k">怎么认出来</span>材质有很特别、很写实的质感（绒、泡沫、布纹），而且会随你的动作变形。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">GSAP + ScrollTrigger</span><span class="xb-tech-meta">GSAP 是动画导演；ScrollTrigger 让滚动条变成遥控器——滚到哪，动画就放到哪。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>源码里内嵌了 GSAP 和 ScrollTrigger（没找到明确版本号，所以不写版本）。这类工具通常用来编排章节切换和滚动动画；具体用在哪一步，拆解没有确认。</p>
+          <p><span class="xb-k">怎么认出来</span>你一滚动页面，画面就跟着推进；停下滚动，它也停下。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">React 19.2.8（界面外壳）</span><span class="xb-tech-meta">搭网页界面的「乐高底板」：按钮、文字、「现在是第几章」都挂在它上面。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>管四个章节的文案、按钮和状态；3D 画面由 Three.js 负责，两者分工合作。</p>
+          <p><span class="xb-k">怎么认出来</span>看不出来，它管的是普通网页那部分。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">SVG 折射滤镜</span><span class="xb-tech-meta">一块「哈哈镜」贴纸：按照一张图，把后面的画面弯曲、扭曲。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>Matter 这一章说「你手里拿着一个透镜」，透镜下的画面就是用这个滤镜扭曲的。</p>
+          <p><span class="xb-k">怎么认出来</span>一个圆形区域里的画面，像隔着玻璃或水珠那样被弯曲。</p>
+        </div>
+      </details>
+
+      <h2 class="xb-h2"><span>2</span>今日知识点</h2>
+      <div class="xb-lesson">
+        <div class="xb-crumb">动态设计 · 第 3 课</div>
+        <h3 class="xb-title">缓动：为什么东西不该匀速动</h3>
+        <div class="xb-prose"><p>现实里几乎没有东西是「匀速」开始和停下的：汽车起步会慢慢加速，刹车会慢慢减速；你推上抽屉，它最后会轻轻停住。如果屏幕上的东西从静止突然匀速冲出去、到终点「咔」地停住，我们就会觉得它像机器、很生硬。</p><p><b>缓动（easing）</b>，就是控制「速度怎么变化」。最常用的三种：</p><ul><li><b>缓入（ease-in）</b>：开头慢、越来越快，适合「离开」画面的东西；</li><li><b>缓出（ease-out）</b>：开头快、结尾慢慢停，适合「进入」画面的东西，也是最常用的一种；</li><li><b>缓入缓出（ease-in-out）</b>：两头慢、中间快，适合从 A 点移到 B 点。</li></ul><p>NIMBÉ 里能看到两种缓动。一是切换章节时，镜头平滑地飞到下一个机位，而不是瞬间跳过去（GSAP 这类工具就是专门做这种过渡的）。二是你按压枕头时，「按压量」不是一下子跳到底：源码里有 press（现在按了多少）和 pressTarget（想按到多少）两个值，拆解的伪代码显示前者每一帧朝后者靠近一点——这种「追着目标走」的写法叫 <b>lerp</b>，天生就是先快后慢的缓出，所以泡沫的凹陷和回弹才显得软。</p><p>一句话记住：<b>同样的距离、同样的时间，缓动不同，性格就不同</b>——匀速像机器，缓出像被温柔地放下，带回弹的像装了弹簧。</p></div>
+        <h4 class="xb-h4">它从哪里来</h4>
+        <div class="xb-prose"><p>迪士尼动画师 Frank Thomas 和 Ollie Johnston 在 1981 年的书《The Illusion of Life》里总结了「动画 12 原则」，其中一条就叫「慢入慢出（Slow In and Slow Out）」：手绘动画时，在动作的开头和结尾多画几张，中间少画几张，动作就显得自然。</p><p>2000 年代初的 Flash 网页时代，Robert Penner 整理并公开了一套缓动公式（quad、cubic、elastic、bounce……）。后来很多动画工具里的缓动名字，都能追溯到这一套。</p></div>
+        <h4 class="xb-h4">经典参考</h4>
+        <ul class="xb-refs"><li><b>迪士尼「动画 12 原则」中的「慢入慢出」</b><span>出自《The Illusion of Life》（1981），网上搜「12 principles of animation」有很多动图演示。</span></li><li><b><a href="https://easings.net/" target="_blank" rel="noopener">easings.net</a></b><span>把常见缓动曲线画成图，点一下就能看到小球是怎么动的。</span></li><li><b><a href="https://cubic-bezier.com/" target="_blank" rel="noopener">cubic-bezier.com</a></b><span>Lea Verou 做的小工具：拖两个点自己调缓动曲线，还能和匀速并排比较。</span></li></ul>
+        <div class="xb-callout">
+          <div class="xb-callout-t">怎么看 / 怎么练 · 约 8 分钟</div>
+          <ol><li>打开 easings.net，依次点 easeInQuad、easeOutQuad、easeInOutQuad，看小球怎么动。给每一种起个外号，比如「起跑型」「刹车型」。</li><li>打开 cubic-bezier.com，点 GO，对比 linear（匀速）和 ease-out。哪一个更像真实的物体？</li><li>回到 NIMBÉ，切换一次章节，只盯着镜头最后半秒：它是「咔」地停住，还是慢慢停稳？</li><li>拿起手机，打开再关闭一个 App，留意画面放大、缩小时的速度变化。你能说出它是哪一种缓动吗？</li></ol>
+        </div>
+        <h4 class="xb-h4">小词典</h4>
+        <dl class="xb-gloss"><div><dt>缓动（easing）</dt><dd>动画里速度的变化方式，决定动作是生硬还是自然。</dd></div><div><dt>缓出（ease-out）</dt><dd>开头快、结尾慢慢停下，最常用。</dd></div><div><dt>缓入（ease-in）</dt><dd>开头慢、越来越快，适合离场。</dd></div><div><dt>lerp（插值）</dt><dd>每一帧朝目标走剩下距离的一小部分，效果是先快后慢地「追上」目标。</dd></div><div><dt>时间轴（timeline）</dt><dd>把多个动画按时间先后排好的「分镜表」。</dd></div></dl>
+      </div>
+
+      <h2 class="xb-h2"><span>3</span>知识地图进度</h2>
+      <div class="xb-prog">
+        <div class="xb-prog-row"><b>动态设计</b><span>第 3 课 / 共 15 课</span></div>
+        <div class="bar"><i style="width:7%"></i></div>
+        <div class="xb-prog-row small"><span>这条线已学 1 课</span><span>全部已学 5 / 89</span></div>
+        <a class="xb-next" href="../../map/#m-01"><span>下一课建议</span><b>动态 第 1 课 · 动起来的本质：帧与帧率</b></a>
+        <a class="xb-maplink" href="../../map/#m-03">打开知识地图 ›</a>
+      </div>
+    </section>
     <div class="dp-sec">当天另外 7 个</div>
     <a class="mini" href="https://byotone.com/" target="_blank" rel="noopener">
       <img src="../../thumbs/byot-ne.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />

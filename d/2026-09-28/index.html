@@ -13,24 +13,24 @@
   <meta property="og:title" content="Liquid Geo · 设计雷达 2026-09-28" />
   <meta property="og:description" content="今日最炫：Liquid Geo — 液态几何体：twgl WebGL + Tone.js，几何表面像被低频揉皱的金属。 另有 7 个网站 / App UI / 小游戏灵感。" />
   <meta property="og:url" content="https://sunxiaoxi2039-star.github.io/d/2026-09-28/" />
-  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-28.jpg?v=202609281001" />
-  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-09-28.jpg?v=202609281001" />
+  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-28.jpg?v=202609290746" />
+  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-09-28.jpg?v=202609290746" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Liquid Geo · 设计雷达 2026-09-28" />
   <meta name="twitter:description" content="今日最炫：Liquid Geo — 液态几何体：twgl WebGL + Tone.js，几何表面像被低频揉皱的金属。 另有 7 个网站 / App UI / 小游戏灵感。" />
-  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-28.jpg?v=202609281001" />
+  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-28.jpg?v=202609290746" />
   <meta itemprop="name" content="Liquid Geo · 设计雷达 2026-09-28" />
   <meta itemprop="description" content="今日最炫：Liquid Geo — 液态几何体：twgl WebGL + Tone.js，几何表面像被低频揉皱的金属。 另有 7 个网站 / App UI / 小游戏灵感。" />
-  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-28.jpg?v=202609281001" />
-  <link rel="stylesheet" href="../../styles.css?v=202609281001" />
+  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-28.jpg?v=202609290746" />
+  <link rel="stylesheet" href="../../styles.css?v=202609290746" />
 </head>
 <body class="dp-body">
   <header class="dp-top">
     <a class="dp-home" href="../../"><span>✦</span>设计雷达</a>
-    <button type="button" class="dp-share-mini" data-share>分享</button>
+    <div class="dp-top-r"><a class="dp-maplink" href="../../map/">知识地图</a><button type="button" class="dp-share-mini" data-share>分享</button></div>
   </header>
   <main class="dp">
     <div class="dp-kicker">2026-09-28 · 今日最炫</div>
@@ -108,6 +108,99 @@ playback:
 <li>用 FFT 能量推球面位移；再加 Chapman 式 halo/bloom 后处理。  </li>
 <li><code>?debug=true</code> 时挂 tweakpane 调粘度、失真、bloom。</li>
 </ol></div></details>
+    
+    <section class="xb" id="xiaobai">
+      <div class="xb-head">
+        <div class="xb-badge">小白课</div>
+        <p class="xb-sub">零基础也能看懂。先认识这件作品用到的技术，再学一个知识点。</p>
+      </div>
+
+      <h2 class="xb-h2"><span>1</span>技术栈小白版</h2>
+      <p class="xb-note">只列拆解里在源码中确认过的技术。点开看它在这件作品里做了什么。</p>
+      
+      <details class="xb-tech" open>
+        <summary><span class="xb-tech-name">WebGL2</span><span class="xb-tech-meta">网页通往显卡的「直通车」：借它，网页可以直接指挥电脑里专门画图的芯片（GPU）干活。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>整颗液态金属球、上面的珠子和光晕，都是 WebGL2 每一帧现场画出来的，不是一段视频。</p>
+          <p><span class="xb-k">怎么认出来</span>画面会跟着你的手指、声音实时变化；放大不糊；电脑风扇可能会转起来。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">twgl.js 5.2.0</span><span class="xb-tech-meta">WebGL 的「省力手套」：原本要写几十行的准备工作（编译着色器、准备贴图、管理画布），用它几行就搞定。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>作者用它编译着色器、给球壳装上一张「法线贴图」（normal.png，让表面看起来有细小起伏）。</p>
+          <p><span class="xb-k">怎么认出来</span>肉眼看不出来。它是幕后工具，不改变画面风格，只让写代码更省事。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">Tone.js 14.7.77</span><span class="xb-tech-meta">网页里的「小型调音台」：能播放声音、加效果（比如失真），还能分析声音。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>回放你录下的那段声音时加上失真效果，并把声音拆成数据交给画面。</p>
+          <p><span class="xb-k">怎么认出来</span>网页里有录音 / 播放按钮，播放出来的声音带着效果，画面跟着声音动。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">loaders.gl（加载 GLB 模型）</span><span class="xb-tech-meta">「拆快递」的工具：3D 模型在建模软件里做好后打包成 .glb 文件，它负责拆开放进场景。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>加载珠子的模型 bead.glb，再让很多颗珠子铺在球面上。</p>
+          <p><span class="xb-k">怎么认出来</span>场景里有明显是建模软件做出来的精细小物体，而不只是简单的球和方块。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">MediaRecorder + getUserMedia（麦克风录音）</span><span class="xb-tech-meta">浏览器自带的「录音笔」，但一定要先经过你点头同意。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>点录音键后，浏览器先问你要不要开麦克风，然后最多录 5 秒。</p>
+          <p><span class="xb-k">怎么认出来</span>浏览器弹出「是否允许使用麦克风？」的提示。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">FFT 频谱分析（Analyser）</span><span class="xb-tech-meta">像三棱镜把白光分成彩虹，FFT 把一段声音拆成「低音、中音、高音各有多响」。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>回放时每一帧读一次频谱，用来让球壳跟着声音鼓动（具体怎么对应到形状，拆解里标的是「推测」）。</p>
+          <p><span class="xb-k">怎么认出来</span>画面随着低音、鼓点一跳一跳，像老式音响上的频谱灯。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">球面 SPH 流体</span><span class="xb-tech-meta">把水想象成一大群互相推挤的小弹珠：挤得太近就互相推开，离得太远又被拉回来。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>作者的说明里写明：球面上跑着一个 SPH 流体模拟，珠子像液体一样流动，被手指拨开后又慢慢流回来。</p>
+          <p><span class="xb-k">怎么认出来</span>东西会「流」、会互相挤、有粘稠感，而不是各飞各的。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">Halo / Bloom 光晕</span><span class="xb-tech-meta">相机对着强光拍时，亮处会往外「溢」出一圈柔光。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>在画面最后再加一层处理，让亮的地方向外渗光，金属感和科幻感一下就出来了。</p>
+          <p><span class="xb-k">怎么认出来</span>亮处边缘有一圈柔和的光雾，像隔着一层薄雾看灯。</p>
+        </div>
+      </details>
+
+      <h2 class="xb-h2"><span>2</span>今日知识点</h2>
+      <div class="xb-lesson">
+        <div class="xb-crumb">3D 与实时图形 · 第 1 课</div>
+        <h3 class="xb-title">实时渲染与着色器：屏幕每秒重画 60 次</h3>
+        <div class="xb-prose"><p>你看到的 Liquid Geo 不是一段视频。视频是提前做好的一张张画面，播放时只是按顺序翻页；Liquid Geo 是「现场画」：大约每 1/60 秒，电脑就根据此刻珠子的位置、你的手指、你的声音，把整幅画面从头算一遍、画一遍。这就叫<b>实时渲染</b>。</p><p>「渲染」的意思，是把一个 3D 场景（有哪些物体、是什么材质、光从哪来）变成屏幕上的一张平面图片。电影特效也要渲染，但一帧可以慢慢算很久，叫<b>离线渲染</b>；网页和游戏必须在十几毫秒内算完一帧，所以叫「实时」。</p><p>谁来算？是 <b>GPU</b>（显卡里专门画图的芯片）。你可以把它想成一座有几千个小工人的工厂：每个工人只负责屏幕上的一小块，大家同时开工，所以特别快。</p><p>给这些小工人的「工作说明书」，就叫<b>着色器（shader）</b>。它是一小段程序，只回答一个问题：「这个点应该在哪、是什么颜色？」屏幕上每个像素都会各跑一遍。Liquid Geo 里金属的反光、亮处的光晕，都是着色器算出来的。</p><p>一句话记住：<b>实时渲染</b> = 每秒几十次的「现场重画」；<b>着色器</b> = 告诉 GPU 每个点怎么画的小程序。</p></div>
+        <h4 class="xb-h4">它从哪里来</h4>
+        <div class="xb-prose"><p>早期的电脑动画电影，比如 1995 年的《玩具总动员》，用的是离线渲染：很多台电脑一起算，一帧画面也要算很长时间。</p><p>1990 年代后期，家用电脑开始装上专门画 3D 的显卡。1999 年，NVIDIA 推出 GeForce 256 时把它称作「GPU」，这个词从此流行开来。</p><p>2000 年代初，显卡开始支持「可编程着色器」：程序员和艺术家终于可以自己写着色器，而不只是用厂商固定好的几种效果。</p><p>2011 年 WebGL 1.0 发布，网页第一次能直接调用 GPU；2017 年主流浏览器开始支持 WebGL 2（Liquid Geo 用的就是它）；2023 年 Chrome 正式支持新一代的 WebGPU。</p></div>
+        <h4 class="xb-h4">经典参考</h4>
+        <ul class="xb-refs"><li><b><a href="https://www.shadertoy.com/" target="_blank" rel="noopener">Shadertoy</a></b><span>全世界的人在这里分享「只用一段着色器」画出来的作品，打开就能看、还能直接改代码。</span></li><li><b><a href="https://thebookofshaders.com/" target="_blank" rel="noopener">《The Book of Shaders》</a></b><span>Patricio Gonzalez Vivo 和 Jen Lowe 写的免费在线入门书，从零开始一步步教着色器。</span></li><li><b>《玩具总动员》（1995）</b><span>第一部完全由电脑生成画面的长篇动画电影，适合用来对比「离线渲染」和今天网页里的「实时渲染」。</span></li></ul>
+        <div class="xb-callout">
+          <div class="xb-callout-t">怎么看 / 怎么练 · 约 8 分钟</div>
+          <ol><li>打开 Liquid Geo，用手指拨一拨珠子；再随便打开一段 3D 动画视频。问自己：哪一个会因为我的动作而改变？会变的那个就是实时渲染。</li><li>打开 shadertoy.com，随便点开一个作品，在画面下方找到 FPS（每秒帧数），看看它是不是接近 60。</li><li>在右边的代码里找一个带小数点的数字（比如 0.5），改成 2.0，再点左下角的播放 / 编译按钮，看画面怎么变——恭喜，你刚刚改了一个着色器。</li><li>用一句话写下来：「实时渲染就是____；着色器就是____。」</li></ol>
+        </div>
+        <h4 class="xb-h4">小词典</h4>
+        <dl class="xb-gloss"><div><dt>帧（frame）</dt><dd>动画里的一张画面。屏幕每刷新一次，就换一帧。</dd></div><div><dt>帧率（FPS）</dt><dd>每秒能画多少帧。60 左右看起来很流畅，低于 30 就会觉得卡。</dd></div><div><dt>渲染</dt><dd>把 3D 场景「拍」成屏幕上一张平面图片的过程。</dd></div><div><dt>GPU</dt><dd>显卡里专门负责画图的芯片，特点是能同时做成千上万件小事。</dd></div><div><dt>着色器（shader）</dt><dd>跑在 GPU 上的小程序，决定每个点的位置和颜色。</dd></div></dl>
+      </div>
+
+      <h2 class="xb-h2"><span>3</span>知识地图进度</h2>
+      <div class="xb-prog">
+        <div class="xb-prog-row"><b>3D 与实时图形</b><span>第 1 课 / 共 16 课</span></div>
+        <div class="bar"><i style="width:12%"></i></div>
+        <div class="xb-prog-row small"><span>这条线已学 2 课</span><span>全部已学 5 / 89</span></div>
+        <a class="xb-next" href="../../map/#3d-02"><span>下一课建议</span><b>3D 第 2 课 · 坐标与空间：x、y、z 和相机</b></a>
+        <a class="xb-maplink" href="../../map/#3d-01">打开知识地图 ›</a>
+      </div>
+    </section>
     <div class="dp-sec">当天另外 7 个</div>
     <a class="mini" href="https://berd.xyz/" target="_blank" rel="noopener">
       <img src="../../thumbs/berd.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />

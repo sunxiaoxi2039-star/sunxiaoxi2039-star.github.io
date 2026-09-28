@@ -13,24 +13,24 @@
   <meta property="og:title" content="WebGPU Gommage · 设计雷达 2026-09-27" />
   <meta property="og:description" content="今日最炫：WebGPU Gommage — Clair Obscur 式消解：MSDF 字被 TSL 噪声咬碎，尘埃与花瓣粒子同步爆发。 另有 7 个网站 / App UI / 小游戏灵感。" />
   <meta property="og:url" content="https://sunxiaoxi2039-star.github.io/d/2026-09-27/" />
-  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-27.jpg?v=202609281001" />
-  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-09-27.jpg?v=202609281001" />
+  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-27.jpg?v=202609290746" />
+  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-09-27.jpg?v=202609290746" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="WebGPU Gommage · 设计雷达 2026-09-27" />
   <meta name="twitter:description" content="今日最炫：WebGPU Gommage — Clair Obscur 式消解：MSDF 字被 TSL 噪声咬碎，尘埃与花瓣粒子同步爆发。 另有 7 个网站 / App UI / 小游戏灵感。" />
-  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-27.jpg?v=202609281001" />
+  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-27.jpg?v=202609290746" />
   <meta itemprop="name" content="WebGPU Gommage · 设计雷达 2026-09-27" />
   <meta itemprop="description" content="今日最炫：WebGPU Gommage — Clair Obscur 式消解：MSDF 字被 TSL 噪声咬碎，尘埃与花瓣粒子同步爆发。 另有 7 个网站 / App UI / 小游戏灵感。" />
-  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-27.jpg?v=202609281001" />
-  <link rel="stylesheet" href="../../styles.css?v=202609281001" />
+  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-27.jpg?v=202609290746" />
+  <link rel="stylesheet" href="../../styles.css?v=202609290746" />
 </head>
 <body class="dp-body">
   <header class="dp-top">
     <a class="dp-home" href="../../"><span>✦</span>设计雷达</a>
-    <button type="button" class="dp-share-mini" data-share>分享</button>
+    <div class="dp-top-r"><a class="dp-maplink" href="../../map/">知识地图</a><button type="button" class="dp-share-mini" data-share>分享</button></div>
   </header>
   <main class="dp">
     <div class="dp-kicker">2026-09-27 · 今日最炫</div>
@@ -107,6 +107,85 @@ each frame / on trigger (GSAP 3.14.2 timeline):
 </ol>
 <h2>一句话</h2>
 <p>WebGPU Gommage 用 Three r181 + TSL 把 MSDF 字咬碎成尘埃与花瓣，是今天技术浓度最高的一刀。</p></div></details>
+    
+    <section class="xb" id="xiaobai">
+      <div class="xb-head">
+        <div class="xb-badge">小白课</div>
+        <p class="xb-sub">零基础也能看懂。先认识这件作品用到的技术，再学一个知识点。</p>
+      </div>
+
+      <h2 class="xb-h2"><span>1</span>技术栈小白版</h2>
+      <p class="xb-note">只列拆解里在源码中确认过的技术。点开看它在这件作品里做了什么。</p>
+      
+      <details class="xb-tech" open>
+        <summary><span class="xb-tech-name">Three.js r181（WebGPU 渲染器）</span><span class="xb-tech-meta">3D 网页界最常用的「全能工具箱」：场景、相机、灯光、材质都是现成的零件，拿来就能搭。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>用它新一代的 WebGPURenderer，把文字、尘埃和花瓣画出来。</p>
+          <p><span class="xb-k">怎么认出来</span>从画面上看不出品牌，但很多 3D 网页都用它。在浏览器开发者工具的控制台输入 __THREE__，能看到版本号（这里是 &quot;181&quot;）。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">TSL / 节点材质</span><span class="xb-tech-meta">用「搭积木」的方式写着色器：一块块节点拼起来，就得到一个效果。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>写出「文字被一张噪声图一点点咬掉」的溶解效果。</p>
+          <p><span class="xb-k">怎么认出来</span>写法看不出来；但看到溶解、烧穿、流动花纹这类效果时，背后通常就是着色器。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">InstancedMesh（实例化）</span><span class="xb-tech-meta">像盖印章：同一个图案一次盖几千下，每一下的位置、大小、角度都可以不同。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>成百上千的尘埃和花瓣，都是同一个形状被「盖章」复制出来的，所以数量很多也不卡。</p>
+          <p><span class="xb-k">怎么认出来</span>画面里有大量长得一样、只是位置和角度不同的小东西（花瓣、树叶、星星）。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">MSDF 文字</span><span class="xb-tech-meta">一种「放大不糊」的字体存法：把每个字的边缘信息存进一张小图里，需要多大就现场画多大。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>标题文字用 MSDF 画在 3D 场景里，所以任何大小都很锐利，而且能被着色器从边缘开始溶解。</p>
+          <p><span class="xb-k">怎么认出来</span>3D 场景里的文字放大、旋转后，边缘依然干净清晰。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">GSAP 3.14.2</span><span class="xb-tech-meta">动画的「导演分镜表」：谁什么时候出场、动多快、怎么加速减速，全写在一条时间轴上。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>用一条时间轴把「静止 → 消解 → 粒子爆发 → 收束」这几幕串起来。</p>
+          <p><span class="xb-k">怎么认出来</span>网页动画很流畅，节奏讲究，多个东西有先有后地依次出场。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">MRT 选择性 Bloom</span><span class="xb-tech-meta">只给「该发光的东西」开柔光滤镜，而不是整张照片都糊上一层。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>只让亮的粒子和溶解的边缘发光，文字本身依然清楚。</p>
+          <p><span class="xb-k">怎么认出来</span>画面里只有部分元素带光晕，其他地方依然锐利。</p>
+        </div>
+      </details>
+
+      <h2 class="xb-h2"><span>2</span>今日知识点</h2>
+      <div class="xb-lesson">
+        <div class="xb-crumb">3D 与实时图形 · 第 12 课</div>
+        <h3 class="xb-title">粒子系统：成千上万个小东西</h3>
+        <div class="xb-prose"><p>烟、火、雪、灰尘、火花、一群萤火虫……这些东西没有固定的形状，很难用「一个模型」做出来。办法是：用成百上千个很小的点（<b>粒子</b>），每个都按一套简单的规则动，合在一起就像烟、像火。这就是<b>粒子系统</b>。</p><p>一个粒子系统，通常只做三件事：</p><ul><li><b>发射</b>：从哪儿冒出来、每秒冒多少个；</li><li><b>更新</b>：每一帧怎么动（速度、重力、风、旋转、慢慢变淡）；</li><li><b>消亡</b>：寿命到了就消失，或者回收再用。</li></ul><p>在 Gommage 里：文字哪一块被「咬掉」，哪一块就发射出尘埃和花瓣；它们飘起来、转起来、慢慢变淡，最后消失。溶解和粒子用的是同一张噪声图，所以看起来就像字真的碎成了灰。</p><p>这么多粒子为什么不卡？因为用了 InstancedMesh（像盖章）：GPU 一次就能画出几千个相同的形状，只是每个的位置不一样。</p><p>一句话记住：<b>粒子系统 = 很多个小东西 + 简单的规则 + 有生有灭。</b></p></div>
+        <h4 class="xb-h4">它从哪里来</h4>
+        <div class="xb-prose"><p>「粒子系统」这个说法来自 1983 年 William Reeves 发表的一篇论文。他当时在卢卡斯影业（Lucasfilm）的电脑部门，为电影《星际迷航 2：可汗之怒》（1982）做了「创世纪」片段——一整颗星球被火焰席卷——用的就是这个方法。</p><p>从那以后，电影特效和游戏里的火、烟、魔法、爆炸，几乎都沿用了粒子系统的思路。</p></div>
+        <h4 class="xb-h4">经典参考</h4>
+        <ul class="xb-refs"><li><b>《星际迷航 2：可汗之怒》（1982）「创世纪」片段</b><span>粒子系统最早的经典，网上搜「Genesis effect」就能看到。</span></li><li><b>William Reeves《Particle Systems — A Technique for Modeling a Class of Fuzzy Objects》（1983）</b><span>提出这个概念的论文。标题里的 fuzzy objects，就是「模糊、没有固定形状的东西」。</span></li><li><b><a href="https://tympanus.net/codrops/2026/01/28/webgpu-gommage-effect-dissolving-msdf-text-into-dust-and-petals-with-three-js-tsl/" target="_blank" rel="noopener">Codrops 上的 Gommage 教程</a></b><span>就是今天这件作品的作者写的，一步步讲怎么做尘埃和花瓣粒子。</span></li></ul>
+        <div class="xb-callout">
+          <div class="xb-callout-t">怎么看 / 怎么练 · 约 8 分钟</div>
+          <ol><li>打开 Gommage，看 3 遍消解：第一遍只看粒子「从哪儿冒出来」；第二遍只看它们「怎么动」（往上飘？会转吗？）；第三遍只看它们「怎么消失」（变小？变淡？）。</li><li>在纸上画三个格子：发射 → 更新 → 消亡，每格写一个你看到的细节。</li><li>在生活里找一个「粒子系统」：烧开水冒的蒸汽、路灯下的雨丝、阳光里飘的灰尘。用同样的三个格子描述它。</li></ol>
+        </div>
+        <h4 class="xb-h4">小词典</h4>
+        <dl class="xb-gloss"><div><dt>粒子（particle）</dt><dd>粒子系统里的一个小单位，通常只是一个点、一个小方片或一个小模型。</dd></div><div><dt>发射器（emitter）</dt><dd>粒子冒出来的地方，决定从哪儿发、发多少、朝哪个方向。</dd></div><div><dt>寿命（lifetime）</dt><dd>一个粒子从出现到消失的时间。</dd></div><div><dt>实例化（instancing）</dt><dd>让 GPU 一次画出很多个相同形状的技巧，像盖章。</dd></div><div><dt>噪声（noise）</dt><dd>一种「有规律的随机」图案，看起来像云或大理石纹，常用来让效果显得自然。</dd></div></dl>
+      </div>
+
+      <h2 class="xb-h2"><span>3</span>知识地图进度</h2>
+      <div class="xb-prog">
+        <div class="xb-prog-row"><b>3D 与实时图形</b><span>第 12 课 / 共 16 课</span></div>
+        <div class="bar"><i style="width:12%"></i></div>
+        <div class="xb-prog-row small"><span>这条线已学 2 课</span><span>全部已学 5 / 89</span></div>
+        <a class="xb-next" href="../../map/#3d-02"><span>下一课建议</span><b>3D 第 2 课 · 坐标与空间：x、y、z 和相机</b></a>
+        <a class="xb-maplink" href="../../map/#3d-12">打开知识地图 ›</a>
+      </div>
+    </section>
     <div class="dp-sec">当天另外 7 个</div>
     <a class="mini" href="https://cerebrium.ai/" target="_blank" rel="noopener">
       <img src="../../thumbs/cerebrium.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
