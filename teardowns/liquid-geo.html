@@ -1,0 +1,67 @@
+<h1>今日拆解 · Liquid Geo</h1>
+<ul>
+<li>Live: <a href="https://robert.leitl.dev/artifacts/liquid-geo/" target="_blank" rel="noopener">https://robert.leitl.dev/artifacts/liquid-geo/</a></li>
+<li>Author: Robert Leitl</li>
+<li>Source: <a href="https://github.com/robert-leitl/liquid-geo" target="_blank" rel="noopener">https://github.com/robert-leitl/liquid-geo</a></li>
+<li>Bundle: <code>/artifacts/liquid-geo/index-be83070f.js</code>（约 540 KB）+ <code>index-6ca6b2e6.css</code></li>
+<li>资产：<code>assets/bead.glb</code>、<code>assets/normal.png</code></li>
+<li>证据目录：本文件夹（<code>index.html</code>、JS/CSS、<code>package.json</code>、<code>README-upstream.md</code>）</li>
+</ul>
+<h2>为何选它</h2>
+<p>8 条里它把《超人：钢铁之躯》里的液态几何界面搬进浏览器：球面上跑 SPH 流体，珠子可被指针拨动，再配合麦克风录 5 秒音频、失真回放，球壳跟着 FFT 鼓动。WebGL2 + twgl + Tone.js + loaders.gl 一条管线讲完，比漂亮落地页更值得拆。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>WebGL2</strong></strong><span>bundle：<code>this.canvas.getContext("webgl2",{antialias:!1,alpha:!1})</code>；GLSL <code>#version 300</code></span></div>
+<div><strong><strong>twgl.js 5.2.0</strong></strong><span>bundle license：<code>/* @license twgl.js 5.2.0</code>；<code>package.json</code>：<code>twgl.js ^5.0.4</code></span></div>
+<div><strong><strong>Tone.js 14.7.77</strong></strong><span>bundle：<code>$h.version="14.7.77"</code> / <code>Tone.js ${"v"}14.7.77</code>；<code>package.json</code>：<code>tone ^14.7.77</code></span></div>
+<div><strong><strong>@loaders.gl/gltf 3.2.11</strong></strong><span>bundle GLB loader：<code>version:"3.2.11"</code>；加载 <code>bead.glb</code>；<code>package.json</code>：<code>@loaders.gl/gltf ^3.2.3</code></span></div>
+<div><strong><strong>gl-matrix</strong></strong><span><code>package.json</code>：<code>^3.4.3</code>（<strong>生产 bundle 未逐字核对版本字面量</strong>）</span></div>
+<div><strong><strong>rxjs 7.x</strong></strong><span><code>package.json</code>：<code>^7.5.6</code>；bundle 含 <code>.subscribe((()=&gt;…))</code> 与按钮事件流</span></div>
+<div><strong><strong>tweakpane</strong></strong><span><code>package.json</code>：<code>^3.1.0</code>；README/<code>?debug=true</code>；<strong>生产默认 UI 未挂出</strong> → 推测仅 debug</span></div>
+<div><strong><strong>Vite 3 + vite-plugin-glsl</strong></strong><span><code>package.json</code> scripts/<code>vite ^3.0.0</code>；<strong>生产 bundle 无 <code>vite</code> 字符串</strong></span></div>
+<div><strong><strong>MediaRecorder + getUserMedia</strong></strong><span><code>navigator.mediaDevices.getUserMedia({audio:!0})</code> → <code>new MediaRecorder(t)</code></span></div>
+<div><strong><strong>未使用 / 未证实</strong></strong><span><strong>未找到</strong> Three.js / WebGPURenderer / React / GSAP 作为主路径</span></div>
+</div>
+<p><code>package.json</code> 还写明项目 <code>version: 2.0.0</code>。README 写明：SPH fluid on sphere surface、screen-space halo/bloom、Tone.js 录音与失真回放。</p>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. WebGL2 场景启动（确认）</h3>
+<p><code>canvas.getContext("webgl2", { antialias: false, alpha: false })</code>；用 twgl 编译/绑定 program；球体法线贴图走 <code>assets/normal.png</code>。</p>
+<h3>2. 球面 SPH + 珠子（确认 + 推测）</h3>
+<p>README：*SPH fluid simulation on sphere surface*（作者另有 gpgpu-2d-sph 仓库）。珠子网格来自 <code>bead.glb</code>（loaders.gl）。<strong>推测</strong>：粒子位置在 GPU/类 GPGPU 缓冲里更新，再实例化或逐珠绘制到球面；指针位移写入力场。</p>
+<h3>3. 录音 5 秒 + 失真回放（确认）</h3>
+<p>类字段：<code>MAX_RECORD_LENGTH = 5</code>、<code>FFT_BUFFER_SIZE = 256</code>；<code>#record-button</code> / <code>#playback-button</code>。<code>getUserMedia</code> → <code>MediaRecorder</code> 收集 <code>audioChunks</code>；回放路径走 Web Audio / Tone（bundle 含 <code>Analyser</code>、<code>distortion</code>、<code>Player</code> 等符号）。</p>
+<h3>4. 音频驱动球壳（确认 + 推测）</h3>
+<p><code>Analyser</code> / FFT 相关符号密集；README：*the sphere responds to the audio signal*。<strong>推测</strong>：每帧把 frequency bin 能量映射到球面位移或噪声强度。</p>
+<h3>5. Halo / Bloom（确认）</h3>
+<p>README 写明 screen-space halo and bloom（参考 John Chapman pseudo lens flare）；bundle 内 <code>halo</code> ×16、<code>bloom</code> ×5、<code>framebuffer</code> ×5。</p>
+<h3>6. 伪代码（忠实于 README + bundle 结构）</h3>
+<pre class="md-code"><code>boot:
+  gl = canvas.getContext("webgl2", { antialias: false, alpha: false })
+  programs = twgl.createProgramInfo(...)   # #version 300 es
+  bead = await loaders.gl.load(bead.glb)
+  normalTex = twgl.createTexture(gl, { src: "assets/normal.png" })
+  audio = new AudioController(recordBtn, playbackBtn)
+    # MAX_RECORD_LENGTH=5, FFT_BUFFER_SIZE=256
+
+record:
+  stream = await getUserMedia({ audio: true })
+  mediaRecorder = new MediaRecorder(stream)
+  // ≤5s → audioChunks → blob
+
+playback:
+  Tone / AudioContext graph: Player → distortion → Analyser(FFT 256) → Destination
+  each frame: bins = analyser.getFrequencyData()
+  displace sphere / particles by bins     # 推测映射细节
+  SPH step on sphere surface
+  pointer force on beads
+  halo + bloom pass
+  draw</code></pre>
+<h2>如果我来重做（步骤清单）</h2>
+<ol>
+<li>Vite + <code>twgl.js@5</code> + <code>tone@14.7.77</code> + <code>@loaders.gl/gltf</code>，主路径只用 WebGL2。  </li>
+<li>写球面 SPH（或先 CPU 弹簧粒子）+ 法线贴图球壳。  </li>
+<li>加载 <code>bead.glb</code>，指针射线把力打到最近珠子。  </li>
+<li>MediaRecorder 录 ≤5s；Tone Player + Distortion + Analyser(fftSize=256) 回放。  </li>
+<li>用 FFT 能量推球面位移；再加 Chapman 式 halo/bloom 后处理。  </li>
+<li><code>?debug=true</code> 时挂 tweakpane 调粘度、失真、bloom。</li>
+</ol>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0c0e" />
+  <title>设计雷达 · 每日设计灵感</title>
+  <meta name="description" content="每天 8 个值得看的网站、App UI 和网页小游戏，附当日最炫的大白话拆解。" />
+  <link rel="canonical" href="https://sunxiaoxi2039-star.github.io/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="设计雷达" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="设计雷达 · 每日设计灵感" />
+  <meta property="og:description" content="每天 8 个值得看的网站、App UI 和网页小游戏，附当日最炫的大白话拆解。" />
+  <meta property="og:url" content="https://sunxiaoxi2039-star.github.io/" />
+  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/latest.jpg?v=202609280959" />
+  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/latest.jpg?v=202609280959" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="设计雷达 · 每日设计灵感" />
+  <meta name="twitter:description" content="每天 8 个值得看的网站、App UI 和网页小游戏，附当日最炫的大白话拆解。" />
+  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/latest.jpg?v=202609280959" />
+  <meta itemprop="name" content="设计雷达 · 每日设计灵感" />
+  <meta itemprop="description" content="每天 8 个值得看的网站、App UI 和网页小游戏，附当日最炫的大白话拆解。" />
+  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/latest.jpg?v=202609280959" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="stylesheet" href="styles.css?v=202609280959" />
+</head>
+<body>
+  <header class="topbar" id="topbar">
+    <div class="brand">
+      <span class="brand-mark">✦</span>
+      <span class="brand-name">设计雷达</span>
+    </div>
+    <nav class="filters" id="filters" aria-label="类型筛选">
+      <button type="button" class="chip is-active" data-filter="all">全部</button>
+      <button type="button" class="chip" data-filter="网站">网站</button>
+      <button type="button" class="chip" data-filter="App UI">App UI</button>
+      <button type="button" class="chip" data-filter="小游戏">小游戏</button>
+    </nav>
+  </header>
+
+  <main id="feed" class="feed" aria-live="polite"></main>
+
+  <div id="sentinel" class="sentinel" aria-hidden="true"></div>
+  <p id="status" class="status" hidden></p>
+
+  <nav class="days-index" aria-label="按日浏览">
+    <h2>按日浏览 · 每天一个固定链接</h2>
+    <ul>
+      <li><a href="d/2026-09-28/">2026-09-28<small>Liquid Geo</small></a></li>
+      <li><a href="d/2026-09-27/">2026-09-27<small>WebGPU Gommage</small></a></li>
+      <li><a href="d/2026-09-26/">2026-09-26<small>NIMBÉ</small></a></li>
+      <li><a href="d/2026-09-24/">2026-09-24<small>Momiji</small></a></li>
+      <li><a href="d/2026-09-23/">2026-09-23<small>Ferrofluid Microphone</small></a></li>
+      <li><a href="d/2026-09-22/">2026-09-22<small>Don&#x27;t Look Up game</small></a></li>
+      <li><a href="d/2026-09-21/">2026-09-21<small>Gil Huybrecht</small></a></li>
+      <li><a href="d/2026-09-20/">2026-09-20<small>Pensatori Irrazionali</small></a></li>
+      <li><a href="d/2026-09-19/">2026-09-19<small>Boc.Studio</small></a></li>
+      <li><a href="d/2026-09-15/">2026-09-15<small>Aspen Search</small></a></li>
+    </ul>
+  </nav>
+
+  <div id="sheet" class="sheet" hidden aria-modal="true" role="dialog">
+    <div class="sheet-backdrop" data-close></div>
+    <div class="sheet-panel">
+      <div class="sheet-handle"></div>
+      <button type="button" class="sheet-close" data-close aria-label="关闭">✕</button>
+      <div class="sheet-body" id="sheet-body"></div>
+    </div>
+  </div>
+
+  <script src="data.js?v=202609280959"></script>
+  <script src="app.js?v=202609280959"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0c0e" />
+  <title>WebGPU Gommage · 设计雷达 2026-09-27</title>
+  <meta name="description" content="今日最炫：WebGPU Gommage — Clair Obscur 式消解：MSDF 字被 TSL 噪声咬碎，尘埃与花瓣粒子同步爆发。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <link rel="canonical" href="https://sunxiaoxi2039-star.github.io/d/2026-09-27/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="设计雷达" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="WebGPU Gommage · 设计雷达 2026-09-27" />
+  <meta property="og:description" content="今日最炫：WebGPU Gommage — Clair Obscur 式消解：MSDF 字被 TSL 噪声咬碎，尘埃与花瓣粒子同步爆发。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta property="og:url" content="https://sunxiaoxi2039-star.github.io/d/2026-09-27/" />
+  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-27.jpg?v=202609280959" />
+  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-09-27.jpg?v=202609280959" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="WebGPU Gommage · 设计雷达 2026-09-27" />
+  <meta name="twitter:description" content="今日最炫：WebGPU Gommage — Clair Obscur 式消解：MSDF 字被 TSL 噪声咬碎，尘埃与花瓣粒子同步爆发。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-27.jpg?v=202609280959" />
+  <meta itemprop="name" content="WebGPU Gommage · 设计雷达 2026-09-27" />
+  <meta itemprop="description" content="今日最炫：WebGPU Gommage — Clair Obscur 式消解：MSDF 字被 TSL 噪声咬碎，尘埃与花瓣粒子同步爆发。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-27.jpg?v=202609280959" />
+  <link rel="stylesheet" href="../../styles.css?v=202609280959" />
+</head>
+<body class="dp-body">
+  <header class="dp-top">
+    <a class="dp-home" href="../../"><span>✦</span>设计雷达</a>
+    <button type="button" class="dp-share-mini" data-share>分享</button>
+  </header>
+  <main class="dp">
+    <div class="dp-kicker">2026-09-27 · 今日最炫</div>
+    <h1 class="dp-title">WebGPU Gommage</h1>
+    <p class="dp-lede">Clair Obscur 式消解：MSDF 字被 TSL 噪声咬碎，尘埃与花瓣粒子同步爆发。</p>
+    <a class="dp-hero-link" href="https://tympanus.net/Tutorials/WebGPUGommage/" target="_blank" rel="noopener">
+      <img class="dp-hero" src="../../thumbs/webgpu-gommage.webp" alt="WebGPU Gommage 截图" width="640" height="400" />
+    </a>
+    <a class="btn-open" href="https://tympanus.net/Tutorials/WebGPUGommage/" target="_blank" rel="noopener">打开网站 ↗</a>
+    <section class="dp-plain">
+      <div class="dp-h2">大白话拆解</div>
+      <p><b>它是什么：</b>一行字像被风化一样碎掉、化成尘埃和花瓣飘走，灵感来自游戏《光与影：33号远征队》。</p><p><b>好在哪：</b>“消散”这个瞬间做得很有仪式感：字不是淡出，而是从边缘一点点被“啃”掉，同时粒子喷出来。</p><p><b>怎么做到的：</b></p><ol><li>用噪声图决定每个笔画先碎哪里，数值一过阈值那一块就消失。</li><li>碎掉的位置同步发射成百上千的尘埃和花瓣（同一个模型批量复制，所以不卡）。</li><li>只给发光的部分加泛光，画面亮而不糊。</li></ol>
+    </section>
+    <details class="dp-full"><summary>完整技术拆解</summary><div class="teardown"><h1>今日拆解 · WebGPU Gommage</h1>
+<ul>
+<li>Live: <a href="https://tympanus.net/Tutorials/WebGPUGommage/" target="_blank" rel="noopener">https://tympanus.net/Tutorials/WebGPUGommage/</a></li>
+<li>Article: <a href="https://tympanus.net/codrops/2026/01/28/webgpu-gommage-effect-dissolving-msdf-text-into-dust-and-petals-with-three-js-tsl/" target="_blank" rel="noopener">https://tympanus.net/codrops/2026/01/28/webgpu-gommage-effect-dissolving-msdf-text-into-dust-and-petals-with-three-js-tsl/</a></li>
+<li>Author: Thibault Introvigne（Codrops / README）</li>
+<li>Source: <a href="https://github.com/WallabyMonochrome/WebGPU-clair-obscur-gommage-codrops" target="_blank" rel="noopener">https://github.com/WallabyMonochrome/WebGPU-clair-obscur-gommage-codrops</a></li>
+<li>Bundle: <code>/assets/index-EDTSsNMI.js</code>（约 1.99 MB）+ <code>/assets/index-DLrsDo2-.css</code></li>
+<li>证据目录：本文件夹（<code>index.html</code>、JS/CSS）</li>
+</ul>
+<h2>为何选它</h2>
+<p>8 条里它把《Clair Obscur: Expedition 33》里的「Gommage」消解瞬间搬到浏览器：MSDF 文字被噪声驱动的 TSL 着色器咬碎，同步喷出尘埃与旋转花瓣粒子，再用 MRT 选择性 bloom 收尾。WebGPU + TSL + InstancedMesh 一条管线讲完，比漂亮落地页更值得拆。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r181</strong>（WebGPU 路径）</strong><span>bundle：<code>const em="181"</code> / <code>window.__THREE__=em</code>；<code>REVISION:em</code>；<code>WebGPURenderer</code> 出现多次；<code>await this.#threejs.init()</code></span></div>
+<div><strong><strong>TSL / NodeMaterial</strong></strong><span><code>Fn(</code> ×56；<code>nodeMaterial</code> 相关 ×71；文章与 demo 标题写明 *Three.js &amp; TSL*</span></div>
+<div><strong><strong>InstancedMesh 粒子</strong></strong><span><code>InstancedMesh</code> ×28；文章步骤：dust + petal 均用 InstancedMesh</span></div>
+<div><strong><strong>MSDF 文字</strong></strong><span><code>MSDFText</code> ×6；依赖 <code>three-msdf-text-utils</code>（<code>package.json</code> 写 <code>^1.2.1</code>；<strong>bundle 内未找到字面量 <code>1.2.1</code></strong> → 精确补丁版以仓库为准）</span></div>
+<div><strong><strong>GSAP 3.14.2</strong></strong><span><code>vo.version="3.14.2"</code>；<code>gsapVersions</code> push</span></div>
+<div><strong><strong>Vite 构建</strong></strong><span><code>package.json</code>：<code>vite ^7.3.1</code>；资源 hash 文件名。<strong>生产 bundle 无 <code>vite</code> 字符串</strong></span></div>
+<div><strong><strong>tweakpane（开发调试）</strong></strong><span><code>package.json</code>：<code>^4.0.5</code>；<strong>生产 bundle 未找到 <code>tweakpane</code></strong> → 推测仅本地调试用</span></div>
+<div><strong><strong>未使用 / 未证实</strong></strong><span><strong>未找到</strong> React / R3F、Howler、WebGLRenderer 作为主路径（bundle 含 WebGLRenderer 符号但是 Three 全集；主路径文章与代码均走 WebGPURenderer）</span></div>
+</div>
+<p><code>package.json</code> 还写明：<code>three: ^0.181.0</code>，与 <code>window.__THREE__="181"</code> 一致。</p>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. WebGPU 场景启动（确认）</h3>
+<p>文章摘录：<code>new THREE.WebGPURenderer({ antialias: true }); await this.#threejs.init();</code>，tone mapping 用 <code>ACESFilmicToneMapping</code>。</p>
+<h3>2. MSDF 文字溶解（确认 + 推测）</h3>
+<p>用 <code>three-msdf-text-utils</code> 生成 MSDF mesh；片断/TSL 里用 noise（bundle 中 <code>noise</code> ×65）驱动 dissolve 阈值。<strong>推测</strong>：阈值之上的 texel 透明度归零，同时把同一噪声场喂给粒子发射，保证文字与粒子「同一刀」切开。</p>
+<h3>3. 尘埃 + 花瓣 InstancedMesh（确认）</h3>
+<p>文章目录步骤：</p>
+<ol>
+<li>Create a noise-driven dissolve effect  </li>
+<li>Spawn and animate dust particles with InstancedMesh  </li>
+<li>Spawn petal particles with bend + spin  </li>
+<li>Add selective bloom with MRT nodes  </li>
+</ol>
+<p>花瓣用 GLB 模型（文章提到 <code>public/models/petal.glb</code>）。</p>
+<h3>4. 选择性 Bloom / MRT（确认）</h3>
+<p>文章写明 *selective bloom using MRT*；bundle 内 <code>mrt</code> ×20、<code>bloom</code> ×5。</p>
+<h3>5. 伪代码（忠实于教程结构）</h3>
+<pre class="md-code"><code>boot:
+  renderer = new WebGPURenderer({ antialias: true })
+  await renderer.init()
+  renderer.toneMapping = ACESFilmicToneMapping
+  text = MSDFText(fontAtlas, "GOMMAGE…")   # three-msdf-text-utils
+  dust  = new InstancedMesh(dustGeo, dustNodeMat, N)
+  petals = new InstancedMesh(petalGeo, petalNodeMat, M)  # petal.glb
+
+each frame / on trigger (GSAP 3.14.2 timeline):
+  progress = gsapProgress  # 0→1
+  textMat.dissolve = progress          # TSL Fn + noise
+  emit dust/petals where noise crossed
+  petal instances: bend + spin
+  post = mrt bloom (selective)
+  renderer.render(scene, camera)</code></pre>
+<h2>如果我来重做（步骤清单）</h2>
+<ol>
+<li>Vite + <code>three@0.181.0</code>，主路径只用 <code>WebGPURenderer</code> + TSL（无适配器时给降级提示）。  </li>
+<li>用 msdf-bmfont 生成字体图集；<code>three-msdf-text-utils</code> 出字。  </li>
+<li>写 TSL <code>Fn</code>：Perlin/噪声采样 → dissolve mask。  </li>
+<li>两个 InstancedMesh：dust（小四边形）+ petal（GLB）；用同一 progress 驱动发射与自旋。  </li>
+<li>MRT 选择性 bloom，只让亮粒子/边缘进光晕。  </li>
+<li>GSAP timeline 串起「静置 → 消解 → 粒子爆发 → 收束」。  </li>
+</ol>
+<h2>一句话</h2>
+<p>WebGPU Gommage 用 Three r181 + TSL 把 MSDF 字咬碎成尘埃与花瓣，是今天技术浓度最高的一刀。</p></div></details>
+    <div class="dp-sec">当天另外 7 个</div>
+    <a class="mini" href="https://cerebrium.ai/" target="_blank" rel="noopener">
+      <img src="../../thumbs/cerebrium.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="网站">网站</span></div>
+        <div class="mini-title">Cerebrium</div><div class="mini-desc">Serverless GPU 基建站：冷启动与模型部署用干净产品视觉讲清楚。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://cosmos-museum.vercel.app/" target="_blank" rel="noopener">
+      <img src="../../thumbs/cosmos-museum.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Cosmos Museum</div><div class="mini-desc">宇宙美术馆：Three.js bloom + 透镜光晕，在静默星光里跳世界。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://tympanus.net/Demos/CustomShapedCursorTrail/" target="_blank" rel="noopener">
+      <img src="../../thumbs/custom-shaped-cursor-trail.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Custom Shaped Cursor Trail</div><div class="mini-desc">可插拔笔刷函数的光标拖尾：Three.js WebGPU + TSL 把指针变成材质笔。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://provider.studio/" target="_blank" rel="noopener">
+      <img src="../../thumbs/provider-studio.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="网站">网站</span></div>
+        <div class="mini-title">Provider Studio</div><div class="mini-desc">精品酒店的品牌与气味设计：克制排版把「视觉 + 气味」卖成感官系统。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://statements.now/" target="_blank" rel="noopener">
+      <img src="../../thumbs/statements.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="App UI">App UI</span></div>
+        <div class="mini-title">Statements</div><div class="mini-desc">PDF 银行流水一键转 CSV：无注册工具页，信息层级干净得像财务产品。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://thetiebreak.merci-michel.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/the-tie-break.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="网站">网站</span></div>
+        <div class="mini-title">The Tie Break</div><div class="mini-desc">New Balance × Miu Miu × Coco Gauff 互动站：把时尚联名做成可玩的抢七叙事。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://typewave.blendmodes.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/typewave.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="App UI">App UI</span></div>
+        <div class="mini-title">Typewave</div><div class="mini-desc">Figma 字阶插件落地页：一键生成字体比例、样式与可导出 CSS。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <button type="button" class="dp-share" data-share>复制链接 / 分享</button>
+    <nav class="dp-nav"><a href="../2026-09-26/">‹ 09-26</a><a href="../../">全部日期</a><a href="../2026-09-28/">09-28 ›</a></nav>
+    <p class="dp-foot">设计雷达 · 每天 8 个值得看的网站、App UI 和网页小游戏</p>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  var canon=document.querySelector('link[rel=canonical]').href;
+  var toastEl=document.getElementById('toast');
+  function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(function(){toastEl.classList.remove('show')},1800);}
+  function legacyCopy(){var t=document.createElement('textarea');t.value=canon;t.setAttribute('readonly','');t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();if(ok)toast('链接已复制');else window.prompt('复制这个链接',canon);}
+  function share(){
+    var data={title:document.title,text:document.querySelector('meta[name=description]').content,url:canon};
+    if(navigator.share){navigator.share(data).catch(function(e){if(e&&e.name!=='AbortError')copy();});return;}
+    copy();
+  }
+  function copy(){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(canon).then(function(){toast('链接已复制')},legacyCopy);}else legacyCopy();}
+  document.querySelectorAll('[data-share]').forEach(function(b){b.addEventListener('click',share)});
+})();
+</script>
+</body>
+</html>

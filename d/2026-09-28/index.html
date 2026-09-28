@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0c0e" />
+  <title>Liquid Geo · 设计雷达 2026-09-28</title>
+  <meta name="description" content="今日最炫：Liquid Geo — 液态几何体：twgl WebGL + Tone.js，几何表面像被低频揉皱的金属。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <link rel="canonical" href="https://sunxiaoxi2039-star.github.io/d/2026-09-28/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="设计雷达" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="Liquid Geo · 设计雷达 2026-09-28" />
+  <meta property="og:description" content="今日最炫：Liquid Geo — 液态几何体：twgl WebGL + Tone.js，几何表面像被低频揉皱的金属。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta property="og:url" content="https://sunxiaoxi2039-star.github.io/d/2026-09-28/" />
+  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-28.jpg?v=202609280959" />
+  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-09-28.jpg?v=202609280959" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Liquid Geo · 设计雷达 2026-09-28" />
+  <meta name="twitter:description" content="今日最炫：Liquid Geo — 液态几何体：twgl WebGL + Tone.js，几何表面像被低频揉皱的金属。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-28.jpg?v=202609280959" />
+  <meta itemprop="name" content="Liquid Geo · 设计雷达 2026-09-28" />
+  <meta itemprop="description" content="今日最炫：Liquid Geo — 液态几何体：twgl WebGL + Tone.js，几何表面像被低频揉皱的金属。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-28.jpg?v=202609280959" />
+  <link rel="stylesheet" href="../../styles.css?v=202609280959" />
+</head>
+<body class="dp-body">
+  <header class="dp-top">
+    <a class="dp-home" href="../../"><span>✦</span>设计雷达</a>
+    <button type="button" class="dp-share-mini" data-share>分享</button>
+  </header>
+  <main class="dp">
+    <div class="dp-kicker">2026-09-28 · 今日最炫</div>
+    <h1 class="dp-title">Liquid Geo</h1>
+    <p class="dp-lede">液态几何体：twgl WebGL + Tone.js，几何表面像被低频揉皱的金属。</p>
+    <a class="dp-hero-link" href="https://robert.leitl.dev/artifacts/liquid-geo/" target="_blank" rel="noopener">
+      <img class="dp-hero" src="../../thumbs/liquid-geo.webp" alt="Liquid Geo 截图" width="640" height="400" />
+    </a>
+    <a class="btn-open" href="https://robert.leitl.dev/artifacts/liquid-geo/" target="_blank" rel="noopener">打开网站 ↗</a>
+    <section class="dp-plain">
+      <div class="dp-h2">大白话拆解</div>
+      <p><b>它是什么：</b>一颗会“呼吸”的液态金属球：表面上的小珠子像水银一样流动，手指一拨就散开。</p><p><b>好在哪：</b>它把科幻电影里的液态界面做成了能玩的网页，还能录 5 秒声音，回放时整颗球跟着声音鼓动。</p><p><b>怎么做到的：</b></p><ol><li>球面上跑了一个简化的流体模拟，每颗珠子都在算“被推、被挤、再流回来”。</li><li>声音被拆成高低频的能量，越响的频段让球壳鼓得越厉害。</li><li>最后加一层光晕和泛光，金属质感就出来了。</li></ol>
+    </section>
+    <details class="dp-full"><summary>完整技术拆解</summary><div class="teardown"><h1>今日拆解 · Liquid Geo</h1>
+<ul>
+<li>Live: <a href="https://robert.leitl.dev/artifacts/liquid-geo/" target="_blank" rel="noopener">https://robert.leitl.dev/artifacts/liquid-geo/</a></li>
+<li>Author: Robert Leitl</li>
+<li>Source: <a href="https://github.com/robert-leitl/liquid-geo" target="_blank" rel="noopener">https://github.com/robert-leitl/liquid-geo</a></li>
+<li>Bundle: <code>/artifacts/liquid-geo/index-be83070f.js</code>（约 540 KB）+ <code>index-6ca6b2e6.css</code></li>
+<li>资产：<code>assets/bead.glb</code>、<code>assets/normal.png</code></li>
+<li>证据目录：本文件夹（<code>index.html</code>、JS/CSS、<code>package.json</code>、<code>README-upstream.md</code>）</li>
+</ul>
+<h2>为何选它</h2>
+<p>8 条里它把《超人：钢铁之躯》里的液态几何界面搬进浏览器：球面上跑 SPH 流体，珠子可被指针拨动，再配合麦克风录 5 秒音频、失真回放，球壳跟着 FFT 鼓动。WebGL2 + twgl + Tone.js + loaders.gl 一条管线讲完，比漂亮落地页更值得拆。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>WebGL2</strong></strong><span>bundle：<code>this.canvas.getContext("webgl2",{antialias:!1,alpha:!1})</code>；GLSL <code>#version 300</code></span></div>
+<div><strong><strong>twgl.js 5.2.0</strong></strong><span>bundle license：<code>/* @license twgl.js 5.2.0</code>；<code>package.json</code>：<code>twgl.js ^5.0.4</code></span></div>
+<div><strong><strong>Tone.js 14.7.77</strong></strong><span>bundle：<code>$h.version="14.7.77"</code> / <code>Tone.js ${"v"}14.7.77</code>；<code>package.json</code>：<code>tone ^14.7.77</code></span></div>
+<div><strong><strong>@loaders.gl/gltf 3.2.11</strong></strong><span>bundle GLB loader：<code>version:"3.2.11"</code>；加载 <code>bead.glb</code>；<code>package.json</code>：<code>@loaders.gl/gltf ^3.2.3</code></span></div>
+<div><strong><strong>gl-matrix</strong></strong><span><code>package.json</code>：<code>^3.4.3</code>（<strong>生产 bundle 未逐字核对版本字面量</strong>）</span></div>
+<div><strong><strong>rxjs 7.x</strong></strong><span><code>package.json</code>：<code>^7.5.6</code>；bundle 含 <code>.subscribe((()=&gt;…))</code> 与按钮事件流</span></div>
+<div><strong><strong>tweakpane</strong></strong><span><code>package.json</code>：<code>^3.1.0</code>；README/<code>?debug=true</code>；<strong>生产默认 UI 未挂出</strong> → 推测仅 debug</span></div>
+<div><strong><strong>Vite 3 + vite-plugin-glsl</strong></strong><span><code>package.json</code> scripts/<code>vite ^3.0.0</code>；<strong>生产 bundle 无 <code>vite</code> 字符串</strong></span></div>
+<div><strong><strong>MediaRecorder + getUserMedia</strong></strong><span><code>navigator.mediaDevices.getUserMedia({audio:!0})</code> → <code>new MediaRecorder(t)</code></span></div>
+<div><strong><strong>未使用 / 未证实</strong></strong><span><strong>未找到</strong> Three.js / WebGPURenderer / React / GSAP 作为主路径</span></div>
+</div>
+<p><code>package.json</code> 还写明项目 <code>version: 2.0.0</code>。README 写明：SPH fluid on sphere surface、screen-space halo/bloom、Tone.js 录音与失真回放。</p>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. WebGL2 场景启动（确认）</h3>
+<p><code>canvas.getContext("webgl2", { antialias: false, alpha: false })</code>；用 twgl 编译/绑定 program；球体法线贴图走 <code>assets/normal.png</code>。</p>
+<h3>2. 球面 SPH + 珠子（确认 + 推测）</h3>
+<p>README：*SPH fluid simulation on sphere surface*（作者另有 gpgpu-2d-sph 仓库）。珠子网格来自 <code>bead.glb</code>（loaders.gl）。<strong>推测</strong>：粒子位置在 GPU/类 GPGPU 缓冲里更新，再实例化或逐珠绘制到球面；指针位移写入力场。</p>
+<h3>3. 录音 5 秒 + 失真回放（确认）</h3>
+<p>类字段：<code>MAX_RECORD_LENGTH = 5</code>、<code>FFT_BUFFER_SIZE = 256</code>；<code>#record-button</code> / <code>#playback-button</code>。<code>getUserMedia</code> → <code>MediaRecorder</code> 收集 <code>audioChunks</code>；回放路径走 Web Audio / Tone（bundle 含 <code>Analyser</code>、<code>distortion</code>、<code>Player</code> 等符号）。</p>
+<h3>4. 音频驱动球壳（确认 + 推测）</h3>
+<p><code>Analyser</code> / FFT 相关符号密集；README：*the sphere responds to the audio signal*。<strong>推测</strong>：每帧把 frequency bin 能量映射到球面位移或噪声强度。</p>
+<h3>5. Halo / Bloom（确认）</h3>
+<p>README 写明 screen-space halo and bloom（参考 John Chapman pseudo lens flare）；bundle 内 <code>halo</code> ×16、<code>bloom</code> ×5、<code>framebuffer</code> ×5。</p>
+<h3>6. 伪代码（忠实于 README + bundle 结构）</h3>
+<pre class="md-code"><code>boot:
+  gl = canvas.getContext("webgl2", { antialias: false, alpha: false })
+  programs = twgl.createProgramInfo(...)   # #version 300 es
+  bead = await loaders.gl.load(bead.glb)
+  normalTex = twgl.createTexture(gl, { src: "assets/normal.png" })
+  audio = new AudioController(recordBtn, playbackBtn)
+    # MAX_RECORD_LENGTH=5, FFT_BUFFER_SIZE=256
+
+record:
+  stream = await getUserMedia({ audio: true })
+  mediaRecorder = new MediaRecorder(stream)
+  // ≤5s → audioChunks → blob
+
+playback:
+  Tone / AudioContext graph: Player → distortion → Analyser(FFT 256) → Destination
+  each frame: bins = analyser.getFrequencyData()
+  displace sphere / particles by bins     # 推测映射细节
+  SPH step on sphere surface
+  pointer force on beads
+  halo + bloom pass
+  draw</code></pre>
+<h2>如果我来重做（步骤清单）</h2>
+<ol>
+<li>Vite + <code>twgl.js@5</code> + <code>tone@14.7.77</code> + <code>@loaders.gl/gltf</code>，主路径只用 WebGL2。  </li>
+<li>写球面 SPH（或先 CPU 弹簧粒子）+ 法线贴图球壳。  </li>
+<li>加载 <code>bead.glb</code>，指针射线把力打到最近珠子。  </li>
+<li>MediaRecorder 录 ≤5s；Tone Player + Distortion + Analyser(fftSize=256) 回放。  </li>
+<li>用 FFT 能量推球面位移；再加 Chapman 式 halo/bloom 后处理。  </li>
+<li><code>?debug=true</code> 时挂 tweakpane 调粘度、失真、bloom。</li>
+</ol></div></details>
+    <div class="dp-sec">当天另外 7 个</div>
+    <a class="mini" href="https://berd.xyz/" target="_blank" rel="noopener">
+      <img src="../../thumbs/berd.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="App UI">App UI</span></div>
+        <div class="mini-title">Berd</div><div class="mini-desc">怪趣味 AI 桌面代理：少聊天、多动手，产品语气像会动的玩具。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://www.butter.video/" target="_blank" rel="noopener">
+      <img src="../../thumbs/butter.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="网站">网站</span></div>
+        <div class="mini-title">Butter</div><div class="mini-desc">在线视频剪辑引擎落地页：把时间轴与创意工具感做成可扫视的产品叙事。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://www.flowjam.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/flowjam.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="App UI">App UI</span></div>
+        <div class="mini-title">Flowjam</div><div class="mini-desc">给创始人的产品发布视频工具：一页讲清「从素材到上线片」。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://robert.leitl.dev/artifacts/mimesis/" target="_blank" rel="noopener">
+      <img src="../../thumbs/mimesis.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Mimesis</div><div class="mini-desc">「几乎真实」的材质戏法：Three.js 把仿生表面推到以假乱真的边缘。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://openscreenshot.app/" target="_blank" rel="noopener">
+      <img src="../../thumbs/openscreenshot.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="App UI">App UI</span></div>
+        <div class="mini-title">OpenScreenShot</div><div class="mini-desc">开源整页截图扩展：一键长图 + 标注模糊 + 多格式导出，工具页极干净。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://theseed.volm.studio/" target="_blank" rel="noopener">
+      <img src="../../thumbs/seed-a-life-cycle.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="网站">网站</span></div>
+        <div class="mini-title">SEED — A Life Cycle</div><div class="mini-desc">一粒种子的一生：滚动驱动 WebGL，把生长、枯荣与轮回收进一页。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://symphonyofvines.unseen.co/" target="_blank" rel="noopener">
+      <img src="../../thumbs/the-symphony-of-vines.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="网站">网站</span></div>
+        <div class="mini-title">The Symphony of Vines</div><div class="mini-desc">酒庄叙事站：Three.js 把藤蔓与年份酿成可滚动的沉浸章节。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <button type="button" class="dp-share" data-share>复制链接 / 分享</button>
+    <nav class="dp-nav"><a href="../2026-09-27/">‹ 09-27</a><a href="../../">全部日期</a><span>›</span></nav>
+    <p class="dp-foot">设计雷达 · 每天 8 个值得看的网站、App UI 和网页小游戏</p>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  var canon=document.querySelector('link[rel=canonical]').href;
+  var toastEl=document.getElementById('toast');
+  function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(function(){toastEl.classList.remove('show')},1800);}
+  function legacyCopy(){var t=document.createElement('textarea');t.value=canon;t.setAttribute('readonly','');t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();if(ok)toast('链接已复制');else window.prompt('复制这个链接',canon);}
+  function share(){
+    var data={title:document.title,text:document.querySelector('meta[name=description]').content,url:canon};
+    if(navigator.share){navigator.share(data).catch(function(e){if(e&&e.name!=='AbortError')copy();});return;}
+    copy();
+  }
+  function copy(){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(canon).then(function(){toast('链接已复制')},legacyCopy);}else legacyCopy();}
+  document.querySelectorAll('[data-share]').forEach(function(b){b.addEventListener('click',share)});
+})();
+</script>
+</body>
+</html>

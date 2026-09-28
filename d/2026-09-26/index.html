@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0c0e" />
+  <title>NIMBÉ · 设计雷达 2026-09-26</title>
+  <meta name="description" content="今日最炫：NIMBÉ — 四章 WebGL 枕头秀：按压棉花、透镜下到织纹、再看夜幕落下——没有一张产品照片。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <link rel="canonical" href="https://sunxiaoxi2039-star.github.io/d/2026-09-26/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="设计雷达" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="NIMBÉ · 设计雷达 2026-09-26" />
+  <meta property="og:description" content="今日最炫：NIMBÉ — 四章 WebGL 枕头秀：按压棉花、透镜下到织纹、再看夜幕落下——没有一张产品照片。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta property="og:url" content="https://sunxiaoxi2039-star.github.io/d/2026-09-26/" />
+  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-26.jpg?v=202609280959" />
+  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-09-26.jpg?v=202609280959" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NIMBÉ · 设计雷达 2026-09-26" />
+  <meta name="twitter:description" content="今日最炫：NIMBÉ — 四章 WebGL 枕头秀：按压棉花、透镜下到织纹、再看夜幕落下——没有一张产品照片。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-26.jpg?v=202609280959" />
+  <meta itemprop="name" content="NIMBÉ · 设计雷达 2026-09-26" />
+  <meta itemprop="description" content="今日最炫：NIMBÉ — 四章 WebGL 枕头秀：按压棉花、透镜下到织纹、再看夜幕落下——没有一张产品照片。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-26.jpg?v=202609280959" />
+  <link rel="stylesheet" href="../../styles.css?v=202609280959" />
+</head>
+<body class="dp-body">
+  <header class="dp-top">
+    <a class="dp-home" href="../../"><span>✦</span>设计雷达</a>
+    <button type="button" class="dp-share-mini" data-share>分享</button>
+  </header>
+  <main class="dp">
+    <div class="dp-kicker">2026-09-26 · 今日最炫</div>
+    <h1 class="dp-title">NIMBÉ</h1>
+    <p class="dp-lede">四章 WebGL 枕头秀：按压棉花、透镜下到织纹、再看夜幕落下——没有一张产品照片。</p>
+    <a class="dp-hero-link" href="https://nimbe-nine.vercel.app/" target="_blank" rel="noopener">
+      <img class="dp-hero" src="../../thumbs/nimb.webp" alt="NIMBÉ 截图" width="640" height="400" />
+    </a>
+    <a class="btn-open" href="https://nimbe-nine.vercel.app/" target="_blank" rel="noopener">打开网站 ↗</a>
+    <section class="dp-plain">
+      <div class="dp-h2">大白话拆解</div>
+      <p><b>它是什么：</b>一个虚构颈椎枕的品牌站：没有一张产品照片，全靠 3D 场景讲“软、透气、织得细”。</p><p><b>好在哪：</b>四章节奏很清楚：清晨拖动云朵枕 → 按下去看泡沫回弹 → 拿放大镜看到织线 → 夜里关灯只剩这只枕头。</p><p><b>怎么做到的：</b></p><ol><li>每一章是一个固定的镜头机位，滚动时相机在机位之间平滑移动。</li><li>按压时在模型上做一个“凹坑再弹回”的变形，模拟记忆泡沫。</li><li>放大镜里换成高细节的织纹贴图，远看是枕头、近看是布料。</li></ol>
+    </section>
+    <details class="dp-full"><summary>完整技术拆解</summary><div class="teardown"><h1>今日拆解 · NIMBÉ</h1>
+<ul>
+<li>Live: <a href="https://nimbe-nine.vercel.app/" target="_blank" rel="noopener">https://nimbe-nine.vercel.app/</a></li>
+<li>Gallery: <a href="https://mesh3d.gallery/experiment/nimbe-a-pillow-down-to-the-thread" target="_blank" rel="noopener">https://mesh3d.gallery/experiment/nimbe-a-pillow-down-to-the-thread</a></li>
+<li>Author: Lovable（HTML meta <code>author</code> / <code>twitter:site</code>）</li>
+<li>Bundle: <code>/assets/index-CvE6juaW.js</code>（约 350 KB）+ <code>/assets/routes-BGjP-mT_.js</code>（约 696 KB）+ <code>/assets/docs-BM9FQdyQ.js</code> + CSS</li>
+<li>证据目录：本文件夹（<code>index.html</code>、JS/CSS）</li>
+</ul>
+<h2>为何选它</h2>
+<p>8 条里它最完整地把「一件虚构颈椎枕」做成可触摸的四章 WebGL 叙事：Dawn 拖转云朵枕 → Touch 按压开孔泡沫回弹 → Matter 手持透镜钻到 210 支平纹织线 → Night 关灯只留一件枕。没有产品摄影，全靠几何、自定义着色与镜头机位讲材质——比落地页或 App UI 更值得拆开看。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r180</strong>（WebGL 路径）</strong><span><code>three.js r180</code>；<code>window.__THREE__=\</code>180\`<code>；</code>WebGLRenderer` 出现 32 次</span></div>
+<div><strong><strong>自定义 Shader / Physical 材质</strong></strong><span><code>ShaderMaterial</code> / <code>RawShaderMaterial</code> / <code>MeshPhysicalMaterial</code>；片断里注入 <code>nimbeGeoNormal</code>；foam 材质 uniform：<code>uAmount</code>、<code>uFilament</code>、<code>uCavity</code></span></div>
+<div><strong><strong>InstancedMesh</strong></strong><span>字符串 <code>InstancedMesh</code> 出现 16 次（<strong>推测</strong>用于棉絮/纤维簇）</span></div>
+<div><strong><strong>React 19.2.8</strong>（UI 壳）</strong><span><code>e.version=\</code>19.2.8\`<code>；</code>hydrateRoot<code>；章节 UI 用 </code>useState<code>；<strong>未找到</strong> </code>@react-three/fiber<code> / </code>useFrame<code> / </code>Drei`</span></div>
+<div><strong><strong>GSAP + ScrollTrigger</strong></strong><span>bundle 内嵌 GreenSock：<code>le.gsap=or</code>、<code>gsapVersions</code>、<code>ScrollTrigger</code>；<strong>未找到</strong>明确的 <code>3.x.x</code> 版本字面量 → 版本标「未证实」</span></div>
+<div><strong><strong>SVG 透镜折射滤镜</strong></strong><span>HTML 内联 <code>&lt;filter id="nimbe-refract"&gt;</code> + <code>feImage</code> displacement；文案 *You are holding a lens*</span></div>
+<div><strong><strong>Vite 构建</strong></strong><span>index bundle 含 <code>vite</code> 字符串；资源 hash 文件名</span></div>
+<div><strong><strong>未使用 / 未证实</strong></strong><span><strong>未找到</strong> WebGPU / <code>navigator.gpu</code>、R3F、Howler、Matter.js（<code>matter</code> 只是章节状态名 <code>tissage</code>）、leva（命中为 Three 插值器字段伪影）</span></div>
+</div>
+<p>noscript / meta 文案写明：*four-chapter WebGL showcase* · *One scene, no photographs.*</p>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. 四章机位与文案（确认）</h3>
+<p>章节对象（节选）：</p>
+<ul>
+<li><code>dawn</code>：<code>Recycled down · Organic cotton</code> / *Sleep inside a cloud.*</li>
+<li><code>touch</code>：<code>Open-cell foam · 45 kg/m³</code> / *Press and hold the cotton*</li>
+<li><code>matter</code>：<code>210 threads · plain weave</code> / *You are holding a lens*</li>
+<li><code>night</code>：<code>100 nights · made in France</code> / *Then the night falls.*</li>
+</ul>
+<p>另有机位表 <code>mm</code>（azimuth / elevation / zoom）与场景别名映射 <code>Jm={dawn:\</code>hero\<code>, touch:\</code>topdown\<code>, matter:\</code>threequarter\<code>, night:\</code>night\<code>}</code>。</p>
+<h3>2. 按压泡沫（确认 + 推测）</h3>
+<p>状态机字段：<code>press</code> / <code>pressTarget</code>、<code>dive</code>、<code>open</code> / <code>openTarget</code>、<code>ring</code>。Foam 网格挂在 <code>foamScene</code>，材质带 <code>uAmount</code> / <code>uFilament</code> / <code>uCavity</code>。<strong>推测</strong>：长按把 <code>pressTarget→1</code>，顶点沿法线凹下去再 spring 回弹；<code>navigator.vibrate</code> 在支持设备上给触感。</p>
+<h3>3. 透镜下到织纹（确认）</h3>
+<p>Matter 章提示持镜；失败日志：<code>[nimbe] la loupe n'a trouvé aucun point de coton à viser</code>。DOM 使用 <code>url(#nimbe-refract)</code>。<strong>推测</strong>：指针对准棉点后 <code>openTarget</code> 放大「凝胶」开口，相机 dive 到织线尺度。</p>
+<h3>4. 伪代码（忠实于源码结构）</h3>
+<pre class="md-code"><code>boot:
+  hydrateRoot(&lt;App/&gt;)                 # React 19.2.8 UI + 四章文案
+  renderer = new WebGLRenderer(...)   # three r180
+  pillow = buildFoamMesh(foamGeo, foamMat{uAmount,uFilament,uCavity})
+  cameraRig = FramingController(mm)   # azimuth/elevation/zoom per chapter
+
+each frame:
+  press = lerp(press, pressTarget, dt)
+  dive  = lerp(dive,  diveTarget,  dt)
+  foamMat.uAmount = press
+  cameraRig.aim = mm[chapterAlias]
+  render pillow → canvas
+  # Matter 章：SVG #nimbe-refract 叠在透镜 UI 上
+
+on UI:
+  chapter next/prev → setState + camera aim + (可选) vibrate
+  pointer down on cotton → pressTarget = 1
+  pointer up → pressTarget = 0</code></pre>
+<h2>如果我来重做（步骤清单）</h2>
+<ol>
+<li>Vite + React 19，全屏 canvas；Three <strong>r180</strong> 走普通 <code>WebGLRenderer</code>（不必 WebGPU）。  </li>
+<li>做一个枕头 SDF/细分网格；片断着色器用 <code>uAmount</code> 做按压凹陷，辅色 <code>uFilament</code> / <code>uCavity</code>。  </li>
+<li>写四章状态：每章文案 + 相机 azimuth/elevation/zoom；GSAP 或自研 lerp 切机位。  </li>
+<li>Matter 章：DOM 圆形透镜 + SVG <code>feDisplacementMap</code>（或后处理折射）；射线检测「棉点」再允许 dive。  </li>
+<li>Night 章：降环境光 / 曝光，只留枕轮廓。  </li>
+<li>可选：<code>navigator.vibrate</code> 做按压触感；无 WebGL 时给清晰降级页。</li>
+</ol>
+<h2>一句话</h2>
+<p>NIMBÉ 用 Three r180 + 自研泡沫着色 + 四章镜头，把「没有照片的产品页」做成可按、可窥、可入夜的 WebGL 小品。</p></div></details>
+    <div class="dp-sec">当天另外 7 个</div>
+    <a class="mini" href="https://byotone.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/byot-ne.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="网站">网站</span></div>
+        <div class="mini-title">Byotōne</div><div class="mini-desc">现场躯体音频体验落地页：暗色、流动材质与缓慢滚动，把「安神经系统」卖得很静。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://myplastic.app/" target="_blank" rel="noopener">
+      <img src="../../thumbs/plastic.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="App UI">App UI</span></div>
+        <div class="mini-title">Plastic</div><div class="mini-desc">黑胶与 CD 收藏夹进口袋：整面架子可浏览、可播放，产品页干净有温度。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://shapeofintelligence.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/shape-of-intelligence.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="网站">网站</span></div>
+        <div class="mini-title">Shape of Intelligence</div><div class="mini-desc">交互展览把 AI 思想史做成可点的时空剧场，人物、机器与观念同屏展开。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://tara.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/tara.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="App UI">App UI</span></div>
+        <div class="mini-title">Tara</div><div class="mini-desc">加密金库 + 消费账户一张卡：3D/动效把「钱站在你这边」讲成高端金融产品。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://tympanus.net/Development/Unwoven/" target="_blank" rel="noopener">
+      <img src="../../thumbs/unwoven.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Unwoven</div><div class="mini-desc">Three.js 无限织机：把图片拆成线再织回去，滚动即编织。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://xk.studio/" target="_blank" rel="noopener">
+      <img src="../../thumbs/xk-studio.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="网站">网站</span></div>
+        <div class="mini-title">XK Studio</div><div class="mini-desc">艺术、设计与动态一体的工作室站：实验感强，作品以运动语言说话。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://imosspro.vercel.app/" target="_blank" rel="noopener">
+      <img src="../../thumbs/imoss-pro.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">iMoss Pro</div><div class="mini-desc">约 12.5 万根可交互苔藓丝的 WebGL 苔球，用指针拨开柔软绿意。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <button type="button" class="dp-share" data-share>复制链接 / 分享</button>
+    <nav class="dp-nav"><a href="../2026-09-24/">‹ 09-24</a><a href="../../">全部日期</a><a href="../2026-09-27/">09-27 ›</a></nav>
+    <p class="dp-foot">设计雷达 · 每天 8 个值得看的网站、App UI 和网页小游戏</p>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  var canon=document.querySelector('link[rel=canonical]').href;
+  var toastEl=document.getElementById('toast');
+  function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(function(){toastEl.classList.remove('show')},1800);}
+  function legacyCopy(){var t=document.createElement('textarea');t.value=canon;t.setAttribute('readonly','');t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();if(ok)toast('链接已复制');else window.prompt('复制这个链接',canon);}
+  function share(){
+    var data={title:document.title,text:document.querySelector('meta[name=description]').content,url:canon};
+    if(navigator.share){navigator.share(data).catch(function(e){if(e&&e.name!=='AbortError')copy();});return;}
+    copy();
+  }
+  function copy(){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(canon).then(function(){toast('链接已复制')},legacyCopy);}else legacyCopy();}
+  document.querySelectorAll('[data-share]').forEach(function(b){b.addEventListener('click',share)});
+})();
+</script>
+</body>
+</html>

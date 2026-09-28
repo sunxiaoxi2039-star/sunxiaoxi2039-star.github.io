@@ -1,0 +1,66 @@
+<h1>今日拆解 · WebGPU Gommage</h1>
+<ul>
+<li>Live: <a href="https://tympanus.net/Tutorials/WebGPUGommage/" target="_blank" rel="noopener">https://tympanus.net/Tutorials/WebGPUGommage/</a></li>
+<li>Article: <a href="https://tympanus.net/codrops/2026/01/28/webgpu-gommage-effect-dissolving-msdf-text-into-dust-and-petals-with-three-js-tsl/" target="_blank" rel="noopener">https://tympanus.net/codrops/2026/01/28/webgpu-gommage-effect-dissolving-msdf-text-into-dust-and-petals-with-three-js-tsl/</a></li>
+<li>Author: Thibault Introvigne（Codrops / README）</li>
+<li>Source: <a href="https://github.com/WallabyMonochrome/WebGPU-clair-obscur-gommage-codrops" target="_blank" rel="noopener">https://github.com/WallabyMonochrome/WebGPU-clair-obscur-gommage-codrops</a></li>
+<li>Bundle: <code>/assets/index-EDTSsNMI.js</code>（约 1.99 MB）+ <code>/assets/index-DLrsDo2-.css</code></li>
+<li>证据目录：本文件夹（<code>index.html</code>、JS/CSS）</li>
+</ul>
+<h2>为何选它</h2>
+<p>8 条里它把《Clair Obscur: Expedition 33》里的「Gommage」消解瞬间搬到浏览器：MSDF 文字被噪声驱动的 TSL 着色器咬碎，同步喷出尘埃与旋转花瓣粒子，再用 MRT 选择性 bloom 收尾。WebGPU + TSL + InstancedMesh 一条管线讲完，比漂亮落地页更值得拆。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r181</strong>（WebGPU 路径）</strong><span>bundle：<code>const em="181"</code> / <code>window.__THREE__=em</code>；<code>REVISION:em</code>；<code>WebGPURenderer</code> 出现多次；<code>await this.#threejs.init()</code></span></div>
+<div><strong><strong>TSL / NodeMaterial</strong></strong><span><code>Fn(</code> ×56；<code>nodeMaterial</code> 相关 ×71；文章与 demo 标题写明 *Three.js &amp; TSL*</span></div>
+<div><strong><strong>InstancedMesh 粒子</strong></strong><span><code>InstancedMesh</code> ×28；文章步骤：dust + petal 均用 InstancedMesh</span></div>
+<div><strong><strong>MSDF 文字</strong></strong><span><code>MSDFText</code> ×6；依赖 <code>three-msdf-text-utils</code>（<code>package.json</code> 写 <code>^1.2.1</code>；<strong>bundle 内未找到字面量 <code>1.2.1</code></strong> → 精确补丁版以仓库为准）</span></div>
+<div><strong><strong>GSAP 3.14.2</strong></strong><span><code>vo.version="3.14.2"</code>；<code>gsapVersions</code> push</span></div>
+<div><strong><strong>Vite 构建</strong></strong><span><code>package.json</code>：<code>vite ^7.3.1</code>；资源 hash 文件名。<strong>生产 bundle 无 <code>vite</code> 字符串</strong></span></div>
+<div><strong><strong>tweakpane（开发调试）</strong></strong><span><code>package.json</code>：<code>^4.0.5</code>；<strong>生产 bundle 未找到 <code>tweakpane</code></strong> → 推测仅本地调试用</span></div>
+<div><strong><strong>未使用 / 未证实</strong></strong><span><strong>未找到</strong> React / R3F、Howler、WebGLRenderer 作为主路径（bundle 含 WebGLRenderer 符号但是 Three 全集；主路径文章与代码均走 WebGPURenderer）</span></div>
+</div>
+<p><code>package.json</code> 还写明：<code>three: ^0.181.0</code>，与 <code>window.__THREE__="181"</code> 一致。</p>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. WebGPU 场景启动（确认）</h3>
+<p>文章摘录：<code>new THREE.WebGPURenderer({ antialias: true }); await this.#threejs.init();</code>，tone mapping 用 <code>ACESFilmicToneMapping</code>。</p>
+<h3>2. MSDF 文字溶解（确认 + 推测）</h3>
+<p>用 <code>three-msdf-text-utils</code> 生成 MSDF mesh；片断/TSL 里用 noise（bundle 中 <code>noise</code> ×65）驱动 dissolve 阈值。<strong>推测</strong>：阈值之上的 texel 透明度归零，同时把同一噪声场喂给粒子发射，保证文字与粒子「同一刀」切开。</p>
+<h3>3. 尘埃 + 花瓣 InstancedMesh（确认）</h3>
+<p>文章目录步骤：</p>
+<ol>
+<li>Create a noise-driven dissolve effect  </li>
+<li>Spawn and animate dust particles with InstancedMesh  </li>
+<li>Spawn petal particles with bend + spin  </li>
+<li>Add selective bloom with MRT nodes  </li>
+</ol>
+<p>花瓣用 GLB 模型（文章提到 <code>public/models/petal.glb</code>）。</p>
+<h3>4. 选择性 Bloom / MRT（确认）</h3>
+<p>文章写明 *selective bloom using MRT*；bundle 内 <code>mrt</code> ×20、<code>bloom</code> ×5。</p>
+<h3>5. 伪代码（忠实于教程结构）</h3>
+<pre class="md-code"><code>boot:
+  renderer = new WebGPURenderer({ antialias: true })
+  await renderer.init()
+  renderer.toneMapping = ACESFilmicToneMapping
+  text = MSDFText(fontAtlas, "GOMMAGE…")   # three-msdf-text-utils
+  dust  = new InstancedMesh(dustGeo, dustNodeMat, N)
+  petals = new InstancedMesh(petalGeo, petalNodeMat, M)  # petal.glb
+
+each frame / on trigger (GSAP 3.14.2 timeline):
+  progress = gsapProgress  # 0→1
+  textMat.dissolve = progress          # TSL Fn + noise
+  emit dust/petals where noise crossed
+  petal instances: bend + spin
+  post = mrt bloom (selective)
+  renderer.render(scene, camera)</code></pre>
+<h2>如果我来重做（步骤清单）</h2>
+<ol>
+<li>Vite + <code>three@0.181.0</code>，主路径只用 <code>WebGPURenderer</code> + TSL（无适配器时给降级提示）。  </li>
+<li>用 msdf-bmfont 生成字体图集；<code>three-msdf-text-utils</code> 出字。  </li>
+<li>写 TSL <code>Fn</code>：Perlin/噪声采样 → dissolve mask。  </li>
+<li>两个 InstancedMesh：dust（小四边形）+ petal（GLB）；用同一 progress 驱动发射与自旋。  </li>
+<li>MRT 选择性 bloom，只让亮粒子/边缘进光晕。  </li>
+<li>GSAP timeline 串起「静置 → 消解 → 粒子爆发 → 收束」。  </li>
+</ol>
+<h2>一句话</h2>
+<p>WebGPU Gommage 用 Three r181 + TSL 把 MSDF 字咬碎成尘埃与花瓣，是今天技术浓度最高的一刀。</p>

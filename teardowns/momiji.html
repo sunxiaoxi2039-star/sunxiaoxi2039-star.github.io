@@ -1,0 +1,86 @@
+<h1>今日拆解 · Momiji</h1>
+<ul>
+<li>Live: <a href="https://momijigari.vercel.app/" target="_blank" rel="noopener">https://momijigari.vercel.app/</a></li>
+<li>Gallery: <a href="https://mesh3d.gallery/experiment/momiji-a-maple-from-dawn-to-moonlight" target="_blank" rel="noopener">https://mesh3d.gallery/experiment/momiji-a-maple-from-dawn-to-moonlight</a></li>
+<li>Author: Thomas Gertenbach（HTML meta <code>author</code>）</li>
+<li>Bundle: <code>/assets/index-DIPw4V9z.js</code>（约 1.9 MB）+ <code>/assets/index-CbKQuawD.css</code></li>
+<li>证据目录：本文件夹（<code>index.html</code>、JS/CSS、<code>noiseVolume.worker-*.js</code>、glb 头、<code>og-image.jpg</code>）</li>
+</ul>
+<h2>为何选它</h2>
+<p>8 条里它是唯一把「一整棵可交互的红枫岛」做成 WebGPU 场景的：黎明→月色的日光循环、落叶拨弄、灯笼晃动、水面涟漪、空间音频同时成立。视觉冲击强，技术栈也深（Three r183 WebGPU + TSL + GLB + Bloom），比纯落地页或 App UI 更适合拆开看。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r183</strong>（WebGPU 路径）</strong><span><code>Od="183"</code>；<code>window.__THREE__=Od</code>；字符串 <code>three.js r${Od} webgpu</code>；<code>WebGPURenderer</code> 出现 36 次</span></div>
+<div><strong><strong>Three TSL / Node 材质</strong></strong><span><code>TSL</code>、<code>MeshPhysicalNodeMaterial</code>、<code>MeshStandardNodeMaterial</code>、<code>BloomNode</code>、<code>PassNode</code>；内含 UnrealBloom 风格 pass 名</span></div>
+<div><strong><strong>React 19.3.0</strong>（UI 壳）</strong><span><code>cn.version="19.3.0"</code>；<code>TV.createRoot(...).render(st.jsx(G.StrictMode,{...}))</code>；<strong>未找到</strong> <code>@react-three/fiber</code> / <code>useFrame</code> / <code>Drei</code></span></div>
+<div><strong><strong>Howler</strong>（Web Audio 封装）</strong><span><code>HowlerGlobal</code> / <code>Howl</code> / <code>usingWebAudio</code> / <code>new AudioContext</code>；播放类型含 <code>temple-bell</code>、<code>wind-chime</code>、<code>arc-open</code>/<code>arc-close</code>/<code>arc-step</code>。<strong>bundle 内未出现明确的 howler@x.y.z 版本字符串</strong></span></div>
+<div><strong><strong>GLTF + 纹理压缩</strong></strong><span><code>GLTFLoader</code>、<code>DRACOLoader</code>、<code>KTX2Loader</code>、<code>MeshoptDecoder</code>；资源 <code>/grove/maple-tree.glb</code>、<code>/grove/lantern.glb</code>（HTTP 200）</span></div>
+<div><strong><strong>自定义噪声体积 Worker</strong></strong><span><code>/assets/noiseVolume.worker-CvTZWSwE.js</code>；体积常量 <code>[128,256,128]</code>，Jenkins 风格位混哈希（<strong>推测</strong>用于雾/体积噪声，非 Perlin 字符串）</span></div>
+<div><strong><strong>日夜参数</strong></strong><span>uniform/状态名：<code>timeOfDay</code>、<code>dayCycleSpeed</code>、<code>sunHeading</code>、<code>sunIntensity</code>、<code>exposure</code>、<code>fogDensity</code>；每帧近似 <code>timeOfDay += dt * dayCycleSpeed / 60</code></span></div>
+<div><strong><strong>未使用 / 未证实</strong></strong><span><strong>未找到</strong> OGL、R3F、GSAP、Tone.js 包名、lil-gui 运行时（仅有「lil-gui look」CSS 注释）。<code>#version 300 es</code> 出现在 Three 内置 WebGL 回退路径，主路径是 WebGPU/WGSL</span></div>
+</div>
+<p>noscript 文案也写明：*interactive WebGPU scene*。</p>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. 场景资产（确认）</h3>
+<ul>
+<li>结构枫树：<code>/grove/maple-tree.glb</code></li>
+<li>灯笼：<code>/grove/lantern.glb</code>（错误文案提到 *Lantern swing* 挂点、纸质发光材质）</li>
+<li>字重：Yuji Boku woff2（标题「紅葉」一类书法 UI）</li>
+</ul>
+<h3>2. WebGPU 渲染管线（确认）</h3>
+<pre class="md-code"><code>React UI 壳（音量、日弧、错误态）
+    ↓
+Three WebGPURenderer + TSL NodeMaterial
+    ↓
+场景图：岛 / 树 / 落叶实例 / 水面 / 雾 / 灯笼
+    ↓
+后处理：BloomNode（含 lanternBloom / lanternLight / lanternFlicker 等参数）</code></pre>
+<p>调试面板字符串暴露了成组参数：<code>Water</code>（折射、涟漪、落叶浮力）、<code>Lantern</code>（bloom/flicker/range）、<code>Bloom</code>（bloomEnabled）——<strong>推测</strong>生产 UI 用自研 mini-panel，样式刻意贴近 lil-gui。</p>
+<h3>3. 黎明 → 月色（确认）</h3>
+<p>状态里有 <code>timeOfDay</code> 与 <code>dayCycleSpeed</code>；更新式：</p>
+<pre class="md-code"><code>timeOfDay = wrap(timeOfDay + dt * dayCycleSpeed / 60)</code></pre>
+<p>再驱动 <code>sunHeading</code> / <code>sunIntensity</code> / <code>exposure</code> / <code>fogDensity</code>（具体映射曲线未全部展开，<strong>推测</strong>为预烘焙或 smoothstep 色温曲线）。</p>
+<h3>4. 交互与音频（确认 + 推测）</h3>
+<ul>
+<li>指针 / 射线：<code>pointer</code>、<code>raycast</code> 高频出现；落叶与水面有专门参数（<code>waterLeafStrength</code>、<code>puddleLeafFloatTime</code>、<code>testWaterRipples</code>）</li>
+<li>灯笼：场景对象名含 <code>Lantern swing</code>；参数 <code>lanternFlicker</code> / <code>lanternBloom</code></li>
+<li>Howler：<code>onMark</code> → <code>play({type:"wind-chime"})</code>；日弧 UI → <code>play({type:\</code>arc-${ue}\<code>})</code>（<code>arc-open</code> / <code>arc-close</code> / <code>arc-step</code>）；另有 <code>temple-bell</code></li>
+<li><code>screenWind()</code>：<strong>推测</strong>把指针/姿态映射成风场，推动落叶与飘带</li>
+</ul>
+<h3>5. 伪代码（忠实于源码结构）</h3>
+<pre class="md-code"><code>boot:
+  createRoot(&lt;App/&gt;)                    # React 19 UI
+  renderer = new WebGPURenderer(...)    # three r183
+  grove = await GLTFLoader(/grove/maple-tree.glb)
+  lantern = await GLTFLoader(/grove/lantern.glb)
+  noiseVol = Worker(noiseVolume)        # 128×256×128 hash volume
+  howl = new Howl({ src: /audio/... })  # webm/mp3
+
+each frame:
+  timeOfDay = wrap(timeOfDay + dt * dayCycleSpeed/60)
+  updateSunFogExposure(timeOfDay)
+  wind = screenWind(pointer)
+  stirLeaves(wind); rippleWater(contacts)
+  swingLantern(pointer); flicker(lanternLight)
+  render TSL materials → BloomNode → canvas
+
+on UI:
+  arc drag  → howl.play("arc-*")
+  mark/chime → howl.play("wind-chime" | "temple-bell")</code></pre>
+<h2>如果我来重做（步骤清单）</h2>
+<ol>
+<li>Vite + React 19，挂一个全屏 canvas；Three <strong>r183</strong> 走 <code>three/webgpu</code> + TSL。  </li>
+<li>准备枫树 / 灯笼 GLB（Draco/KTX2 可选），用 <code>GLTFLoader</code> 装入；给灯笼留 swing 挂点。  </li>
+<li>写 <code>timeOfDay</code> 循环，映射太阳方向、强度、雾密度、曝光。  </li>
+<li>落叶用 <code>InstancedMesh</code> + 简易风场/指针力；水面用 TSL 做折射+涟漪 uniform。  </li>
+<li>后处理加 <code>BloomNode</code>，灯笼单独抬 <code>lanternBloom</code>。  </li>
+<li>Howler 铺 <code>wind-chime</code> / <code>temple-bell</code> / 日弧 UI 音效；默认请用户开声。  </li>
+<li>无 WebGPU 时给出明确错误态（原站有 <code>Scene unavailable</code>）。</li>
+</ol>
+<h2>证据文件</h2>
+<ul>
+<li><code>index.html</code>、<code>index-DIPw4V9z.js</code>、<code>index-CbKQuawD.css</code></li>
+<li><code>noiseVolume.worker-CvTZWSwE.js</code></li>
+<li><code>maple-tree.glb.head</code>、<code>lantern.glb.head</code>（各 1 KB 字节头）</li>
+<li><code>og-image.jpg</code>（官方 OG；面板缩略图另用 mesh3d CDN preview，因 headless 无 WebGPU adapter）</li>
+</ul>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0c0e" />
+  <title>Ferrofluid Microphone · 设计雷达 2026-09-23</title>
+  <meta name="description" content="今日最炫：Ferrofluid Microphone — 对着麦克风吹口哨，黑色磁流体会颤动、长刺、塌落；声音输入被翻译成了触感十足的形变。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <link rel="canonical" href="https://sunxiaoxi2039-star.github.io/d/2026-09-23/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="设计雷达" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="Ferrofluid Microphone · 设计雷达 2026-09-23" />
+  <meta property="og:description" content="今日最炫：Ferrofluid Microphone — 对着麦克风吹口哨，黑色磁流体会颤动、长刺、塌落；声音输入被翻译成了触感十足的形变。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta property="og:url" content="https://sunxiaoxi2039-star.github.io/d/2026-09-23/" />
+  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-23.jpg?v=202609280959" />
+  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-09-23.jpg?v=202609280959" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ferrofluid Microphone · 设计雷达 2026-09-23" />
+  <meta name="twitter:description" content="今日最炫：Ferrofluid Microphone — 对着麦克风吹口哨，黑色磁流体会颤动、长刺、塌落；声音输入被翻译成了触感十足的形变。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-23.jpg?v=202609280959" />
+  <meta itemprop="name" content="Ferrofluid Microphone · 设计雷达 2026-09-23" />
+  <meta itemprop="description" content="今日最炫：Ferrofluid Microphone — 对着麦克风吹口哨，黑色磁流体会颤动、长刺、塌落；声音输入被翻译成了触感十足的形变。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-23.jpg?v=202609280959" />
+  <link rel="stylesheet" href="../../styles.css?v=202609280959" />
+</head>
+<body class="dp-body">
+  <header class="dp-top">
+    <a class="dp-home" href="../../"><span>✦</span>设计雷达</a>
+    <button type="button" class="dp-share-mini" data-share>分享</button>
+  </header>
+  <main class="dp">
+    <div class="dp-kicker">2026-09-23 · 今日最炫</div>
+    <h1 class="dp-title">Ferrofluid Microphone</h1>
+    <p class="dp-lede">对着麦克风吹口哨，黑色磁流体会颤动、长刺、塌落；声音输入被翻译成了触感十足的形变。</p>
+    <a class="dp-hero-link" href="https://robert.leitl.dev/artifacts/ferrofluid" target="_blank" rel="noopener">
+      <img class="dp-hero" src="../../thumbs/ferrofluid-microphone.webp" alt="Ferrofluid Microphone 截图" width="640" height="400" />
+    </a>
+    <a class="btn-open" href="https://robert.leitl.dev/artifacts/ferrofluid" target="_blank" rel="noopener">打开网站 ↗</a>
+    <section class="dp-plain">
+      <div class="dp-h2">大白话拆解</div>
+      <p><b>它是什么：</b>对着麦克风说话或唱歌，屏幕上的黑色磁流体就会长出尖刺；安静下来，它又塌回一滩。</p><p><b>好在哪：</b>声音 → 形状的因果关系一眼就懂，而且材质像真的磁流体，黑亮、带反光。</p><p><b>怎么做到的：</b></p><ol><li>液体由很多小粒子组成，每帧计算它们之间的推拉，形成流动感。</li><li>麦克风的音高和音量被实时分析，数值越大，“磁场”越强、尖刺越高。</li><li>鼠标/手指也能当作磁铁去拨它。</li></ol>
+    </section>
+    <details class="dp-full"><summary>完整技术拆解</summary><div class="teardown"><h1>今日拆解 · Ferrofluid Microphone</h1>
+<ul>
+<li>Live: <a href="https://robert.leitl.dev/artifacts/ferrofluid" target="_blank" rel="noopener">https://robert.leitl.dev/artifacts/ferrofluid</a></li>
+<li>Gallery: <a href="https://mesh3d.gallery/experiment/ferrofluid-microphone" target="_blank" rel="noopener">https://mesh3d.gallery/experiment/ferrofluid-microphone</a></li>
+<li>Author: Robert Leitl</li>
+<li>Bundle: <code>/artifacts/ferrofluid/index-8a2ccd9a.js</code>（约 267 KB）</li>
+</ul>
+<h2>为何选它</h2>
+<p>在 8 条里它把「麦克风音高 → 黑色磁流体长刺 / 塌落」做成可感知的因果链：既有完整的 GPU 流体模拟，又有 Web Audio 分析，视觉材质也够炫。Splish Splash 主要是流体玩具；Beat Machine 偏 UI/节奏反馈；bleibtgleich / Rows 更偏排版与微交互。Ferrofluid 的技术深度与「一眼就懂」的效果同时成立。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>twgl.js 5.2.0</strong></strong><span>许可证注释：<code>/* @license twgl.js 5.2.0 ... <a href="http://github.com/greggman/twgl.js" target="_blank" rel="noopener">http://github.com/greggman/twgl.js</a> */</code></span></div>
+<div><strong><strong>WebGL2 / GLSL ES 3.00</strong></strong><span>多段 shader 以 <code>#version 300 es</code> 开头；扩展枚举含 <code>webgl2</code></span></div>
+<div><strong><strong>Tweakpane 3.1.0</strong>（调试）</strong><span><code>const Ls=new e("3.1.0")</code> 且导出 <code>Pane</code> / <code>BladeApi</code>；仅在 URL 带 <code>?debug</code> 时挂载</span></div>
+<div><strong><strong>Web Audio</strong></strong><span><code>new AudioContext</code>、<code>getUserMedia({audio:...})</code>、<code>createAnalyser()</code>、<code>fftSize = 2048</code></span></div>
+<div><strong><strong>RxJS</strong>（推测用于 resize）</strong><span><code>ge(window,"resize").pipe(...)</code> 的操作符形态；<strong>未在 bundle 内找到明确的 <code>rxjs@x.y.z</code> 字符串</strong></span></div>
+<div><strong><strong>未使用</strong></strong><span>源码中<strong>未找到</strong> three.js / OGL / R3F / GSAP / WebGPU 标识</span></div>
+</div>
+<p>粒子数默认：<code>NUM_PARTICLES = 500</code>。平面高度图分辨率：<code>planeResolution = 256</code>。</p>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. SPH 粒子模拟（确认）</h3>
+<p>GPU 上做经典 <strong>SPH（Smoothed Particle Hydrodynamics）</strong>：</p>
+<ul>
+<li>状态存在纹理：<code>u_positionTexture</code>、<code>u_velocityTexture</code>、<code>u_forceTexture</code>、<code>u_densityPressureTexture</code></li>
+<li>邻域用网格哈希：<code>u_indicesTexture</code> / <code>u_offsetTexture</code> + <code>CELL_TEX_SIZE</code> / <code>CELL_SIZE</code>（有 bitonic 风格的多 pass 排序）</li>
+<li>核函数常量在 UBO <code>u_SimulationParams</code> 里：<strong>POLY6 / SPIKY_GRAD / VISC_LAP / REST_DENS / GAS_CONST / VISC / MASS / H / HSQ</strong> —— 这是 Müller 式 SPH 的标准组合</li>
+</ul>
+<p>Pass 大致顺序（确认）：</p>
+<ol>
+<li>按位置写入 cell index  </li>
+<li>排序 indices  </li>
+<li>建 offset 表  </li>
+<li>density + pressure（<code>poly6Weight</code>）  </li>
+<li>力（压力梯度 + 粘度 <code>VISC_LAP</code>）  </li>
+<li>integrate：<code>ai = fi / rho; vi += ai * dt</code>，再叠加 pointer 力与边界阻尼</li>
+</ol>
+<h3>2. 麦克风 → 形变（确认）</h3>
+<pre class="md-code"><code>mic → MediaStreamSource → AnalyserNode (fftSize=2048, minDecibels=-90)
+     → getByteFrequencyData
+     → 取能量最大的 frequency bin
+     → freq = index * (sampleRate/2 / bufferLength)
+     → 在 [MIN_FREQ=400, MAX_FREQ=2400] 上做 log2 归一化，再映射到 [-1, 1]
+     → 经弹簧阻尼（targetZoomLerp / zoomOffsetMomentum）驱动 this.ZOOM
+     → ZOOM 写入 shader uniform：u_zoom、u_spikeFactor</code></pre>
+<p>集成 shader 里有明确的 zoom 力：</p>
+<pre class="md-code"><code>pi.xy += zoomForce * 0.008 * max(0., (1. - u_zoom * 2.5));</code></pre>
+<p>高度/网格绘制 shader 里用 <code>u_zoom</code> 控制边缘与 spike 位移（<code>u_spikeFactor</code>）。</p>
+<p><strong>推测</strong>：尖刺观感主要来自「粒子被径向/向上推开 + 高度网格按密度/位移抬起 + 高光黑材质」，而不是单独的铁磁学方程；铁流体是视觉隐喻。</p>
+<h3>3. 指针交互（确认）</h3>
+<p>UBO <code>u_PointerParams</code>：<code>pointerPos / pointerVelocity / pointerRadius / pointerStrength</code>。在 integrate 中若粒子距指针 &lt; radius，则叠加 <code>pointerVelocity * pointerStrength * (1 - pr/radius)</code>。另有一处 idle 微扰力。</p>
+<h3>4. 伪代码（忠实于源码结构）</h3>
+<pre class="md-code"><code>each frame:
+  audio = peakFreqNorm()          # [-1,1] or 0 if silent
+  ZOOM = spring(ZOOM, audio)      # zoomOffsetMomentum damping
+
+  # GPGPU SPH
+  hash particles into cells
+  sort + build neighbor offsets
+  density, pressure = SPH_poly6(neighbors)
+  force = SPIKY_grad(pressure) + VISC_lap(velocity)
+  integrate(pos, vel, force, pointerForce, zoomForce(ZOOM))
+
+  # render
+  draw points / height mesh with spikeFactor(ZOOM), dark glossy shading</code></pre>
+<h2>如果我来重做（步骤清单）</h2>
+<ol>
+<li>Vite + Canvas，申请 <code>webgl2</code>，引入 <strong>twgl.js</strong> 管 framebuffer / program。  </li>
+<li>实现 500 粒子的 RGBA32F 状态纹理 + ping-pong FBO。  </li>
+<li>写 SPH：density → force → integrate（先 2D），网格哈希邻域。  </li>
+<li><code>getUserMedia</code> + <code>AnalyserNode</code>，把峰值频率映射到一个 <code>zoom</code> uniform。  </li>
+<li>用粒子生成 height map 或直接画 metaball/points，加高光黑色材质。  </li>
+<li>可选：Tweakpane 调 REST_DENS / VISC / POINTER_STRENGTH。  </li>
+<li>最后再加 entry 动画与麦克风按钮 UX。</li>
+</ol>
+<h2>证据文件</h2>
+<ul>
+<li><code>artifact.html</code>、<code>index-8a2ccd9a.js</code>、<code>index-295bf82f.css</code>（本目录）</li>
+</ul></div></details>
+    <div class="dp-sec">当天另外 7 个</div>
+    <a class="mini" href="https://www.archiv.systems/" target="_blank" rel="noopener">
+      <img src="../../thumbs/archiv.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="App UI">App UI</span></div>
+        <div class="mini-title">ARCHIV</div><div class="mini-desc">大号衬线字、居中藏品与米白留白，把“拍照归档万物”的工具入口做成安静的编辑页。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://webgl-drum-machine.vercel.app/" target="_blank" rel="noopener">
+      <img src="../../thumbs/beat-machine.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Beat Machine</div><div class="mini-desc">点击组成节拍循环，程序化脉冲像直接连着扬声器锥盆；画面很少，节奏反馈很足。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://humanoid-index.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/humanoid-index.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="App UI">App UI</span></div>
+        <div class="mini-title">Humanoid Index</div><div class="mini-desc">近白界面、浅灰卡片与并排比较，把复杂的机器人规格整理成一眼能扫、两步能比的目录。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://rows.gg/" target="_blank" rel="noopener">
+      <img src="../../thumbs/rows.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="App UI">App UI</span></div>
+        <div class="mini-title">Rows</div><div class="mini-desc">窄栏列表、拖拽手感、完成烟花和删除燃烧，让极简协作工具的每一次操作都有反馈。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://dasprinzip.com/tinker/day46" target="_blank" rel="noopener">
+      <img src="../../thumbs/splish-splash.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Splish Splash</div><div class="mini-desc">拖动水流，它会弯折、打结、散成粒子再重新汇合；把流体反馈压缩成一个纯粹的小玩具。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://www.getuni.co/" target="_blank" rel="noopener">
+      <img src="../../thumbs/uni.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="App UI">App UI</span></div>
+        <div class="mini-title">Uni</div><div class="mini-desc">桃蓝渐变、圆角控件和手写批注，让本地优先的桌面 AI 助手显得轻、快，也不冰冷。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://bleibtgleich.dev/" target="_blank" rel="noopener">
+      <img src="../../thumbs/bleibtgleich.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="网站">网站</span></div>
+        <div class="mini-title">bleibtgleich&#x27;26</div><div class="mini-desc">从 brutalism 转向极简：黑白网格、海报式排版和精准转场，把作品集做成一组可玩的视觉实验。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <button type="button" class="dp-share" data-share>复制链接 / 分享</button>
+    <nav class="dp-nav"><a href="../2026-09-22/">‹ 09-22</a><a href="../../">全部日期</a><a href="../2026-09-24/">09-24 ›</a></nav>
+    <p class="dp-foot">设计雷达 · 每天 8 个值得看的网站、App UI 和网页小游戏</p>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  var canon=document.querySelector('link[rel=canonical]').href;
+  var toastEl=document.getElementById('toast');
+  function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(function(){toastEl.classList.remove('show')},1800);}
+  function legacyCopy(){var t=document.createElement('textarea');t.value=canon;t.setAttribute('readonly','');t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();if(ok)toast('链接已复制');else window.prompt('复制这个链接',canon);}
+  function share(){
+    var data={title:document.title,text:document.querySelector('meta[name=description]').content,url:canon};
+    if(navigator.share){navigator.share(data).catch(function(e){if(e&&e.name!=='AbortError')copy();});return;}
+    copy();
+  }
+  function copy(){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(canon).then(function(){toast('链接已复制')},legacyCopy);}else legacyCopy();}
+  document.querySelectorAll('[data-share]').forEach(function(b){b.addEventListener('click',share)});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<h1>今日拆解 · NIMBÉ</h1>
+<ul>
+<li>Live: <a href="https://nimbe-nine.vercel.app/" target="_blank" rel="noopener">https://nimbe-nine.vercel.app/</a></li>
+<li>Gallery: <a href="https://mesh3d.gallery/experiment/nimbe-a-pillow-down-to-the-thread" target="_blank" rel="noopener">https://mesh3d.gallery/experiment/nimbe-a-pillow-down-to-the-thread</a></li>
+<li>Author: Lovable（HTML meta <code>author</code> / <code>twitter:site</code>）</li>
+<li>Bundle: <code>/assets/index-CvE6juaW.js</code>（约 350 KB）+ <code>/assets/routes-BGjP-mT_.js</code>（约 696 KB）+ <code>/assets/docs-BM9FQdyQ.js</code> + CSS</li>
+<li>证据目录：本文件夹（<code>index.html</code>、JS/CSS）</li>
+</ul>
+<h2>为何选它</h2>
+<p>8 条里它最完整地把「一件虚构颈椎枕」做成可触摸的四章 WebGL 叙事：Dawn 拖转云朵枕 → Touch 按压开孔泡沫回弹 → Matter 手持透镜钻到 210 支平纹织线 → Night 关灯只留一件枕。没有产品摄影，全靠几何、自定义着色与镜头机位讲材质——比落地页或 App UI 更值得拆开看。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r180</strong>（WebGL 路径）</strong><span><code>three.js r180</code>；<code>window.__THREE__=\</code>180\`<code>；</code>WebGLRenderer` 出现 32 次</span></div>
+<div><strong><strong>自定义 Shader / Physical 材质</strong></strong><span><code>ShaderMaterial</code> / <code>RawShaderMaterial</code> / <code>MeshPhysicalMaterial</code>；片断里注入 <code>nimbeGeoNormal</code>；foam 材质 uniform：<code>uAmount</code>、<code>uFilament</code>、<code>uCavity</code></span></div>
+<div><strong><strong>InstancedMesh</strong></strong><span>字符串 <code>InstancedMesh</code> 出现 16 次（<strong>推测</strong>用于棉絮/纤维簇）</span></div>
+<div><strong><strong>React 19.2.8</strong>（UI 壳）</strong><span><code>e.version=\</code>19.2.8\`<code>；</code>hydrateRoot<code>；章节 UI 用 </code>useState<code>；<strong>未找到</strong> </code>@react-three/fiber<code> / </code>useFrame<code> / </code>Drei`</span></div>
+<div><strong><strong>GSAP + ScrollTrigger</strong></strong><span>bundle 内嵌 GreenSock：<code>le.gsap=or</code>、<code>gsapVersions</code>、<code>ScrollTrigger</code>；<strong>未找到</strong>明确的 <code>3.x.x</code> 版本字面量 → 版本标「未证实」</span></div>
+<div><strong><strong>SVG 透镜折射滤镜</strong></strong><span>HTML 内联 <code>&lt;filter id="nimbe-refract"&gt;</code> + <code>feImage</code> displacement；文案 *You are holding a lens*</span></div>
+<div><strong><strong>Vite 构建</strong></strong><span>index bundle 含 <code>vite</code> 字符串；资源 hash 文件名</span></div>
+<div><strong><strong>未使用 / 未证实</strong></strong><span><strong>未找到</strong> WebGPU / <code>navigator.gpu</code>、R3F、Howler、Matter.js（<code>matter</code> 只是章节状态名 <code>tissage</code>）、leva（命中为 Three 插值器字段伪影）</span></div>
+</div>
+<p>noscript / meta 文案写明：*four-chapter WebGL showcase* · *One scene, no photographs.*</p>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. 四章机位与文案（确认）</h3>
+<p>章节对象（节选）：</p>
+<ul>
+<li><code>dawn</code>：<code>Recycled down · Organic cotton</code> / *Sleep inside a cloud.*</li>
+<li><code>touch</code>：<code>Open-cell foam · 45 kg/m³</code> / *Press and hold the cotton*</li>
+<li><code>matter</code>：<code>210 threads · plain weave</code> / *You are holding a lens*</li>
+<li><code>night</code>：<code>100 nights · made in France</code> / *Then the night falls.*</li>
+</ul>
+<p>另有机位表 <code>mm</code>（azimuth / elevation / zoom）与场景别名映射 <code>Jm={dawn:\</code>hero\<code>, touch:\</code>topdown\<code>, matter:\</code>threequarter\<code>, night:\</code>night\<code>}</code>。</p>
+<h3>2. 按压泡沫（确认 + 推测）</h3>
+<p>状态机字段：<code>press</code> / <code>pressTarget</code>、<code>dive</code>、<code>open</code> / <code>openTarget</code>、<code>ring</code>。Foam 网格挂在 <code>foamScene</code>，材质带 <code>uAmount</code> / <code>uFilament</code> / <code>uCavity</code>。<strong>推测</strong>：长按把 <code>pressTarget→1</code>，顶点沿法线凹下去再 spring 回弹；<code>navigator.vibrate</code> 在支持设备上给触感。</p>
+<h3>3. 透镜下到织纹（确认）</h3>
+<p>Matter 章提示持镜；失败日志：<code>[nimbe] la loupe n'a trouvé aucun point de coton à viser</code>。DOM 使用 <code>url(#nimbe-refract)</code>。<strong>推测</strong>：指针对准棉点后 <code>openTarget</code> 放大「凝胶」开口，相机 dive 到织线尺度。</p>
+<h3>4. 伪代码（忠实于源码结构）</h3>
+<pre class="md-code"><code>boot:
+  hydrateRoot(&lt;App/&gt;)                 # React 19.2.8 UI + 四章文案
+  renderer = new WebGLRenderer(...)   # three r180
+  pillow = buildFoamMesh(foamGeo, foamMat{uAmount,uFilament,uCavity})
+  cameraRig = FramingController(mm)   # azimuth/elevation/zoom per chapter
+
+each frame:
+  press = lerp(press, pressTarget, dt)
+  dive  = lerp(dive,  diveTarget,  dt)
+  foamMat.uAmount = press
+  cameraRig.aim = mm[chapterAlias]
+  render pillow → canvas
+  # Matter 章：SVG #nimbe-refract 叠在透镜 UI 上
+
+on UI:
+  chapter next/prev → setState + camera aim + (可选) vibrate
+  pointer down on cotton → pressTarget = 1
+  pointer up → pressTarget = 0</code></pre>
+<h2>如果我来重做（步骤清单）</h2>
+<ol>
+<li>Vite + React 19，全屏 canvas；Three <strong>r180</strong> 走普通 <code>WebGLRenderer</code>（不必 WebGPU）。  </li>
+<li>做一个枕头 SDF/细分网格；片断着色器用 <code>uAmount</code> 做按压凹陷，辅色 <code>uFilament</code> / <code>uCavity</code>。  </li>
+<li>写四章状态：每章文案 + 相机 azimuth/elevation/zoom；GSAP 或自研 lerp 切机位。  </li>
+<li>Matter 章：DOM 圆形透镜 + SVG <code>feDisplacementMap</code>（或后处理折射）；射线检测「棉点」再允许 dive。  </li>
+<li>Night 章：降环境光 / 曝光，只留枕轮廓。  </li>
+<li>可选：<code>navigator.vibrate</code> 做按压触感；无 WebGL 时给清晰降级页。</li>
+</ol>
+<h2>一句话</h2>
+<p>NIMBÉ 用 Three r180 + 自研泡沫着色 + 四章镜头，把「没有照片的产品页」做成可按、可窥、可入夜的 WebGL 小品。</p>
