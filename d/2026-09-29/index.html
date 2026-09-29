@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0c0e" />
+  <title>Infinite Liquid Glass · 设计雷达 2026-09-29</title>
+  <meta name="description" content="今日最炫：Infinite Liquid Glass — 可拖拽的果冻玻璃卡片墙：视频在玻璃里折射，整面网格像布一样晃，WebGPU 一眼炫。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <link rel="canonical" href="https://sunxiaoxi2039-star.github.io/d/2026-09-29/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="设计雷达" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="Infinite Liquid Glass · 设计雷达 2026-09-29" />
+  <meta property="og:description" content="今日最炫：Infinite Liquid Glass — 可拖拽的果冻玻璃卡片墙：视频在玻璃里折射，整面网格像布一样晃，WebGPU 一眼炫。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta property="og:url" content="https://sunxiaoxi2039-star.github.io/d/2026-09-29/" />
+  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-29.jpg?v=202609300011" />
+  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-09-29.jpg?v=202609300011" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Infinite Liquid Glass · 设计雷达 2026-09-29" />
+  <meta name="twitter:description" content="今日最炫：Infinite Liquid Glass — 可拖拽的果冻玻璃卡片墙：视频在玻璃里折射，整面网格像布一样晃，WebGPU 一眼炫。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-29.jpg?v=202609300011" />
+  <meta itemprop="name" content="Infinite Liquid Glass · 设计雷达 2026-09-29" />
+  <meta itemprop="description" content="今日最炫：Infinite Liquid Glass — 可拖拽的果冻玻璃卡片墙：视频在玻璃里折射，整面网格像布一样晃，WebGPU 一眼炫。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-09-29.jpg?v=202609300011" />
+  <link rel="stylesheet" href="../../styles.css?v=202609300011" />
+</head>
+<body class="dp-body">
+  <header class="dp-top">
+    <a class="dp-home" href="../../"><span>✦</span>设计雷达</a>
+    <div class="dp-top-r"><a class="dp-maplink" href="../../map/">知识地图</a><button type="button" class="dp-share-mini" data-share>分享</button></div>
+  </header>
+  <main class="dp">
+    <div class="dp-kicker">2026-09-29 · 今日最炫</div>
+    <h1 class="dp-title">Infinite Liquid Glass</h1>
+    <p class="dp-lede">可拖拽的果冻玻璃卡片墙：视频在玻璃里折射，整面网格像布一样晃，WebGPU 一眼炫。</p>
+    <a class="dp-hero-link" href="https://infinite-liquid-glass.shader.se/" target="_blank" rel="noopener">
+      <img class="dp-hero" src="../../thumbs/infinite-liquid-glass.webp" alt="Infinite Liquid Glass 截图" width="640" height="400" />
+    </a>
+    <a class="btn-open" href="https://infinite-liquid-glass.shader.se/" target="_blank" rel="noopener">打开网站 ↗</a>
+    <section class="dp-plain"><div class="dp-h2">大白话拆解</div><p><b>它是什么：</b>一面可以拖的「果冻玻璃」卡片墙：每张卡片像厚玻璃，视频在里面弯折、散出彩虹边，整面网格还会像布一样晃。</p><p><b>好在哪：</b>它一眼就炫——没有场景灯光，却全是透亮和反光；拖一下有黏滞回弹，比静态酷站更像玩具。</p><p><b>怎么做到的：</b></p><ol><li>玻璃其实是一张平片：用数学算出「到圆角边缘的距离」，再假装出厚度、折射和边缘高光。</li><li>卡片铺在一个大球面上并首尾相接，所以怎么拖都像没有尽头。</li><li>后来又在 GPU 上跑了一层布料模拟，网格会滞后、起涟漪，字也跟着玻璃一起扭。</li></ol></section>
+    <details class="dp-full"><summary>完整技术拆解</summary><div class="teardown"><h1>今日拆解 · Infinite Liquid Glass</h1>
+<ul>
+<li>Live: <a href="https://infinite-liquid-glass.shader.se/（同站别名" target="_blank" rel="noopener">https://infinite-liquid-glass.shader.se/（同站别名</a> <a href="https://infinite-jelly-glass.shader.se/" target="_blank" rel="noopener">https://infinite-jelly-glass.shader.se/</a> 亦 200）</li>
+<li>Author: Shader Development Studio（Filip Kantedal / Jacob / Simon）</li>
+<li>Source / 教程: <a href="https://tympanus.net/codrops/2026/09/08/building-an-infinite-liquid-glass-grid-with-three-js-webgpu-and-tsl/" target="_blank" rel="noopener">https://tympanus.net/codrops/2026/09/08/building-an-infinite-liquid-glass-grid-with-three-js-webgpu-and-tsl/</a></li>
+<li>Bundle: Next.js App Router 产物 <code>/_next/static/immutable/chunks/*.js</code>（含 <code>turbopack-*.js</code>）</li>
+<li>证据：对本页 HTML + 主 chunk（含 <code>REVISION:"185"</code>、<code>WebGPURenderer</code>、<code>@pmndrs/glyph</code>、<code>window.next.version:"16.3.0"</code>）的抓取核对；Codrops 教程作对照</li>
+</ul>
+<h2>为何选它</h2>
+<p>8 条里它视觉冲击最强：一整面「果冻玻璃」视频卡片，拖一下会像布料一样晃、折射、色散，却没有任何场景灯光。Codrops 2026-09-08 刚拆完，社交向热度也在；比精美落地页更值得当今日最炫。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r185</strong></strong><span>生产 chunk：<code>"REVISION",0,"185"</code>；<code>data-engine</code> 写入 <code>three.js r${…REVISION}</code></span></div>
+<div><strong><strong>WebGPURenderer</strong></strong><span>同 chunk 导出 / 使用 <code>WebGPURenderer</code>；教程与 meta description 均写 WebGPU</span></div>
+<div><strong><strong>TSL（Three.js Shading Language）</strong></strong><span>chunk 含 <code>MeshBasicNodeMaterial</code>、<code>NodeMaterial</code>、TSL 节点图符号；教程全文用 TSL 写 SDF 玻璃</span></div>
+<div><strong><strong>@react-three/fiber</strong></strong><span>chunk 含 <code>Symbol.for("@react-three/fiber.fromRef")</code>、pmnd.rs R3F docs 链接。<strong>具体 semver 未在 bundle 字面量找到</strong> → 教程写 R3F v10，版本号标「推测」</span></div>
+<div><strong><strong>@pmndrs/glyph</strong></strong><span>chunk：<code>createBackend({integration:"@pmndrs/glyph/three"})</code>；MSDF 相关符号密集</span></div>
+<div><strong><strong>Next.js 16.3.0</strong></strong><span>HTML 大量 <code>/_next/static/immutable/…</code>；chunk：<code>window.next={version:"16.3.0",appDir:!0}</code></span></div>
+<div><strong><strong>Motion（手势 / spring）</strong></strong><span>chunk 含 <code>motionValue</code>、<code>MotionConfigContext</code>、<code>Mini animate()</code>。<strong>未找到明确 <code>motion@x.y.z</code> 字面量</strong> → 库确认，版本推测</span></div>
+<div><strong><strong>GPU cloth / XPBD 风格约束（TSL compute）</strong></strong><span>chunk 含 <code>viscosity</code>、<code>bending</code>、<code>anchorDamping</code>、<code>.compute(</code> 与 WGSL compute 路径；教程写明 XPBD cloth solver in TSL compute passes</span></div>
+<div><strong><strong>未使用 / 未证实</strong></strong><span><strong>未找到</strong> 经典 <code>MeshPhysicalMaterial.transmission</code> 主路径（教程明确改用假玻璃 SDF）；<strong>未找到</strong> Three.js WebGLRenderer 作为主渲染器字面量</span></div>
+</div>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. WebGPU + TSL 假玻璃（确认）</h3>
+<p>卡片是细分平面，不是厚玻璃网格。用圆角矩形 SDF 算到边缘的距离，再做成高度/法线，在 <code>MeshBasicNodeMaterial</code> 的 <code>colorNode</code> 里做折射采样、Fresnel 环境反射和边缘 rim。场景里<strong>没有灯</strong>——「亮」全是假出来的。</p>
+<h3>2. 视频当折射内容（确认）</h3>
+<p>折射采样的是卡片自己的视频纹理（教程：HLS 流作纹理）。多 tap、不同 IOR → 色边色散。TSL 里用 JS <code>for</code> 展开 tap 次数。</p>
+<h3>3. 「无限」网格其实在球面上（确认 · 教程 + 结构）</h3>
+<p>平面坐标 wrap 后映射到大球表面，中间正对你、边缘侧倾缩小；拖出边界的卡片会从另一边接回来。<strong>推测</strong>：实例化或对象池复用卡片 mesh。</p>
+<h3>4. 拖拽弹簧（确认库 · 细节推测）</h3>
+<p>Motion 的 <code>motionValue</code> / pan 手势在 chunk 中出现；教程写 position/velocity 存在 React 外，R3F 帧循环直读、拖拽时零 re-render。</p>
+<h3>5. 真的「液」——GPU 布料（确认）</h3>
+<p>教程更新：XPBD cloth，TSL compute。Bundle 里有 <code>viscosity</code>、<code>bending</code>、<code>anchorDamping</code> 与 compute pass。卡片坐在布料补丁上，拖网格会滞后、起涟漪再回弹。文字后来改用 <code>@pmndrs/glyph</code> MSDF，跟着玻璃变形（确认 integration 字符串）。</p>
+<h3>6. 伪代码（忠实于教程 + bundle 符号）</h3>
+<pre class="md-code"><code>boot:
+  renderer = new WebGPURenderer(...)          # Three r185
+  // R3F Canvas on WebGPU
+  material = MeshBasicNodeMaterial({ colorNode: fakeGlassTSL(...) })
+  labels = pmndrs/glyph MSDF on cards
+
+fakeGlassTSL(uv):
+  d = roundedBoxSDF(uv)
+  height = bevelHeight(d)
+  normal = finiteDifference(height)
+  color = chromaticRefract(videoTex, normal, ior, dispersionTaps)
+  color = mix(color, envSample(reflect), fresnel) + rim(d)
+  return color
+
+cloth (each frame, GPU):
+  XPBD / constraint step: distance + bending + anchors + viscosity
+  write card positions on sphere patch
+  drag force from Motion pan velocity
+
+drag:
+  Motion pan → motionValue(x,y) → frame loop reads (no React re-render)</code></pre>
+<h2>如果我来重做（步骤清单）</h2>
+<ol>
+<li>Next.js + R3F，主路径只用 <code>three/webgpu</code> + TSL。  </li>
+<li>先做平面卡片 + SDF 假玻璃 + 视频折射（单 pass，不开灯）。  </li>
+<li>wrap 网格映射到球面；Motion pan 驱动偏移。  </li>
+<li>再加 TSL compute 布料（粘度、弯曲、锚点）。  </li>
+<li>标签用 <code>@pmndrs/glyph</code> MSDF，避免 DOM 跟不上布料形变。  </li>
+<li>用 <code>?debug</code> 暴露白边、IOR、粘度等参数。</li>
+</ol></div></details>
+    
+    <section class="xb" id="xiaobai">
+      <div class="xb-head">
+        <div class="xb-badge">小白课</div>
+        <p class="xb-sub">零基础也能看懂。先认识这件作品用到的技术，再学一个知识点。</p>
+      </div>
+
+      <h2 class="xb-h2"><span>1</span>技术栈小白版</h2>
+      <p class="xb-note">只列拆解里在源码中确认过的技术。点开看它在这件作品里做了什么。</p>
+      
+      <details class="xb-tech" open>
+        <summary><span class="xb-tech-name">Three.js r185</span><span class="xb-tech-meta">网页里的「3D 工具箱」：帮你摆物体、管相机、跟显卡说话，不用从零写底层图形接口。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>整面玻璃卡片墙、球面布局和后来的布料变形，都跑在 Three.js r185 这条管线上。</p>
+          <p><span class="xb-k">怎么认出来</span>浏览器里能实时转、拖、晃的 3D，而不是一段固定视频。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">WebGPURenderer</span><span class="xb-tech-meta">新一代「显卡直通车」：比老的 WebGL 更接近现代显卡的工作方式，算布料、算玻璃都更有余力。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>主渲染器走 WebGPURenderer，所以上百张会晃的玻璃卡片还能保持流畅。</p>
+          <p><span class="xb-k">怎么认出来</span>用较新的 Chrome / Edge 打开更稳；地址栏或控制台有时能看到 WebGPU 相关提示。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">TSL（Three.js Shading Language）</span><span class="xb-tech-meta">用搭积木的方式写「每个像素怎么上色」的说明书，而不是手写一大坨底层着色器字符串。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>圆角玻璃的厚度、折射、彩虹边，都是 TSL 节点算出来的。</p>
+          <p><span class="xb-k">怎么认出来</span>玻璃边缘有色散（像棱镜那样的细彩虹），中间视频会弯折。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">MeshBasicNodeMaterial</span><span class="xb-tech-meta">一种「自己决定颜色、不靠场景灯光」的材料卡片。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>假玻璃的最终颜色写在它的 colorNode 里；场景里可以一盏灯都没有，仍然又亮又透。</p>
+          <p><span class="xb-k">怎么认出来</span>画面很亮、很「玻璃」，但你找不着一盏真正的灯具模型。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">@react-three/fiber</span><span class="xb-tech-meta">把 React 的组件写法接到 Three.js 场景上的「翻译官」。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>页面结构用 React / R3F 来组织画布与卡片；拖拽数值则放在 React 外面以免拖一下就整页重绘。</p>
+          <p><span class="xb-k">怎么认出来</span>肉眼难辨；它是组织代码的方式，不单独长成一种特效。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">@pmndrs/glyph</span><span class="xb-tech-meta">把字体做成「在 3D 里也能扭、还能保持清晰」的字模工具。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>卡片上的标题说明用 MSDF 字画在场景里，这样布料一晃，字也跟着玻璃一起变形。</p>
+          <p><span class="xb-k">怎么认出来</span>字不是网页普通 HTML 叠上去的硬字幕，而会随玻璃一起扭动、折射。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">Next.js 16.3.0</span><span class="xb-tech-meta">做网站的「装配车间」：负责把页面、脚本、资源打成浏览器能直接打开的包。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>整站以 Next App Router 形式发布，地址栏资源路径带 `/_next/static/…`。</p>
+          <p><span class="xb-k">怎么认出来</span>打开开发者工具的网络面板，会看到许多 `/_next/` 开头的文件。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">GPU cloth / XPBD（粘度·弯曲·锚点）</span><span class="xb-tech-meta">把网格想成一张有弹性的果冻布：被扯开后会慢慢荡回去，而不是瞬间复位。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>每张卡片坐在布料补丁上；GPU 上算距离、弯曲、锚点和粘度，所以拖拽有黏滞和涟漪。</p>
+          <p><span class="xb-k">怎么认出来</span>松开鼠标后，墙面还会晃几下再停住。</p>
+        </div>
+      </details>
+
+      <h2 class="xb-h2"><span>2</span>今日知识点</h2>
+      <div class="xb-lesson">
+        <div class="xb-crumb">设计理论 · 第 1 课</div>
+        <h3 class="xb-title">设计和艺术的区别：设计要解决问题</h3>
+        <div class="xb-prose"><p>艺术常常先问：「我想表达什么？」设计常常先问：「谁在用？卡在哪？怎样更顺？」两者都可以很美，但<b>设计的美是为了帮人把事做成</b>。</p><p>Infinite Liquid Glass 看起来像纯炫技，它其实在解决一个很具体的问题：工作室有很多带视频的项目，要让访客<b>愿意逛、记得住、还想拖一下</b>。普通缩略图网格能「展示」，却很难「被拿起来玩」。</p><p>所以作者选了「果冻玻璃卡片 + 无限拖拽」：玻璃感让视频更贵、更好看；拖拽和回弹让浏览变成身体记忆。美不是目的本身，是解决方案的一部分。</p><p>一句话分辨：如果去掉交互与信息结构，只剩氛围——更偏艺术装置；如果氛围是在服务「找到项目 / 愿意停留 / 理解工作室」——那就是设计。</p><p>对你有用的判断题：看一个酷站时先问「它在帮谁解决什么？」再问「特效有没有让这件事更容易」。答得清，你就开始用设计师的眼睛看了。</p></div>
+        <h4 class="xb-h4">它从哪里来</h4>
+        <div class="xb-prose"><p>现代意义上的「设计」（design）在工业革命后越来越强调功能与批量生产中的问题解决，而不只是装饰。</p><p>20 世纪的设计教育（例如包豪斯相关传统）反复强调：形式要追随用途，美观与好用不该拆开。</p><p>数字产品时代，这个区分更明显：界面可以像艺术品一样精致，但若用户完不成任务，仍会被看作设计失败。</p><p>创意前端圈里的「demo」常常骑在艺术与设计之间——今天的案例恰好展示了：最炫的技术，也可以是在回答一个展示与浏览的问题。</p></div>
+        <h4 class="xb-h4">经典参考</h4>
+        <ul class="xb-refs"><li><b>Don Norman《设计心理学》（The Design of Everyday Things）</b><span>入门必读：用门把手、炉灶等例子讲「好用」为什么比「好看」更先要被想清楚。</span></li><li><b><a href="https://tympanus.net/codrops/2026/09/08/building-an-infinite-liquid-glass-grid-with-three-js-webgpu-and-tsl/" target="_blank" rel="noopener">Codrops 原文 · Infinite Liquid Glass</a></b><span>作者自己说明：这是工作室项目网格的实验，技术选择都服务于「可拖、可看视频、还像玻璃」。</span></li><li><b><a href="https://www.bauhaus.de/en/" target="_blank" rel="noopener">包豪斯（Bauhaus）概述 · 百科或博物馆介绍</a></b><span>帮助建立「现代设计教育从哪来」的大背景，不必一次读完。</span></li></ul>
+        <div class="xb-callout">
+          <div class="xb-callout-t">怎么看 / 怎么练 · 约 8 分钟</div>
+          <ol><li>打开 Infinite Liquid Glass，拖两下。用一句话写下：它在帮「谁」做「什么事」？（例如：帮访客快速感受工作室的项目质感。）</li><li>再打开任意一个只有静态大图的作品集站，对比：哪一个更容易让你停留超过 30 秒？你的身体（拖、滑）有没有被邀请参与？</li><li>最后问自己：如果把玻璃特效全关掉、只留普通方格缩略图，这个站要解决的问题还成立吗？成立多少——这就是「设计还是纯炫」的刻度。</li></ol>
+        </div>
+        <h4 class="xb-h4">小词典</h4>
+        <dl class="xb-gloss"><div><dt>设计</dt><dd>为特定的人解决特定问题，并让解决方案好用、好懂；美观通常是手段之一。</dd></div><div><dt>艺术</dt><dd>更自由地表达感受、观点或形式探索；不一定要帮别人完成任务。</dd></div><div><dt>用例 / 使用情境</dt><dd>「谁在什么场合要完成什么」——设计决策的出发点。</dd></div><div><dt>示能（affordances）</dt><dd>物品看起来就提示你能怎么用；比如卡片墙「看起来就能拖」。</dd></div></dl>
+      </div>
+
+      <h2 class="xb-h2"><span>3</span>知识地图进度</h2>
+      <div class="xb-prog">
+        <div class="xb-prog-row"><b>设计理论</b><span>第 1 课 / 共 14 课</span></div>
+        <div class="bar"><i style="width:7%"></i></div>
+        <div class="xb-prog-row small"><span>这条线已学 1 课</span><span>全部已学 6 / 89</span></div>
+        <a class="xb-next" href="../../map/#t-02"><span>下一课建议</span><b>理论 第 2 课 · 格式塔（上）：接近与相似</b></a>
+        <a class="xb-maplink" href="../../map/#t-01">打开知识地图 ›</a>
+      </div>
+    </section>
+    <div class="dp-sec">当天另外 7 个</div>
+    <a class="mini" href="https://balloons.shader.se/" target="_blank" rel="noopener">
+      <img src="../../thumbs/balloon-text-simulation.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Balloon Text Simulation</div><div class="mini-desc">可抓可拽的气球字母：GPU 布料求解让每个笔画像充气橡胶，一扯就变形。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://desert-dusky.vercel.app/" target="_blank" rel="noopener">
+      <img src="../../thumbs/desert-explorer.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Desert Explorer</div><div class="mini-desc">全着色器生成的沙丘世界：第三人称行走 + 沙地法术，Opus 系作品在社区刷屏。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://shinigami92.github.io/Fractr/" target="_blank" rel="noopener">
+      <img src="../../thumbs/fractr.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Fractr</div><div class="mini-desc">WebGPU 分形飞行器：Mandelbulb 等结构里 6DOF 乱飞，像钻进数学宇宙。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://illoca.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/illoca.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="网站">网站</span></div>
+        <div class="mini-title">Illoca</div><div class="mini-desc">给建筑师的 AI 原生 3D 工作台：从想法滚到可编辑的 2D/3D，交互块很会说话。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://jesperlandberg.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/jesper-landberg.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="网站">网站</span></div>
+        <div class="mini-title">Jesper Landberg</div><div class="mini-desc">今日 Awwwards SOTD：独立设计工程师作品集，Three.js + GSAP 把个人气质做成可逛的舞台。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://still-garden.vercel.app/" target="_blank" rel="noopener">
+      <img src="../../thumbs/still-garden.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="网站">网站</span></div>
+        <div class="mini-title">Still Garden</div><div class="mini-desc">水墨感生成花园：从阿基拉到墨色，WebGPU 程序化长出一座会呼吸的园子。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://wind-waker-threejs.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/wind-waker-js.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Wind Waker JS</div><div class="mini-desc">浏览器里开船逛《风之杖》大海：WebGPU + TSL 重做海面，社交向怀旧神作。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <button type="button" class="dp-share" data-share>复制链接 / 分享</button>
+    <nav class="dp-nav"><a href="../2026-09-28/">‹ 09-28</a><a href="../../">全部日期</a><span>›</span></nav>
+    <p class="dp-foot">设计雷达 · 每天 8 个值得看的网站、App UI 和网页小游戏</p>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  var canon=document.querySelector('link[rel=canonical]').href;
+  var toastEl=document.getElementById('toast');
+  function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(function(){toastEl.classList.remove('show')},1800);}
+  function legacyCopy(){var t=document.createElement('textarea');t.value=canon;t.setAttribute('readonly','');t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();if(ok)toast('链接已复制');else window.prompt('复制这个链接',canon);}
+  function share(){
+    var data={title:document.title,text:document.querySelector('meta[name=description]').content,url:canon};
+    if(navigator.share){navigator.share(data).catch(function(e){if(e&&e.name!=='AbortError')copy();});return;}
+    copy();
+  }
+  function copy(){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(canon).then(function(){toast('链接已复制')},legacyCopy);}else legacyCopy();}
+  document.querySelectorAll('[data-share]').forEach(function(b){b.addEventListener('click',share)});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<h1>今日拆解 · Infinite Liquid Glass</h1>
+<ul>
+<li>Live: <a href="https://infinite-liquid-glass.shader.se/（同站别名" target="_blank" rel="noopener">https://infinite-liquid-glass.shader.se/（同站别名</a> <a href="https://infinite-jelly-glass.shader.se/" target="_blank" rel="noopener">https://infinite-jelly-glass.shader.se/</a> 亦 200）</li>
+<li>Author: Shader Development Studio（Filip Kantedal / Jacob / Simon）</li>
+<li>Source / 教程: <a href="https://tympanus.net/codrops/2026/09/08/building-an-infinite-liquid-glass-grid-with-three-js-webgpu-and-tsl/" target="_blank" rel="noopener">https://tympanus.net/codrops/2026/09/08/building-an-infinite-liquid-glass-grid-with-three-js-webgpu-and-tsl/</a></li>
+<li>Bundle: Next.js App Router 产物 <code>/_next/static/immutable/chunks/*.js</code>（含 <code>turbopack-*.js</code>）</li>
+<li>证据：对本页 HTML + 主 chunk（含 <code>REVISION:"185"</code>、<code>WebGPURenderer</code>、<code>@pmndrs/glyph</code>、<code>window.next.version:"16.3.0"</code>）的抓取核对；Codrops 教程作对照</li>
+</ul>
+<h2>为何选它</h2>
+<p>8 条里它视觉冲击最强：一整面「果冻玻璃」视频卡片，拖一下会像布料一样晃、折射、色散，却没有任何场景灯光。Codrops 2026-09-08 刚拆完，社交向热度也在；比精美落地页更值得当今日最炫。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r185</strong></strong><span>生产 chunk：<code>"REVISION",0,"185"</code>；<code>data-engine</code> 写入 <code>three.js r${…REVISION}</code></span></div>
+<div><strong><strong>WebGPURenderer</strong></strong><span>同 chunk 导出 / 使用 <code>WebGPURenderer</code>；教程与 meta description 均写 WebGPU</span></div>
+<div><strong><strong>TSL（Three.js Shading Language）</strong></strong><span>chunk 含 <code>MeshBasicNodeMaterial</code>、<code>NodeMaterial</code>、TSL 节点图符号；教程全文用 TSL 写 SDF 玻璃</span></div>
+<div><strong><strong>@react-three/fiber</strong></strong><span>chunk 含 <code>Symbol.for("@react-three/fiber.fromRef")</code>、pmnd.rs R3F docs 链接。<strong>具体 semver 未在 bundle 字面量找到</strong> → 教程写 R3F v10，版本号标「推测」</span></div>
+<div><strong><strong>@pmndrs/glyph</strong></strong><span>chunk：<code>createBackend({integration:"@pmndrs/glyph/three"})</code>；MSDF 相关符号密集</span></div>
+<div><strong><strong>Next.js 16.3.0</strong></strong><span>HTML 大量 <code>/_next/static/immutable/…</code>；chunk：<code>window.next={version:"16.3.0",appDir:!0}</code></span></div>
+<div><strong><strong>Motion（手势 / spring）</strong></strong><span>chunk 含 <code>motionValue</code>、<code>MotionConfigContext</code>、<code>Mini animate()</code>。<strong>未找到明确 <code>motion@x.y.z</code> 字面量</strong> → 库确认，版本推测</span></div>
+<div><strong><strong>GPU cloth / XPBD 风格约束（TSL compute）</strong></strong><span>chunk 含 <code>viscosity</code>、<code>bending</code>、<code>anchorDamping</code>、<code>.compute(</code> 与 WGSL compute 路径；教程写明 XPBD cloth solver in TSL compute passes</span></div>
+<div><strong><strong>未使用 / 未证实</strong></strong><span><strong>未找到</strong> 经典 <code>MeshPhysicalMaterial.transmission</code> 主路径（教程明确改用假玻璃 SDF）；<strong>未找到</strong> Three.js WebGLRenderer 作为主渲染器字面量</span></div>
+</div>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. WebGPU + TSL 假玻璃（确认）</h3>
+<p>卡片是细分平面，不是厚玻璃网格。用圆角矩形 SDF 算到边缘的距离，再做成高度/法线，在 <code>MeshBasicNodeMaterial</code> 的 <code>colorNode</code> 里做折射采样、Fresnel 环境反射和边缘 rim。场景里<strong>没有灯</strong>——「亮」全是假出来的。</p>
+<h3>2. 视频当折射内容（确认）</h3>
+<p>折射采样的是卡片自己的视频纹理（教程：HLS 流作纹理）。多 tap、不同 IOR → 色边色散。TSL 里用 JS <code>for</code> 展开 tap 次数。</p>
+<h3>3. 「无限」网格其实在球面上（确认 · 教程 + 结构）</h3>
+<p>平面坐标 wrap 后映射到大球表面，中间正对你、边缘侧倾缩小；拖出边界的卡片会从另一边接回来。<strong>推测</strong>：实例化或对象池复用卡片 mesh。</p>
+<h3>4. 拖拽弹簧（确认库 · 细节推测）</h3>
+<p>Motion 的 <code>motionValue</code> / pan 手势在 chunk 中出现；教程写 position/velocity 存在 React 外，R3F 帧循环直读、拖拽时零 re-render。</p>
+<h3>5. 真的「液」——GPU 布料（确认）</h3>
+<p>教程更新：XPBD cloth，TSL compute。Bundle 里有 <code>viscosity</code>、<code>bending</code>、<code>anchorDamping</code> 与 compute pass。卡片坐在布料补丁上，拖网格会滞后、起涟漪再回弹。文字后来改用 <code>@pmndrs/glyph</code> MSDF，跟着玻璃变形（确认 integration 字符串）。</p>
+<h3>6. 伪代码（忠实于教程 + bundle 符号）</h3>
+<pre class="md-code"><code>boot:
+  renderer = new WebGPURenderer(...)          # Three r185
+  // R3F Canvas on WebGPU
+  material = MeshBasicNodeMaterial({ colorNode: fakeGlassTSL(...) })
+  labels = pmndrs/glyph MSDF on cards
+
+fakeGlassTSL(uv):
+  d = roundedBoxSDF(uv)
+  height = bevelHeight(d)
+  normal = finiteDifference(height)
+  color = chromaticRefract(videoTex, normal, ior, dispersionTaps)
+  color = mix(color, envSample(reflect), fresnel) + rim(d)
+  return color
+
+cloth (each frame, GPU):
+  XPBD / constraint step: distance + bending + anchors + viscosity
+  write card positions on sphere patch
+  drag force from Motion pan velocity
+
+drag:
+  Motion pan → motionValue(x,y) → frame loop reads (no React re-render)</code></pre>
+<h2>如果我来重做（步骤清单）</h2>
+<ol>
+<li>Next.js + R3F，主路径只用 <code>three/webgpu</code> + TSL。  </li>
+<li>先做平面卡片 + SDF 假玻璃 + 视频折射（单 pass，不开灯）。  </li>
+<li>wrap 网格映射到球面；Motion pan 驱动偏移。  </li>
+<li>再加 TSL compute 布料（粘度、弯曲、锚点）。  </li>
+<li>标签用 <code>@pmndrs/glyph</code> MSDF，避免 DOM 跟不上布料形变。  </li>
+<li>用 <code>?debug</code> 暴露白边、IOR、粘度等参数。</li>
+</ol>
