@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0c0e" />
+  <title>False Earth · 设计雷达 2026-10-01</title>
+  <meta name="description" content="今日最炫：False Earth — WebGPU 程序化星球：草浪、地形与可操控角色同屏，像走进一颗假地球。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <link rel="canonical" href="https://sunxiaoxi2039-star.github.io/d/2026-10-01/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="设计雷达" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="False Earth · 设计雷达 2026-10-01" />
+  <meta property="og:description" content="今日最炫：False Earth — WebGPU 程序化星球：草浪、地形与可操控角色同屏，像走进一颗假地球。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta property="og:url" content="https://sunxiaoxi2039-star.github.io/d/2026-10-01/" />
+  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-10-01.jpg?v=202610020034" />
+  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-10-01.jpg?v=202610020034" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="False Earth · 设计雷达 2026-10-01" />
+  <meta name="twitter:description" content="今日最炫：False Earth — WebGPU 程序化星球：草浪、地形与可操控角色同屏，像走进一颗假地球。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-10-01.jpg?v=202610020034" />
+  <meta itemprop="name" content="False Earth · 设计雷达 2026-10-01" />
+  <meta itemprop="description" content="今日最炫：False Earth — WebGPU 程序化星球：草浪、地形与可操控角色同屏，像走进一颗假地球。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-10-01.jpg?v=202610020034" />
+  <link rel="stylesheet" href="../../styles.css?v=202610020034" />
+</head>
+<body class="dp-body">
+  <header class="dp-top">
+    <a class="dp-home" href="../../"><span>✦</span>设计雷达</a>
+    <div class="dp-top-r"><a class="dp-maplink" href="../../map/">知识地图</a><button type="button" class="dp-share-mini" data-share>分享</button></div>
+  </header>
+  <main class="dp">
+    <div class="dp-kicker">2026-10-01 · 今日最炫</div>
+    <h1 class="dp-title">False Earth</h1>
+    <p class="dp-lede">WebGPU 程序化星球：草浪、地形与可操控角色同屏，像走进一颗假地球。</p>
+    <a class="dp-hero-link" href="https://false-earth.mingjyunhung.com/" target="_blank" rel="noopener">
+      <img class="dp-hero" src="../../thumbs/false-earth.webp" alt="False Earth 截图" width="640" height="400" />
+    </a>
+    <a class="btn-open" href="https://false-earth.mingjyunhung.com/" target="_blank" rel="noopener">打开网站 ↗</a>
+    <section class="dp-plain"><div class="dp-h2">大白话拆解</div><p><b>它是什么：</b>一颗「假地球」：无尽地表、风里的草浪、可操控角色，三种相机模式来回切。</p><p><b>好在哪：</b>一眼就被「能走进去的星球」抓住；草与地形在 WebGPU 上算出来，比静态酷站更像真正的世界。</p><p><b>怎么做到的：</b></p><ol><li>主渲染走 Three.js r182 的 WebGPURenderer；场景挂在 React 19 + R3F Canvas 上。</li><li>StorageBuffer + compute/TSL 在 GPU 上长出地形与草；indirect / multiDraw 撑起草海规模。</li><li>BloomNode 晕亮部，SMAANode 收锯齿；cameraMode 在 Follow / FPV / Detached 间切换。</li></ol></section>
+    <details class="dp-full"><summary>完整技术拆解</summary><div class="teardown"><h1>今日拆解 · False Earth</h1>
+<ul>
+<li>Live: <a href="https://false-earth.mingjyunhung.com/" target="_blank" rel="noopener">https://false-earth.mingjyunhung.com/</a></li>
+<li>Author: Ming Jyun Hung (momentchan)</li>
+<li>Source / 教程: <a href="https://tympanus.net/codrops/2026/04/21/false-earth-from-webgl-limits-to-a-webgpu-driven-world/" target="_blank" rel="noopener">https://tympanus.net/codrops/2026/04/21/false-earth-from-webgl-limits-to-a-webgpu-driven-world/</a></li>
+<li>Bundle: Vite 产物 <code>./assets/index-scZJOe0j.js</code>（HTML：<code>type="module"</code> + <code>/assets/*.css</code>）</li>
+<li>证据：对本页 HTML + 主 bundle（含 <code>const FA="182"</code>、<code>WebGPURenderer</code>、<code>three.js r${FA} webgpu</code>、<code>MeshStandardNodeMaterial</code>、<code>StorageBuffer</code>、<code>computeAsync</code>、<code>BloomNode</code>、<code>SMAANode</code>、<code>@react-three/fiber</code>、<code>hi.version="19.2.7"</code>、<code>tfe.version="9.6.1"</code>、<code>zustand</code>、<code>cameraMode</code> / <code>FPV</code> / <code>Follow</code> / <code>Detached</code>、<code>drawIndirect</code> / <code>multiDraw</code>、<code>gsap.registerPlugin</code>）的抓取核对；Codrops 教程与仓库 <code>package.json</code>（<code>three: ^0.182.0</code>）作对照</li>
+</ul>
+<h2>为何选它</h2>
+<p>8 条里它视觉冲击最强：一片「像地球又不像地球」的无尽地表，草浪在风里动，角色可以走、相机能切跟随 / 第一人称 / 分离——不是静态酷站，而是可走进去的 WebGPU 世界。Codrops 2026-04 已把「从 WebGL 极限跳到 WebGPU」写透，比聪明但平面的作品更配今日最炫。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r182</strong></strong><span>生产 bundle：<code>const FA="182"</code>；<code>data-engine</code> 写成 `<code>three.js r${FA}</code><code> / </code><code>three.js r${FA} webgpu</code>`</span></div>
+<div><strong><strong>WebGPURenderer</strong></strong><span>同 bundle 出现 <strong>32</strong> 次 <code>WebGPURenderer</code></span></div>
+<div><strong><strong>MeshStandardNodeMaterial</strong></strong><span>bundle 字面量 <code>MeshStandardNodeMaterial</code>（含 <code>isMeshStandardNodeMaterial</code>）</span></div>
+<div><strong><strong>StorageBuffer</strong></strong><span>bundle：<code>StorageBuffer</code> <strong>32</strong> 次——结构化数据留在 GPU 上读写</span></div>
+<div><strong><strong>compute / computeAsync</strong></strong><span>bundle：<code>compute(</code> <strong>36</strong> 次；<code>computeAsync</code> <strong>4</strong> 次——计算着色器路径</span></div>
+<div><strong><strong>TSL 节点图（Fn）</strong></strong><span>bundle：<code>Fn(</code> <strong>25</strong> 次；Codrops 教程对照：颜色/深度等走 TSL 节点链</span></div>
+<div><strong><strong>drawIndirect / multiDraw</strong></strong><span>bundle：<code>drawIndirect</code>、<code>multiDraw</code>——间接绘制大批量几何（教程强调草叶规模）</span></div>
+<div><strong><strong>BloomNode / SMAANode</strong></strong><span>bundle：<code>BloomNode</code>、<code>SMAANode</code>——后期 bloom + SMAA</span></div>
+<div><strong><strong>React 19.2.7</strong></strong><span>bundle：<code>hi.version="19.2.7"</code>（React）</span></div>
+<div><strong><strong>@react-three/fiber 9.6.1</strong></strong><span>bundle：<code>rendererPackageName:"@react-three/fiber"</code>；<code>tfe.version="9.6.1"</code>；大量 <code>Canvas</code></span></div>
+<div><strong><strong>zustand</strong></strong><span>bundle：zustand 传统 API 警告字符串 + <code>useStore</code> 路径</span></div>
+<div><strong><strong>相机模式 Follow / FPV / Detached</strong></strong><span>bundle：<code>cameraMode</code>、<code>Follow</code>、<code>FPV</code>、<code>Detached</code> 字面量同在</span></div>
+<div><strong><strong>GSAP</strong></strong><span>bundle：<code>gsap.registerPlugin</code> 路径存在</span></div>
+<div><strong><strong>Vite</strong></strong><span>HTML：<code>./assets/index-*.js</code> 模块脚本 + 配套 CSS——典型 Vite 产物</span></div>
+<div><strong><strong>未使用 / 未证实</strong></strong><span><strong>未在 bundle 字面量找到</strong> 明确的 <code>Leva</code> / <code>useControls</code> 面板类名（仓库依赖有 leva，线上 minify 后未确认 UI 类名）；<strong>未找到</strong> 以 <code>WebGLRenderer</code> 作为主渲染器字面量；草叶 Voronoi / VAT roses 的<strong>具体算法以 Codrops 教程为准</strong>（教程细节，非全部在 bundle 里以可读公式出现）</span></div>
+</div>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. WebGPU + Three.js r182 主路径（确认）</h3>
+<p>页面用 <code>WebGPURenderer</code>；<code>data-engine</code> 写成 <code>three.js r182 webgpu</code>。主路径不是经典 WebGLRenderer。</p>
+<h3>2. R3F + React 19 挂场景（确认）</h3>
+<p><code>@react-three/fiber</code> 9.6.1 + React 19.2.7：用 <code>Canvas</code> 把 Three 场景嵌进 React 树；游戏状态有 <code>zustand</code> 痕迹。</p>
+<h3>3. StorageBuffer + compute：大地与草在 GPU 上长出来（确认类名；规模 = 教程）</h3>
+<p><code>StorageBuffer</code> + <code>compute</code> / <code>computeAsync</code> 同在。Codrops 教程写明：草叶位置、风场、地形采样等走 WebGPU compute + TSL，避免 WebGL 时代的「像素打包」workaround。<strong>草叶数量与风场公式以教程为准。</strong></p>
+<h3>4. 间接绘制撑起「一片草海」（确认符号；语义 = 教程）</h3>
+<p><code>drawIndirect</code> / <code>multiDraw</code> 出现。教程解释：用间接绘制缓冲区告诉 GPU 画多少、从哪画——才能在可交互帧率下铺开大量草叶。</p>
+<h3>5. 后期：BloomNode + SMAANode（确认）</h3>
+<p><code>BloomNode</code> 负责亮部光晕；<code>SMAANode</code> 做抗锯齿，远景草与地平线才不那么毛。</p>
+<h3>6. 三种相机：Follow / FPV / Detached（确认）</h3>
+<p><code>cameraMode</code> 与三种模式名同在——玩家可以换「跟拍 / 第一人称 / 分离」看这颗假地球。</p>
+<h3>7. 伪代码（忠实于 bundle 符号 + 教程结构）</h3>
+<pre class="md-code"><code>boot:
+  React 19 + R3F Canvas
+  renderer = WebGPURenderer          # Three.js r182
+  store = zustand (cameraMode, …)
+
+world (GPU):
+  StorageBuffer + compute/TSL Fn     # 地形 / 草 / 风
+  multiDraw / drawIndirect            # 大批量草叶
+  MeshStandardNodeMaterial            # 表面标准光照感
+
+post:
+  BloomNode
+  SMAANode
+
+play:
+  cameraMode ∈ {Follow, FPV, Detached}
+  GSAP 辅助过渡（确认有 registerPlugin）</code></pre>
+<h2>对照阅读</h2>
+<ul>
+<li>Codrops 全文：从 WebGL 极限到 WebGPU / TSL / 间接绘制</li>
+<li>仓库：<a href="https://github.com/momentchan/false-earth（" target="_blank" rel="noopener">https://github.com/momentchan/false-earth（</a><code>three: ^0.182.0</code> 与线上 r182 一致）</li>
+</ul></div></details>
+    
+    <section class="xb" id="xiaobai">
+      <div class="xb-head">
+        <div class="xb-badge">小白课</div>
+        <p class="xb-sub">零基础也能看懂。先认识这件作品用到的技术，再学一个知识点。</p>
+      </div>
+
+      <h2 class="xb-h2"><span>1</span>技术栈小白版</h2>
+      <p class="xb-note">只列拆解里在源码中确认过的技术。点开看它在这件作品里做了什么。</p>
+      
+      <details class="xb-tech" open>
+        <summary><span class="xb-tech-name">Three.js r182</span><span class="xb-tech-meta">网页里的「3D 工具箱」：摆物体、管相机、跟显卡说话。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>整颗假地球的场景、相机和渲染管线都跑在 Three.js r182 上。</p>
+          <p><span class="xb-k">怎么认出来</span>浏览器里能走路、切视角的实时 3D，而不是一段预渲染视频。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">WebGPURenderer</span><span class="xb-tech-meta">新一代「显卡直通车」：更适合在 GPU 上算草、风和地形。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>主渲染器是 WebGPURenderer，所以大片草海还能保持可玩帧率。</p>
+          <p><span class="xb-k">怎么认出来</span>用较新的 Chrome / Edge 打开更稳；没有适配时页面可能提示无 GPU。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">StorageBuffer</span><span class="xb-tech-meta">一块放在显卡里的「共享记事本」，计算和绘制都能直接读写。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>地形 / 草等相关数据走 StorageBuffer，不必每帧从 CPU 传一整本地形。</p>
+          <p><span class="xb-k">怎么认出来</span>世界在你走动时连续展开，而不是一卡一卡加载贴图块（观感层面）。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">compute / computeAsync</span><span class="xb-tech-meta">让显卡「先算一笔账」再画：风、草位置这类事适合并行算。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>bundle 里有 compute / computeAsync；草与地形变化主要在 GPU 侧推进。</p>
+          <p><span class="xb-k">怎么认出来</span>草浪像被风推动，而不是整张草地贴图在晃。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">BloomNode / SMAANode</span><span class="xb-tech-meta">Bloom 把够亮的部分晕成光晕；SMAA 给边缘去锯齿。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>后期用 BloomNode 提空气感，SMAANode 收远景毛刺。</p>
+          <p><span class="xb-k">怎么认出来</span>天际与亮部有一层柔光，草叶边缘相对干净。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">cameraMode Follow / FPV / Detached</span><span class="xb-tech-meta">三种「看世界的姿势」：跟拍、第一人称、把相机拆开旁观。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>False Earth 用 cameraMode 在 Follow / FPV / Detached 间切换。</p>
+          <p><span class="xb-k">怎么认出来</span>同一片地表，换视角会像换了一部电影镜头。</p>
+        </div>
+      </details>
+
+      <h2 class="xb-h2"><span>2</span>今日知识点</h2>
+      <div class="xb-lesson">
+        <div class="xb-crumb">设计理论 · 第 3 课</div>
+        <h3 class="xb-title">格式塔（下）：闭合、连续、图形与背景</h3>
+        <div class="xb-prose"><p>昨天讲了接近与相似：人会把「近的、像的」收成一组。今天补另外三条常用组织律：<b>闭合</b>（脑会补缺口）、<b>连续</b>（眼会顺着线/路径走）、<b>图形与背景</b>（先分出「主体」和「衬底」）。</p><p>False Earth 几乎没有画死一个完整「星球模型」。地表、草、天空是碎成许多 GPU 元素的——但你仍然读成「一片完整的地」。这就是<b>闭合</b>：缺口与碎片会被脑补成完形。</p><p><b>连续</b>在这里也很凶：你一往前走，地平线与草浪顺着运动方向延伸，眼会跟着路径走，而不是把每一根草当成独立噪音。相机从 Follow 切到 FPV，连续感还会从「旁观一条路」变成「自己踩在路上」。</p><p><b>图形与背景</b>：角色 / 可走区域是图形，无尽地表与天空是背景。设计上若图形与背景对比不够（颜色、运动、清晰度都糊在一起），人就会「找不到我该看哪」。False Earth 用可操控角色 + 草浪尺度差，把图形从背景里抠出来。</p><p>今日口诀：<b>补全、顺着看、分出前后</b>。做界面时问：缺口要不要让人脑补？视线有没有一条连续路径？谁是图形、谁是背景？</p></div>
+        <h4 class="xb-h4">它从哪里来</h4>
+        <div class="xb-prose"><p>格式塔组织律在 20 世纪初由韦特海默等人系统化；闭合、连续、图形—背景与接近、相似常一起出现在设计教材里。</p><p>平面设计里：残缺的 logo 仍能被认出，靠的是闭合；杂志排版用对齐与引导线制造连续；海报先决定「谁是主体」。</p><p>到了实时 3D / 游戏，这三条仍然管用：关卡设计师用路径连续引导玩家；美术用明暗和景深拉开图形与背景；程序化世界更依赖闭合——碎片几何仍要读成「一整片地」。</p><p>False Earth 是 2026 的 WebGPU 作品，但你秒懂「这是地表、那是天空、我可以往前走」，靠的仍是这些更早被写清的视知觉规律。</p></div>
+        <h4 class="xb-h4">经典参考</h4>
+        <ul class="xb-refs"><li><b><a href="https://www.interaction-design.org/literature/topics/gestalt-principles" target="_blank" rel="noopener">Interaction Design Foundation · Gestalt Principles</a></b><span>用图示复习闭合、连续、图形与背景；接续昨天的接近与相似。</span></li><li><b><a href="https://tympanus.net/codrops/2026/04/21/false-earth-from-webgl-limits-to-a-webgpu-driven-world/" target="_blank" rel="noopener">Codrops · False Earth: From WebGL Limits to a WebGPU-Driven World</a></b><span>看作者如何用 GPU 草海与间接绘制撑起「一整片地」——技术服务于完形。</span></li><li><b>Max Wertheimer · 格式塔组织律脉络</b><span>知道闭合/连续/图形—背景的来源即可；不必啃德文原典。</span></li></ul>
+        <div class="xb-callout">
+          <div class="xb-callout-t">怎么看 / 怎么练 · 约 8 分钟</div>
+          <ol><li>打开 False Earth，先静止看 3 秒：你先分出的「图形」是角色、地平线，还是草的纹理？写下一句。</li><li>往前走几步：视线是顺着路径连续往前，还是在草叶间跳跃？用「连续」评价一句。</li><li>想象把角色衣服做成和草地几乎同色、同亮度——图形还在吗？用「图形与背景」写一条失败原因。</li><li>看任意一个 App 启动页：有没有用闭合（残缺图标仍可读）或连续（引导线/步骤条）？各举一例或写「没有」。</li></ol>
+        </div>
+        <h4 class="xb-h4">小词典</h4>
+        <dl class="xb-gloss"><div><dt>闭合（Closure）</dt><dd>图形有缺口时，大脑仍倾向把它补成完整形状。</dd></div><div><dt>连续（Continuity）</dt><dd>眼睛喜欢顺着平滑的线或路径看，而不是任意折来折去。</dd></div><div><dt>图形与背景（Figure–Ground）</dt><dd>感知时先分出「主体（图形）」和「衬底（背景）」。</dd></div><div><dt>WebGPU</dt><dd>浏览器里较新的图形接口，更适合在显卡上做大规模计算再绘制。</dd></div><div><dt>程序化（Procedural）</dt><dd>不靠一张张手绘完整地图，而用规则/算法在运行时生成内容。</dd></div></dl>
+      </div>
+
+      <h2 class="xb-h2"><span>3</span>知识地图进度</h2>
+      <div class="xb-prog">
+        <div class="xb-prog-row"><b>设计理论</b><span>第 3 课 / 共 14 课</span></div>
+        <div class="bar"><i style="width:21%"></i></div>
+        <div class="xb-prog-row small"><span>这条线已学 3 课</span><span>全部已学 8 / 89</span></div>
+        <a class="xb-next" href="../../map/#t-04"><span>下一课建议</span><b>理论 第 4 课 · 视觉重量与平衡</b></a>
+        <a class="xb-maplink" href="../../map/#t-03">打开知识地图 ›</a>
+      </div>
+    </section>
+    <div class="dp-sec">当天另外 7 个</div>
+    <a class="mini" href="https://otsuka-air.jp/" target="_blank" rel="noopener">
+      <img src="../../thumbs/zeroz.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="网站">网站</span></div>
+        <div class="mini-title">/zeroz</div><div class="mini-desc">大塚制药 /zeroz 品牌站：章节式 3DCG + WebGL 沉浸叙事，奖项向高交互品牌页。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://kevinxu02.github.io/real2sim-indoor-site/" target="_blank" rel="noopener">
+      <img src="../../thumbs/aha-3d-real2sim.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">AHa-3D Real2Sim</div><div class="mini-desc">室内 Real2Sim 三维重建演示，挂着 GPT-6 Astra 工具链叙事——AI 造 3D 场景热潮样本。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://r3f-rapier-ball-of-glass.vercel.app/" target="_blank" rel="noopener">
+      <img src="../../thumbs/ball-of-glass.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Ball of Glass</div><div class="mini-desc">玻璃球被物理吸引力拽着滚：R3F + Rapier，透明折射和碰撞手感都很黏。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://coloniazacamil.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/colonia-zacamil.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="网站">网站</span></div>
+        <div class="mini-title">Colonia Zacamil</div><div class="mini-desc">今日 Awwwards SOTD：可逛的 3D 街区壁画地图，日夜切换，社区故事长进 WebGL 里。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://threejs-webgpu-test.netlify.app/test2" target="_blank" rel="noopener">
+      <img src="../../thumbs/gpu-physics-bench.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">GPU Physics Bench</div><div class="mini-desc">成千上万实例在 WebGPU compute 里碰撞翻滚：物理一步不回 CPU，像开了挂的沙盘。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://toptennisgame.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/top-tennis.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Top Tennis</div><div class="mini-desc">浏览器里直接打的 3D 网球：回合节奏清楚，是「打开就能玩」的 web-game。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://dgreenheck.github.io/webgpu-galaxy/" target="_blank" rel="noopener">
+      <img src="../../thumbs/webgpu-galaxy.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">WebGPU Galaxy</div><div class="mini-desc">最多约 75 万粒子的螺旋星系：拖拽施力、实时调参，GPU 上转的宇宙玩具。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <button type="button" class="dp-share" data-share>复制链接 / 分享</button>
+    <nav class="dp-nav"><a href="../2026-09-30/">‹ 09-30</a><a href="../../">全部日期</a><span>›</span></nav>
+    <p class="dp-foot">设计雷达 · 每天 8 个值得看的网站、App UI 和网页小游戏</p>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  var canon=document.querySelector('link[rel=canonical]').href;
+  var toastEl=document.getElementById('toast');
+  function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(function(){toastEl.classList.remove('show')},1800);}
+  function legacyCopy(){var t=document.createElement('textarea');t.value=canon;t.setAttribute('readonly','');t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();if(ok)toast('链接已复制');else window.prompt('复制这个链接',canon);}
+  function share(){
+    var data={title:document.title,text:document.querySelector('meta[name=description]').content,url:canon};
+    if(navigator.share){navigator.share(data).catch(function(e){if(e&&e.name!=='AbortError')copy();});return;}
+    copy();
+  }
+  function copy(){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(canon).then(function(){toast('链接已复制')},legacyCopy);}else legacyCopy();}
+  document.querySelectorAll('[data-share]').forEach(function(b){b.addEventListener('click',share)});
+})();
+</script>
+</body>
+</html>

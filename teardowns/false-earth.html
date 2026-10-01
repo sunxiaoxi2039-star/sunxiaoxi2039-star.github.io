@@ -1,0 +1,64 @@
+<h1>今日拆解 · False Earth</h1>
+<ul>
+<li>Live: <a href="https://false-earth.mingjyunhung.com/" target="_blank" rel="noopener">https://false-earth.mingjyunhung.com/</a></li>
+<li>Author: Ming Jyun Hung (momentchan)</li>
+<li>Source / 教程: <a href="https://tympanus.net/codrops/2026/04/21/false-earth-from-webgl-limits-to-a-webgpu-driven-world/" target="_blank" rel="noopener">https://tympanus.net/codrops/2026/04/21/false-earth-from-webgl-limits-to-a-webgpu-driven-world/</a></li>
+<li>Bundle: Vite 产物 <code>./assets/index-scZJOe0j.js</code>（HTML：<code>type="module"</code> + <code>/assets/*.css</code>）</li>
+<li>证据：对本页 HTML + 主 bundle（含 <code>const FA="182"</code>、<code>WebGPURenderer</code>、<code>three.js r${FA} webgpu</code>、<code>MeshStandardNodeMaterial</code>、<code>StorageBuffer</code>、<code>computeAsync</code>、<code>BloomNode</code>、<code>SMAANode</code>、<code>@react-three/fiber</code>、<code>hi.version="19.2.7"</code>、<code>tfe.version="9.6.1"</code>、<code>zustand</code>、<code>cameraMode</code> / <code>FPV</code> / <code>Follow</code> / <code>Detached</code>、<code>drawIndirect</code> / <code>multiDraw</code>、<code>gsap.registerPlugin</code>）的抓取核对；Codrops 教程与仓库 <code>package.json</code>（<code>three: ^0.182.0</code>）作对照</li>
+</ul>
+<h2>为何选它</h2>
+<p>8 条里它视觉冲击最强：一片「像地球又不像地球」的无尽地表，草浪在风里动，角色可以走、相机能切跟随 / 第一人称 / 分离——不是静态酷站，而是可走进去的 WebGPU 世界。Codrops 2026-04 已把「从 WebGL 极限跳到 WebGPU」写透，比聪明但平面的作品更配今日最炫。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r182</strong></strong><span>生产 bundle：<code>const FA="182"</code>；<code>data-engine</code> 写成 `<code>three.js r${FA}</code><code> / </code><code>three.js r${FA} webgpu</code>`</span></div>
+<div><strong><strong>WebGPURenderer</strong></strong><span>同 bundle 出现 <strong>32</strong> 次 <code>WebGPURenderer</code></span></div>
+<div><strong><strong>MeshStandardNodeMaterial</strong></strong><span>bundle 字面量 <code>MeshStandardNodeMaterial</code>（含 <code>isMeshStandardNodeMaterial</code>）</span></div>
+<div><strong><strong>StorageBuffer</strong></strong><span>bundle：<code>StorageBuffer</code> <strong>32</strong> 次——结构化数据留在 GPU 上读写</span></div>
+<div><strong><strong>compute / computeAsync</strong></strong><span>bundle：<code>compute(</code> <strong>36</strong> 次；<code>computeAsync</code> <strong>4</strong> 次——计算着色器路径</span></div>
+<div><strong><strong>TSL 节点图（Fn）</strong></strong><span>bundle：<code>Fn(</code> <strong>25</strong> 次；Codrops 教程对照：颜色/深度等走 TSL 节点链</span></div>
+<div><strong><strong>drawIndirect / multiDraw</strong></strong><span>bundle：<code>drawIndirect</code>、<code>multiDraw</code>——间接绘制大批量几何（教程强调草叶规模）</span></div>
+<div><strong><strong>BloomNode / SMAANode</strong></strong><span>bundle：<code>BloomNode</code>、<code>SMAANode</code>——后期 bloom + SMAA</span></div>
+<div><strong><strong>React 19.2.7</strong></strong><span>bundle：<code>hi.version="19.2.7"</code>（React）</span></div>
+<div><strong><strong>@react-three/fiber 9.6.1</strong></strong><span>bundle：<code>rendererPackageName:"@react-three/fiber"</code>；<code>tfe.version="9.6.1"</code>；大量 <code>Canvas</code></span></div>
+<div><strong><strong>zustand</strong></strong><span>bundle：zustand 传统 API 警告字符串 + <code>useStore</code> 路径</span></div>
+<div><strong><strong>相机模式 Follow / FPV / Detached</strong></strong><span>bundle：<code>cameraMode</code>、<code>Follow</code>、<code>FPV</code>、<code>Detached</code> 字面量同在</span></div>
+<div><strong><strong>GSAP</strong></strong><span>bundle：<code>gsap.registerPlugin</code> 路径存在</span></div>
+<div><strong><strong>Vite</strong></strong><span>HTML：<code>./assets/index-*.js</code> 模块脚本 + 配套 CSS——典型 Vite 产物</span></div>
+<div><strong><strong>未使用 / 未证实</strong></strong><span><strong>未在 bundle 字面量找到</strong> 明确的 <code>Leva</code> / <code>useControls</code> 面板类名（仓库依赖有 leva，线上 minify 后未确认 UI 类名）；<strong>未找到</strong> 以 <code>WebGLRenderer</code> 作为主渲染器字面量；草叶 Voronoi / VAT roses 的<strong>具体算法以 Codrops 教程为准</strong>（教程细节，非全部在 bundle 里以可读公式出现）</span></div>
+</div>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. WebGPU + Three.js r182 主路径（确认）</h3>
+<p>页面用 <code>WebGPURenderer</code>；<code>data-engine</code> 写成 <code>three.js r182 webgpu</code>。主路径不是经典 WebGLRenderer。</p>
+<h3>2. R3F + React 19 挂场景（确认）</h3>
+<p><code>@react-three/fiber</code> 9.6.1 + React 19.2.7：用 <code>Canvas</code> 把 Three 场景嵌进 React 树；游戏状态有 <code>zustand</code> 痕迹。</p>
+<h3>3. StorageBuffer + compute：大地与草在 GPU 上长出来（确认类名；规模 = 教程）</h3>
+<p><code>StorageBuffer</code> + <code>compute</code> / <code>computeAsync</code> 同在。Codrops 教程写明：草叶位置、风场、地形采样等走 WebGPU compute + TSL，避免 WebGL 时代的「像素打包」workaround。<strong>草叶数量与风场公式以教程为准。</strong></p>
+<h3>4. 间接绘制撑起「一片草海」（确认符号；语义 = 教程）</h3>
+<p><code>drawIndirect</code> / <code>multiDraw</code> 出现。教程解释：用间接绘制缓冲区告诉 GPU 画多少、从哪画——才能在可交互帧率下铺开大量草叶。</p>
+<h3>5. 后期：BloomNode + SMAANode（确认）</h3>
+<p><code>BloomNode</code> 负责亮部光晕；<code>SMAANode</code> 做抗锯齿，远景草与地平线才不那么毛。</p>
+<h3>6. 三种相机：Follow / FPV / Detached（确认）</h3>
+<p><code>cameraMode</code> 与三种模式名同在——玩家可以换「跟拍 / 第一人称 / 分离」看这颗假地球。</p>
+<h3>7. 伪代码（忠实于 bundle 符号 + 教程结构）</h3>
+<pre class="md-code"><code>boot:
+  React 19 + R3F Canvas
+  renderer = WebGPURenderer          # Three.js r182
+  store = zustand (cameraMode, …)
+
+world (GPU):
+  StorageBuffer + compute/TSL Fn     # 地形 / 草 / 风
+  multiDraw / drawIndirect            # 大批量草叶
+  MeshStandardNodeMaterial            # 表面标准光照感
+
+post:
+  BloomNode
+  SMAANode
+
+play:
+  cameraMode ∈ {Follow, FPV, Detached}
+  GSAP 辅助过渡（确认有 registerPlugin）</code></pre>
+<h2>对照阅读</h2>
+<ul>
+<li>Codrops 全文：从 WebGL 极限到 WebGPU / TSL / 间接绘制</li>
+<li>仓库：<a href="https://github.com/momentchan/false-earth（" target="_blank" rel="noopener">https://github.com/momentchan/false-earth（</a><code>three: ^0.182.0</code> 与线上 r182 一致）</li>
+</ul>

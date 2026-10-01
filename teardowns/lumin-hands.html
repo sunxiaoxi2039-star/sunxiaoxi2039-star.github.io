@@ -1,0 +1,67 @@
+<h1>今日拆解 · Lumin Hands</h1>
+<ul>
+<li>Live: <a href="https://luminhands.netlify.app/" target="_blank" rel="noopener">https://luminhands.netlify.app/</a></li>
+<li>Author: Mathis Biabiany</li>
+<li>Source / 教程: <a href="https://tympanus.net/codrops/2026/09/07/drawing-with-light-an-exploration-of-lit-gpu-tubes-with-tsl-and-webgpu/" target="_blank" rel="noopener">https://tympanus.net/codrops/2026/09/07/drawing-with-light-an-exploration-of-lit-gpu-tubes-with-tsl-and-webgpu/</a></li>
+<li>Bundle: Vite 产物 <code>/assets/index-CFuvyyFx.js</code>（HTML 含 <code>/vite.svg</code>、<code>type="module"</code>）</li>
+<li>证据：对本页 HTML + 主 bundle（含 <code>const _0="185"</code>、<code>WebGPURenderer</code>、<code>MeshStandardNodeMaterial</code>、<code>positionNode</code>、<code>UnrealBloomPass</code>、<code>SMAANode</code>、<code>StorageBuffer</code>、<code>instanceIndex</code>）的抓取核对；Codrops 教程作对照</li>
+</ul>
+<h2>为何选它</h2>
+<p>8 条里它视觉冲击最强：两只「手」不是建模出来的实体，而是成百上千条发光丝线（lit GPU tubes）织成的轮廓——点击会炸开冲击波与光晕，像在黑暗里用电光描边。Codrops 2026-09-07 刚拆完 WebGPU/TSL 管线，比静态酷站更值得当今日最炫。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r185</strong></strong><span>生产 bundle：<code>const _0="185"</code>；<code>data-engine</code> 写入 <code>three.js r${_0} webgpu</code></span></div>
+<div><strong><strong>WebGPURenderer</strong></strong><span>同 bundle 出现 <strong>47+</strong> 次 <code>WebGPURenderer</code>；HTML title 为 <code>Three.js WebGPU</code></span></div>
+<div><strong><strong>MeshStandardNodeMaterial</strong></strong><span>bundle 字面量 <code>MeshStandardNodeMaterial</code>（2 次）；配合 TSL 节点给管子上标准光照感</span></div>
+<div><strong><strong>positionNode / normalNode</strong></strong><span>bundle：<code>this.positionNode=null</code> 与 <code>positionNode!==null</code> 赋值路径；<code>normalNode</code> 亦出现。管子顶点位置由 TSL 节点驱动，而不是静态 mesh 顶点</span></div>
+<div><strong><strong>StorageBuffer / instanceIndex</strong></strong><span>bundle：<code>StorageBuffer</code>、<code>StorageBufferAttribute</code>、<code>StorageBufferNode</code>；<code>instanceIndex</code>（8 次）——大量丝线用 storage + 实例索引在 GPU 上摆开</span></div>
+<div><strong><strong>frustumCulled</strong></strong><span>bundle 24 次。shader 驱动位置时须关掉视锥裁剪，否则管子会被错误剔掉（教程亦强调）</span></div>
+<div><strong><strong>UnrealBloomPass</strong></strong><span>bundle 字面量 <code>UnrealBloomPass</code>（3 次）；配合 <code>mrtNode</code> / emissive 路径做发光 bloom</span></div>
+<div><strong><strong>SMAANode</strong></strong><span>bundle 字面量 <code>SMAANode</code>（9 次）——后处理抗锯齿</span></div>
+<div><strong><strong>Tweakpane</strong></strong><span>bundle：<code>Tweakpane</code> / <code>tweakpane</code>——调试面板</span></div>
+<div><strong><strong>Vite</strong></strong><span>HTML：<code>/vite.svg</code>、<code>/assets/index-*.js</code> 模块脚本；典型 Vite 构建产物</span></div>
+<div><strong><strong>Pointer 交互</strong></strong><span>bundle：<code>Pointer</code> 极高密度（200+）；<code>click</code> 多次。<strong>点击冲击波与光晕的具体数学公式以 Codrops 教程为准</strong>（教程细节，非 bundle 字面量公式）</span></div>
+<div><strong><strong>未使用 / 未证实</strong></strong><span><strong>未找到</strong> 明确的 <code>motion@x.y.z</code> / GSAP 字面量作为主交互；<strong>未找到</strong> Three.js <code>WebGLRenderer</code> 作为主渲染器字面量；bloom 库的 npm semver <strong>未在 bundle 字面量找到</strong> → 只确认类名 <code>UnrealBloomPass</code></span></div>
+</div>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. WebGPU + Three.js r185 主路径（确认）</h3>
+<p>页面用 <code>WebGPURenderer</code> 启动；<code>data-engine</code> 写成 <code>three.js r185 webgpu</code>。没有走经典 WebGL 主渲染器。</p>
+<h3>2. 发光丝线 = 实例化 lit tubes（确认 · TSL）</h3>
+<p>每条「丝」是一根细管。材质走 <code>MeshStandardNodeMaterial</code>，用 <code>positionNode</code>（以及 <code>normalNode</code>）在 TSL 里算管壁上的点——所以管子可以沿手的轮廓弯曲、发光，而不必为每根丝准备独立静态几何。</p>
+<h3>3. StorageBuffer + instanceIndex 铺开成百上千根（确认）</h3>
+<p>丝线数量很大时，位置/参数放进 <code>StorageBuffer</code>，着色器里用 <code>instanceIndex</code> 取自己的那一份。这是「两只手由大量相似丝线组成」的 GPU 侧实现。</p>
+<h3>4. frustumCulled 必须关掉（确认）</h3>
+<p>顶点位置由 shader/<code>positionNode</code> 改写后，CPU 侧的包围盒不再可靠；bundle 多次出现 <code>frustumCulled</code>。不关就会出现丝线莫名消失。</p>
+<h3>5. 发光：UnrealBloomPass + emissive / MRT（确认类名）</h3>
+<p><code>UnrealBloomPass</code> 与 <code>mrtNode</code>、大量 <code>emissive</code> 符号同在。管子本身偏自发光，bloom 只把亮部「晕」出去，所以黑暗背景上丝线像霓虹。</p>
+<h3>6. SMAA 后处理（确认）</h3>
+<p><code>SMAANode</code> 做抗锯齿，细管边缘才不会锯成毛刺。</p>
+<h3>7. 指针与点击冲击波（确认有 Pointer；冲击波细节 = 教程）</h3>
+<p>Bundle 里 Pointer / click 极多，说明交互主路径是指针。<strong>Codrops 教程</strong>写明点击会产生冲击波并驱动光晕——具体波前如何改 <code>positionNode</code> / 亮度，以教程为准（标为教程细节）。</p>
+<h3>8. 伪代码（忠实于 bundle 符号 + 教程结构）</h3>
+<pre class="md-code"><code>boot:
+  renderer = new WebGPURenderer(...)     # Three.js r185
+  mat = MeshStandardNodeMaterial({
+    positionNode: tubePositionTSL(...),  # 弯曲管子
+    normalNode: ...,
+    // emissive 路径供 bloom
+  })
+  strands: StorageBuffer + instanceIndex  # 成百上千根
+  mesh.frustumCulled = false
+
+post:
+  UnrealBloomPass (emissive / mrtNode)
+  SMAANode
+
+pointer:
+  Pointer + click → shockwave / glow     # 教程细节
+  Tweakpane 调参（debug）</code></pre>
+<h2>如果我来重做（步骤清单）</h2>
+<ol>
+<li>Vite + <code>three/webgpu</code>，锁定 Three.js r185，主路径只用 <code>WebGPURenderer</code>。  </li>
+<li>先做单根 lit tube：<code>MeshStandardNodeMaterial</code> + <code>positionNode</code> 弯管。  </li>
+<li>用 <code>StorageBuffer</code> / <code>instanceIndex</code> 铺成手形轮廓；关掉 <code>frustumCulled</code>。  </li>
+<li>加 <code>UnrealBloomPass</code>（emissive）和 <code>SMAANode</code>。  </li>
+<li>Pointer 点击写冲击波，用 Tweakpane 暴露管径、bloom、波强度。  </li>
+<li>用较新的 Chrome / Edge 验证 WebGPU；对照 Codrops 2026-09-07 教程补交互手感。</li>
+</ol>
