@@ -1,0 +1,68 @@
+<h1>今日拆解 · ThreeJSPunk Drive</h1>
+<ul>
+<li>Live: <a href="https://threejspunk.com/（备：https://threejspunk.vercel.app/）" target="_blank" rel="noopener">https://threejspunk.com/（备：https://threejspunk.vercel.app/）</a></li>
+<li>Author: Anderson Mancini + Sunag</li>
+<li>Source: X @Andersonmancini · <a href="https://x.com/Andersonmancini/status/2104564784377028636" target="_blank" rel="noopener">https://x.com/Andersonmancini/status/2104564784377028636</a> ；Three.js Discourse 展示帖（作者自述 WebGPU / TSL / GPUCompute）</li>
+<li>Bundle: Vite 产物 <code>./assets/index-BWmf9aKF.js</code> + <code>./assets/index-BtXIz685.css</code>（HTML：<code>type="module"</code>）；另有 Draco / Basis 解码 chunk</li>
+<li>证据：对本页 HTML + 主 bundle（含 <code>const hl="186"</code>、<code>data-engine</code> 写成 `<code>three.js r${hl} webgpu</code><code>、</code>WebGPURenderer<code>、</code>MeshStandardNodeMaterial<code>、</code>StorageBuffer<code>、</code>computeAsync<code>、</code>BloomNode<code>、</code>SMAANode<code>、</code>ReflectorNode<code>、</code>BatchedMesh<code>、</code>multiDraw<code>、</code>GSAP 3.15.0<code>、</code>rain<code> / </code>nitro<code> / </code>drift` 玩法字面量；<strong>无</strong> React / R3F）的抓取核对；HTML meta / JSON-LD 写明 WebGPU、Three.js、TSL；作者 Discourse 帖对照</li>
+</ul>
+<h2>为何选它</h2>
+<p>8 条里它视觉冲击最强：整座赛博朋克夜城可开可漂，霓虹、雨雾、湿路反射和车灯同屏，还是完整关卡向驾驶游戏——不是短片循环，是能玩很久的 WebGPU 狂飙。作者明确写了 WebGPU + TSL + GPU 计算与大量自定义渲染，比平面酷站更配今日最炫。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r186</strong></strong><span>生产 bundle：<code>const hl="186"</code>；<code>data-engine</code> 写成 `<code>three.js r${hl} webgpu</code><code>；</code>window.__THREE__=hl`</span></div>
+<div><strong><strong>WebGPURenderer</strong></strong><span>同 bundle 出现 <strong>47</strong> 次 <code>WebGPURenderer</code>；日志串 <code>THREE.WebGPURenderer: ${hl}</code></span></div>
+<div><strong><strong>TSL / 节点材质</strong></strong><span>bundle：<code>TSL</code> <strong>63</strong> 次；<code>Fn(</code> <strong>40</strong> 次；<code>NodeMaterial</code> <strong>44</strong>；<code>MeshStandardNodeMaterial</code> <strong>5</strong>；签名串 <code>// Three.js r${hl} - Node System</code></span></div>
+<div><strong><strong>StorageBuffer</strong></strong><span>bundle：<code>StorageBuffer</code> <strong>34</strong> 次；<code>StorageBufferAttribute</code> <strong>18</strong> 次</span></div>
+<div><strong><strong>compute / computeAsync</strong></strong><span>bundle：<code>compute(</code> <strong>20</strong> 次；<code>computeAsync</code> <strong>4</strong> 次</span></div>
+<div><strong><strong>BloomNode / SMAANode / PostProcessing</strong></strong><span>bundle：<code>BloomNode</code>、<code>SMAANode</code>、<code>PostProcessing</code>——后期光晕与抗锯齿</span></div>
+<div><strong><strong>ReflectorNode（湿路反射相关）</strong></strong><span>bundle：<code>ReflectorNode</code> + <code>reflectionBloom</code> / <code>wetnessPower</code> / <code>rippleStrength</code> 等调参字面量同在</span></div>
+<div><strong><strong>BatchedMesh / multiDraw / InstancedMesh</strong></strong><span>bundle：<code>BatchedMesh</code> <strong>28</strong>；<code>multiDraw</code> <strong>30</strong>；<code>InstancedMesh</code> <strong>9</strong>——大批量城市场景绘制</span></div>
+<div><strong><strong>GSAP 3.15.0</strong></strong><span>bundle 注释头：<code>GSAP 3.15.0</code> / <code>CSSPlugin 3.15.0</code></span></div>
+<div><strong><strong>Vite</strong></strong><span>HTML：<code>type="module"</code> 的 <code>/assets/index-*.js</code> + 配套 CSS——典型 Vite 产物</span></div>
+<div><strong><strong>压缩资源解码</strong></strong><span>主包引用 <code>draco_*</code> 与 <code>basis_transcoder-*</code> chunk——网格 / 纹理 GPU 压缩路径</span></div>
+<div><strong><strong>玩法字面量 rain / nitro / drift</strong></strong><span>bundle：<code>rain</code>、<code>nitro</code>、<code>drift</code> 大量出现，与页面描述的雨夜漂移、氮气一致</span></div>
+<div><strong><strong>未使用 React / R3F</strong></strong><span><strong>未找到</strong> <code>react-dom</code> / <code>createRoot</code> / <code>@react-three/fiber</code> / <code>useFrame</code>——主路径是原生 Three + 自研游戏壳，不是 R3F</span></div>
+<div><strong><strong>未使用 / 未证实</strong></strong><span><code>WebGLRenderer</code> 字面量仅 <strong>3</strong> 次（可能是兼容/报错路径残片，<strong>不能</strong>当成主渲染器）；<code>rapier</code> 仅 <strong>1</strong> 次字符串级命中——<strong>未证实</strong>用了 Rapier 物理；作者 Discourse 写的「GPUCompute」与 bundle 里的 <code>compute</code>/<code>StorageBuffer</code> 路径一致，但<strong>没有</strong>单独的 <code>GPUCompute</code> 类名字符串</span></div>
+</div>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. WebGPU + Three.js r186 主路径（确认）</h3>
+<p>页面用 <code>WebGPURenderer</code>；<code>data-engine</code> 写成 <code>three.js r186 webgpu</code>。主路径不是经典 WebGLRenderer。</p>
+<h3>2. TSL 节点图 + 标准节点材质（确认）</h3>
+<p><code>TSL</code> / <code>Fn(</code> / <code>NodeMaterial</code> / <code>MeshStandardNodeMaterial</code> 同在：材质与部分着色逻辑走 Three 的节点 / TSL 链，而不是一大坨手写 raw GLSL 主材质（具体哪张车漆/霓虹节点图 = <strong>推测到作品层，类名已确认</strong>）。</p>
+<h3>3. StorageBuffer + compute：GPU 侧算一部分世界（确认类名）</h3>
+<p><code>StorageBuffer</code> + <code>compute</code> / <code>computeAsync</code> 同在。作者 Discourse 自述含 GPUCompute——与「计算留在 GPU」一致。<strong>具体算的是雨粒子、车流还是反射辅助缓冲 = 推测，未在 minify 后读出完整内核名。</strong></p>
+<h3>4. 湿路反射与后期（确认符号；语义部分推测）</h3>
+<p><code>ReflectorNode</code> 与 <code>reflectionBloom</code> / <code>wetnessPower</code> / <code>ripple*</code> 调参同在——雨夜霓虹「印」在湿柏油上的观感由此支撑。<code>BloomNode</code> 提亮霓虹；<code>SMAANode</code> 收锯齿。</p>
+<h3>5. 大批量城市场景（确认）</h3>
+<p><code>BatchedMesh</code> / <code>multiDraw</code> / <code>InstancedMesh</code> 出现——密楼、车流、道具更可能走批处理 / 间接绘制，而不是每栋楼一个独立 draw call（<strong>具体哪类物体用了 BatchedMesh = 推测</strong>）。</p>
+<h3>6. 驾驶手感与动效辅线（确认库；手感 = 玩法字面量）</h3>
+<p><code>GSAP 3.15.0</code> 在包内；<code>nitro</code> / <code>drift</code> / <code>rain</code> 玩法字面量密集。UI / 过场 / 数值动画很可能借 GSAP；驾驶物理引擎<strong>未在 bundle 中证实</strong>为某一公开库（见上「未证实」）。</p>
+<h3>7. 伪代码（忠实于 bundle 符号 + 作者自述）</h3>
+<pre class="md-code"><code>boot:
+  Vite module entry
+  renderer = WebGPURenderer          # Three.js r186
+  data-engine = "three.js r186 webgpu"
+  # 无 React / R3F
+
+world (GPU):
+  StorageBuffer + compute/computeAsync
+  TSL Fn / NodeMaterial / MeshStandardNodeMaterial
+  BatchedMesh / multiDraw / InstancedMesh
+  ReflectorNode + wetness / reflection* uniforms
+  Draco / Basis 解码资源
+
+post:
+  BloomNode
+  SMAANode
+  PostProcessing
+
+play:
+  rain / nitro / drift 字面量驱动的驾驶关卡环
+  GSAP 3.15.0 辅助过渡与 UI（确认有库；具体 tween 列表未逐条点名）</code></pre>
+<h2>对照阅读</h2>
+<ul>
+<li>作者 Discourse 展示帖：[FREE GAME] CyberPunk Inspired Game（标签 webgpu / game-dev；自述 WebGPU、TSL、GPUCompute）</li>
+<li>备援部署：<a href="https://threejspunk.vercel.app/" target="_blank" rel="noopener">https://threejspunk.vercel.app/</a></li>
+<li>作者站：<a href="https://andersonmancini.dev/" target="_blank" rel="noopener">https://andersonmancini.dev/</a></li>
+</ul>

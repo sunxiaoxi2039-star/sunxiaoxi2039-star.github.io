@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0c0e" />
+  <title>ThreeJSPunk Drive · 设计雷达 2026-10-02</title>
+  <meta name="description" content="今日最炫：ThreeJSPunk Drive — 赛博朋克全城夜驾：霓虹、雨雾、车灯反射与任务驾驶，是今天视觉冲击最强的可玩 WebGPU/Three 狂飙。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <link rel="canonical" href="https://sunxiaoxi2039-star.github.io/d/2026-10-02/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="设计雷达" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="ThreeJSPunk Drive · 设计雷达 2026-10-02" />
+  <meta property="og:description" content="今日最炫：ThreeJSPunk Drive — 赛博朋克全城夜驾：霓虹、雨雾、车灯反射与任务驾驶，是今天视觉冲击最强的可玩 WebGPU/Three 狂飙。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta property="og:url" content="https://sunxiaoxi2039-star.github.io/d/2026-10-02/" />
+  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-10-02.jpg?v=202610030018" />
+  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-10-02.jpg?v=202610030018" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ThreeJSPunk Drive · 设计雷达 2026-10-02" />
+  <meta name="twitter:description" content="今日最炫：ThreeJSPunk Drive — 赛博朋克全城夜驾：霓虹、雨雾、车灯反射与任务驾驶，是今天视觉冲击最强的可玩 WebGPU/Three 狂飙。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-10-02.jpg?v=202610030018" />
+  <meta itemprop="name" content="ThreeJSPunk Drive · 设计雷达 2026-10-02" />
+  <meta itemprop="description" content="今日最炫：ThreeJSPunk Drive — 赛博朋克全城夜驾：霓虹、雨雾、车灯反射与任务驾驶，是今天视觉冲击最强的可玩 WebGPU/Three 狂飙。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-10-02.jpg?v=202610030018" />
+  <link rel="stylesheet" href="../../styles.css?v=202610030018" />
+</head>
+<body class="dp-body">
+  <header class="dp-top">
+    <a class="dp-home" href="../../"><span>✦</span>设计雷达</a>
+    <div class="dp-top-r"><a class="dp-maplink" href="../../map/">知识地图</a><button type="button" class="dp-share-mini" data-share>分享</button></div>
+  </header>
+  <main class="dp">
+    <div class="dp-kicker">2026-10-02 · 今日最炫</div>
+    <h1 class="dp-title">ThreeJSPunk Drive</h1>
+    <p class="dp-lede">赛博朋克全城夜驾：霓虹、雨雾、车灯反射与任务驾驶，是今天视觉冲击最强的可玩 WebGPU/Three 狂飙。</p>
+    <a class="dp-hero-link" href="https://threejspunk.com/" target="_blank" rel="noopener">
+      <img class="dp-hero" src="../../thumbs/threejspunk.webp" alt="ThreeJSPunk Drive 截图" width="640" height="400" />
+    </a>
+    <a class="btn-open" href="https://threejspunk.com/" target="_blank" rel="noopener">打开网站 ↗</a>
+    <section class="dp-plain"><div class="dp-h2">大白话拆解</div><p><b>它是什么：</b>一场能直接开的赛博朋克夜驾：雨夜霓虹城、湿路反射、氮气漂移和任务关卡，都在浏览器里。</p><p><b>好在哪：</b>一眼就是大片级可玩世界——不是循环短片，是整座城都能飙；视觉冲击今天 8 条里最强。</p><p><b>怎么做到的：</b></p><ol><li>主渲染走 Three.js r186 的 WebGPURenderer；HTML/作者都写明 WebGPU + TSL。</li><li>StorageBuffer + compute 在 GPU 侧推进一部分世界；ReflectorNode 与湿路/反射调参撑起雨夜霓虹倒影。</li><li>BatchedMesh / multiDraw 扛稠密城市场景；BloomNode + SMAANode 做后期；GSAP 3.15.0 辅助动效；没有 React/R3F。</li></ol></section>
+    <details class="dp-full"><summary>完整技术拆解</summary><div class="teardown"><h1>今日拆解 · ThreeJSPunk Drive</h1>
+<ul>
+<li>Live: <a href="https://threejspunk.com/（备：https://threejspunk.vercel.app/）" target="_blank" rel="noopener">https://threejspunk.com/（备：https://threejspunk.vercel.app/）</a></li>
+<li>Author: Anderson Mancini + Sunag</li>
+<li>Source: X @Andersonmancini · <a href="https://x.com/Andersonmancini/status/2104564784377028636" target="_blank" rel="noopener">https://x.com/Andersonmancini/status/2104564784377028636</a> ；Three.js Discourse 展示帖（作者自述 WebGPU / TSL / GPUCompute）</li>
+<li>Bundle: Vite 产物 <code>./assets/index-BWmf9aKF.js</code> + <code>./assets/index-BtXIz685.css</code>（HTML：<code>type="module"</code>）；另有 Draco / Basis 解码 chunk</li>
+<li>证据：对本页 HTML + 主 bundle（含 <code>const hl="186"</code>、<code>data-engine</code> 写成 `<code>three.js r${hl} webgpu</code><code>、</code>WebGPURenderer<code>、</code>MeshStandardNodeMaterial<code>、</code>StorageBuffer<code>、</code>computeAsync<code>、</code>BloomNode<code>、</code>SMAANode<code>、</code>ReflectorNode<code>、</code>BatchedMesh<code>、</code>multiDraw<code>、</code>GSAP 3.15.0<code>、</code>rain<code> / </code>nitro<code> / </code>drift` 玩法字面量；<strong>无</strong> React / R3F）的抓取核对；HTML meta / JSON-LD 写明 WebGPU、Three.js、TSL；作者 Discourse 帖对照</li>
+</ul>
+<h2>为何选它</h2>
+<p>8 条里它视觉冲击最强：整座赛博朋克夜城可开可漂，霓虹、雨雾、湿路反射和车灯同屏，还是完整关卡向驾驶游戏——不是短片循环，是能玩很久的 WebGPU 狂飙。作者明确写了 WebGPU + TSL + GPU 计算与大量自定义渲染，比平面酷站更配今日最炫。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r186</strong></strong><span>生产 bundle：<code>const hl="186"</code>；<code>data-engine</code> 写成 `<code>three.js r${hl} webgpu</code><code>；</code>window.__THREE__=hl`</span></div>
+<div><strong><strong>WebGPURenderer</strong></strong><span>同 bundle 出现 <strong>47</strong> 次 <code>WebGPURenderer</code>；日志串 <code>THREE.WebGPURenderer: ${hl}</code></span></div>
+<div><strong><strong>TSL / 节点材质</strong></strong><span>bundle：<code>TSL</code> <strong>63</strong> 次；<code>Fn(</code> <strong>40</strong> 次；<code>NodeMaterial</code> <strong>44</strong>；<code>MeshStandardNodeMaterial</code> <strong>5</strong>；签名串 <code>// Three.js r${hl} - Node System</code></span></div>
+<div><strong><strong>StorageBuffer</strong></strong><span>bundle：<code>StorageBuffer</code> <strong>34</strong> 次；<code>StorageBufferAttribute</code> <strong>18</strong> 次</span></div>
+<div><strong><strong>compute / computeAsync</strong></strong><span>bundle：<code>compute(</code> <strong>20</strong> 次；<code>computeAsync</code> <strong>4</strong> 次</span></div>
+<div><strong><strong>BloomNode / SMAANode / PostProcessing</strong></strong><span>bundle：<code>BloomNode</code>、<code>SMAANode</code>、<code>PostProcessing</code>——后期光晕与抗锯齿</span></div>
+<div><strong><strong>ReflectorNode（湿路反射相关）</strong></strong><span>bundle：<code>ReflectorNode</code> + <code>reflectionBloom</code> / <code>wetnessPower</code> / <code>rippleStrength</code> 等调参字面量同在</span></div>
+<div><strong><strong>BatchedMesh / multiDraw / InstancedMesh</strong></strong><span>bundle：<code>BatchedMesh</code> <strong>28</strong>；<code>multiDraw</code> <strong>30</strong>；<code>InstancedMesh</code> <strong>9</strong>——大批量城市场景绘制</span></div>
+<div><strong><strong>GSAP 3.15.0</strong></strong><span>bundle 注释头：<code>GSAP 3.15.0</code> / <code>CSSPlugin 3.15.0</code></span></div>
+<div><strong><strong>Vite</strong></strong><span>HTML：<code>type="module"</code> 的 <code>/assets/index-*.js</code> + 配套 CSS——典型 Vite 产物</span></div>
+<div><strong><strong>压缩资源解码</strong></strong><span>主包引用 <code>draco_*</code> 与 <code>basis_transcoder-*</code> chunk——网格 / 纹理 GPU 压缩路径</span></div>
+<div><strong><strong>玩法字面量 rain / nitro / drift</strong></strong><span>bundle：<code>rain</code>、<code>nitro</code>、<code>drift</code> 大量出现，与页面描述的雨夜漂移、氮气一致</span></div>
+<div><strong><strong>未使用 React / R3F</strong></strong><span><strong>未找到</strong> <code>react-dom</code> / <code>createRoot</code> / <code>@react-three/fiber</code> / <code>useFrame</code>——主路径是原生 Three + 自研游戏壳，不是 R3F</span></div>
+<div><strong><strong>未使用 / 未证实</strong></strong><span><code>WebGLRenderer</code> 字面量仅 <strong>3</strong> 次（可能是兼容/报错路径残片，<strong>不能</strong>当成主渲染器）；<code>rapier</code> 仅 <strong>1</strong> 次字符串级命中——<strong>未证实</strong>用了 Rapier 物理；作者 Discourse 写的「GPUCompute」与 bundle 里的 <code>compute</code>/<code>StorageBuffer</code> 路径一致，但<strong>没有</strong>单独的 <code>GPUCompute</code> 类名字符串</span></div>
+</div>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. WebGPU + Three.js r186 主路径（确认）</h3>
+<p>页面用 <code>WebGPURenderer</code>；<code>data-engine</code> 写成 <code>three.js r186 webgpu</code>。主路径不是经典 WebGLRenderer。</p>
+<h3>2. TSL 节点图 + 标准节点材质（确认）</h3>
+<p><code>TSL</code> / <code>Fn(</code> / <code>NodeMaterial</code> / <code>MeshStandardNodeMaterial</code> 同在：材质与部分着色逻辑走 Three 的节点 / TSL 链，而不是一大坨手写 raw GLSL 主材质（具体哪张车漆/霓虹节点图 = <strong>推测到作品层，类名已确认</strong>）。</p>
+<h3>3. StorageBuffer + compute：GPU 侧算一部分世界（确认类名）</h3>
+<p><code>StorageBuffer</code> + <code>compute</code> / <code>computeAsync</code> 同在。作者 Discourse 自述含 GPUCompute——与「计算留在 GPU」一致。<strong>具体算的是雨粒子、车流还是反射辅助缓冲 = 推测，未在 minify 后读出完整内核名。</strong></p>
+<h3>4. 湿路反射与后期（确认符号；语义部分推测）</h3>
+<p><code>ReflectorNode</code> 与 <code>reflectionBloom</code> / <code>wetnessPower</code> / <code>ripple*</code> 调参同在——雨夜霓虹「印」在湿柏油上的观感由此支撑。<code>BloomNode</code> 提亮霓虹；<code>SMAANode</code> 收锯齿。</p>
+<h3>5. 大批量城市场景（确认）</h3>
+<p><code>BatchedMesh</code> / <code>multiDraw</code> / <code>InstancedMesh</code> 出现——密楼、车流、道具更可能走批处理 / 间接绘制，而不是每栋楼一个独立 draw call（<strong>具体哪类物体用了 BatchedMesh = 推测</strong>）。</p>
+<h3>6. 驾驶手感与动效辅线（确认库；手感 = 玩法字面量）</h3>
+<p><code>GSAP 3.15.0</code> 在包内；<code>nitro</code> / <code>drift</code> / <code>rain</code> 玩法字面量密集。UI / 过场 / 数值动画很可能借 GSAP；驾驶物理引擎<strong>未在 bundle 中证实</strong>为某一公开库（见上「未证实」）。</p>
+<h3>7. 伪代码（忠实于 bundle 符号 + 作者自述）</h3>
+<pre class="md-code"><code>boot:
+  Vite module entry
+  renderer = WebGPURenderer          # Three.js r186
+  data-engine = "three.js r186 webgpu"
+  # 无 React / R3F
+
+world (GPU):
+  StorageBuffer + compute/computeAsync
+  TSL Fn / NodeMaterial / MeshStandardNodeMaterial
+  BatchedMesh / multiDraw / InstancedMesh
+  ReflectorNode + wetness / reflection* uniforms
+  Draco / Basis 解码资源
+
+post:
+  BloomNode
+  SMAANode
+  PostProcessing
+
+play:
+  rain / nitro / drift 字面量驱动的驾驶关卡环
+  GSAP 3.15.0 辅助过渡与 UI（确认有库；具体 tween 列表未逐条点名）</code></pre>
+<h2>对照阅读</h2>
+<ul>
+<li>作者 Discourse 展示帖：[FREE GAME] CyberPunk Inspired Game（标签 webgpu / game-dev；自述 WebGPU、TSL、GPUCompute）</li>
+<li>备援部署：<a href="https://threejspunk.vercel.app/" target="_blank" rel="noopener">https://threejspunk.vercel.app/</a></li>
+<li>作者站：<a href="https://andersonmancini.dev/" target="_blank" rel="noopener">https://andersonmancini.dev/</a></li>
+</ul></div></details>
+    
+    <section class="xb" id="xiaobai">
+      <div class="xb-head">
+        <div class="xb-badge">小白课</div>
+        <p class="xb-sub">零基础也能看懂。先认识这件作品用到的技术，再学一个知识点。</p>
+      </div>
+
+      <h2 class="xb-h2"><span>1</span>技术栈小白版</h2>
+      <p class="xb-note">只列拆解里在源码中确认过的技术。点开看它在这件作品里做了什么。</p>
+      
+      <details class="xb-tech" open>
+        <summary><span class="xb-tech-name">Three.js r186</span><span class="xb-tech-meta">网页里的「3D 工具箱」：摆车、摆楼、管相机、跟显卡说话。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>整座赛博朋克夜城的场景与渲染管线跑在 Three.js r186 上。</p>
+          <p><span class="xb-k">怎么认出来</span>浏览器里能开车、看雨夜霓虹的实时 3D，而不是一段预渲染预告片。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">WebGPURenderer</span><span class="xb-tech-meta">新一代「显卡直通车」：更适合把大城市、雨和反射留在 GPU 上算。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>主渲染器是 WebGPURenderer，所以稠密夜城还能保持可玩帧率。</p>
+          <p><span class="xb-k">怎么认出来</span>用较新的 Chrome / Edge 打开更稳；页面也写明需要 WebGPU。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">TSL / 节点材质</span><span class="xb-tech-meta">用「节点积木」搭材质：车漆、霓虹、路面不必全部手写一长串着色器。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>bundle 里有 TSL、Fn 与 MeshStandardNodeMaterial，材质走节点链。</p>
+          <p><span class="xb-k">怎么认出来</span>车身与路面有现代 PBR 质感，又和 WebGPU 路径绑在一起。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">StorageBuffer + compute</span><span class="xb-tech-meta">显卡里的「共享记事本」：算完的数据接着画，少在 CPU 和 GPU 之间来回搬。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>StorageBuffer 与 compute / computeAsync 同在，一部分世界在 GPU 侧推进。</p>
+          <p><span class="xb-k">怎么认出来</span>城市场景持续动、下雨与车流压力大时仍偏「顺」，而不是整页卡成幻灯片（观感层面）。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">ReflectorNode + 湿路反射</span><span class="xb-tech-meta">给地面一面「会晃的镜子」：霓虹和车灯印在湿柏油上。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>ReflectorNode 与 reflectionBloom / wetness 等调参一起出现，撑起雨夜倒影。</p>
+          <p><span class="xb-k">怎么认出来</span>低头看路面时，霓虹条带在水膜上拉丝、发亮。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">BloomNode / SMAANode</span><span class="xb-tech-meta">Bloom 把够亮的霓虹晕开；SMAA 给边缘去锯齿。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>后期用 BloomNode 提赛博空气感，SMAANode 收楼宇与车灯毛刺。</p>
+          <p><span class="xb-k">怎么认出来</span>霓虹有一层柔光，远景边缘相对干净。</p>
+        </div>
+      </details>
+
+      <h2 class="xb-h2"><span>2</span>今日知识点</h2>
+      <div class="xb-lesson">
+        <div class="xb-crumb">设计史 · 第 1 课</div>
+        <h3 class="xb-title">为什么要学设计史</h3>
+        <div class="xb-prose"><p>设计史不是背年份，是练一双<b>能认出「这套样子从哪来」的眼睛</b>。今天打开 ThreeJSPunk：紫粉霓虹、雨夜湿街、飞行器广告牌、合成器电台——你可能脱口而出「赛博朋克」。这个词不是游戏发明的标签，而是一条已经走了几十年的<b>视觉血统</b>。</p><p>学一点历史，你会多问三句：</p><ul><li><b>它像谁？</b> 雨夜霓虹大街，常让人想到电影《银翼杀手》（1982）里的夜之城。</li></ul><ul><li><b>它借了什么？</b> 湿反射、故障感招牌、低沉电子乐，是后来游戏、MV、网页 demo 反复借用的「零件」。</li></ul><ul><li><b>我能不能故意用？</b> 知道血统之后，你才是在<b>选用</b>风格，而不是碰巧撞上一种网感。</li></ul></div>
+        <h4 class="xb-h4">它从哪里来</h4>
+        <div class="xb-prose"><p>「赛博朋克」作为科幻流派，常被追溯到 1980 年代前后：里德利·斯科特的电影《银翼杀手》（Blade Runner，1982）把「未来都市 = 雨 + 霓虹 + 亚洲感招牌」焊进大众视觉；威廉·吉布森的小说《神经漫游者》（Neuromancer，1984）则把赛博空间与街头黑客的想象写进文学。</p><p>之后几十年，游戏、音乐（如 synthwave）、广告和网页实验不断<b>引用</b>这套零件：不是复制某一帧，而是让观众 0.5 秒内读出「啊，未来夜城」。ThreeJSPunk（2026）用 WebGPU 把这套语言做成可驾驶的浏览器游戏——技术是新的，<b>风格语法</b>却有谱系。</p><p>所以「为什么要学设计史」可以收成一句：<b>历史帮你给眼前的美命名，命名之后才好学习、致敬或故意打破。</b></p></div>
+        <h4 class="xb-h4">经典参考</h4>
+        <ul class="xb-refs"><li><b><a href="https://www.imdb.com/title/tt0083658/" target="_blank" rel="noopener">Blade Runner（银翼杀手，1982）</a></b><span>雨夜霓虹未来城的大众视觉原型之一；对照 ThreeJSPunk 的街道气质。</span></li><li><b>William Gibson · Neuromancer（神经漫游者，1984）</b><span>赛博朋克文学的关键作品；理解「赛博 + 街头」这套想象从哪来。</span></li><li><b><a href="https://discourse.threejs.org/t/free-game-cyberpunk-inspired-game-realistic-graphics/94779" target="_blank" rel="noopener">Anderson Mancini · Three.js Discourse 展示帖</a></b><span>作者本人说明这是完整驾驶游戏，并点名 WebGPU / TSL / GPUCompute。</span></li></ul>
+        <div class="xb-callout">
+          <div class="xb-callout-t">怎么看 / 怎么练 · 约 8 分钟</div>
+          <ol><li>打开 ThreeJSPunk，静置看 5 秒：你先认出的「赛博」零件是霓虹、雨、湿路，还是飞行器/广告牌？写下一个词。</li><li>把这个词当成「血统线索」：它更像电影海报、游戏截图，还是音乐 MV？用一句话说明为什么。</li><li>找一张你平时喜欢的海报/App 启动页，问：它在引用哪一种已有风格（极简、孟菲斯、赛博、扁平）？写「像 ___」或「说不清」。</li><li>若说不清——这正好是学设计史的理由：名字会慢慢变多，眼睛会越来越快。</li></ol>
+        </div>
+        <h4 class="xb-h4">小词典</h4>
+        <dl class="xb-gloss"><div><dt>设计史</dt><dd>研究设计风格、作品与观念怎样一路变过来；用来认血统，不是只背年表。</dd></div><div><dt>赛博朋克（Cyberpunk）</dt><dd>一种科幻风格：高科技 + 低生活感，常出现霓虹夜城、黑客与巨型公司意象。</dd></div><div><dt>视觉血统 / 风格谱系</dt><dd>一套反复出现的样子（颜色、材质、天气、排版）有更早的来源与后来的引用链。</dd></div><div><dt>WebGPU</dt><dd>浏览器里较新的图形接口，更适合在显卡上做大规模计算再绘制。</dd></div><div><dt>TSL（Three Shading Language）</dt><dd>Three.js 的节点/着色描述方式，用节点图搭材质与效果，而不是只写传统大段着色器。</dd></div></dl>
+      </div>
+
+      <h2 class="xb-h2"><span>3</span>知识地图进度</h2>
+      <div class="xb-prog">
+        <div class="xb-prog-row"><b>设计史</b><span>第 1 课 / 共 14 课</span></div>
+        <div class="bar"><i style="width:7%"></i></div>
+        <div class="xb-prog-row small"><span>这条线已学 1 课</span><span>全部已学 9 / 89</span></div>
+        <a class="xb-next" href="../../map/#h-02"><span>下一课建议</span><b>设计史 第 2 课 · 活字印刷与字体的诞生</b></a>
+        <a class="xb-maplink" href="../../map/#h-01">打开知识地图 ›</a>
+      </div>
+    </section>
+    <div class="dp-sec">当天另外 7 个</div>
+    <a class="mini" href="https://above-the-grassland.pages.dev/" target="_blank" rel="noopener">
+      <img src="../../thumbs/above-the-grassland.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Above the Grassland</div><div class="mini-desc">WebGPU 草海电影场：风、天气预设与调色把草原做成可调沉浸短片。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://black-hole-simulation.astra.demos.sulat.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/black-hole-simulation-astra.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Black Hole Simulation (Astra)</div><div class="mini-desc">黑洞引力透镜：吸积盘与光线弯曲，Astra 系列里大片感最强。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://claybound-56949.web.app/" target="_blank" rel="noopener">
+      <img src="../../thumbs/claybound.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Claybound</div><div class="mini-desc">黏土世界可揉可塑：手感材质让「捏」本身成为第一眼冲击。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://mopedmayhem.io/play" target="_blank" rel="noopener">
+      <img src="../../thumbs/moped-mayhem.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Moped Mayhem</div><div class="mini-desc">浏览器多人外卖飙车：稠密城市场景 + 物理，混乱感就是钩子。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://dgreenheck.github.io/threejs-particle-fluids/?preset=wave-chamber" target="_blank" rel="noopener">
+      <img src="../../thumbs/particle-fluids.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Particle Fluids</div><div class="mini-desc">WebGPU 粒子流体沙盒：液体/软体/布料/气体，波浪舱预设一眼高级。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://soccar-one.vercel.app/" target="_blank" rel="noopener">
+      <img src="../../thumbs/soccar-one.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Soccar One</div><div class="mini-desc">浏览器里能直接踢的 3D 足球，Three.js 官方转发级可玩感。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://spaceship-interior.opus5-5.demos.sulat.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/spaceship-interior-opus-5-5.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Spaceship Interior (Opus 5.5)</div><div class="mini-desc">可走进的飞船内舱：金属光斑与 WebGPU 材质，AI 一键场景做成科幻漫步。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <button type="button" class="dp-share" data-share>复制链接 / 分享</button>
+    <nav class="dp-nav"><a href="../2026-10-01/">‹ 10-01</a><a href="../../">全部日期</a><span>›</span></nav>
+    <p class="dp-foot">设计雷达 · 每天 8 个值得看的网站、App UI 和网页小游戏</p>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  var canon=document.querySelector('link[rel=canonical]').href;
+  var toastEl=document.getElementById('toast');
+  function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(function(){toastEl.classList.remove('show')},1800);}
+  function legacyCopy(){var t=document.createElement('textarea');t.value=canon;t.setAttribute('readonly','');t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();if(ok)toast('链接已复制');else window.prompt('复制这个链接',canon);}
+  function share(){
+    var data={title:document.title,text:document.querySelector('meta[name=description]').content,url:canon};
+    if(navigator.share){navigator.share(data).catch(function(e){if(e&&e.name!=='AbortError')copy();});return;}
+    copy();
+  }
+  function copy(){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(canon).then(function(){toast('链接已复制')},legacyCopy);}else legacyCopy();}
+  document.querySelectorAll('[data-share]').forEach(function(b){b.addEventListener('click',share)});
+})();
+</script>
+</body>
+</html>
