@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0c0e" />
+  <title>Mouthful of Dust · 设计雷达 2026-10-03</title>
+  <meta name="description" content="今日最炫：Mouthful of Dust — 维多利亚州立图书馆把 Ned Kelly 遗物做成可近探的 3D 数字孪生：盔甲、死亡面具、步枪、靴子与 Jerilderie Letter；电影感光影 + 作家旁白。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <link rel="canonical" href="https://sunxiaoxi2039-star.github.io/d/2026-10-03/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="设计雷达" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="Mouthful of Dust · 设计雷达 2026-10-03" />
+  <meta property="og:description" content="今日最炫：Mouthful of Dust — 维多利亚州立图书馆把 Ned Kelly 遗物做成可近探的 3D 数字孪生：盔甲、死亡面具、步枪、靴子与 Jerilderie Letter；电影感光影 + 作家旁白。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta property="og:url" content="https://sunxiaoxi2039-star.github.io/d/2026-10-03/" />
+  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-10-03.jpg?v=202610040009" />
+  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-10-03.jpg?v=202610040009" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mouthful of Dust · 设计雷达 2026-10-03" />
+  <meta name="twitter:description" content="今日最炫：Mouthful of Dust — 维多利亚州立图书馆把 Ned Kelly 遗物做成可近探的 3D 数字孪生：盔甲、死亡面具、步枪、靴子与 Jerilderie Letter；电影感光影 + 作家旁白。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-10-03.jpg?v=202610040009" />
+  <meta itemprop="name" content="Mouthful of Dust · 设计雷达 2026-10-03" />
+  <meta itemprop="description" content="今日最炫：Mouthful of Dust — 维多利亚州立图书馆把 Ned Kelly 遗物做成可近探的 3D 数字孪生：盔甲、死亡面具、步枪、靴子与 Jerilderie Letter；电影感光影 + 作家旁白。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-10-03.jpg?v=202610040009" />
+  <link rel="stylesheet" href="../../styles.css?v=202610040009" />
+</head>
+<body class="dp-body">
+  <header class="dp-top">
+    <a class="dp-home" href="../../"><span>✦</span>设计雷达</a>
+    <div class="dp-top-r"><a class="dp-maplink" href="../../map/">知识地图</a><button type="button" class="dp-share-mini" data-share>分享</button></div>
+  </header>
+  <main class="dp">
+    <div class="dp-kicker">2026-10-03 · 今日最炫</div>
+    <h1 class="dp-title">Mouthful of Dust</h1>
+    <p class="dp-lede">维多利亚州立图书馆把 Ned Kelly 遗物做成可近探的 3D 数字孪生：盔甲、死亡面具、步枪、靴子与 Jerilderie Letter；电影感光影 + 作家旁白。</p>
+    <a class="dp-hero-link" href="https://mouthfulofdust.slv.vic.gov.au/" target="_blank" rel="noopener">
+      <img class="dp-hero" src="../../thumbs/mouthful-of-dust.webp" alt="Mouthful of Dust 截图" width="640" height="400" />
+    </a>
+    <a class="btn-open" href="https://mouthfulofdust.slv.vic.gov.au/" target="_blank" rel="noopener">打开网站 ↗</a>
+    <section class="dp-plain"><div class="dp-h2">大白话拆解</div><p><b>它是什么：</b>维多利亚州立图书馆做的 Ned Kelly 3D 数字孪生展：盔甲、死亡面具、步枪、靴子和 Jerilderie Letter，都能靠近看、听旁白。</p><p><b>好在哪：</b>文化向的第一眼震撼——真遗物做成可探的电影感展柜，比单纯粒子秀更耐看；也是今天最适合当「今日最炫」的叙事向 WebGL。</p><p><b>怎么做到的：</b></p><ol><li>主渲染走 Three.js r164 的 WebGLRenderer（不是 WebGPU）；Vite 打包的单页体验壳。</li><li>GLTFLoader + DRACOLoader 加载遗物 GLB（至少信件在 CloudFront）；OrbitControls + 电影/手动机位。</li><li>EffectComposer：RenderPass → FXAA → 亮度/饱和 → 输出色彩；ACESFilmic + exposure 0.25；RGBE/PMREM 环境光。</li></ol></section>
+    <details class="dp-full"><summary>完整技术拆解</summary><div class="teardown"><h1>今日拆解 · Mouthful of Dust</h1>
+<ul>
+<li>Live: <a href="https://mouthfulofdust.slv.vic.gov.au/" target="_blank" rel="noopener">https://mouthfulofdust.slv.vic.gov.au/</a></li>
+<li>Author / 出品: State Library Victoria（维多利亚州立图书馆）· A Ned Kelly Web Experience</li>
+<li>Source: Awwwards · <a href="https://www.awwwards.com/sites/mouthful-of-dust" target="_blank" rel="noopener">https://www.awwwards.com/sites/mouthful-of-dust</a></li>
+<li>Bundle: Vite 产物 <code>/mouthful-of-dust/assets/index-T5ghGgmv.js</code> + <code>index-CKL5gld5.css</code>（HTML：<code>type="module"</code>）</li>
+<li>证据：对本页 HTML + 主 bundle（含 <code>const Oh="164"</code>、<code>data-engine</code> 写成 `<code>three.js r${Oh}</code><code>、</code>WebGLRenderer<code>、</code>GLTFLoader<code>、</code>DRACOLoader<code>、</code>OrbitControls<code>、</code>EffectComposer<code>、</code>FXAAShader<code>、</code>RGBELoader<code>、</code>PMREM<code>、ACESFilmic、对象名 </code>armour<code> / </code>mask<code> / </code>rifle<code> / </code>boot<code> / </code>letter<code>、CloudFront </code>letter.viewer.glb<code>；<strong>无</strong> </code>WebGPURenderer` / React / R3F）的抓取核对</li>
+</ul>
+<h2>为何选它</h2>
+<p>8 条里它最「重」也最动人：不是炫技粒子秀，而是把 Ned Kelly 的真实遗物——盔甲、死亡面具、步枪、靴子，以及著名的 <strong>Jerilderie Letter</strong>——做成可近探、可切换电影机位的 <strong>3D 数字孪生</strong>。电影感光影、作家旁白与无障碍朗读把图书馆藏品变成能「走进去」的叙事体验；技术上诚实走成熟的 Three.js WebGL 管线，恰适合做今日最炫的文化向反例——震撼不必 WebGPU。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r164</strong></strong><span>生产 bundle：<code>const Oh="164"</code>；<code>data-engine</code> 写成 `<code>three.js r${Oh}</code><code>；</code>window.__THREE__=Oh`</span></div>
+<div><strong><strong>WebGLRenderer（主路径）</strong></strong><span>bundle：<code>WebGLRenderer</code> <strong>30</strong> 次；<code>data-engine</code> 旁监听 <code>webglcontextlost</code>；<strong>0</strong> 次 <code>WebGPURenderer</code></span></div>
+<div><strong><strong>Vite 产物</strong></strong><span>HTML：<code>type="module"</code> 的 <code>/mouthful-of-dust/assets/index-*.js</code> + 配套 CSS——典型 Vite 打包</span></div>
+<div><strong><strong>GLTFLoader + DRACOLoader</strong></strong><span><code>GLTFLoader</code> <strong>28</strong>；<code>DRACOLoader</code> / <code>setDRACOLoader</code> / <code>KHR_DRACO_MESH_COMPRESSION</code> 同在——网格走 Draco 压缩 GLB</span></div>
+<div><strong><strong>云端 GLB（至少信件）</strong></strong><span>bundle 硬编码 CloudFront：<code>…/3d-models/…/letter.viewer.glb</code>；另有音频 / 字体 CDN</span></div>
+<div><strong><strong>可探对象字面量</strong></strong><span>`getObjectByName("armour"</span></div>
+<div><strong><strong>OrbitControls</strong></strong><span>bundle 出现 OrbitControls 警告串与控制逻辑——手动环视遗物</span></div>
+<div><strong><strong>电影机位 / 手动机位</strong></strong><span>HTML + bundle：<code>act-three__ui-camera-mode</code>、<code>cinema</code> / <code>manual</code> 切换；旁白与字幕容器齐全</span></div>
+<div><strong><strong>EffectComposer + FXAA</strong></strong><span><code>EffectComposer</code>；<code>composer.addPass(renderPass)</code> → <code>fxaaPass</code>（<code>FXAAShader</code>）→ 亮度/饱和自定义 Pass → 输出色彩/tone Pass</span></div>
+<div><strong><strong>ACESFilmic + 低曝光</strong></strong><span><code>initPostProcessing</code>：<code>this.renderer.toneMapping=Rl</code>（枚举映射为 <strong>ACESFilmic</strong>）；<code>toneMappingExposure=.25</code></span></div>
+<div><strong><strong>PMREM / RGBELoader</strong></strong><span><code>PMREM</code> <strong>8</strong>；<code>RGBELoader</code> <strong>5</strong>——环境光 / HDR 相关路径在包内</span></div>
+<div><strong><strong>材质与蒙皮</strong></strong><span><code>MeshStandardMaterial</code> / <code>MeshPhysicalMaterial</code>；<code>AnimationMixer</code> / <code>SkinnedMesh</code> / <code>Skeleton</code>——支持动画与较物理的表面</span></div>
+<div><strong><strong>未使用 WebGPU</strong></strong><span><strong>0</strong> 次 <code>WebGPURenderer</code>；主路径明确是 WebGL</span></div>
+<div><strong><strong>未使用 React / R3F</strong></strong><span><strong>未找到</strong> <code>react-dom</code> / <code>createRoot</code> / <code>@react-three/fiber</code> / <code>useFrame</code>（<code>React</code> 字面量仅 <strong>3</strong> 次，不足证明 React 应用壳）</span></div>
+<div><strong><strong>未使用 / 未证实</strong></strong><span><strong>未找到</strong> GSAP / Howler；其余遗物 GLB URL <strong>未</strong>全部硬编码在主包（可能运行时由资源清单拉取——<strong>推测</strong>）；「摄影测量 / photogrammetry」一词 <strong>未</strong>出现在 bundle——数字孪生观感来自高精度扫描模型与馆方叙事，扫描管线本身 <strong>未在前端源码证实</strong></span></div>
+</div>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. Three.js r164 + WebGLRenderer（确认）</h3>
+<p>版本常量 <code>Oh="164"</code>，<code>data-engine</code> 写成 <code>three.js r164</code>。主渲染器是 <code>WebGLRenderer</code>，不是 WebGPU。</p>
+<h3>2. Vite 单页 + 分幕 UI（确认）</h3>
+<p><code>type="module"</code> 入口 + CSS；页面结构含 loading、多幕（如 <code>act-three</code>）、设置、字幕与音频描述开关——是完整「展览体验」壳，不只是一个 canvas demo。</p>
+<h3>3. GLB 数字孪生遗物（确认对象名；扫描工艺 = 推测）</h3>
+<p>五个可点对象：<code>armour</code>、<code>mask</code>（Death Mask）、<code>rifle</code>、<code>boot</code>、<code>letter</code>（Jerilderie Letter）。<code>GLTFLoader</code> + <code>DRACOLoader</code> 加载压缩网格；至少信件模型 URL 指向 CloudFront 上的 <code>letter.viewer.glb</code>。高精度表面很像摄影测量数字孪生，但 <strong>photogrammetry 字样未在前端出现</strong>，故扫描工艺标为 <strong>推测</strong>。</p>
+<h3>4. 手动环视 + 电影机位（确认）</h3>
+<p><code>OrbitControls</code> 支撑手动靠近/旋转；UI 提供 <strong>cinema / manual</strong> 相机模式切换与转场——旁白推进时更像短片，手动时更像展柜放大镜。</p>
+<h3>5. 后期：FXAA + 调色 + ACES（确认）</h3>
+<p><code>EffectComposer</code> 链：<code>RenderPass</code> → <code>FXAAShader</code> → 亮度/饱和 Pass（<code>toneMappingPass</code>）→ 输出色彩空间 Pass。渲染器侧 <code>ACESFilmic</code> + <code>toneMappingExposure=.25</code>，把场景压进偏电影的暗部层次（<strong>具体 LUT/调色美学意图 = 观感推测，枚举与曝光值已确认</strong>）。</p>
+<h3>6. 环境光与 PBR 表面（确认类名）</h3>
+<p><code>RGBELoader</code> / <code>PMREM</code> 与 <code>MeshStandardMaterial</code> / <code>MeshPhysicalMaterial</code> 同在——遗物金属、皮革、纸张的高光更依赖 IBL，而不是无环境的「塑料灰」。</p>
+<h3>7. 无障碍与旁白（确认字面量）</h3>
+<p>大量 <code>makeScreenReaderAnnouncement(…)</code>、字幕容器、audio description 开关；Jerilderie Letter 还有翻页（<code>Pages flipped to even/odd side</code>）——信件不只是贴图，而是可翻的叙事物件（<strong>纸张几何如何蒙皮 = 部分推测；<code>Paper_Clone</code> 对象名已确认</strong>）。</p>
+<h3>8. 伪代码（忠实于 bundle 符号）</h3>
+<pre class="md-code"><code>boot:
+  Vite module entry  /mouthful-of-dust/assets/index-*.js
+  renderer = WebGLRenderer          # Three.js r164
+  data-engine = "three.js r164"
+  # 无 WebGPURenderer / 无 React·R3F
+
+load relics:
+  GLTFLoader + DRACOLoader
+  objects: armour, mask, rifle, boot, letter
+  at least: letter.viewer.glb @ CloudFront
+  # 其他 GLB 可能运行时清单拉取（推测）
+
+view:
+  OrbitControls                     # manual
+  cinema | manual camera modes      # UI toggle
+
+look:
+  RGBELoader / PMREM environment
+  MeshStandard / MeshPhysical materials
+  AnimationMixer / SkinnedMesh where needed
+
+post (EffectComposer):
+  RenderPass
+  FXAAShader
+  brightness/saturation pass
+  output color-space pass
+  renderer.toneMapping = ACESFilmic
+  toneMappingExposure = 0.25
+
+story:
+  narrator / subtitles / screen-reader announcements
+  Jerilderie Letter page flip + reveal percentages</code></pre>
+<h2>对照阅读</h2>
+<ul>
+<li>Live：<a href="https://mouthfulofdust.slv.vic.gov.au/" target="_blank" rel="noopener">https://mouthfulofdust.slv.vic.gov.au/</a></li>
+<li>Awwwards：<a href="https://www.awwwards.com/sites/mouthful-of-dust" target="_blank" rel="noopener">https://www.awwwards.com/sites/mouthful-of-dust</a></li>
+<li>馆藏语境：Ned Kelly 遗物与 Jerilderie Letter（1879）——手写「宣言」被做成可翻的 3D 信纸，正好衔接下文小白课「活字印刷与字体的诞生」：从孤本手稿到可复制的字，再到屏幕上的数字孪生信。</li>
+</ul></div></details>
+    
+    <section class="xb" id="xiaobai">
+      <div class="xb-head">
+        <div class="xb-badge">小白课</div>
+        <p class="xb-sub">零基础也能看懂。先认识这件作品用到的技术，再学一个知识点。</p>
+      </div>
+
+      <h2 class="xb-h2"><span>1</span>技术栈小白版</h2>
+      <p class="xb-note">只列拆解里在源码中确认过的技术。点开看它在这件作品里做了什么。</p>
+      
+      <details class="xb-tech" open>
+        <summary><span class="xb-tech-name">Three.js r164</span><span class="xb-tech-meta">网页里的「3D 展柜脚手架」：摆模型、管灯光、跟显卡说话。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>整座 Ned Kelly 数字展的场景与相机都跑在 Three.js r164 上。</p>
+          <p><span class="xb-k">怎么认出来</span>浏览器里能旋转、靠近真实比例的盔甲和信件，而不是一张静图。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">WebGLRenderer</span><span class="xb-tech-meta">成熟的「画布通道」：不追最新 WebGPU，也能把博物馆级模型画得稳。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>主渲染器是 WebGLRenderer；源码里没有 WebGPURenderer。</p>
+          <p><span class="xb-k">怎么认出来</span>用常见 Chrome / Safari / Firefox 打开也能进体验，不必开实验 flag。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">GLTFLoader + DRACOLoader</span><span class="xb-tech-meta">GLB 是「打包好的 3D 快递」；Draco 像把泡沫箱抽真空，下载更轻。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>遗物网格走 GLTFLoader，并挂上 DRACOLoader 解压；至少 Jerilderie Letter 有 CloudFront 上的 letter.viewer.glb。</p>
+          <p><span class="xb-k">怎么认出来</span>近看盔甲铆钉、信纸褶皱仍清楚，但首包不会大到转圈转到放弃。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">OrbitControls + 电影机位</span><span class="xb-tech-meta">一只手托着展品转；另一模式像导演把镜头推过去讲故事。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>手动模式用 OrbitControls 环视；UI 还可切 cinema / manual。</p>
+          <p><span class="xb-k">怎么认出来</span>自己转一圈看死亡面具，或交给电影机位听旁白推进。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">EffectComposer + FXAA + ACESFilmic</span><span class="xb-tech-meta">先拍一张清晰照，再加去锯齿和电影调色，最后才贴到屏幕上。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>后期链是 RenderPass → FXAA → 亮度/饱和 → 输出色彩；渲染器 ACESFilmic，曝光约 0.25。</p>
+          <p><span class="xb-k">怎么认出来</span>边缘不毛刺，整体偏暗、有点胶片感，而不是游戏默认的「过亮塑料」。</p>
+        </div>
+      </details>
+      <details class="xb-tech">
+        <summary><span class="xb-tech-name">RGBELoader / PMREM 环境光</span><span class="xb-tech-meta">给展柜四面安「会反光的天空」：金属和纸张才有真实高光。</span></summary>
+        <div class="xb-tech-body">
+          <p><span class="xb-k">在这件作品里</span>bundle 里有 RGBELoader 与 PMREM，配合 Standard/Physical 材质。</p>
+          <p><span class="xb-k">怎么认出来</span>盔甲边缘有柔和环境反射，信件纸面也不死灰。</p>
+        </div>
+      </details>
+
+      <h2 class="xb-h2"><span>2</span>今日知识点</h2>
+      <div class="xb-lesson">
+        <div class="xb-crumb">设计史 · 第 2 课</div>
+        <h3 class="xb-title">活字印刷与字体的诞生</h3>
+        <div class="xb-prose"><p>今天在 Mouthful of Dust 里翻开的 <b>Jerilderie Letter</b>，原本是一份 <b>手写孤本</b>：字只存在于那几张纸上。活字印刷要解决的，正是「字能不能被反复、大量地复现」。</p><p>记住三个台阶：</p><ul><li><b>手稿</b>：一份、不可批量；每份笔迹都稍有不同。</li></ul><ul><li><b>活字</b>：一个个可重排的字模（铅字），排版一次就能印很多份。</li></ul><ul><li><b>字体（typeface / font）</b>：把「这套字长什么样」固化成可复用的设计——后来变成铅字家族，再变成你屏幕里的 `.otf` / `.woff`。</li></ul><p>馆方把信件做成 <b>3D 数字孪生</b>，等于又加了一层：连纸张的厚度与翻页，都能在浏览器里被无数人同时「复现」。</p></div>
+        <h4 class="xb-h4">它从哪里来</h4>
+        <div class="xb-prose"><p>在东亚，可移动字的实验更早；在欧洲，人们常把 <b>古腾堡</b>（Johannes Gutenberg）在 15 世纪中叶推动的金属活字印刷，当作「大众阅读」起飞的标志：同一副字模能印圣经、小册子与传单，知识传播速度上了一个数量级。</p><p>活字带来的不只是「印得多」，还有 <b>字体意识</b>：字号、字重、衬线，开始成为可选择的设计零件。工业革命后，铸字与字厂把字体做成商品目录；20 世纪又经历照相排字，再到数字字体——你在网页里写的 `font-family`，是这条线的远端。</p><p>回到 Ned Kelly：1879 年的 Jerilderie Letter 是枪手写给世界的长信，靠手写与后来的传抄/印刷进入公共记忆。2020 年代的 Mouthful of Dust 用 Three.js 把信纸扫描成可翻的 GLB——<b>媒介变了，但「让更多人读到同一份字」的愿望没变。</b></p></div>
+        <h4 class="xb-h4">经典参考</h4>
+        <ul class="xb-refs"><li><b><a href="https://mouthfulofdust.slv.vic.gov.au/" target="_blank" rel="noopener">Mouthful of Dust · State Library Victoria</a></b><span>可翻的 Jerilderie Letter 3D 数字孪生；对照「孤本手稿 → 可复现媒介」。</span></li><li><b>State Library Victoria · Ned Kelly / Jerilderie Letter 馆藏语境</b><span>了解信件作为历史文献的背景；课程重点是媒介变迁，不必背全部生平。</span></li><li><b><a href="https://www.britannica.com/technology/printing-press" target="_blank" rel="noopener">Britannica · Printing press / Gutenberg</a></b><span>欧洲金属活字与印刷机如何让文字开始「批量到达读者」。</span></li></ul>
+        <div class="xb-callout">
+          <div class="xb-callout-t">怎么看 / 怎么练 · 约 8 分钟</div>
+          <ol><li>打开 Mouthful of Dust，找到 Jerilderie Letter：先当「展品」看纸面与笔迹，再想——若只能手抄，全世界同时能有几份？</li><li>在手机备忘录打同一句话，分别用系统衬线体与无衬线体截两张图：差别在气质还是可读性？写一个词。</li><li>回想你今天读过的一条新闻或海报：它的字更像「手写温度」「铅字报纸」，还是「App 界面无衬线」？标一个标签。</li><li>用一句话收束：活字让字可复制；字体让复制仍然有设计；3D 扫描让连纸张本身也能被复制到屏幕上。</li></ol>
+        </div>
+        <h4 class="xb-h4">小词典</h4>
+        <dl class="xb-gloss"><div><dt>活字印刷</dt><dd>用可反复排版的单个字模（活字）组版再印刷，从而大量复制同一文本。</dd></div><div><dt>字体 / 字型（typeface）与字号文件（font）</dt><dd>typeface 是一套字形设计；font 常指某一字重/字号的具体文件或铅字套装。日常口语里常混用。</dd></div><div><dt>Jerilderie Letter</dt><dd>与 Ned Kelly 相关的长篇历史信件；在本站被做成可翻页的 3D 信纸模型。</dd></div><div><dt>数字孪生（digital twin）</dt><dd>把现实物体用数字模型尽量忠实地「复刻」到电脑里，供观看、讲解或研究。</dd></div><div><dt>GLB / Draco</dt><dd>GLB 是常见的 3D 模型包装格式；Draco 是把网格数据压小的压缩方式，下载更快。</dd></div></dl>
+      </div>
+
+      <h2 class="xb-h2"><span>3</span>知识地图进度</h2>
+      <div class="xb-prog">
+        <div class="xb-prog-row"><b>设计史</b><span>第 2 课 / 共 14 课</span></div>
+        <div class="bar"><i style="width:14%"></i></div>
+        <div class="xb-prog-row small"><span>这条线已学 2 课</span><span>全部已学 10 / 89</span></div>
+        <a class="xb-next" href="../../map/#h-03"><span>下一课建议</span><b>设计史 第 3 课 · 工艺美术运动：反对粗制滥造</b></a>
+        <a class="xb-maplink" href="../../map/#h-02">打开知识地图 ›</a>
+      </div>
+    </section>
+    <div class="dp-sec">当天另外 7 个</div>
+    <a class="mini" href="https://artefakt.mov/" target="_blank" rel="noopener">
+      <img src="../../thumbs/artefakt.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="网站">网站</span></div>
+        <div class="mini-title">Artefakt</div><div class="mini-desc">法兰克福 hybrid production 作品集：WebGL + ASCII 粒子/微交互（原 artefakt.studio 域名已售出，现用 .mov）。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://equinox.space/" target="_blank" rel="noopener">
+      <img src="../../thumbs/equinox.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Equinox</div><div class="mini-desc">浏览器里的太空叙事冒险：WebGL 飞船漫游与剧情推进，Little Workshop 一贯的电影感宇宙。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://felixturner.github.io/html-in-canvas-cracks/" target="_blank" rel="noopener">
+      <img src="../../thumbs/html-in-canvas-cracks.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="动效">动效</span></div>
+        <div class="mini-title">HTML-in-Canvas Cracks</div><div class="mini-desc">真 HTML 画进 canvas 再碎成 3D 裂片；需桌面 Chrome 141+ 并开启 canvas-draw-element flag 才能完整体验。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://www.runrobrun.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/run-rob-run.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Run Rob Run</div><div class="mini-desc">音乐响应果冻 WebGPU 作品集：跟着节拍扭动的 goo，把作品集做成可玩的声画玩具。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://app.usecrayon.ai/play/b42413e5-669e-4fb3-87d3-a3285567736c" target="_blank" rel="noopener">
+      <img src="../../thumbs/silt-signal.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Silt &amp; Signal</div><div class="mini-desc">电影感悬浮摩托穿越七个世界：Crayon 把短片叙事做成可骑的浏览器关卡。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://spiri0.github.io/Threejs-WebGPU-IFFT-Ocean/" target="_blank" rel="noopener">
+      <img src="../../thumbs/webgpu-ifft-ocean.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="动效">动效</span></div>
+        <div class="mini-title">WebGPU IFFT Ocean</div><div class="mini-desc">Three.js WebGPU + TSL 的 IFFT 海洋：浪面在 GPU 上算出来，一眼就是「真·实时海」。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://xox.makemepulse.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/xox.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">XOX</div><div class="mini-desc">makemepulse 可玩 WebGL 小游戏站：点进去就能玩的互动招牌，不是静态秀图。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <button type="button" class="dp-share" data-share>复制链接 / 分享</button>
+    <nav class="dp-nav"><a href="../2026-10-02/">‹ 10-02</a><a href="../../">全部日期</a><span>›</span></nav>
+    <p class="dp-foot">设计雷达 · 每天 8 个值得看的网站、App UI 和网页小游戏</p>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  var canon=document.querySelector('link[rel=canonical]').href;
+  var toastEl=document.getElementById('toast');
+  function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(function(){toastEl.classList.remove('show')},1800);}
+  function legacyCopy(){var t=document.createElement('textarea');t.value=canon;t.setAttribute('readonly','');t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();if(ok)toast('链接已复制');else window.prompt('复制这个链接',canon);}
+  function share(){
+    var data={title:document.title,text:document.querySelector('meta[name=description]').content,url:canon};
+    if(navigator.share){navigator.share(data).catch(function(e){if(e&&e.name!=='AbortError')copy();});return;}
+    copy();
+  }
+  function copy(){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(canon).then(function(){toast('链接已复制')},legacyCopy);}else legacyCopy();}
+  document.querySelectorAll('[data-share]').forEach(function(b){b.addEventListener('click',share)});
+})();
+</script>
+</body>
+</html>

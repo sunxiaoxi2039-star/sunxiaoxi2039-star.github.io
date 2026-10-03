@@ -1,0 +1,82 @@
+<h1>今日拆解 · Mouthful of Dust</h1>
+<ul>
+<li>Live: <a href="https://mouthfulofdust.slv.vic.gov.au/" target="_blank" rel="noopener">https://mouthfulofdust.slv.vic.gov.au/</a></li>
+<li>Author / 出品: State Library Victoria（维多利亚州立图书馆）· A Ned Kelly Web Experience</li>
+<li>Source: Awwwards · <a href="https://www.awwwards.com/sites/mouthful-of-dust" target="_blank" rel="noopener">https://www.awwwards.com/sites/mouthful-of-dust</a></li>
+<li>Bundle: Vite 产物 <code>/mouthful-of-dust/assets/index-T5ghGgmv.js</code> + <code>index-CKL5gld5.css</code>（HTML：<code>type="module"</code>）</li>
+<li>证据：对本页 HTML + 主 bundle（含 <code>const Oh="164"</code>、<code>data-engine</code> 写成 `<code>three.js r${Oh}</code><code>、</code>WebGLRenderer<code>、</code>GLTFLoader<code>、</code>DRACOLoader<code>、</code>OrbitControls<code>、</code>EffectComposer<code>、</code>FXAAShader<code>、</code>RGBELoader<code>、</code>PMREM<code>、ACESFilmic、对象名 </code>armour<code> / </code>mask<code> / </code>rifle<code> / </code>boot<code> / </code>letter<code>、CloudFront </code>letter.viewer.glb<code>；<strong>无</strong> </code>WebGPURenderer` / React / R3F）的抓取核对</li>
+</ul>
+<h2>为何选它</h2>
+<p>8 条里它最「重」也最动人：不是炫技粒子秀，而是把 Ned Kelly 的真实遗物——盔甲、死亡面具、步枪、靴子，以及著名的 <strong>Jerilderie Letter</strong>——做成可近探、可切换电影机位的 <strong>3D 数字孪生</strong>。电影感光影、作家旁白与无障碍朗读把图书馆藏品变成能「走进去」的叙事体验；技术上诚实走成熟的 Three.js WebGL 管线，恰适合做今日最炫的文化向反例——震撼不必 WebGPU。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r164</strong></strong><span>生产 bundle：<code>const Oh="164"</code>；<code>data-engine</code> 写成 `<code>three.js r${Oh}</code><code>；</code>window.__THREE__=Oh`</span></div>
+<div><strong><strong>WebGLRenderer（主路径）</strong></strong><span>bundle：<code>WebGLRenderer</code> <strong>30</strong> 次；<code>data-engine</code> 旁监听 <code>webglcontextlost</code>；<strong>0</strong> 次 <code>WebGPURenderer</code></span></div>
+<div><strong><strong>Vite 产物</strong></strong><span>HTML：<code>type="module"</code> 的 <code>/mouthful-of-dust/assets/index-*.js</code> + 配套 CSS——典型 Vite 打包</span></div>
+<div><strong><strong>GLTFLoader + DRACOLoader</strong></strong><span><code>GLTFLoader</code> <strong>28</strong>；<code>DRACOLoader</code> / <code>setDRACOLoader</code> / <code>KHR_DRACO_MESH_COMPRESSION</code> 同在——网格走 Draco 压缩 GLB</span></div>
+<div><strong><strong>云端 GLB（至少信件）</strong></strong><span>bundle 硬编码 CloudFront：<code>…/3d-models/…/letter.viewer.glb</code>；另有音频 / 字体 CDN</span></div>
+<div><strong><strong>可探对象字面量</strong></strong><span>`getObjectByName("armour"</span></div>
+<div><strong><strong>OrbitControls</strong></strong><span>bundle 出现 OrbitControls 警告串与控制逻辑——手动环视遗物</span></div>
+<div><strong><strong>电影机位 / 手动机位</strong></strong><span>HTML + bundle：<code>act-three__ui-camera-mode</code>、<code>cinema</code> / <code>manual</code> 切换；旁白与字幕容器齐全</span></div>
+<div><strong><strong>EffectComposer + FXAA</strong></strong><span><code>EffectComposer</code>；<code>composer.addPass(renderPass)</code> → <code>fxaaPass</code>（<code>FXAAShader</code>）→ 亮度/饱和自定义 Pass → 输出色彩/tone Pass</span></div>
+<div><strong><strong>ACESFilmic + 低曝光</strong></strong><span><code>initPostProcessing</code>：<code>this.renderer.toneMapping=Rl</code>（枚举映射为 <strong>ACESFilmic</strong>）；<code>toneMappingExposure=.25</code></span></div>
+<div><strong><strong>PMREM / RGBELoader</strong></strong><span><code>PMREM</code> <strong>8</strong>；<code>RGBELoader</code> <strong>5</strong>——环境光 / HDR 相关路径在包内</span></div>
+<div><strong><strong>材质与蒙皮</strong></strong><span><code>MeshStandardMaterial</code> / <code>MeshPhysicalMaterial</code>；<code>AnimationMixer</code> / <code>SkinnedMesh</code> / <code>Skeleton</code>——支持动画与较物理的表面</span></div>
+<div><strong><strong>未使用 WebGPU</strong></strong><span><strong>0</strong> 次 <code>WebGPURenderer</code>；主路径明确是 WebGL</span></div>
+<div><strong><strong>未使用 React / R3F</strong></strong><span><strong>未找到</strong> <code>react-dom</code> / <code>createRoot</code> / <code>@react-three/fiber</code> / <code>useFrame</code>（<code>React</code> 字面量仅 <strong>3</strong> 次，不足证明 React 应用壳）</span></div>
+<div><strong><strong>未使用 / 未证实</strong></strong><span><strong>未找到</strong> GSAP / Howler；其余遗物 GLB URL <strong>未</strong>全部硬编码在主包（可能运行时由资源清单拉取——<strong>推测</strong>）；「摄影测量 / photogrammetry」一词 <strong>未</strong>出现在 bundle——数字孪生观感来自高精度扫描模型与馆方叙事，扫描管线本身 <strong>未在前端源码证实</strong></span></div>
+</div>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. Three.js r164 + WebGLRenderer（确认）</h3>
+<p>版本常量 <code>Oh="164"</code>，<code>data-engine</code> 写成 <code>three.js r164</code>。主渲染器是 <code>WebGLRenderer</code>，不是 WebGPU。</p>
+<h3>2. Vite 单页 + 分幕 UI（确认）</h3>
+<p><code>type="module"</code> 入口 + CSS；页面结构含 loading、多幕（如 <code>act-three</code>）、设置、字幕与音频描述开关——是完整「展览体验」壳，不只是一个 canvas demo。</p>
+<h3>3. GLB 数字孪生遗物（确认对象名；扫描工艺 = 推测）</h3>
+<p>五个可点对象：<code>armour</code>、<code>mask</code>（Death Mask）、<code>rifle</code>、<code>boot</code>、<code>letter</code>（Jerilderie Letter）。<code>GLTFLoader</code> + <code>DRACOLoader</code> 加载压缩网格；至少信件模型 URL 指向 CloudFront 上的 <code>letter.viewer.glb</code>。高精度表面很像摄影测量数字孪生，但 <strong>photogrammetry 字样未在前端出现</strong>，故扫描工艺标为 <strong>推测</strong>。</p>
+<h3>4. 手动环视 + 电影机位（确认）</h3>
+<p><code>OrbitControls</code> 支撑手动靠近/旋转；UI 提供 <strong>cinema / manual</strong> 相机模式切换与转场——旁白推进时更像短片，手动时更像展柜放大镜。</p>
+<h3>5. 后期：FXAA + 调色 + ACES（确认）</h3>
+<p><code>EffectComposer</code> 链：<code>RenderPass</code> → <code>FXAAShader</code> → 亮度/饱和 Pass（<code>toneMappingPass</code>）→ 输出色彩空间 Pass。渲染器侧 <code>ACESFilmic</code> + <code>toneMappingExposure=.25</code>，把场景压进偏电影的暗部层次（<strong>具体 LUT/调色美学意图 = 观感推测，枚举与曝光值已确认</strong>）。</p>
+<h3>6. 环境光与 PBR 表面（确认类名）</h3>
+<p><code>RGBELoader</code> / <code>PMREM</code> 与 <code>MeshStandardMaterial</code> / <code>MeshPhysicalMaterial</code> 同在——遗物金属、皮革、纸张的高光更依赖 IBL，而不是无环境的「塑料灰」。</p>
+<h3>7. 无障碍与旁白（确认字面量）</h3>
+<p>大量 <code>makeScreenReaderAnnouncement(…)</code>、字幕容器、audio description 开关；Jerilderie Letter 还有翻页（<code>Pages flipped to even/odd side</code>）——信件不只是贴图，而是可翻的叙事物件（<strong>纸张几何如何蒙皮 = 部分推测；<code>Paper_Clone</code> 对象名已确认</strong>）。</p>
+<h3>8. 伪代码（忠实于 bundle 符号）</h3>
+<pre class="md-code"><code>boot:
+  Vite module entry  /mouthful-of-dust/assets/index-*.js
+  renderer = WebGLRenderer          # Three.js r164
+  data-engine = "three.js r164"
+  # 无 WebGPURenderer / 无 React·R3F
+
+load relics:
+  GLTFLoader + DRACOLoader
+  objects: armour, mask, rifle, boot, letter
+  at least: letter.viewer.glb @ CloudFront
+  # 其他 GLB 可能运行时清单拉取（推测）
+
+view:
+  OrbitControls                     # manual
+  cinema | manual camera modes      # UI toggle
+
+look:
+  RGBELoader / PMREM environment
+  MeshStandard / MeshPhysical materials
+  AnimationMixer / SkinnedMesh where needed
+
+post (EffectComposer):
+  RenderPass
+  FXAAShader
+  brightness/saturation pass
+  output color-space pass
+  renderer.toneMapping = ACESFilmic
+  toneMappingExposure = 0.25
+
+story:
+  narrator / subtitles / screen-reader announcements
+  Jerilderie Letter page flip + reveal percentages</code></pre>
+<h2>对照阅读</h2>
+<ul>
+<li>Live：<a href="https://mouthfulofdust.slv.vic.gov.au/" target="_blank" rel="noopener">https://mouthfulofdust.slv.vic.gov.au/</a></li>
+<li>Awwwards：<a href="https://www.awwwards.com/sites/mouthful-of-dust" target="_blank" rel="noopener">https://www.awwwards.com/sites/mouthful-of-dust</a></li>
+<li>馆藏语境：Ned Kelly 遗物与 Jerilderie Letter（1879）——手写「宣言」被做成可翻的 3D 信纸，正好衔接下文小白课「活字印刷与字体的诞生」：从孤本手稿到可复制的字，再到屏幕上的数字孪生信。</li>
+</ul>
