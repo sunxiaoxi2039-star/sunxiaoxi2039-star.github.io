@@ -1,0 +1,69 @@
+<h1>今日拆解 · FunTech Experience</h1>
+<ul>
+<li>Live: <a href="https://experience2026.funtech.inc/" target="_blank" rel="noopener">https://experience2026.funtech.inc/</a></li>
+<li>Author / 出品: FunTech（公式キャラ「Funくん」）· X @tkm_hmng8</li>
+<li>Source: X · <a href="https://x.com/tkm_hmng8/status/2105593863469727926（约" target="_blank" rel="noopener">https://x.com/tkm_hmng8/status/2105593863469727926（约</a> 1464 likes；社交侧提到 Opus 5.5——<strong>前端包内未出现该字样</strong>）</li>
+<li>Bundle: Vite 产物 <code>assets/index-BSu4tWCh.js</code> + modulepreload <code>assets/post-DJ5SZDIO.js</code> + <code>assets/index-D2Znl6QN.css</code>；<code>canvas#gl</code></li>
+<li>证据：对本页 HTML + 主入口 / <code>post-*.js</code>（含 <code>window.__THREE__=\</code>186\`<code>、签名 </code>// Three.js r186 - Node System<code>、</code>WebGPURenderer<code>、</code>GLTFLoader<code> / </code>DRACOLoader<code>、</code>PMREMGenerator<code>、</code>__vite__mapdeps` 分站 chunk）的抓取核对</li>
+</ul>
+<h2>为何选它</h2>
+<p>今天 8 条里第一眼最「响」的就是它：橙色世界里 <strong>Funくん头槌砸穿复古 CRT</strong>，玻璃碎裂、霓虹与站点分幕连成一整段可逛的品牌宇宙。X 上约一千四百赞、WebGPU 路径诚实，沉浸感和叙事完成度都压过单纯 demo；社交帖提到 Opus 5.5，但<strong>拆解只认包内证据</strong>，不把生成工具写进技术栈表。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r186（Node / TSL 体系）</strong></strong><span><code>post-DJ5SZDIO.js</code>：<code>window.__THREE__=\</code>186\`<code>；字符串签名 </code>// Three.js r186 - Node System`</span></div>
+<div><strong><strong>WebGPURenderer（主路径）</strong></strong><span>同包：<code>WebGPURenderer</code> <strong>46</strong> 次；HTML 明确要求 WebGPU 或 WebGL2</span></div>
+<div><strong><strong>WebGLRenderer（次要 / 兼容痕迹）</strong></strong><span>同包：<code>WebGLRenderer</code> <strong>3</strong> 次——保留兼容分支，主叙事仍是 WebGPU</span></div>
+<div><strong><strong>TSL / NodeMaterial</strong></strong><span><code>TSL</code> <strong>60</strong>；<code>NodeMaterial</code> <strong>38</strong>；<code>Fn(</code> <strong>17</strong>——材质与后期走节点图，不是老式手写 raw GLSL 为主</span></div>
+<div><strong><strong>Vite 分片 SPA</strong></strong><span>HTML：<code>type="module"</code> + <code>__vite__mapdeps</code> 预加载 <code>boot</code> / <code>shatter</code> / <code>museum</code> / <code>monument</code> / <code>neon</code> / <code>volt</code> / <code>breakout</code> 等站 chunk</span></div>
+<div><strong><strong>GLTFLoader + DRACOLoader</strong></strong><span><code>GLTFLoader</code> <strong>25</strong>；<code>setDRACOLoader</code> / Draco 路径同在——站内模型走压缩 glTF</span></div>
+<div><strong><strong>PMREM 环境光</strong></strong><span><code>PMREMGenerator</code> <strong>6</strong>；另有独立 <code>pmrem-*.js</code> chunk</span></div>
+<div><strong><strong>Bloom / toneMapping</strong></strong><span><code>Bloom</code> <strong>14</strong>；<code>toneMapping</code> <strong>56</strong>——高光与曝光在后期链里调电影感</span></div>
+<div><strong><strong>品牌字体 Typekit</strong></strong><span>HTML：<code>use.typekit.net/pfl7wcw.css</code>（elevon / proxima-nova，注释写明）</span></div>
+<div><strong><strong>未使用 React / R3F</strong></strong><span><strong>未找到</strong> <code>createRoot</code> / <code>@react-three/fiber</code> / <code>useFrame</code>；<code>React</code> 字面量极少，不足证明 React 应用壳</span></div>
+<div><strong><strong>未使用 GSAP</strong></strong><span>主包与入口 <strong>0</strong> 次 <code>gsap</code> / <code>GSAP</code></span></div>
+<div><strong><strong>未证实 / 勿写入栈</strong></strong><span>社交帖的 <strong>Opus 5.5</strong>：<strong>未</strong>出现在前端 bundle——只作来源备注，不当技术依赖</span></div>
+</div>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. Three.js r186 + WebGPURenderer（确认）</h3>
+<p>版本钉在 <code>__THREE__ = 186</code>。渲染器以 <code>WebGPURenderer</code> 为主；页面文案要求 WebGPU 或 WebGL2。<code>WebGLRenderer</code> 仅少量出现，更像回退/共享代码，不是主视觉路径。</p>
+<h3>2. Vite 多「站」叙事壳（确认分片；站名语义 = 观感+文件名）</h3>
+<p>入口 <code>index-*.js</code> 用 <code>__vite__mapdeps</code> 按需拉 <code>boot</code>、<code>shatter</code>、<code>museum</code>、<code>monument</code>、<code>bronze</code>、<code>neon</code>、<code>volt</code>、<code>breakout</code>、<code>logo</code> 等 chunk——整站是分段体验，不是单场景 loop。CRT 碎裂对应 <code>shatter</code> / <code>shards</code> 一类分片（<strong>碎裂物理细节 = 观感推测；chunk 名与加载图已确认</strong>）。</p>
+<h3>3. TSL 节点材质 + 后期（确认类名）</h3>
+<p>r186 Node System + <code>NodeMaterial</code> / <code>TSL</code> / <code>Fn(</code> 说明材质与部分后期在节点图里编；<code>Bloom</code> 与大量 <code>toneMapping</code> 把高光压进品牌片的「响」和暗部层次。</p>
+<h3>4. glTF 场景资产（确认加载器）</h3>
+<p><code>GLTFLoader</code> + <code>DRACOLoader</code> 负责站内网格；具体哪个站用哪只 glb <strong>未</strong>全部硬编码扫完——<strong>资源清单如何路由 = 部分推测</strong>。</p>
+<h3>5. PMREM 环境（确认）</h3>
+<p><code>PMREMGenerator</code>（及 <code>pmrem-*.js</code>）给金属/玻璃/霓虹更稳的 IBL，避免「塑料灰」。</p>
+<h3>6. UI 与无障碍壳（确认 DOM）</h3>
+<p><code>canvas#gl</code> 作主画面；左上 <code>ui-logo</code> 回起点；HTML 含 WebGPU/WebGL2 提示与英日 <code>data-en</code> 文案。字体走 Adobe Fonts kit，不内嵌可变字体文件。</p>
+<h3>7. 伪代码（忠实于包内符号）</h3>
+<pre class="md-code"><code>boot:
+  Vite module entry  assets/index-*.js
+  preload post-*.js          # Three.js r186 node/webgpu
+  canvas#gl
+  window.__THREE__ = "186"
+
+renderer:
+  WebGPURenderer             # primary (46 refs)
+  # WebGLRenderer traces (3) — fallback/shared, not the hero path
+  require WebGPU | WebGL2    # HTML copy
+
+stations (code-split):
+  __vite__mapdeps → boot, shatter, museum, monument,
+                    bronze, neon, volt, breakout, logo, …
+
+assets:
+  GLTFLoader + DRACOLoader
+  PMREMGenerator
+  Bloom + toneMapping
+  Typekit pfl7wcw
+
+not found:
+  React/R3F app shell, GSAP, "Opus 5.5" string in JS</code></pre>
+<h2>如果我来重做（学习向，非版本承诺）</h2>
+<ol>
+<li>先用 <strong>Three r186 + WebGPURenderer</strong> 搭一个 <code>canvas</code> 全屏壳，HTML 写明 WebGPU/WebGL2 门槛。  </li>
+<li>把叙事拆成 <strong>Vite 动态 import 的站</strong>（开场 / 碎裂 / 展厅…），每站一个 chunk，避免首包过大。  </li>
+<li>模型走 <strong>GLB + Draco</strong>；环境用 <strong>PMREM</strong>；响亮高光靠 <strong>Bloom + toneMapping</strong>，而不是无脑提高曝光。  </li>
+<li>品牌字体与 UI 文案（含回起点 logo）和 3D 画布分开层，3D 挂了 UI 还能导航。</li>
+</ol>

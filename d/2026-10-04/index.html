@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0c0e" />
+  <title>FunTech Experience · 设计雷达 2026-10-04</title>
+  <meta name="description" content="今日最炫：FunTech Experience — Funくん头槌砸穿复古 CRT 的沉浸品牌世界：全屏 3D、电影转场，视觉冲击今天最强。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <link rel="canonical" href="https://sunxiaoxi2039-star.github.io/d/2026-10-04/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="设计雷达" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="FunTech Experience · 设计雷达 2026-10-04" />
+  <meta property="og:description" content="今日最炫：FunTech Experience — Funくん头槌砸穿复古 CRT 的沉浸品牌世界：全屏 3D、电影转场，视觉冲击今天最强。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta property="og:url" content="https://sunxiaoxi2039-star.github.io/d/2026-10-04/" />
+  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/og/2026-10-04.jpg?v=202610040912" />
+  <meta property="og:image:secure_url" content="https://sunxiaoxi2039-star.github.io/og/2026-10-04.jpg?v=202610040912" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FunTech Experience · 设计雷达 2026-10-04" />
+  <meta name="twitter:description" content="今日最炫：FunTech Experience — Funくん头槌砸穿复古 CRT 的沉浸品牌世界：全屏 3D、电影转场，视觉冲击今天最强。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta name="twitter:image" content="https://sunxiaoxi2039-star.github.io/og/2026-10-04.jpg?v=202610040912" />
+  <meta itemprop="name" content="FunTech Experience · 设计雷达 2026-10-04" />
+  <meta itemprop="description" content="今日最炫：FunTech Experience — Funくん头槌砸穿复古 CRT 的沉浸品牌世界：全屏 3D、电影转场，视觉冲击今天最强。 另有 7 个网站 / App UI / 小游戏灵感。" />
+  <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/2026-10-04.jpg?v=202610040912" />
+  <link rel="stylesheet" href="../../styles.css?v=202610040912" />
+</head>
+<body class="dp-body">
+  <header class="dp-top">
+    <a class="dp-home" href="../../"><span>✦</span>设计雷达</a>
+    <div class="dp-top-r"><a class="dp-maplink" href="../../map/">知识地图</a><button type="button" class="dp-share-mini" data-share>分享</button></div>
+  </header>
+  <main class="dp">
+    <div class="dp-kicker">2026-10-04 · 今日最炫</div>
+    <h1 class="dp-title">FunTech Experience</h1>
+    <p class="dp-lede">Funくん头槌砸穿复古 CRT 的沉浸品牌世界：全屏 3D、电影转场，视觉冲击今天最强。</p>
+    <a class="dp-hero-link" href="https://experience2026.funtech.inc/" target="_blank" rel="noopener">
+      <img class="dp-hero" src="../../thumbs/funtech-experience.webp" alt="FunTech Experience 截图" width="640" height="400" />
+    </a>
+    <a class="btn-open" href="https://experience2026.funtech.inc/" target="_blank" rel="noopener">打开网站 ↗</a>
+    <section class="dp-plain"><div class="dp-h2">大白话拆解</div><p><b>它是什么：</b>FunTech 的沉浸品牌站：橙色世界里 Funくん头槌砸穿复古 CRT，再一站站逛完他们的创意宇宙。</p><p><b>好在哪：</b>今天 8 条里第一眼最响——全屏 3D、碎裂玻璃和分幕转场叠在一起，比普通作品集或单场景 demo 更有电影感。</p><p><b>怎么做到的：</b></p><ol><li>主渲染走 Three.js r186 的 WebGPURenderer（包内 __THREE__=186；也留了少量 WebGLRenderer 痕迹）。</li><li>Vite 把体验拆成 boot / shatter / museum / neon / volt 等站 chunk；模型用 GLTFLoader + DRACOLoader。</li><li>材质与后期偏 TSL/NodeMaterial；PMREM 环境光 + Bloom/toneMapping；没有 React/R3F，也没有 GSAP。</li></ol></section>
+    <details class="dp-full"><summary>完整技术拆解</summary><div class="teardown"><h1>今日拆解 · FunTech Experience</h1>
+<ul>
+<li>Live: <a href="https://experience2026.funtech.inc/" target="_blank" rel="noopener">https://experience2026.funtech.inc/</a></li>
+<li>Author / 出品: FunTech（公式キャラ「Funくん」）· X @tkm_hmng8</li>
+<li>Source: X · <a href="https://x.com/tkm_hmng8/status/2105593863469727926（约" target="_blank" rel="noopener">https://x.com/tkm_hmng8/status/2105593863469727926（约</a> 1464 likes；社交侧提到 Opus 5.5——<strong>前端包内未出现该字样</strong>）</li>
+<li>Bundle: Vite 产物 <code>assets/index-BSu4tWCh.js</code> + modulepreload <code>assets/post-DJ5SZDIO.js</code> + <code>assets/index-D2Znl6QN.css</code>；<code>canvas#gl</code></li>
+<li>证据：对本页 HTML + 主入口 / <code>post-*.js</code>（含 <code>window.__THREE__=\</code>186\`<code>、签名 </code>// Three.js r186 - Node System<code>、</code>WebGPURenderer<code>、</code>GLTFLoader<code> / </code>DRACOLoader<code>、</code>PMREMGenerator<code>、</code>__vite__mapdeps` 分站 chunk）的抓取核对</li>
+</ul>
+<h2>为何选它</h2>
+<p>今天 8 条里第一眼最「响」的就是它：橙色世界里 <strong>Funくん头槌砸穿复古 CRT</strong>，玻璃碎裂、霓虹与站点分幕连成一整段可逛的品牌宇宙。X 上约一千四百赞、WebGPU 路径诚实，沉浸感和叙事完成度都压过单纯 demo；社交帖提到 Opus 5.5，但<strong>拆解只认包内证据</strong>，不把生成工具写进技术栈表。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r186（Node / TSL 体系）</strong></strong><span><code>post-DJ5SZDIO.js</code>：<code>window.__THREE__=\</code>186\`<code>；字符串签名 </code>// Three.js r186 - Node System`</span></div>
+<div><strong><strong>WebGPURenderer（主路径）</strong></strong><span>同包：<code>WebGPURenderer</code> <strong>46</strong> 次；HTML 明确要求 WebGPU 或 WebGL2</span></div>
+<div><strong><strong>WebGLRenderer（次要 / 兼容痕迹）</strong></strong><span>同包：<code>WebGLRenderer</code> <strong>3</strong> 次——保留兼容分支，主叙事仍是 WebGPU</span></div>
+<div><strong><strong>TSL / NodeMaterial</strong></strong><span><code>TSL</code> <strong>60</strong>；<code>NodeMaterial</code> <strong>38</strong>；<code>Fn(</code> <strong>17</strong>——材质与后期走节点图，不是老式手写 raw GLSL 为主</span></div>
+<div><strong><strong>Vite 分片 SPA</strong></strong><span>HTML：<code>type="module"</code> + <code>__vite__mapdeps</code> 预加载 <code>boot</code> / <code>shatter</code> / <code>museum</code> / <code>monument</code> / <code>neon</code> / <code>volt</code> / <code>breakout</code> 等站 chunk</span></div>
+<div><strong><strong>GLTFLoader + DRACOLoader</strong></strong><span><code>GLTFLoader</code> <strong>25</strong>；<code>setDRACOLoader</code> / Draco 路径同在——站内模型走压缩 glTF</span></div>
+<div><strong><strong>PMREM 环境光</strong></strong><span><code>PMREMGenerator</code> <strong>6</strong>；另有独立 <code>pmrem-*.js</code> chunk</span></div>
+<div><strong><strong>Bloom / toneMapping</strong></strong><span><code>Bloom</code> <strong>14</strong>；<code>toneMapping</code> <strong>56</strong>——高光与曝光在后期链里调电影感</span></div>
+<div><strong><strong>品牌字体 Typekit</strong></strong><span>HTML：<code>use.typekit.net/pfl7wcw.css</code>（elevon / proxima-nova，注释写明）</span></div>
+<div><strong><strong>未使用 React / R3F</strong></strong><span><strong>未找到</strong> <code>createRoot</code> / <code>@react-three/fiber</code> / <code>useFrame</code>；<code>React</code> 字面量极少，不足证明 React 应用壳</span></div>
+<div><strong><strong>未使用 GSAP</strong></strong><span>主包与入口 <strong>0</strong> 次 <code>gsap</code> / <code>GSAP</code></span></div>
+<div><strong><strong>未证实 / 勿写入栈</strong></strong><span>社交帖的 <strong>Opus 5.5</strong>：<strong>未</strong>出现在前端 bundle——只作来源备注，不当技术依赖</span></div>
+</div>
+<h2>核心效果怎么工作（源码 + 标明推测）</h2>
+<h3>1. Three.js r186 + WebGPURenderer（确认）</h3>
+<p>版本钉在 <code>__THREE__ = 186</code>。渲染器以 <code>WebGPURenderer</code> 为主；页面文案要求 WebGPU 或 WebGL2。<code>WebGLRenderer</code> 仅少量出现，更像回退/共享代码，不是主视觉路径。</p>
+<h3>2. Vite 多「站」叙事壳（确认分片；站名语义 = 观感+文件名）</h3>
+<p>入口 <code>index-*.js</code> 用 <code>__vite__mapdeps</code> 按需拉 <code>boot</code>、<code>shatter</code>、<code>museum</code>、<code>monument</code>、<code>bronze</code>、<code>neon</code>、<code>volt</code>、<code>breakout</code>、<code>logo</code> 等 chunk——整站是分段体验，不是单场景 loop。CRT 碎裂对应 <code>shatter</code> / <code>shards</code> 一类分片（<strong>碎裂物理细节 = 观感推测；chunk 名与加载图已确认</strong>）。</p>
+<h3>3. TSL 节点材质 + 后期（确认类名）</h3>
+<p>r186 Node System + <code>NodeMaterial</code> / <code>TSL</code> / <code>Fn(</code> 说明材质与部分后期在节点图里编；<code>Bloom</code> 与大量 <code>toneMapping</code> 把高光压进品牌片的「响」和暗部层次。</p>
+<h3>4. glTF 场景资产（确认加载器）</h3>
+<p><code>GLTFLoader</code> + <code>DRACOLoader</code> 负责站内网格；具体哪个站用哪只 glb <strong>未</strong>全部硬编码扫完——<strong>资源清单如何路由 = 部分推测</strong>。</p>
+<h3>5. PMREM 环境（确认）</h3>
+<p><code>PMREMGenerator</code>（及 <code>pmrem-*.js</code>）给金属/玻璃/霓虹更稳的 IBL，避免「塑料灰」。</p>
+<h3>6. UI 与无障碍壳（确认 DOM）</h3>
+<p><code>canvas#gl</code> 作主画面；左上 <code>ui-logo</code> 回起点；HTML 含 WebGPU/WebGL2 提示与英日 <code>data-en</code> 文案。字体走 Adobe Fonts kit，不内嵌可变字体文件。</p>
+<h3>7. 伪代码（忠实于包内符号）</h3>
+<pre class="md-code"><code>boot:
+  Vite module entry  assets/index-*.js
+  preload post-*.js          # Three.js r186 node/webgpu
+  canvas#gl
+  window.__THREE__ = "186"
+
+renderer:
+  WebGPURenderer             # primary (46 refs)
+  # WebGLRenderer traces (3) — fallback/shared, not the hero path
+  require WebGPU | WebGL2    # HTML copy
+
+stations (code-split):
+  __vite__mapdeps → boot, shatter, museum, monument,
+                    bronze, neon, volt, breakout, logo, …
+
+assets:
+  GLTFLoader + DRACOLoader
+  PMREMGenerator
+  Bloom + toneMapping
+  Typekit pfl7wcw
+
+not found:
+  React/R3F app shell, GSAP, "Opus 5.5" string in JS</code></pre>
+<h2>如果我来重做（学习向，非版本承诺）</h2>
+<ol>
+<li>先用 <strong>Three r186 + WebGPURenderer</strong> 搭一个 <code>canvas</code> 全屏壳，HTML 写明 WebGPU/WebGL2 门槛。  </li>
+<li>把叙事拆成 <strong>Vite 动态 import 的站</strong>（开场 / 碎裂 / 展厅…），每站一个 chunk，避免首包过大。  </li>
+<li>模型走 <strong>GLB + Draco</strong>；环境用 <strong>PMREM</strong>；响亮高光靠 <strong>Bloom + toneMapping</strong>，而不是无脑提高曝光。  </li>
+<li>品牌字体与 UI 文案（含回起点 logo）和 3D 画布分开层，3D 挂了 UI 还能导航。</li>
+</ol></div></details>
+    
+    <div class="dp-sec">当天另外 7 个</div>
+    <a class="mini" href="https://members-play.lacoste.com/ace-breaker-rg/gb/en/" target="_blank" rel="noopener">
+      <img src="../../thumbs/ace-breaker.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Ace Breaker</div><div class="mini-desc">Lacoste 品牌 WebGL 网球街机：球场、打击手感与游戏 UI，奖项级可玩广告。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://bootleg-bandicoot.opus5-5.demos.sulat.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/bootleg-bandicoot.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Bootleg Bandicoot</div><div class="mini-desc">Crash 味 3D 平台跳跃一枪打进标签页——Opus 5.5 系列里「整款游戏」冲击最直接的一发。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://pagoda.astra.demos.sulat.com/" target="_blank" rel="noopener">
+      <img src="../../thumbs/pagoda-astra.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="动效">动效</span></div>
+        <div class="mini-title">Pagoda (Astra)</div><div class="mini-desc">可环视的实时寺庙/宝塔场景：氛围光、静谧构图，Astra 系列里偏沉思的那一档。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://claude-creative-xbmc.vercel.app/" target="_blank" rel="noopener">
+      <img src="../../thumbs/point-lookout.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="动效">动效</span></div>
+        <div class="mini-title">Point Lookout</div><div class="mini-desc">北斯特拉德布罗克岛海岸实时景观：天空、地形、海面模块拼成的可交互写生。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://saurow-reel.vercel.app/" target="_blank" rel="noopener">
+      <img src="../../thumbs/reel-flux.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="动效">动效</span></div>
+        <div class="mini-title">Reel Flux</div><div class="mini-desc">WebGPU 3D 照片卷轴：波浪形变 + 惯性滚动，纯动效糖果，拖一下就停不下来。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://teleoperator.mindblown.ai/" target="_blank" rel="noopener">
+      <img src="../../thumbs/teleoperator.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Teleoperator</div><div class="mini-desc">浏览器里遥控旧金山路网的机器人出租车：Lombard 街可开，城市感密到像迷你开放世界。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="mini" href="https://wildbrush.vercel.app/" target="_blank" rel="noopener">
+      <img src="../../thumbs/wildbrush.webp" alt="" loading="lazy" decoding="async" width="112" height="70" />
+      <div class="mini-body"><div class="mini-row"><span class="tag" data-type="小游戏">小游戏</span></div>
+        <div class="mini-title">Wildbrush</div><div class="mini-desc">全屏 Three.js 开放世界：探索、地牢谜题与战斗，点开就是一整款可玩的网页 Zelda。</div></div>
+      <span class="mini-go" aria-hidden="true">↗</span>
+    </a>
+    <button type="button" class="dp-share" data-share>复制链接 / 分享</button>
+    <nav class="dp-nav"><a href="../2026-10-03/">‹ 10-03</a><a href="../../">全部日期</a><span>›</span></nav>
+    <p class="dp-foot">设计雷达 · 每天 8 个值得看的网站、App UI 和网页小游戏</p>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  var canon=document.querySelector('link[rel=canonical]').href;
+  var toastEl=document.getElementById('toast');
+  function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(function(){toastEl.classList.remove('show')},1800);}
+  function legacyCopy(){var t=document.createElement('textarea');t.value=canon;t.setAttribute('readonly','');t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();if(ok)toast('链接已复制');else window.prompt('复制这个链接',canon);}
+  function share(){
+    var data={title:document.title,text:document.querySelector('meta[name=description]').content,url:canon};
+    if(navigator.share){navigator.share(data).catch(function(e){if(e&&e.name!=='AbortError')copy();});return;}
+    copy();
+  }
+  function copy(){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(canon).then(function(){toast('链接已复制')},legacyCopy);}else legacyCopy();}
+  document.querySelectorAll('[data-share]').forEach(function(b){b.addEventListener('click',share)});
+})();
+</script>
+</body>
+</html>
