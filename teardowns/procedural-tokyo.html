@@ -1,0 +1,70 @@
+<h1>今日拆解 · Procedural Tokyo</h1>
+<ul>
+<li>Live: <a href="https://jeantimex.github.io/tokyo/" target="_blank" rel="noopener">https://jeantimex.github.io/tokyo/</a></li>
+<li>Author / 出品: jeantimex（个人项目，MIT 开源）· 源码 <a href="https://github.com/jeantimex/tokyo" target="_blank" rel="noopener">https://github.com/jeantimex/tokyo</a></li>
+<li>Source: X @jeantimex（2026-10-04 两条帖子，约 427 + 374 赞；社交帖提到 Opus 5.5 帮他搭的——<strong>前端包内未出现该字样</strong>）</li>
+<li>Bundle: Vite 产物 <code>assets/index-znnzXYiV.js</code>（约 5.3 MB）+ <code>assets/tileWorker-CWpwJ78l.js</code>；数据 <code>tiles/tokyo/manifest.json</code>（format 7，2026-10-05 刚重新编译）</li>
+<li>证据：对本页 HTML + 主包 + tileWorker 的抓取核对，对照作者 README 与 package.json（详见同目录 EVIDENCE.txt）</li>
+</ul>
+<h2>为何选它</h2>
+<p>今天 8 条里「哇」得最久的就是它：不是一个漂亮的小场景，而是<strong>一整座按真实数据搭起来的东京</strong>——东京站、涩谷十字路口、一根根钢梁搭出来的东京塔，车按真实路网靠左行驶、等红灯，电车沿真实铁路跑，体积云的影子扫过街道，天一黑窗户一格格亮起来。最难得的是它把「真实」和「生成」混得天衣无缝：楼的位置和高度是真的，窗户、霓虹、路面标线是代码现编的。对正在做「半真实半数字地球」主视觉的你，这是最好的参考：真数据打底 + 程序化细节 + 电影感光影。</p>
+<h2>实际在源码里找到的技术栈</h2>
+<div class="md-kv">
+<div><strong><strong>Three.js r186（WebGL 渲染）</strong></strong><span>主包里 <code>window.__THREE__</code> 注册处的版本常量 <code>"186"</code>；<code>WebGLRenderer</code> <strong>38</strong> 次；作者 package.json：<code>three ^0.186.1</code></span></div>
+<div><strong><strong>GLSL 着色器（自写 / 改写材质）</strong></strong><span><code>ShaderMaterial</code> <strong>16</strong> 次、<code>onBeforeCompile</code> <strong>15</strong> 次——立面窗户、水面、路面标线都在着色器里「现画」</span></div>
+<div><strong><strong>后期链：pmndrs postprocessing</strong></strong><span><code>EffectComposer</code> <strong>4</strong>、<code>EffectPass</code>、<code>BloomEffect</code>、<code>ToneMappingEffect</code>；package.json：<code>postprocessing ^6.39.5</code></span></div>
+<div><strong><strong>N8AO 环境光遮蔽</strong></strong><span>包内 <code>N8AO</code> <strong>6</strong> 次（含 "bundled N8AO neural denoise model" 报错文案）；package.json：<code>n8ao ^2.0.1</code></span></div>
+<div><strong><strong>takram 大气 + 体积云</strong></strong><span>包内 takram three-geospatial 源码注释 + <code>AerialPerspectiveEffect</code>；package.json：<code>@takram/three-atmosphere</code> / <code>three-clouds</code> / <code>three-geospatial</code></span></div>
+<div><strong><strong>Web Worker 切片流式加载</strong></strong><span><code>new Worker(tileWorker-*.js)</code>，线程数 <code>Math.min(4, CPU核数/2)</code>；数据是 256 m 一块的二进制切片（manifest <code>tileSize: 256</code>）</span></div>
+<div><strong><strong>InstancedMesh 批量物体</strong></strong><span><code>InstancedMesh</code> <strong>21</strong> 次——树、路灯、车、电线杆这类成千上万的重复物体一次画完</span></div>
+<div><strong><strong>真实开放数据（离线编译）</strong></strong><span>作者 README：日本 PLATEAU 3D 城市模型 + OpenStreetMap 路网 + 国土地理院（GSI）高程与航拍，离线编译成切片</span></div>
+<div><strong><strong>Vite 打包 + lil-gui 面板</strong></strong><span>package.json：<code>vite ^8.3.2</code>、<code>lil-gui</code>；包内 <code>lil-gui</code> <strong>66</strong> 次（右上角设置面板）</span></div>
+<div><strong><strong>未使用 WebGPU</strong></strong><span><code>WebGPURenderer</code> <strong>0</strong> 次——走的是成熟的 WebGL 路线</span></div>
+<div><strong><strong>未使用 React / GSAP / GLTF 模型加载</strong></strong><span><code>React</code> / <code>gsap</code> / <code>GLTFLoader</code> 均 <strong>0</strong> 次；树来自 ez-tree 程序化生成，不是导入的 Blender 模型</span></div>
+<div><strong><strong>未证实 / 勿写入栈</strong></strong><span>社交帖的 <strong>Opus 5.5</strong>：前端包内无 "Opus" / "Claude" 字样——只作来源备注（据作者称），不当技术依赖</span></div>
+</div>
+<h2>核心效果怎么工作（大白话 + 标明推测）</h2>
+<h3>1. 先「编译」城市，再在浏览器里「拼」城市（确认：README + manifest）</h3>
+<p>把整个城市原始数据直接塞进网页是不可能的（东京原始数据 3.6 GB）。作者先在自己电脑上跑一个「编译器」：把 PLATEAU 的楼、OpenStreetMap 的路、GSI 的地形，统一换算到同一张「米」为单位的网格里，切成 256 米一块的小二进制文件。网页打开时只下载你镜头附近的几块，像玩开放世界游戏一样边走边加载。</p>
+<h3>2. 后台工人负责「搭积木」（确认：tileWorker）</h3>
+<p>切片下载下来后，交给最多 4 个 Web Worker（浏览器的后台线程）把数据变成 3D 网格，主线程只管画画，所以飞起来不卡。</p>
+<h3>3. 楼是真的，窗户是「画」的（确认：ShaderMaterial / onBeforeCompile + README）</h3>
+<p>楼的轮廓和高度来自真实数据；远处用航拍照片贴墙，凑近了换成着色器现场生成的立面——按楼的用途画窗户、阳台、店招带，甚至「假装」窗户里有房间（interior mapping）。</p>
+<h3>4. 天空、云、光都是物理模拟（确认：takram + postprocessing + N8AO）</h3>
+<p>takram 的大气库算出真实的天空颜色和远处的空气透视（远山发蓝发灰）；体积云会在街上投下影子；N8AO 让墙角、楼缝有自然的暗部；最后 Bloom（泛光）和色调映射把夜景霓虹「点亮」。</p>
+<h3>5. 几千盏灯，不用几千个光源（确认：README 技术说明）</h3>
+<p>路灯、车灯被画成从上往下看的光斑贴图，地面读这张图就知道哪里亮——比真的放几千个灯便宜得多。水面是把城市倒过来再画一遍当倒影；鸟群在 GPU 顶点着色器里按时间计算位置，一千只鸟几乎不吃 CPU。</p>
+<h3>6. 交通和电车（确认：README；具体寻路算法细节 = 推测）</h3>
+<p>车沿 OpenStreetMap 的真实路网靠左行驶、遵守单行道和红绿灯、在路口排队；电车沿真实铁路线跑。</p>
+<h3>7. 伪代码（忠实于包内符号与 README）</h3>
+<pre class="md-code"><code>offline (author's machine):
+  fetch PLATEAU + OSM + GSI  →  compile  →  tiles/&lt;area&gt;/t_x_z.bin (256 m), terrain.bin, roads.json, manifest.json
+
+browser:
+  Vite bundle, Three.js r186, WebGLRenderer
+  load manifest → pick tiles near camera → Worker pool (≤4) meshes them
+  materials: ShaderMaterial / onBeforeCompile (facades, water mirror, road paint)
+  InstancedMesh: trees (ez-tree), lamps, cars, poles
+  sky: takram atmosphere + volumetric clouds (shadows)
+  post: postprocessing EffectComposer → N8AO → reflections → Bloom → ToneMapping
+  UI: lil-gui settings (area, time of day, traffic, clouds, quality)
+
+not found:
+  WebGPURenderer, React, GSAP, GLTFLoader, "Opus 5.5" string</code></pre>
+<h2>如果我来重做（学习向，非版本承诺）</h2>
+<ol>
+<li>先别碰真数据：用 Three.js 随机生成一片「方块楼群」（InstancedMesh），加一个昼夜滑块。</li>
+<li>给楼换一个 <code>onBeforeCompile</code> 着色器，让窗户按格子亮灭——这一步就能出「夜景城市」的味道。</li>
+<li>加 Bloom 后期，让亮窗和霓虹发光；再加雾，远处自然变淡。</li>
+<li>最后才考虑真数据：从 OpenStreetMap 导出一小块街区的楼轮廓，拉伸成楼。</li>
+</ol>
+<h2>自己试试（复制给 Grok 4.7 / Opus 5.5 / Astra）</h2>
+<pre class="md-code"><code>请帮我用 Three.js 做一个「迷你程序化夜景城市」，单个 index.html，手机和电脑都能打开。
+要求：
+- 用 InstancedMesh 随机生成 400 栋高低不一的方块楼，排成棋盘街区
+- 楼的材质用 onBeforeCompile 改着色器：按楼层和列画出窗户格子，夜里随机一部分窗户亮暖黄色，并且每隔几秒有几格亮灭
+- 右上角一个「时间」滑块（0–24 点）：白天天空蓝、楼是灰白；黄昏天空橙紫；夜里天空深蓝、窗户亮起
+- 街道上有 50 个小光点当车灯，沿街道来回移动
+- 加 UnrealBloomPass 泛光让窗户和车灯发光，加雾让远处变淡
+- 鼠标/手指拖动旋转视角，滚轮/双指缩放
+- 代码 250 行以内，每段写中文注释，最后告诉我改哪几个数字效果变化最明显</code></pre>
