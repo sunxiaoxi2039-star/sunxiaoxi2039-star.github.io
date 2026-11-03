@@ -356,6 +356,17 @@ a.day-link { text-decoration: none; display: inline-flex; align-items: baseline;
 .days-index a small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
+/* Topic teardowns strip (home, under the top bar) */
+.topics { max-width: 520px; margin: 12px auto 0; padding: 0 14px; }
+.topics a { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "k go" "t go" "s go"; align-items: center;
+  column-gap: 10px; padding: 11px 14px; border: 1px solid rgba(232,200,114,0.3); border-radius: 14px; background: var(--card);
+  color: var(--text); text-decoration: none; }
+.topics-k { grid-area: k; font-size: 11px; letter-spacing: 0.08em; color: var(--gold); font-weight: 600; }
+.topics-t { grid-area: t; font-size: 15px; font-weight: 600; margin-top: 2px; }
+.topics a small { grid-area: s; display: block; color: var(--muted); font-size: 12px; margin-top: 2px; line-height: 1.4; }
+.topics-go { grid-area: go; color: var(--gold); font-size: 20px; }
+@media (min-width: 560px) { .topics { padding: 0 20px; } }
+
 /* Day page */
 body.dp-body { padding-top: 0; }
 .dp-top {
