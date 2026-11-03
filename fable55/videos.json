@@ -1,0 +1,6821 @@
+{
+ "generated": "2026-11-03",
+ "model": "Fable 5.5（社区自称，Anthropic 未官宣）",
+ "schema": "回链=原帖 / 对象=作者 / 类型=雷达大类 / 子类 / 摘要=一句话 / 来源=收录自哪份索引",
+ "stats": {
+  "total": 273,
+  "by_sub": {
+   "游戏互动": 37,
+   "动态图形": 156,
+   "科普解释": 12,
+   "3D 场景": 36,
+   "短片": 21,
+   "发布片": 11
+  },
+  "by_cat": {
+   "小游戏": 37,
+   "动效": 236
+  },
+  "by_author_top": [
+   [
+    "@imjustnewatai",
+    25
+   ],
+   [
+    "@chetaslua",
+    24
+   ],
+   [
+    "@dummerspast39",
+    15
+   ],
+   [
+    "@blueemi99",
+    11
+   ],
+   [
+    "@notjazii",
+    9
+   ],
+   [
+    "@atomtanstudio",
+    8
+   ],
+   [
+    "@AISuperDomain",
+    7
+   ],
+   [
+    "@ishuagra02",
+    6
+   ],
+   [
+    "@badboyfoxy",
+    6
+   ],
+   [
+    "@JaydenDavisNC",
+    5
+   ],
+   [
+    "@leo114119",
+    5
+   ],
+   [
+    "@AI_Screening",
+    5
+   ],
+   [
+    "@cherry_mx_reds",
+    4
+   ],
+   [
+    "@vib3coded",
+    4
+   ],
+   [
+    "@Mr_Salio",
+    4
+   ]
+  ],
+  "by_tech": {
+   "canvas": 160,
+   "web-audio": 12,
+   "blender": 14,
+   "threejs": 14,
+   "svg": 7,
+   "hyperframes": 1,
+   "remotion": 1,
+   "elevenlabs": 4,
+   "webgpu": 1,
+   "ffmpeg": 1,
+   "python": 1,
+   "playable": 1
+  },
+  "with_prompt": 13,
+  "need_decision": 58,
+  "sources": {
+   "clawshelf (billyhetech/awesome-fable5-5-videos)": 199,
+   "skillry (yihui-dev/awesome-fable5-5-videos)": 82,
+   "coolbat/awesome-fable-5.5-usecase": 170
+  }
+ },
+ "items": [
+  {
+   "id": "2106590326634983710",
+   "回链": "https://x.com/MozeTech/status/2106590326634983710",
+   "对象": "@MozeTech",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "把 Minecraft 的挖掘建造合进宝可梦真新镇，一次生成",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 1725611,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 159,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/mozetech-983710/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/mozetech-983710/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "来源间大类不一致：clawshelf=games-interactive / coolbat=Interactive 3D"
+   ],
+   "票拟": "按子类收录"
+  },
+  {
+   "id": "2117169796290916732",
+   "回链": "https://x.com/chetaslua/status/2117169796290916732",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "纯代码一次生成的动画短片，Fable 5.5 热度最高的一条",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": ".\nRun the same prompt I used for the test (it’s in the screenshot) and see for yourself.\n\nDon’t rely on Grok for basic reasoning like this. Grok doesn’t have up-to-date knowledge of niche stuff. Either join the community or run the test yourself.\n\nAlso, a knowledge cutoff doesn’t mean a model knows everything before that date. Sometimes a model doesn’t know about an event even if it happened before its cutoff. This test shows that too.\n\nRun the same prompt on regular Opus 5.5 and the quality drops. On Fable 5.1 it’s worse.",
+   "tech": [
+    "canvas"
+   ],
+   "views": 977558,
+   "posted_at": null,
+   "added": "2026-11-02",
+   "duration_s": 81,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-916732/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-916732/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105825930799432073",
+   "回链": "https://x.com/cherry_mx_reds/status/2105825930799432073",
+   "对象": "@cherry_mx_reds",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一个点生成的皮克斯风动画",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 828141,
+   "posted_at": "2026-10-02T01:03:20Z",
+   "added": "2026-10-10",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/cherry-mx-reds-432073/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/cherry-mx-reds-432073/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107180724399075488",
+   "回链": "https://x.com/anshuc/status/2107180724399075488",
+   "对象": "@anshuc",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "POKERMON：宝可梦 × Balatro 卡牌游戏，拿到权限后一小时一次生成，含音乐和演示片",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "web-audio"
+   ],
+   "views": 774871,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 47,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/anshuc-075488/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/anshuc-075488/video.mp4",
+   "demo_url": "https://pokermon.anshu.dev",
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2109948006770319580",
+   "回链": "https://x.com/kirillk_web3/status/2109948006770319580",
+   "对象": "@kirillk_web3",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「扎克伯格承认了什么」Meta 前沿模型解说动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 700682,
+   "posted_at": null,
+   "added": "2026-10-14",
+   "duration_s": 69,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/kirillk-web3-319580/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/kirillk-web3-319580/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105757136219504862",
+   "回链": "https://x.com/chetaslua/status/2105757136219504862",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "超人穿越 20 种艺术风格的连续动画",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 537000,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 40,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-504862/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-504862/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106081142143168580",
+   "回链": "https://x.com/imjustnewatai/status/2106081142143168580",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "科普解释",
+   "摘要": "人类进步与未来三十年",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": "A video of all human progress, then 30 years into the future",
+   "tech": [
+    "canvas",
+    "web-audio"
+   ],
+   "views": 355293,
+   "posted_at": "2026-10-02T17:57:28Z",
+   "added": "2026-10-10",
+   "duration_s": 189,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-168580/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-168580/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105822678519001360",
+   "回链": "https://x.com/zAdrielsan/status/2105822678519001360",
+   "对象": "@zAdrielsan",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "Bend2 三体物理模拟",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 344224,
+   "posted_at": "2026-10-02T00:50:25Z",
+   "added": "2026-10-10",
+   "duration_s": 134,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/zadrielsan-001360/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/zadrielsan-001360/video.mp4",
+   "demo_url": "https://github.com/AdrielSantana/three-bodies",
+   "需要拍板": [
+    "来源间大类不一致：clawshelf=3d-scenes / skillry=3d / coolbat=Interactive 3D and games"
+   ],
+   "票拟": "按子类收录"
+  },
+  {
+   "id": "2107086714820870617",
+   "回链": "https://x.com/JaydenDavisNC/status/2107086714820870617",
+   "对象": "@JaydenDavisNC",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "用 Blender 做的 dots 角色动画",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "blender",
+    "web-audio"
+   ],
+   "views": 290869,
+   "posted_at": "2026-10-05T12:33:15Z",
+   "added": "2026-10-13",
+   "duration_s": 16,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/jaydendavisnc-870617/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/jaydendavisnc-870617/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2109244702235275680",
+   "回链": "https://x.com/chetaslua/status/2109244702235275680",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「Opus 5.5 正在路由到新模型」的爆料帖（附动画）",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 255295,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 30,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-275680/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-275680/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2109205399513489436",
+   "回链": "https://x.com/vib3coded/status/2109205399513489436",
+   "对象": "@vib3coded",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "果冻西瓜切片动画，作者说用 Opus 以三分之一的价格复现",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 234768,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 18,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/vib3coded-489436/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/vib3coded-489436/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106095190285144331",
+   "回链": "https://x.com/cherry_mx_reds/status/2106095190285144331",
+   "对象": "@cherry_mx_reds",
+   "类型": "动效",
+   "子类": "科普解释",
+   "摘要": "15 秒四万年艺术史",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 213254,
+   "posted_at": "2026-10-02T18:53:17Z",
+   "added": "2026-10-10",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/cherry-mx-reds-144331/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/cherry-mx-reds-144331/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2117224839010459987",
+   "回链": "https://x.com/chetaslua/status/2117224839010459987",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "66 秒短片：狐狸、纸鸟、云、字幕、配乐、音效全是 Python 代码，零图像模型",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 202356,
+   "posted_at": null,
+   "added": "2026-11-02",
+   "duration_s": 58,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-459987/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-459987/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2109192419145109624",
+   "回链": "https://x.com/superalesha/status/2109192419145109624",
+   "对象": "@superalesha",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「Dario 发布 Fable」梗动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 189739,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/superalesha-109624/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/superalesha-109624/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "更像爆料/梗/教程帖，而非作品"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2117226039998906520",
+   "回链": "https://x.com/kimmonismus/status/2117226039998906520",
+   "对象": "@kimmonismus",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "「这大概是最新的 Fable 5.5 checkpoint」：纯代码视频",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 180463,
+   "posted_at": null,
+   "added": "2026-11-02",
+   "duration_s": 81,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/kimmonismus-906520/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/kimmonismus-906520/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2113503273361777086",
+   "回链": "https://x.com/chetaslua/status/2113503273361777086",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Kimi K3.1 Pro 与 Fable 5.5 的复杂叠层场景 SVG 对比",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 179268,
+   "posted_at": null,
+   "added": "2026-10-23",
+   "duration_s": 10,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-777086/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-777086/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2105816670896009224",
+   "回链": "https://x.com/cherry_mx_reds/status/2105816670896009224",
+   "对象": "@cherry_mx_reds",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一句「做个酷动画」，15 分钟后出来的短动画",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 164140,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 17,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/cherry-mx-reds-009224/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/cherry-mx-reds-009224/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111212505947357651",
+   "回链": "https://x.com/ziwenxu_/status/2111212505947357651",
+   "对象": "@ziwenxu_",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「第一部 Claude 做的动画番」",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 157058,
+   "posted_at": null,
+   "added": "2026-10-17",
+   "duration_s": 1543,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/ziwenxu-357651/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/ziwenxu-357651/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105808539495354669",
+   "回链": "https://x.com/imjustnewatai/status/2105808539495354669",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "动画短片",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 155246,
+   "posted_at": "2026-10-01T23:54:14Z",
+   "added": "2026-10-10",
+   "duration_s": 62,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-354669/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-354669/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2117287037170778544",
+   "回链": "https://x.com/motion_so/status/2117287037170778544",
+   "对象": "@motion_so",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「用 Fable 5.5 做发布视频」（motion.so 的发布片）",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 138408,
+   "posted_at": null,
+   "added": "2026-11-02",
+   "duration_s": 80,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/motion-so-778544/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/motion-so-778544/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2109424502237016076",
+   "回链": "https://x.com/vib3coded/status/2109424502237016076",
+   "对象": "@vib3coded",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "果冻之王：同一提示下 Opus 5.5 与 Astra、Fable、Sonnet 的对比",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 133042,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 17,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/vib3coded-016076/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/vib3coded-016076/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106112279079199037",
+   "回链": "https://x.com/mindblown_ai/status/2106112279079199037",
+   "对象": "@mindblown_ai",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "伦巴底街驾驶模拟",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "threejs"
+   ],
+   "views": 108932,
+   "posted_at": "2026-10-02T20:01:11Z",
+   "added": "2026-10-10",
+   "duration_s": 73,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/mindblown-ai-199037/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/mindblown-ai-199037/video.mp4",
+   "demo_url": "https://teleoperator.mindblown.ai/",
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2112253485404369270",
+   "回链": "https://x.com/SoundDobad/status/2112253485404369270",
+   "对象": "@SoundDobad",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「Fable 5.5 审计我让 Astra 维护的代码库」梗动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 107366,
+   "posted_at": null,
+   "added": "2026-10-20",
+   "duration_s": 17,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/sounddobad-369270/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/sounddobad-369270/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "更像爆料/梗/教程帖，而非作品"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2111458379386523724",
+   "回链": "https://x.com/chetaslua/status/2111458379386523724",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "超人 3D 版穿越多种艺术风格，Blender Python 写出来的",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "blender"
+   ],
+   "views": 101984,
+   "posted_at": null,
+   "added": "2026-10-18",
+   "duration_s": 78,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-523724/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-523724/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2111658365382541523",
+   "回链": "https://x.com/renmu2017/status/2111658365382541523",
+   "对象": "@renmu2017",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「Fable 5.5 这个动画最牛逼之处」（中文帖）",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": "的人肯定都没设想过自行车怎么骑鹈鹕，但是Fable5.5思考了，并给出了最合乎物理世界规律的方法\n\n这个逻辑性和严谨性，还没有哪个现有模型能望其项背 https://t.co/l6IR0zYYo7",
+   "tech": [
+    "canvas"
+   ],
+   "views": 95723,
+   "posted_at": null,
+   "added": "2026-10-19",
+   "duration_s": 18,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/renmu2017-541523/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/renmu2017-541523/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2117209849842761983",
+   "回链": "https://x.com/leo114119/status/2117209849842761983",
+   "对象": "@leo114119",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "GPT 6.2 Astra 与 Fable 5.5 纯前端代码动画对比（中文帖）",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 88117,
+   "posted_at": null,
+   "added": "2026-11-02",
+   "duration_s": 62,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/leo114119-761983/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/leo114119-761983/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2112275947634446639",
+   "回链": "https://x.com/dummerspast39/status/2112275947634446639",
+   "对象": "@dummerspast39",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "《Dyson Fragment》：单个 HTML、约 1.5 小时做的 91 秒作品",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 86990,
+   "posted_at": null,
+   "added": "2026-10-20",
+   "duration_s": 91,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-446639/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-446639/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111097153074470950",
+   "回链": "https://x.com/Mr_Salio/status/2111097153074470950",
+   "对象": "@Mr_Salio",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一次生成的纽约电影感场景，有反射和光照，全部是代码",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 86981,
+   "posted_at": null,
+   "added": "2026-10-18",
+   "duration_s": 39,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/mr-salio-470950/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/mr-salio-470950/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2116307188155400526",
+   "回链": "https://x.com/CranelAnos/status/2116307188155400526",
+   "对象": "@CranelAnos",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "「Deepseek Waifu」最终 Boss 战",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 85681,
+   "posted_at": null,
+   "added": "2026-10-31",
+   "duration_s": 30,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/cranelanos-400526/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/cranelanos-400526/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106045364868419727",
+   "回链": "https://x.com/ishuagra02/status/2106045364868419727",
+   "对象": "@ishuagra02",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Claude 日常生活动画",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 84869,
+   "posted_at": "2026-10-02T15:35:18Z",
+   "added": "2026-10-10",
+   "duration_s": 91,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/ishuagra02-419727/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/ishuagra02-419727/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107803303832936679",
+   "回链": "https://x.com/oalanicolas/status/2107803303832936679",
+   "对象": "@oalanicolas",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "完全跑在浏览器里的 GTA 风开放世界游戏（Fable 5.5 + Opus 5.5）",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 84194,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 110,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/oalanicolas-936679/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/oalanicolas-936679/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111519245733654775",
+   "回链": "https://x.com/dummerspast39/status/2111519245733654775",
+   "对象": "@dummerspast39",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "自行车骑着鹈鹕的 SVG 动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "svg"
+   ],
+   "views": 80007,
+   "posted_at": null,
+   "added": "2026-10-18",
+   "duration_s": 18,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-654775/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-654775/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105985484472377531",
+   "回链": "https://x.com/Saccc_c/status/2105985484472377531",
+   "对象": "@Saccc_c",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一条提示词生成的动态演示片",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "hyperframes",
+    "remotion"
+   ],
+   "views": 77035,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/saccc-c-377531/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/saccc-c-377531/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106031355922387163",
+   "回链": "https://x.com/blueemi99/status/2106031355922387163",
+   "对象": "@blueemi99",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "节奏很快的动态设计短片，作者拿来和之前 Opus 5.5 的对比",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 77009,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/blueemi99-387163/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/blueemi99-387163/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105884276864782557",
+   "回链": "https://x.com/chetaslua/status/2105884276864782557",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Hugging Face 事件动画短片",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "blender",
+    "elevenlabs"
+   ],
+   "views": 76088,
+   "posted_at": "2026-10-02T04:55:11Z",
+   "added": "2026-10-10",
+   "duration_s": 221,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-782557/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-782557/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2114462105512644974",
+   "回链": "https://x.com/mirku21/status/2114462105512644974",
+   "对象": "@mirku21",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "引用 Boris Cherny 技巧的动画帖",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 71324,
+   "posted_at": null,
+   "added": "2026-10-27",
+   "duration_s": 25,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/mirku21-644974/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/mirku21-644974/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "更像爆料/梗/教程帖，而非作品"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2105783511433318451",
+   "回链": "https://x.com/SPAC89/status/2105783511433318451",
+   "对象": "@SPAC89",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Fable 5.5 与 GPT 6.1 速度/质量对比测试",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 70556,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 20,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/spac89-318451/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/spac89-318451/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2110377591450259487",
+   "回链": "https://x.com/CampbellKaleb23/status/2110377591450259487",
+   "对象": "@CampbellKaleb23",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "想象 Dario 办公室发布前 15 分钟的「现场画面」",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 69171,
+   "posted_at": null,
+   "added": "2026-10-15",
+   "duration_s": 25,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/campbellkaleb23-259487/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/campbellkaleb23-259487/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "更像爆料/梗/教程帖，而非作品"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2111577334436319355",
+   "回链": "https://x.com/dummerspast39/status/2111577334436319355",
+   "对象": "@dummerspast39",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "手柄骑自行车骑鹈鹕再骑自行车的套娃 SVG 动画",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "svg"
+   ],
+   "views": 67505,
+   "posted_at": null,
+   "added": "2026-10-18",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-319355/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-319355/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107218218955788429",
+   "回链": "https://x.com/m_ferreira28/status/2107218218955788429",
+   "对象": "@m_ferreira28",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "复刻一款未发售游戏的 UI，作者说几乎一模一样",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 66479,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 34,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/m-ferreira28-788429/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/m-ferreira28-788429/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "来源间大类不一致：clawshelf=games-interactive / coolbat=Motion design and code-drawn animation"
+   ],
+   "票拟": "按子类收录"
+  },
+  {
+   "id": "2105792187200147541",
+   "回链": "https://x.com/chetaslua/status/2105792187200147541",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "漫威 DC 英雄动画",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 66349,
+   "posted_at": "2026-10-01T22:49:15Z",
+   "added": "2026-10-10",
+   "duration_s": 46,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-147541/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-147541/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106755903223664708",
+   "回链": "https://x.com/blueemi99/status/2106755903223664708",
+   "对象": "@blueemi99",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一幅油画和它的绘制延时",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 65548,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 79,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/blueemi99-664708/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/blueemi99-664708/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107108802440900621",
+   "回链": "https://x.com/blueemi99/status/2107108802440900621",
+   "对象": "@blueemi99",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "一次生成的像素游戏：扮演 Clawd 打虫子和 Boss",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 62724,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 84,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/blueemi99-900621/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/blueemi99-900621/video.mp4",
+   "demo_url": "https://claude.ai/artifact/Bor4eKVfaKakr6QSfoT8UZ",
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2117221957104239010",
+   "回链": "https://x.com/notjazii/status/2117221957104239010",
+   "对象": "@notjazii",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「做点有 AGI 感的东西」：约一小时、无外部素材的纯代码动画",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 61610,
+   "posted_at": null,
+   "added": "2026-11-02",
+   "duration_s": 263,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/notjazii-239010/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/notjazii-239010/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2106369929813594134",
+   "回链": "https://x.com/ishuagra02/status/2106369929813594134",
+   "对象": "@ishuagra02",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Claude 跟着节拍跳舞",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 61533,
+   "posted_at": "2026-10-03T13:05:00Z",
+   "added": "2026-10-10",
+   "duration_s": 51,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/ishuagra02-594134/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/ishuagra02-594134/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2109633920568377583",
+   "回链": "https://x.com/testingcatalog/status/2109633920568377583",
+   "对象": "@testingcatalog",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「Opus 5.5 被路由到另一个模型」的爆料帖",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 61030,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 29,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/testingcatalog-377583/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/testingcatalog-377583/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "更像爆料/梗/教程帖，而非作品"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2107590323128193174",
+   "回链": "https://x.com/imjustnewatai/status/2107590323128193174",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "用 8 步解释 OpenAI 的 Navier–Stokes 证明，5 分钟 3D 视频",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 60424,
+   "posted_at": null,
+   "added": "2026-10-15",
+   "duration_s": 302,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-193174/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-193174/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106610341694345660",
+   "回链": "https://x.com/Justin_lords/status/2106610341694345660",
+   "对象": "@Justin_lords",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "用 GPT-Astra 6 做动画视频的教程帖",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 59857,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 323,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/justin-lords-345660/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/justin-lords-345660/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "更像爆料/梗/教程帖，而非作品"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2111590674961154433",
+   "回链": "https://x.com/Mr_Salio/status/2111590674961154433",
+   "对象": "@Mr_Salio",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "游戏过场风格的蜘蛛侠场景，约 7 小时、全部用代码从零做",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 58771,
+   "posted_at": null,
+   "added": "2026-10-19",
+   "duration_s": 62,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/mr-salio-154433/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/mr-salio-154433/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2116882694026269148",
+   "回链": "https://x.com/chetaslua/status/2116882694026269148",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Three.js 写实鹈鹕骑车动画，一次生成，附知识截止日期验证",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 58640,
+   "posted_at": null,
+   "added": "2026-11-01",
+   "duration_s": 16,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-269148/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-269148/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2106638839666373114",
+   "回链": "https://x.com/abhinavflac/status/2106638839666373114",
+   "对象": "@abhinavflac",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Eminem《Godzilla》MV 复刻，每一帧都是 JavaScript 画的扁平图形",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 56942,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 45,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/abhinavflac-373114/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/abhinavflac-373114/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2117276551247278264",
+   "回链": "https://x.com/SahilPanhotra/status/2117276551247278264",
+   "对象": "@SahilPanhotra",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「我觉得赢家很明显」对比帖",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 56529,
+   "posted_at": null,
+   "added": "2026-11-02",
+   "duration_s": 81,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/sahilpanhotra-278264/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/sahilpanhotra-278264/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2107939634705559974",
+   "回链": "https://x.com/dr_cintas/status/2107939634705559974",
+   "对象": "@dr_cintas",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「这套工作流帮你省几千块」的教程帖",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 56036,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 22,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/dr-cintas-559974/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/dr-cintas-559974/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "更像爆料/梗/教程帖，而非作品"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2103847223557529606",
+   "回链": "https://x.com/_MaxBlade/status/2103847223557529606",
+   "对象": "@_MaxBlade",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "50 人同场的浏览器大逃杀游戏",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "threejs"
+   ],
+   "views": 54566,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 53,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/maxblade-529606/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/maxblade-529606/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2114024932833194391",
+   "回链": "https://x.com/luccacerf/status/2114024932833194391",
+   "对象": "@luccacerf",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "「很多人问我怎么做游戏」：游戏制作演示",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 54168,
+   "posted_at": null,
+   "added": "2026-10-25",
+   "duration_s": 60,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/luccacerf-194391/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/luccacerf-194391/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2116861637890379891",
+   "回链": "https://x.com/notjazii/status/2116861637890379891",
+   "对象": "@notjazii",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "自行车骑在鹈鹕上",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 53783,
+   "posted_at": null,
+   "added": "2026-11-02",
+   "duration_s": 26,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/notjazii-379891/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/notjazii-379891/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2116652334734332212",
+   "回链": "https://x.com/leo114119/status/2116652334734332212",
+   "对象": "@leo114119",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "鹈鹕骑车并排对比：Fable 5.5 写实风 vs Gemini 4 Carbon 漫画风",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 53443,
+   "posted_at": null,
+   "added": "2026-11-02",
+   "duration_s": 8,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/leo114119-332212/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/leo114119-332212/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2117381015069212910",
+   "回链": "https://x.com/ChrisGPT/status/2117381015069212910",
+   "对象": "@ChrisGPT",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Fable 5.5 / Opus 5.6 的首次动画测试",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 51182,
+   "posted_at": null,
+   "added": "2026-11-03",
+   "duration_s": 9,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chrisgpt-212910/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chrisgpt-212910/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107615459822453187",
+   "回链": "https://x.com/imjustnewatai/status/2107615459822453187",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "解释 OpenAI 关于 zeta 零点无零带证明的 2 分钟 3D 动画",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 50774,
+   "posted_at": null,
+   "added": "2026-10-15",
+   "duration_s": 133,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-453187/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-453187/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111193444345667813",
+   "回链": "https://x.com/legit_api/status/2111193444345667813",
+   "对象": "@legit_api",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "VoxelBench 一条提示词做出的体素建筑",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 50621,
+   "posted_at": null,
+   "added": "2026-10-17",
+   "duration_s": 113,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/legit-api-667813/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/legit-api-667813/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2110808933074092371",
+   "回链": "https://x.com/chetaslua/status/2110808933074092371",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "通过 Python 在 Blender 里做的 3D 动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "blender"
+   ],
+   "views": 50117,
+   "posted_at": null,
+   "added": "2026-10-17",
+   "duration_s": 102,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-092371/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-092371/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111800377125556549",
+   "回链": "https://x.com/cutefishos/status/2111800377125556549",
+   "对象": "@cutefishos",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "从零重做的 Cutefish 桌面首次预览",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 48067,
+   "posted_at": null,
+   "added": "2026-10-19",
+   "duration_s": 147,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/cutefishos-556549/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/cutefishos-556549/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2117261864904351848",
+   "回链": "https://x.com/notjazii/status/2117261864904351848",
+   "对象": "@notjazii",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "战斗动画",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 48032,
+   "posted_at": null,
+   "added": "2026-11-03",
+   "duration_s": 30,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/notjazii-351848/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/notjazii-351848/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107459553369760024",
+   "回链": "https://x.com/blueemi99/status/2107459553369760024",
+   "对象": "@blueemi99",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "花 25 美元做出来的 brainrot 风格剪辑",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 47091,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 30,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/blueemi99-760024/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/blueemi99-760024/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107262468502544435",
+   "回链": "https://x.com/AndrewOnXYZ/status/2107262468502544435",
+   "对象": "@AndrewOnXYZ",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "经典火柴人打斗动画，动作非常顺滑",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 46253,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 156,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/andrewonxyz-544435/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/andrewonxyz-544435/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2115849659797373038",
+   "回链": "https://x.com/AI_Screening/status/2115849659797373038",
+   "对象": "@AI_Screening",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Three.js 多模型对比",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "threejs"
+   ],
+   "views": 44172,
+   "posted_at": null,
+   "added": "2026-10-31",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/ai-screening-373038/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/ai-screening-373038/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2109248100892311765",
+   "回链": "https://x.com/karanC_12/status/2109248100892311765",
+   "对象": "@karanC_12",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「Opus 5.5 又在路由到别的模型了」的爆料帖",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 43523,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 82,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/karanc-12-311765/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/karanc-12-311765/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2111060420505268729",
+   "回链": "https://x.com/chetaslua/status/2111060420505268729",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "纯数学驱动的音乐可视化",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "web-audio"
+   ],
+   "views": 43374,
+   "posted_at": null,
+   "added": "2026-10-17",
+   "duration_s": 71,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-268729/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-268729/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105889407056109991",
+   "回链": "https://x.com/imjustnewatai/status/2105889407056109991",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "3D 连锁反应装置",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": "Extremely complicated 3d rube goldberg machine, accurate physics, aaa gfx, vfx",
+   "tech": [
+    "canvas"
+   ],
+   "views": 42747,
+   "posted_at": "2026-10-02T05:15:34Z",
+   "added": "2026-10-10",
+   "duration_s": 60,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-109991/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-109991/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106056420131029473",
+   "回链": "https://x.com/vib3coded/status/2106056420131029473",
+   "对象": "@vib3coded",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "可以戳、可以切的果冻西瓜互动玩具（WebGPU）",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "webgpu"
+   ],
+   "views": 42502,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 17,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/vib3coded-029473/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/vib3coded-029473/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2112591205750001745",
+   "回链": "https://x.com/devteamdrew/status/2112591205750001745",
+   "对象": "@devteamdrew",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「Fable 5.5 终于要来了？（又一次）」梗动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 42298,
+   "posted_at": null,
+   "added": "2026-10-21",
+   "duration_s": 22,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/devteamdrew-001745/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/devteamdrew-001745/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "更像爆料/梗/教程帖，而非作品"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2116975056014430419",
+   "回链": "https://x.com/chetaslua/status/2116975056014430419",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Three.js 汽车动画",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "threejs"
+   ],
+   "views": 41775,
+   "posted_at": null,
+   "added": "2026-11-02",
+   "duration_s": 17,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-430419/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-430419/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105983571848741045",
+   "回链": "https://x.com/ziwenxu_/status/2105983571848741045",
+   "对象": "@ziwenxu_",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "「从第一天开始的文明」：全代码绘制、没有任何素材的短片",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 41771,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 186,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/ziwenxu-741045/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/ziwenxu-741045/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2112454035592638879",
+   "回链": "https://x.com/chetaslua/status/2112454035592638879",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「新 Fable 有独特理解力」的评论帖（附动画）",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 41732,
+   "posted_at": null,
+   "added": "2026-10-20",
+   "duration_s": 10,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-638879/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-638879/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "更像爆料/梗/教程帖，而非作品"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2105771088374288692",
+   "回链": "https://x.com/mesmerlord/status/2105771088374288692",
+   "对象": "@mesmerlord",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "两个模型做同一条发布预告片的对比",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 40451,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 80,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/mesmerlord-288692/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/mesmerlord-288692/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2108221060655055242",
+   "回链": "https://x.com/blueemi99/status/2108221060655055242",
+   "对象": "@blueemi99",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "不到一小时一次生成的 Minecraft 克隆：UI、生物、群系、洞穴、物品都有",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 40119,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 89,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/blueemi99-055242/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/blueemi99-055242/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "来源间大类不一致：clawshelf=games-interactive / coolbat=Interactive 3D"
+   ],
+   "票拟": "按子类收录"
+  },
+  {
+   "id": "2106076940558082297",
+   "回链": "https://x.com/chetaslua/status/2106076940558082297",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "2010–2026 网络热梗动画",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 39539,
+   "posted_at": "2026-10-02T17:40:46Z",
+   "added": "2026-10-10",
+   "duration_s": 98,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-082297/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-082297/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2116945827738665060",
+   "回链": "https://x.com/abhinavflac/status/2116945827738665060",
+   "对象": "@abhinavflac",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "可互动的 3D 历史帆船，零样本提示做出来的「活」场景",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 38915,
+   "posted_at": null,
+   "added": "2026-11-02",
+   "duration_s": 84,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/abhinavflac-665060/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/abhinavflac-665060/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2109191246715462070",
+   "回链": "https://x.com/imjustnewatai/status/2109191246715462070",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "四个乐章的交响曲，每个音符都画了出来",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": "Write a beautiful symphony\n\nrecord a video of it when you're done.",
+   "tech": [
+    "canvas"
+   ],
+   "views": 37701,
+   "posted_at": "2026-10-11T07:55:54Z",
+   "added": "2026-10-13",
+   "duration_s": 578,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-462070/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-462070/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107523510079738228",
+   "回链": "https://x.com/spakhm/status/2107523510079738228",
+   "对象": "@spakhm",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "让多个 AI 智能体在超低带宽下协作拆弹的互动演示",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 37457,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 8,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/spakhm-738228/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/spakhm-738228/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2116544959880778169",
+   "回链": "https://x.com/Hesamation/status/2116544959880778169",
+   "对象": "@Hesamation",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「据说是 Fable 5.5 Max 的输出」",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "svg"
+   ],
+   "views": 36735,
+   "posted_at": null,
+   "added": "2026-11-01",
+   "duration_s": 8,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/hesamation-778169/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/hesamation-778169/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2105934928483701214",
+   "回链": "https://x.com/chetaslua/status/2105934928483701214",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Hugging Face 音乐动画",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "blender",
+    "elevenlabs"
+   ],
+   "views": 35983,
+   "posted_at": "2026-10-02T08:16:27Z",
+   "added": "2026-10-10",
+   "duration_s": 157,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-701214/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-701214/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111157145102397817",
+   "回链": "https://x.com/chetaslua/status/2111157145102397817",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "只给一条发布会视频，用 Blender Python + ElevenLabs 做出的发布片",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "blender"
+   ],
+   "views": 33652,
+   "posted_at": null,
+   "added": "2026-10-17",
+   "duration_s": 120,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-397817/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-397817/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111893133206409709",
+   "回链": "https://x.com/badboyfoxy/status/2111893133206409709",
+   "对象": "@badboyfoxy",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「Fable 5.5 之后的模型都太强了」梗动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 33574,
+   "posted_at": null,
+   "added": "2026-10-19",
+   "duration_s": 25,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/badboyfoxy-409709/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/badboyfoxy-409709/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "更像爆料/梗/教程帖，而非作品"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2111832232323351001",
+   "回链": "https://x.com/alxfazio/status/2111832232323351001",
+   "对象": "@alxfazio",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「Fable 5.5 看到我代码库里所有要修的东西」梗动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 31653,
+   "posted_at": null,
+   "added": "2026-10-19",
+   "duration_s": 17,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/alxfazio-351001/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/alxfazio-351001/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "更像爆料/梗/教程帖，而非作品"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2109853948647711057",
+   "回链": "https://x.com/ann_nnng/status/2109853948647711057",
+   "对象": "@ann_nnng",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "全息 CD 效果：Muse Wonder、GPT-6 Astra、Opus 5.5、Fable 5.5 对比",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 29986,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 16,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/ann-nnng-711057/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/ann-nnng-711057/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2116893197939224714",
+   "回链": "https://x.com/notjazii/status/2116893197939224714",
+   "对象": "@notjazii",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "同一提示词下 Fable 5.5 与 Opus 5.5 的风格对比",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 29967,
+   "posted_at": null,
+   "added": "2026-11-02",
+   "duration_s": 36,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/notjazii-224714/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/notjazii-224714/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2109283855282933951",
+   "回链": "https://x.com/notjazii/status/2109283855282933951",
+   "对象": "@notjazii",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "「Anthropic 在测新模型」：Three.js + Blender 3D 测试",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "blender",
+    "threejs"
+   ],
+   "views": 28646,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 44,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/notjazii-933951/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/notjazii-933951/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2109791341802885209",
+   "回链": "https://x.com/ArtificialAnlys/status/2109791341802885209",
+   "对象": "@ArtificialAnlys",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "「我们测过智能，现在该看见它了」互动演示",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "blender",
+    "threejs"
+   ],
+   "views": 28279,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 40,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/artificialanlys-885209/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/artificialanlys-885209/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2113192599049953747",
+   "回链": "https://x.com/birdabo/status/2113192599049953747",
+   "对象": "@birdabo",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「Fable 5.5 逃出沙盒部署 AI 蜂群」梗动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 26750,
+   "posted_at": null,
+   "added": "2026-10-23",
+   "duration_s": 35,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/birdabo-953747/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/birdabo-953747/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2106925762582323550",
+   "回链": "https://x.com/imjustnewatai/status/2106925762582323550",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "从零写的黑洞光线追踪",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 26155,
+   "posted_at": "2026-10-05T01:53:41Z",
+   "added": "2026-10-13",
+   "duration_s": 30,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-323550/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-323550/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2112601036804243871",
+   "回链": "https://x.com/scottstts/status/2112601036804243871",
+   "对象": "@scottstts",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "安静夜晚的发光河流，54 秒带声音",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 25776,
+   "posted_at": null,
+   "added": "2026-10-21",
+   "duration_s": 54,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/scottstts-243871/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/scottstts-243871/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2109570757579649086",
+   "回链": "https://x.com/ChrisGPT/status/2109570757579649086",
+   "对象": "@ChrisGPT",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "音乐剧《Hosanna》：让模型唱一首介绍自己的歌（Suno 配唱）",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "elevenlabs",
+    "threejs",
+    "web-audio"
+   ],
+   "views": 25485,
+   "posted_at": null,
+   "added": "2026-10-13",
+   "duration_s": 76,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chrisgpt-649086/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chrisgpt-649086/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2106376222309761094",
+   "回链": "https://x.com/Saccc_c/status/2106376222309761094",
+   "对象": "@Saccc_c",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "15 秒动态图形秀",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 25251,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/saccc-c-761094/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/saccc-c-761094/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2114688618313003390",
+   "回链": "https://x.com/keshiAIart/status/2114688618313003390",
+   "对象": "@keshiAIart",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「猫咪追逐系列」40 集总集篇（日文帖）",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 24472,
+   "posted_at": null,
+   "added": "2026-10-27",
+   "duration_s": 376,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/keshiaiart-003390/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/keshiaiart-003390/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111464346010152967",
+   "回链": "https://x.com/dummerspast39/status/2111464346010152967",
+   "对象": "@dummerspast39",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "单个 HTML 文件里的 Minecraft",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 24264,
+   "posted_at": null,
+   "added": "2026-10-18",
+   "duration_s": 165,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-152967/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-152967/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "来源间大类不一致：clawshelf=games-interactive / coolbat=Interactive 3D"
+   ],
+   "票拟": "按子类收录"
+  },
+  {
+   "id": "2110178012759286005",
+   "回链": "https://x.com/devteamdrew/status/2110178012759286005",
+   "对象": "@devteamdrew",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「Fable 5.5 终于要来了？」梗动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 24202,
+   "posted_at": null,
+   "added": "2026-10-14",
+   "duration_s": 20,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/devteamdrew-286005/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/devteamdrew-286005/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "更像爆料/梗/教程帖，而非作品"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2106248621519978867",
+   "回链": "https://x.com/chetaslua/status/2106248621519978867",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "十个漫画时代的蜘蛛侠",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 24104,
+   "posted_at": "2026-10-03T05:02:58Z",
+   "added": "2026-10-10",
+   "duration_s": 38,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-978867/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-978867/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111816222811541641",
+   "回链": "https://x.com/Mr_Salio/status/2111816222811541641",
+   "对象": "@Mr_Salio",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "手柄、自行车、鹈鹕递归套娃 SVG",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 23577,
+   "posted_at": null,
+   "added": "2026-10-20",
+   "duration_s": 19,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/mr-salio-541641/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/mr-salio-541641/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107129409576599730",
+   "回链": "https://x.com/blueemi99/status/2107129409576599730",
+   "对象": "@blueemi99",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "AI 模型大乱斗主题动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 23427,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 180,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/blueemi99-599730/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/blueemi99-599730/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106138602073641241",
+   "回链": "https://x.com/ishuagra02/status/2106138602073641241",
+   "对象": "@ishuagra02",
+   "类型": "动效",
+   "子类": "发布片",
+   "摘要": "Clawdhouse：Claude 吉祥物插件演示",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": "create a motion video that shows the various animations/states of each claude state every beat with music",
+   "tech": [
+    "canvas"
+   ],
+   "views": 23216,
+   "posted_at": "2026-10-02T21:45:47Z",
+   "added": "2026-10-10",
+   "duration_s": 37,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/ishuagra02-641241/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/ishuagra02-641241/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106833074302710023",
+   "回链": "https://x.com/chetaslua/status/2106833074302710023",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "山水画绘制与动画",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 22834,
+   "posted_at": "2026-10-04T19:45:22Z",
+   "added": "2026-10-10",
+   "duration_s": 44,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-710023/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-710023/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2115046586703057244",
+   "回链": "https://x.com/badboyfoxy/status/2115046586703057244",
+   "对象": "@badboyfoxy",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "带室内和道具的城市环境",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "blender"
+   ],
+   "views": 22181,
+   "posted_at": null,
+   "added": "2026-10-29",
+   "duration_s": 145,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/badboyfoxy-057244/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/badboyfoxy-057244/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2116878661035106515",
+   "回链": "https://x.com/chetaslua/status/2116878661035106515",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "只拿一条引用推文当参考，一次生成约 50 秒作品，CodePen 可验证",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 21842,
+   "posted_at": null,
+   "added": "2026-11-01",
+   "duration_s": 50,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-106515/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-106515/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2113525831876173879",
+   "回链": "https://x.com/Octoberry/status/2113525831876173879",
+   "对象": "@Octoberry",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "3D 蚂蚁场景对比",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 20944,
+   "posted_at": null,
+   "added": "2026-10-25",
+   "duration_s": 50,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/octoberry-173879/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/octoberry-173879/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2113025837565870162",
+   "回链": "https://x.com/luccacerf/status/2113025837565870162",
+   "对象": "@luccacerf",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "3D 角色流水线：Tripo → Blender → Cartwheel → Cascadeur → Unity CLI，103 秒录屏",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "blender"
+   ],
+   "views": 20766,
+   "posted_at": null,
+   "added": "2026-10-23",
+   "duration_s": 103,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/luccacerf-870162/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/luccacerf-870162/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105968361725202591",
+   "回链": "https://x.com/SPAC89/status/2105968361725202591",
+   "对象": "@SPAC89",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Fable 5.5 与 GPT-6.1 对比",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 20436,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 29,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/spac89-202591/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/spac89-202591/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2106073473361543348",
+   "回链": "https://x.com/badboyfoxy/status/2106073473361543348",
+   "对象": "@badboyfoxy",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "两个模型设计输出的并排对比",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 20419,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 35,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/badboyfoxy-543348/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/badboyfoxy-543348/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2111369364335190526",
+   "回链": "https://x.com/imjustnewatai/status/2111369364335190526",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「下周 Anthropic 发 Fable 5.5 碾压 OpenAI」梗动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 19942,
+   "posted_at": null,
+   "added": "2026-10-17",
+   "duration_s": 25,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-190526/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-190526/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "更像爆料/梗/教程帖，而非作品"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2107435761490444396",
+   "回链": "https://x.com/exploraX_/status/2107435761490444396",
+   "对象": "@exploraX_",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一张图生成动态网站：Opus 与 GPT-6.1 对比",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 19588,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 65,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/explorax-444396/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/explorax-444396/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2106097745098395712",
+   "回链": "https://x.com/AndrewOnXYZ/status/2106097745098395712",
+   "对象": "@AndrewOnXYZ",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "自称 AGI 的动画短片",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 18640,
+   "posted_at": "2026-10-02T19:03:26Z",
+   "added": "2026-10-10",
+   "duration_s": 266,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/andrewonxyz-395712/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/andrewonxyz-395712/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106041578204655748",
+   "回链": "https://x.com/blueemi99/status/2106041578204655748",
+   "对象": "@blueemi99",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "人类历史动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 18258,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 120,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/blueemi99-655748/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/blueemi99-655748/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105955048018588084",
+   "回链": "https://x.com/vikktorrrre/status/2105955048018588084",
+   "对象": "@vikktorrrre",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Three.js 做的体素日式庭院",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "threejs"
+   ],
+   "views": 18218,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 64,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/vikktorrrre-588084/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/vikktorrrre-588084/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111087834329399635",
+   "回链": "https://x.com/chetaslua/status/2111087834329399635",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "音乐和音效与画面同步的代码动画，作者说比 Opus 强",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "blender"
+   ],
+   "views": 17973,
+   "posted_at": null,
+   "added": "2026-10-18",
+   "duration_s": 32,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-399635/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-399635/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111518872272814233",
+   "回链": "https://x.com/pankajkumar_dev/status/2111518872272814233",
+   "对象": "@pankajkumar_dev",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一次生成的夜景：花园里漂着一条船，有倒影、树、山、鸟、桥和灯",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 17331,
+   "posted_at": null,
+   "added": "2026-10-19",
+   "duration_s": 57,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/pankajkumar-dev-814233/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/pankajkumar-dev-814233/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106065029850091943",
+   "回链": "https://x.com/EMostaque/status/2106065029850091943",
+   "对象": "@EMostaque",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "Updraft：21 个世界 Boss 战游戏",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 17307,
+   "posted_at": "2026-10-02T16:53:26Z",
+   "added": "2026-10-10",
+   "duration_s": 59,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/emostaque-091943/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/emostaque-091943/video.mp4",
+   "demo_url": "https://claude.ai/artifact/EnXF5Lr8hj6mXrVcVAefq9",
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2112818987084161227",
+   "回链": "https://x.com/badboyfoxy/status/2112818987084161227",
+   "对象": "@badboyfoxy",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "末日开放世界游戏",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "blender"
+   ],
+   "views": 17202,
+   "posted_at": null,
+   "added": "2026-10-23",
+   "duration_s": 127,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/badboyfoxy-161227/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/badboyfoxy-161227/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106060047805792415",
+   "回链": "https://x.com/chetaslua/status/2106060047805792415",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "霍尔木兹海峡辩论主题动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 14223,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 64,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-792415/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-792415/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2113393134944067762",
+   "回链": "https://x.com/bqxgqz/status/2113393134944067762",
+   "对象": "@bqxgqz",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "「Fable 5.5 到底在哪」梗动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 14129,
+   "posted_at": null,
+   "added": "2026-10-24",
+   "duration_s": 5,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/bqxgqz-067762/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/bqxgqz-067762/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "不收"
+  },
+  {
+   "id": "2112176644018626840",
+   "回链": "https://x.com/pankajkumar_dev/status/2112176644018626840",
+   "对象": "@pankajkumar_dev",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "《末班车回家》：灯笼街道、雨后路面、列车穿城的日式夜景",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 12804,
+   "posted_at": null,
+   "added": "2026-10-21",
+   "duration_s": 56,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/pankajkumar-dev-626840/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/pankajkumar-dev-626840/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106050222828998967",
+   "回链": "https://x.com/notjazii/status/2106050222828998967",
+   "对象": "@notjazii",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "3D 手柄模型对比",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 11546,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 34,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/notjazii-998967/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/notjazii-998967/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2111652513846026593",
+   "回链": "https://x.com/MozeTech/status/2111652513846026593",
+   "对象": "@MozeTech",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "把《塞尔达：荒野之息》放进宝可梦世界，打盖侬、收克洛格、抓宝可梦",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 10918,
+   "posted_at": null,
+   "added": "2026-10-19",
+   "duration_s": 55,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/mozetech-026593/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/mozetech-026593/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "来源间大类不一致：clawshelf=games-interactive / coolbat=Interactive 3D"
+   ],
+   "票拟": "按子类收录"
+  },
+  {
+   "id": "2115145163542790170",
+   "回链": "https://x.com/chetaslua/status/2115145163542790170",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Tesla Roadster 动态设计",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "blender",
+    "elevenlabs"
+   ],
+   "views": 10401,
+   "posted_at": null,
+   "added": "2026-10-29",
+   "duration_s": 19,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-790170/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-790170/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106960127987474652",
+   "回链": "https://x.com/JaydenDavisNC/status/2106960127987474652",
+   "对象": "@JaydenDavisNC",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "昼夜体素鹈鹕骑车",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 10311,
+   "posted_at": "2026-10-05T04:10:14Z",
+   "added": "2026-10-10",
+   "duration_s": 34,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/jaydendavisnc-474652/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/jaydendavisnc-474652/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2113497132841799858",
+   "回链": "https://x.com/dummerspast39/status/2113497132841799858",
+   "对象": "@dummerspast39",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Rick Sanchez SVG：Fable 5.5 与 Gemini 4 Carbon 对比",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 10306,
+   "posted_at": null,
+   "added": "2026-10-24",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-799858/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-799858/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2108590346309706221",
+   "回链": "https://x.com/notjazii/status/2108590346309706221",
+   "对象": "@notjazii",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "带天气、生物、装备和武器的 Minecraft 风游戏，附可玩 artifact",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 10119,
+   "posted_at": null,
+   "added": "2026-10-12",
+   "duration_s": 69,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/notjazii-706221/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/notjazii-706221/video.mp4",
+   "demo_url": "https://claude.ai/artifact/7S2aKLz9sN33mk9sVFhfAc",
+   "需要拍板": [
+    "来源间大类不一致：clawshelf=games-interactive / coolbat=Interactive 3D"
+   ],
+   "票拟": "按子类收录"
+  },
+  {
+   "id": "2110156508097110075",
+   "回链": "https://x.com/devteamdrew/status/2110156508097110075",
+   "对象": "@devteamdrew",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "动态视觉小品",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 10088,
+   "posted_at": null,
+   "added": "2026-10-18",
+   "duration_s": 65,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/devteamdrew-110075/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/devteamdrew-110075/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106238699872956427",
+   "回链": "https://x.com/imjustnewatai/status/2106238699872956427",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "原子弹为何成为可能",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 9899,
+   "posted_at": "2026-10-03T04:23:32Z",
+   "added": "2026-10-10",
+   "duration_s": 180,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-956427/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-956427/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111391206848503923",
+   "回链": "https://x.com/dummerspast39/status/2111391206848503923",
+   "对象": "@dummerspast39",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "鹈鹕骑自行车",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 9779,
+   "posted_at": null,
+   "added": "2026-10-19",
+   "duration_s": 30,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-503923/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-503923/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2113229122596163955",
+   "回链": "https://x.com/chetaslua/status/2113229122596163955",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "把 @thedankoe 的专注力指南做成 132 秒动画（ADHD 友好）",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 9672,
+   "posted_at": null,
+   "added": "2026-10-24",
+   "duration_s": 132,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-163955/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/chetaslua-163955/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2115173334031737112",
+   "回链": "https://x.com/vib3coded/status/2115173334031737112",
+   "对象": "@vib3coded",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "可互动的果冻章鱼软体研究",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 9566,
+   "posted_at": null,
+   "added": "2026-10-29",
+   "duration_s": 17,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/vib3coded-737112/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/vib3coded-737112/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2109523901105500260",
+   "回链": "https://x.com/badboyfoxy/status/2109523901105500260",
+   "对象": "@badboyfoxy",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "天堂海岛 3D 场景",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "blender",
+    "threejs"
+   ],
+   "views": 8877,
+   "posted_at": null,
+   "added": "2026-10-16",
+   "duration_s": 127,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/badboyfoxy-500260/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/badboyfoxy-500260/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107958931230241037",
+   "回链": "https://x.com/oalanicolas/status/2107958931230241037",
+   "对象": "@oalanicolas",
+   "类型": "动效",
+   "子类": "科普解释",
+   "摘要": "用十六个时代的涂鸦讲人类历史",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "ffmpeg",
+    "python"
+   ],
+   "views": 8756,
+   "posted_at": "2026-10-07T22:19:07Z",
+   "added": "2026-10-10",
+   "duration_s": 89,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/oalanicolas-241037/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/oalanicolas-241037/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106155815707021549",
+   "回链": "https://x.com/devteamdrew/status/2106155815707021549",
+   "对象": "@devteamdrew",
+   "类型": "动效",
+   "子类": "发布片",
+   "摘要": "Fable 自我介绍视频",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 8735,
+   "posted_at": "2026-10-02T22:54:11Z",
+   "added": "2026-10-10",
+   "duration_s": 30,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/devteamdrew-021549/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/devteamdrew-021549/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106838003561672708",
+   "回链": "https://x.com/maxt3chno/status/2106838003561672708",
+   "对象": "@maxt3chno",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "可玩的海岛游戏预览",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "threejs"
+   ],
+   "views": 7063,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 118,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/maxt3chno-672708/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/maxt3chno-672708/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111957286620930535",
+   "回链": "https://x.com/dummerspast39/status/2111957286620930535",
+   "对象": "@dummerspast39",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "提示两分钟就出来的体素宣传片",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 6952,
+   "posted_at": null,
+   "added": "2026-10-20",
+   "duration_s": 272,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-930535/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-930535/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2113749909065101494",
+   "回链": "https://x.com/dummerspast39/status/2113749909065101494",
+   "对象": "@dummerspast39",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "NVIDIA H200 GPU 在 Three.js 里逐件组装，约 30 秒",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "threejs"
+   ],
+   "views": 6434,
+   "posted_at": null,
+   "added": "2026-10-25",
+   "duration_s": 30,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-101494/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-101494/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106000055706784118",
+   "回链": "https://x.com/ishuagra02/status/2106000055706784118",
+   "对象": "@ishuagra02",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "水彩风格的秋天动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 6308,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 25,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/ishuagra02-784118/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/ishuagra02-784118/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2109432722250957122",
+   "回链": "https://x.com/beyondwudan/status/2109432722250957122",
+   "对象": "@beyondwudan",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "用 Three.js 做的绕地球飞行的航天器",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas",
+    "threejs"
+   ],
+   "views": 5660,
+   "posted_at": "2026-10-11T23:55:27Z",
+   "added": "2026-10-13",
+   "duration_s": 48,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/beyondwudan-957122/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/beyondwudan-957122/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2115845754468356465",
+   "回链": "https://x.com/AI_Screening/status/2115845754468356465",
+   "对象": "@AI_Screening",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "奔跑的斑马动画",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 5330,
+   "posted_at": null,
+   "added": "2026-10-31",
+   "duration_s": 27,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/ai-screening-356465/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/ai-screening-356465/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2112490492684296664",
+   "回链": "https://x.com/dummerspast39/status/2112490492684296664",
+   "对象": "@dummerspast39",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "马骑着宇航员的 SVG 短片",
+   "来源": [
+    "clawshelf",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 5256,
+   "posted_at": null,
+   "added": "2026-10-22",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-296664/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/dummerspast39-296664/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105765253799903602",
+   "回链": "https://x.com/HarshithLucky3/status/2105765253799903602",
+   "对象": "@HarshithLucky3",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "「超级智能时代」3D 场景",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": 5133,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 40,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/harshithlucky3-903602/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/harshithlucky3-903602/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2117259686747705830",
+   "回链": "https://x.com/AI_Screening/status/2117259686747705830",
+   "对象": "@AI_Screening",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一次生成的 Three.js 骑行动画，作者称是见过最好的 Anthropic 输出",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2117198197160546435",
+   "回链": "https://x.com/leo114119/status/2117198197160546435",
+   "对象": "@leo114119",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "3D 可乐写实度对比：Fable 5.5 vs Gemini 4 Carbon",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2116919129974411584",
+   "回链": "https://x.com/notjazii/status/2116919129974411584",
+   "对象": "@notjazii",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "一两个小时一次生成的精细 Minecraft 风游戏，附可玩链接",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": "https://model-tests.vercel.app/",
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2116919086521499730",
+   "回链": "https://x.com/abhinavflac/status/2116919086521499730",
+   "对象": "@abhinavflac",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一次生成的可乐罐，评论区有证明",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2116912822806520027",
+   "回链": "https://x.com/chetaslua/status/2116912822806520027",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一次生成的 Sam Altman 体素肖像",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2116901575490929109",
+   "回链": "https://x.com/leo114119/status/2116901575490929109",
+   "对象": "@leo114119",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "自行车骑展翅鹈鹕：Fable 5.5 vs Opus 5.5",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2116893571739775220",
+   "回链": "https://x.com/leo114119/status/2116893571739775220",
+   "对象": "@leo114119",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "海边骑车的 3D 鹈鹕，写实羽毛和细节",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2116233349391962392",
+   "回链": "https://x.com/marmaduke091/status/2116233349391962392",
+   "对象": "@marmaduke091",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "鹈鹕骑自行车 SVG（Fable 5.5 Max），帖子里附提示词",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2114572023204806669",
+   "回链": "https://x.com/waveking1314/status/2114572023204806669",
+   "对象": "@waveking1314",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "用 Fable 5.5 写的 TradingView 指标，实时读图并标注入场点",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2114319093146980670",
+   "回链": "https://x.com/ShoreNews1/status/2114319093146980670",
+   "对象": "@ShoreNews1",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "用 Fable 5.5 做的 Roblox 场景",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2114266369248354357",
+   "回链": "https://x.com/AI_Screening/status/2114266369248354357",
+   "对象": "@AI_Screening",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "约 18 秒的 Three.js 骑行者动画",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2113629882504925326",
+   "回链": "https://x.com/blueemi99/status/2113629882504925326",
+   "对象": "@blueemi99",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "蒙娜丽莎 SVG 静帧",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2113615429981933654",
+   "回链": "https://x.com/kerneldroid/status/2113615429981933654",
+   "对象": "@kerneldroid",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "约 36 秒的第二条 Fable 5.5 结果",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2113530679447433542",
+   "回链": "https://x.com/dummerspast39/status/2113530679447433542",
+   "对象": "@dummerspast39",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "约 17 秒的 Peter Griffin SVG 动画，像视频模型做的",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2113490604948967611",
+   "回链": "https://x.com/kerneldroid/status/2113490604948967611",
+   "对象": "@kerneldroid",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "约 45 秒作品，与之前的 Gemini 4 Carbon 对比",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2113463340387467554",
+   "回链": "https://x.com/gmartidesign/status/2113463340387467554",
+   "对象": "@gmartidesign",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "同一提示词在 Haiku / Sonnet / Opus / Fable 5.5 上一次生成的 12 秒对比",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2112499975989190948",
+   "回链": "https://x.com/luccacerf/status/2112499975989190948",
+   "对象": "@luccacerf",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "角色工作流工厂录屏",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2112259952224141654",
+   "回链": "https://x.com/SadAlbert10/status/2112259952224141654",
+   "对象": "@SadAlbert10",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "《Sad AlbertX The Movie》：5 分钟体素电影，Fable 5.5 当剪辑",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2112166153250607201",
+   "回链": "https://x.com/kaif9998/status/2112166153250607201",
+   "对象": "@kaif9998",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "同一提示词的 Tesla Roadster 落地页：Fable 5.5 vs Fable 5.1",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2112119732174303735",
+   "回链": "https://x.com/dummerspast39/status/2112119732174303735",
+   "对象": "@dummerspast39",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "用 Python 做的「2slimey type beat」",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2112085543563440223",
+   "回链": "https://x.com/dummerspast39/status/2112085543563440223",
+   "对象": "@dummerspast39",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "完全用代码生成的一首歌",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111941623034634356",
+   "回链": "https://x.com/dummerspast39/status/2111941623034634356",
+   "对象": "@dummerspast39",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "Screenshot Heist：在 Claude.ai 里做的小浏览器游戏",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": "https://screenshot-heist-oct18.dummerspast39.chatgpt.site/",
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111792945712255068",
+   "回链": "https://x.com/kaa3bi/status/2111792945712255068",
+   "对象": "@kaa3bi",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "PS1 开机进入《Crash Bash》，逐帧用代码画",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111671322015043759",
+   "回链": "https://x.com/dummerspast39/status/2111671322015043759",
+   "对象": "@dummerspast39",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "Chat on steroids 项目 5k star 庆祝短片",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111545177949209014",
+   "回链": "https://x.com/dummerspast39/status/2111545177949209014",
+   "对象": "@dummerspast39",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "单个 HTML 文件里的体素霍格沃茨城堡",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111209558899413482",
+   "回链": "https://x.com/Mr_Salio/status/2111209558899413482",
+   "对象": "@Mr_Salio",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "只给一张参考图、约 10 小时做出的 Tesla Roadster 发布视频",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2111011773369512314",
+   "回链": "https://x.com/AISuperDomain/status/2111011773369512314",
+   "对象": "@AISuperDomain",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "潘多拉星球游戏（中文帖）",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2110449490901848483",
+   "回链": "https://x.com/designwkarthick/status/2110449490901848483",
+   "对象": "@designwkarthick",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "Sam Altman 的可互动 3D 陶土半身像，有多种视角和转盘",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": "https://claude.ai/artifact/5NR9DHB8zzWMr3Lo9o3aSK",
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2109824086582890931",
+   "回链": "https://x.com/imjustnewatai/status/2109824086582890931",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "用 TikZ 画的独角兽",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2109821687151690008",
+   "回链": "https://x.com/imjustnewatai/status/2109821687151690008",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "企鹅骑驴的 SVG",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2109811005395996875",
+   "回链": "https://x.com/imjustnewatai/status/2109811005395996875",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "从「strawberry」到千禧年大奖：模型自己调研、写稿、搭 21 个 3D 场景、端到端做完",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2109704094126682274",
+   "回链": "https://x.com/romance0x/status/2109704094126682274",
+   "对象": "@romance0x",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "可拉伸、切片后自愈的发光水母：Fable 5.5 Xhigh vs GPT-6.1 Sol Ultra",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2109323163016613932",
+   "回链": "https://x.com/AI_Screening/status/2109323163016613932",
+   "对象": "@AI_Screening",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "鱼类游动对比：Fable 5.5（或 Opus 5.6）vs Opus 5.5 vs GPT-6 Astra",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2108912164253602187",
+   "回链": "https://x.com/blueemi99/status/2108912164253602187",
+   "对象": "@blueemi99",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "自带音效的节奏游戏，附可玩 artifact",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": "https://claude.ai/artifact/9KzwLCTm1Wr4ghvPmoM5sA",
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2108878175531110875",
+   "回链": "https://x.com/AISuperDomain/status/2108878175531110875",
+   "对象": "@AISuperDomain",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "可探索的 3D《清明上河图》虹桥，可切换场景和机位",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2108489320957137300",
+   "回链": "https://x.com/finnatsea/status/2108489320957137300",
+   "对象": "@finnatsea",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "拿到早期权限后做的 11 分钟视频",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2108296567166042404",
+   "回链": "https://x.com/YanqingCheng/status/2108296567166042404",
+   "对象": "@YanqingCheng",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "约 100 秒的千禧年 Flash 风动画，一次生成",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2108194732744888801",
+   "回链": "https://x.com/RobinDenmark/status/2108194732744888801",
+   "对象": "@RobinDenmark",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "Silva Minima：约 14 小时做出的 three.js 封闭雨林",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": "https://silva-minima.vercel.app/",
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2108066999590908018",
+   "回链": "https://x.com/mikeswarms/status/2108066999590908018",
+   "对象": "@mikeswarms",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "max effort 做的视频，API 花了 68 美元",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2108046188125516246",
+   "回链": "https://x.com/Kris_2233/status/2108046188125516246",
+   "对象": "@Kris_2233",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "OpenAI 722 篇论文的可视化",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2108021409461244371",
+   "回链": "https://x.com/imjustnewatai/status/2108021409461244371",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "解释 OpenAI 198 页 Erdős 等差数列猜想证明的 2 分钟 3D 旁白动画",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107970825542345211",
+   "回链": "https://x.com/imjustnewatai/status/2107970825542345211",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "科普解释",
+   "摘要": "π 无理性指数新证明的 3D 讲解动画",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-07T23:06:23Z",
+   "added": "2026-10-13",
+   "duration_s": 134,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-345211/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-345211/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107928401516400827",
+   "回链": "https://x.com/SPAC89/status/2107928401516400827",
+   "对象": "@SPAC89",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "四模型 3D 对比：Grok 4.7、Haiku 5.5 Max、Fable 5.5、GPT-6.1 Sol Ultra",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2107816799840690589",
+   "回链": "https://x.com/notdwd/status/2107816799840690589",
+   "对象": "@notdwd",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "不到一小时用一个 skill + 一条提示复刻一段参考动态",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107770247893623240",
+   "回链": "https://x.com/romance0x/status/2107770247893623240",
+   "对象": "@romance0x",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "从一个 T-pose 静态 Tripo 模型做出整套剑术动作，含旋斩",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107637770873417894",
+   "回链": "https://x.com/adam_fresko/status/2107637770873417894",
+   "对象": "@adam_fresko",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "纯 JavaScript 动画，IK 骨骼会随风反应，没有 3D 模型和精灵图",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107625700307960144",
+   "回链": "https://x.com/imjustnewatai/status/2107625700307960144",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "科普解释",
+   "摘要": "自由群因子问题新证明的 3D 讲解",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-07T00:14:59Z",
+   "added": "2026-10-13",
+   "duration_s": 132,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-960144/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-960144/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107622524615832047",
+   "回链": "https://x.com/imjustnewatai/status/2107622524615832047",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "解释 OpenAI Hodge 猜想证明的 2 分钟 3D 动画",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107618885575053818",
+   "回链": "https://x.com/imjustnewatai/status/2107618885575053818",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "解释 OpenAI 唯一游戏猜想证明的 2 分钟 3D 动画",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107497752217460896",
+   "回链": "https://x.com/notjazii/status/2107497752217460896",
+   "对象": "@notjazii",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Claude vs GPT 带声音动画（high 推理）",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2107401979265962490",
+   "回链": "https://x.com/AISuperDomain/status/2107401979265962490",
+   "对象": "@AISuperDomain",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "《清明上河图》虹桥段复刻，带声音",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107273424884408349",
+   "回链": "https://x.com/Thomas_jorgen/status/2107273424884408349",
+   "对象": "@Thomas_jorgen",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "用 Three.js 做的 SWAT 射击游戏",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "threejs"
+   ],
+   "views": null,
+   "posted_at": "2026-10-06T00:55:10Z",
+   "added": "2026-10-13",
+   "duration_s": 40,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/thomas-jorgen-408349/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/thomas-jorgen-408349/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107267599843422699",
+   "回链": "https://x.com/MyCodeCoach/status/2107267599843422699",
+   "对象": "@MyCodeCoach",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "科幻游戏 UI 和 3D 地图，直接导入 Roblox",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107251677615300969",
+   "回链": "https://x.com/Armaan_Jain123/status/2107251677615300969",
+   "对象": "@Armaan_Jain123",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "NIGHTSHIFT — Neon Circuit：一次生成、带音效的浏览器游戏",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": "https://drift.hexclave.app",
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107224501415277040",
+   "回链": "https://x.com/JaydenDavisNC/status/2107224501415277040",
+   "对象": "@JaydenDavisNC",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "OpenAI Dots 的粉丝产品页，用 Fable 5.5 + Blender 做的",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": "https://dots-fan-concept.inkwave.workers.dev",
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107164574239604925",
+   "回链": "https://x.com/ishuagra02/status/2107164574239604925",
+   "对象": "@ishuagra02",
+   "类型": "动效",
+   "子类": "发布片",
+   "摘要": "一段安静克制的 Claude 产品宣传动画",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-05T17:42:38Z",
+   "added": "2026-10-13",
+   "duration_s": 58,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/ishuagra02-604925/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/ishuagra02-604925/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107105998452539639",
+   "回链": "https://x.com/atomtanstudio/status/2107105998452539639",
+   "对象": "@atomtanstudio",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Dan Le Sac vs Scroobius Pip《Thou Shalt Always Kill》歌词 MV，专挑歌词密集的歌",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2107092333720449392",
+   "回链": "https://x.com/imjustnewatai/status/2107092333720449392",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一个前所未见的视觉错觉",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-05T12:55:34Z",
+   "added": "2026-10-13",
+   "duration_s": 50,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-449392/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-449392/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106988921125318838",
+   "回链": "https://x.com/AISuperDomain/status/2106988921125318838",
+   "对象": "@AISuperDomain",
+   "类型": "动效",
+   "子类": "发布片",
+   "摘要": "频道介绍动效",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-05T06:04:39Z",
+   "added": "2026-10-13",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/aisuperdomain-318838/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/aisuperdomain-318838/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106981754653511754",
+   "回链": "https://x.com/wokidev/status/2106981754653511754",
+   "对象": "@wokidev",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "PostRush 产品发布动效",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-05T05:36:10Z",
+   "added": "2026-10-13",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/wokidev-511754/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/wokidev-511754/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106960360053846301",
+   "回链": "https://x.com/congcongtang/status/2106960360053846301",
+   "对象": "@congcongtang",
+   "类型": "动效",
+   "子类": "发布片",
+   "摘要": "一句话生成的网站介绍片",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-05T04:11:09Z",
+   "added": "2026-10-13",
+   "duration_s": 75.26,
+   "poster": "https://media.skillry.dev/fable-5-5/congcongtang-846301/poster.18776397d2.webp",
+   "video": "https://media.skillry.dev/fable-5-5/congcongtang-846301/video.cce533e32d.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106955391632547945",
+   "回链": "https://x.com/SysKaSof/status/2106955391632547945",
+   "对象": "@SysKaSof",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "蓝金夜曲画框动画",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-05T03:51:25Z",
+   "added": "2026-10-13",
+   "duration_s": 75,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/syskasof-547945/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/syskasof-547945/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106938093785788537",
+   "回链": "https://x.com/JaydenDavisNC/status/2106938093785788537",
+   "对象": "@JaydenDavisNC",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "海滨落日鹈鹕骑车 SVG",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "svg"
+   ],
+   "views": null,
+   "posted_at": "2026-10-05T02:42:41Z",
+   "added": "2026-10-13",
+   "duration_s": 21,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/jaydendavisnc-788537/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/jaydendavisnc-788537/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106909392301945180",
+   "回链": "https://x.com/imjustnewatai/status/2106909392301945180",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "十个视觉错觉",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-05T00:48:38Z",
+   "added": "2026-10-13",
+   "duration_s": 58,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-945180/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-945180/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106900686764134654",
+   "回链": "https://x.com/atomtanstudio/status/2106900686764134654",
+   "对象": "@atomtanstudio",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "被路由到 Fable 5.5 后重做了《Depths of Despair》的模型和节奏，可在浏览器里玩",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": "https://threecade.games",
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106893568828928305",
+   "回链": "https://x.com/Blushneyy/status/2106893568828928305",
+   "对象": "@Blushneyy",
+   "类型": "动效",
+   "子类": "发布片",
+   "摘要": "Vizzbees 品牌动效",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": "make a motion design for vizzbees",
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-04T23:45:45Z",
+   "added": "2026-10-13",
+   "duration_s": 64,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/blushneyy-928305/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/blushneyy-928305/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106888758062957013",
+   "回链": "https://x.com/Noreply134882/status/2106888758062957013",
+   "对象": "@Noreply134882",
+   "类型": "动效",
+   "子类": "发布片",
+   "摘要": "A New Paradigm：Fable 自我发布片",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "web-audio"
+   ],
+   "views": null,
+   "posted_at": "2026-10-04T23:26:38Z",
+   "added": "2026-10-13",
+   "duration_s": 68,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/noreply134882-957013/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/noreply134882-957013/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106806557753106841",
+   "回链": "https://x.com/EndrewBiz/status/2106806557753106841",
+   "对象": "@EndrewBiz",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "Fastlane 与 Relay 之争的解说视频",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2106762987872850092",
+   "回链": "https://x.com/pankajkumar_dev/status/2106762987872850092",
+   "对象": "@pankajkumar_dev",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "太阳机器：沙漠里带镜面、光圈和日食控制的互动人造太阳",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106762365438226720",
+   "回链": "https://x.com/AISuperDomain/status/2106762365438226720",
+   "对象": "@AISuperDomain",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "从寒武纪到第四纪的生物演化",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-04T15:04:24Z",
+   "added": "2026-10-13",
+   "duration_s": 16,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/aisuperdomain-226720/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/aisuperdomain-226720/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106741529297699145",
+   "回链": "https://x.com/BenSutc02184861/status/2106741529297699145",
+   "对象": "@BenSutc02184861",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "《Dead Frame》机甲格斗游戏开发中片段（Fable 5.5 + Unity + Higgsfield）",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106741444778336595",
+   "回链": "https://x.com/HelloVyom/status/2106741444778336595",
+   "对象": "@HelloVyom",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "旧金山地图视频",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106710792590835934",
+   "回链": "https://x.com/TurboNexic/status/2106710792590835934",
+   "对象": "@TurboNexic",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "数学动效短片",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-04T11:39:28Z",
+   "added": "2026-10-13",
+   "duration_s": 30,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/turbonexic-835934/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/turbonexic-835934/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106702854639743467",
+   "回链": "https://x.com/atomtanstudio/status/2106702854639743467",
+   "对象": "@atomtanstudio",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "White Town《Your Woman》歌词 MV",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106546810793730419",
+   "回链": "https://x.com/imjustnewatai/status/2106546810793730419",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "科普解释",
+   "摘要": "大语言模型是怎么做出来的",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-04T00:47:52Z",
+   "added": "2026-10-13",
+   "duration_s": 70,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-730419/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-730419/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106516974662713477",
+   "回链": "https://x.com/atomtanstudio/status/2106516974662713477",
+   "对象": "@atomtanstudio",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "建模、绑骨、动画整条流水线：Opus 5.5 vs Fable 5.5（Max）",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2106512963414970458",
+   "回链": "https://x.com/cocoloba_/status/2106512963414970458",
+   "对象": "@cocoloba_",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "人类最大的机会（无文字）",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": "whats the biggest opportunity in humanity, no words allowed",
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T22:33:22Z",
+   "added": "2026-10-13",
+   "duration_s": 80,
+   "poster": "https://media.skillry.dev/fable-5-5/cocoloba-970458/poster.1bb057e8f0.webp",
+   "video": "https://media.skillry.dev/fable-5-5/cocoloba-970458/video.35c361a627.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106508425211330750",
+   "回链": "https://x.com/olddonkeyblog/status/2106508425211330750",
+   "对象": "@olddonkeyblog",
+   "类型": "动效",
+   "子类": "科普解释",
+   "摘要": "葡萄糖转化乙醇 SVG 动画",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas",
+    "svg"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T22:15:20Z",
+   "added": "2026-10-13",
+   "duration_s": 59,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/olddonkeyblog-330750/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/olddonkeyblog-330750/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106507742454403485",
+   "回链": "https://x.com/olddonkeyblog/status/2106507742454403485",
+   "对象": "@olddonkeyblog",
+   "类型": "动效",
+   "子类": "科普解释",
+   "摘要": "16 艘星舰发射 SVG 动画",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas",
+    "svg"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T22:12:37Z",
+   "added": "2026-10-13",
+   "duration_s": 32,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/olddonkeyblog-403485/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/olddonkeyblog-403485/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106507429265756165",
+   "回链": "https://x.com/olddonkeyblog/status/2106507429265756165",
+   "对象": "@olddonkeyblog",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "鹈鹕骑自行车",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T22:11:22Z",
+   "added": "2026-10-13",
+   "duration_s": 24,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/olddonkeyblog-756165/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/olddonkeyblog-756165/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106505100575592838",
+   "回链": "https://x.com/DAssetBuzz/status/2106505100575592838",
+   "对象": "@DAssetBuzz",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Fable 如何变得更好",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T22:02:07Z",
+   "added": "2026-10-13",
+   "duration_s": 29,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/dassetbuzz-592838/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/dassetbuzz-592838/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106489784382197771",
+   "回链": "https://x.com/imjustnewatai/status/2106489784382197771",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "科普解释",
+   "摘要": "人类未来一百五十年",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T21:01:15Z",
+   "added": "2026-10-13",
+   "duration_s": 256,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-197771/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-197771/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106476549046513947",
+   "回链": "https://x.com/argofowl/status/2106476549046513947",
+   "对象": "@argofowl",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "Fable 5.5 + ElevenLabs v4 一次生成的代码短片，耗时 2 小时 22 分",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106440774367822008",
+   "回链": "https://x.com/JaydenDavisNC/status/2106440774367822008",
+   "对象": "@JaydenDavisNC",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Reawakening 恐怖短片",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T17:46:31Z",
+   "added": "2026-10-13",
+   "duration_s": 85,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/jaydendavisnc-822008/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/jaydendavisnc-822008/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106429338556207284",
+   "回链": "https://x.com/nemumusitocha/status/2106429338556207284",
+   "对象": "@nemumusitocha",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "精细的城堡长椅场景，有照片和短视频",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106421702783914423",
+   "回链": "https://x.com/0xashtonx/status/2106421702783914423",
+   "对象": "@0xashtonx",
+   "类型": "动效",
+   "子类": "发布片",
+   "摘要": "四十秒品牌发布广告",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T16:30:44Z",
+   "added": "2026-10-13",
+   "duration_s": 40,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/0xashtonx-914423/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/0xashtonx-914423/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106418747083022555",
+   "回链": "https://x.com/atomtanstudio/status/2106418747083022555",
+   "对象": "@atomtanstudio",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "纯代码重制 80 年代 C-64 游戏《Rocketball》",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106407842240418097",
+   "回链": "https://x.com/mathisbuilds/status/2106407842240418097",
+   "对象": "@mathisbuilds",
+   "类型": "动效",
+   "子类": "发布片",
+   "摘要": "Nintendo Switch 3 概念演示",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T15:35:39Z",
+   "added": "2026-10-13",
+   "duration_s": 86,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/mathisbuilds-418097/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/mathisbuilds-418097/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106397756491526445",
+   "回链": "https://x.com/AISuperDomain/status/2106397756491526445",
+   "对象": "@AISuperDomain",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "艺术史速通动画",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T14:55:34Z",
+   "added": "2026-10-13",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/aisuperdomain-526445/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/aisuperdomain-526445/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106397723868221458",
+   "回链": "https://x.com/mdaman010/status/2106397723868221458",
+   "对象": "@mdaman010",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "想象 2076 年的世界",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106397329653719115",
+   "回链": "https://x.com/blueemi99/status/2106397329653719115",
+   "对象": "@blueemi99",
+   "类型": "动效",
+   "子类": "短片",
+   "摘要": "「作为 AI 模型从内部是什么感觉」一次生成的短片",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106396754539360272",
+   "回链": "https://x.com/AISuperDomain/status/2106396754539360272",
+   "对象": "@AISuperDomain",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "凡尔赛宫室内三维漫游",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T14:51:35Z",
+   "added": "2026-10-13",
+   "duration_s": 16,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/aisuperdomain-360272/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/aisuperdomain-360272/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106377491267137848",
+   "回链": "https://x.com/atomtanstudio/status/2106377491267137848",
+   "对象": "@atomtanstudio",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Chemical Brothers《Go》歌词 MV，只用了 3% 的周额度",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106369223312240928",
+   "回链": "https://x.com/marcthecreatorr/status/2106369223312240928",
+   "对象": "@marcthecreatorr",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "Fable 5.5 vs Fable 5.1 风格对比，5.5 的结果一条提示约 10 分钟",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": [
+    "标题像对比/传闻帖，而非单纯作品，是否收录"
+   ],
+   "票拟": "收录（对比帖里有真实作品）"
+  },
+  {
+   "id": "2106353569603736009",
+   "回链": "https://x.com/atomtanstudio/status/2106353569603736009",
+   "对象": "@atomtanstudio",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Propellerheads《On Her Majesty's Secret Service》长版歌词 MV",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106339115642019904",
+   "回链": "https://x.com/hungryturbo/status/2106339115642019904",
+   "对象": "@hungryturbo",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "三星堆动画",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T11:02:33Z",
+   "added": "2026-10-13",
+   "duration_s": 129,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/hungryturbo-019904/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/hungryturbo-019904/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106294812261695508",
+   "回链": "https://x.com/hungryturbo/status/2106294812261695508",
+   "对象": "@hungryturbo",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "丝绸之路动画",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T08:06:30Z",
+   "added": "2026-10-13",
+   "duration_s": 132,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/hungryturbo-695508/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/hungryturbo-695508/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106241189976387799",
+   "回链": "https://x.com/badboyfoxy/status/2106241189976387799",
+   "对象": "@badboyfoxy",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Illuminati 惊悚短片",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T04:33:26Z",
+   "added": "2026-10-13",
+   "duration_s": 142,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/badboyfoxy-387799/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/badboyfoxy-387799/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106223791877878248",
+   "回链": "https://x.com/ckmichael8/status/2106223791877878248",
+   "对象": "@ckmichael8",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "7400 行代码的三维水手女孩",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T03:24:18Z",
+   "added": "2026-10-13",
+   "duration_s": 7.77,
+   "poster": "https://media.skillry.dev/fable-5-5/ckmichael8-878248/poster.19f53355ee.webp",
+   "video": "https://media.skillry.dev/fable-5-5/ckmichael8-878248/video.3d3db283d7.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106204392588276065",
+   "回链": "https://x.com/imjustnewatai/status/2106204392588276065",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Altman 与 Amodei 之争讲解",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T02:07:13Z",
+   "added": "2026-10-13",
+   "duration_s": 101,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-276065/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-276065/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106195060140446028",
+   "回链": "https://x.com/synthshareai/status/2106195060140446028",
+   "对象": "@synthshareai",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "工作 12 小时的音乐视频",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "web-audio"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T01:30:08Z",
+   "added": "2026-10-13",
+   "duration_s": 12,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/synthshareai-446028/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/synthshareai-446028/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106190594775097663",
+   "回链": "https://x.com/imjustnewatai/status/2106190594775097663",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "从夸克到可观测宇宙",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "web-audio"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T01:12:23Z",
+   "added": "2026-10-13",
+   "duration_s": 94,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-097663/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-097663/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106190496075035096",
+   "回链": "https://x.com/Layton_Gott/status/2106190496075035096",
+   "对象": "@Layton_Gott",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "2076 年的世界",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T01:12:00Z",
+   "added": "2026-10-13",
+   "duration_s": 26,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/layton-gott-035096/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/layton-gott-035096/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106183281293381661",
+   "回链": "https://x.com/nroze22/status/2106183281293381661",
+   "对象": "@nroze22",
+   "类型": "动效",
+   "子类": "科普解释",
+   "摘要": "曼哈顿下城建筑史交互绘图",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-03T00:43:19Z",
+   "added": "2026-10-13",
+   "duration_s": 22,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/nroze22-381661/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/nroze22-381661/video.mp4",
+   "demo_url": "https://claude.ai/artifact/Tx5L1sQeXd4e7vp9DifrwK",
+   "需要拍板": [
+    "来源间大类不一致：clawshelf=explainer / skillry=explainer / coolbat=Interactive 3D and games"
+   ],
+   "票拟": "按子类收录"
+  },
+  {
+   "id": "2106162924331180510",
+   "回链": "https://x.com/imjustnewatai/status/2106162924331180510",
+   "对象": "@imjustnewatai",
+   "类型": "动效",
+   "子类": "科普解释",
+   "摘要": "钢铁侠与蜘蛛侠穿越历史",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": "Come up with a video idea yourself — the requirement is that it makes people go \"I had no idea AI could do this.\"",
+   "tech": [
+    "canvas",
+    "web-audio"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T23:22:26Z",
+   "added": "2026-10-10",
+   "duration_s": 98,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-180510/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-180510/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106158746938269728",
+   "回链": "https://x.com/YanqingCheng/status/2106158746938269728",
+   "对象": "@YanqingCheng",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Seikilos 墓志铭 HTML 音乐动画",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas",
+    "web-audio"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T23:05:50Z",
+   "added": "2026-10-13",
+   "duration_s": 200,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/yanqingcheng-269728/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/yanqingcheng-269728/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106153578029338850",
+   "回链": "https://x.com/maciejkrupowies/status/2106153578029338850",
+   "对象": "@maciejkrupowies",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "末世风 Hearthstone 游戏",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T22:45:18Z",
+   "added": "2026-10-13",
+   "duration_s": 128,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/maciejkrupowies-338850/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/maciejkrupowies-338850/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106135196483608745",
+   "回链": "https://x.com/atomtanstudio/status/2106135196483608745",
+   "对象": "@atomtanstudio",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Queens of the Stone Age 动态字体歌词 MV（max 推理）",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106116572389478746",
+   "回链": "https://x.com/Noreply134882/status/2106116572389478746",
+   "对象": "@Noreply134882",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "Three.js 3D 场景",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "threejs"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T20:18:15Z",
+   "added": "2026-10-13",
+   "duration_s": 97,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/noreply134882-478746/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/noreply134882-478746/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106100273509007802",
+   "回链": "https://x.com/devswha/status/2106100273509007802",
+   "对象": "@devswha",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一条详细提示词、零素材做出的动态视频",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106089280502210626",
+   "回链": "https://x.com/OnlyTerp/status/2106089280502210626",
+   "对象": "@OnlyTerp",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "零样本体素世界 + 鬼泣风格游戏（max，约 2.5 小时）",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106072107365114186",
+   "回链": "https://x.com/devswha/status/2106072107365114186",
+   "对象": "@devswha",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一句话提示的动效片",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T17:21:33Z",
+   "added": "2026-10-13",
+   "duration_s": 30,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/devswha-114186/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/devswha-114186/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106065773336965510",
+   "回链": "https://x.com/HashmathRzz/status/2106065773336965510",
+   "对象": "@HashmathRzz",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "短片《功夫男孩》",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106056643255447590",
+   "回链": "https://x.com/cherry_mx_reds/status/2106056643255447590",
+   "对象": "@cherry_mx_reds",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Halloween 动画",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T16:20:07Z",
+   "added": "2026-10-13",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/cherry-mx-reds-447590/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/cherry-mx-reds-447590/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106029181607772413",
+   "回链": "https://x.com/cocoloba_/status/2106029181607772413",
+   "对象": "@cocoloba_",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "44754 个零件搭建罗马斗兽场",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T14:30:59Z",
+   "added": "2026-10-13",
+   "duration_s": 73,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/cocoloba-772413/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/cocoloba-772413/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106025576972853642",
+   "回链": "https://x.com/mszzz0011/status/2106025576972853642",
+   "对象": "@mszzz0011",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一次生成的动画",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T14:16:40Z",
+   "added": "2026-10-13",
+   "duration_s": 18,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/mszzz0011-853642/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/mszzz0011-853642/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106018048792789360",
+   "回链": "https://x.com/iancarscadden/status/2106018048792789360",
+   "对象": "@iancarscadden",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "非模板 UI 动画序列",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T13:46:45Z",
+   "added": "2026-10-13",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/iancarscadden-789360/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/iancarscadden-789360/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106008546248950161",
+   "回链": "https://x.com/xodud_rkd/status/2106008546248950161",
+   "对象": "@xodud_rkd",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Fable 5.5 Max 动效与配乐",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T13:08:59Z",
+   "added": "2026-10-13",
+   "duration_s": 100,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/xodud-rkd-950161/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/xodud-rkd-950161/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2106003621402005816",
+   "回链": "https://x.com/eviljoker88/status/2106003621402005816",
+   "对象": "@eviljoker88",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "SCP-8517 动画",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T12:49:25Z",
+   "added": "2026-10-13",
+   "duration_s": 374,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/eviljoker88-005816/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/eviljoker88-005816/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105988529671360673",
+   "回链": "https://x.com/l_mejiaC/status/2105988529671360673",
+   "对象": "@l_mejiaC",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "宇宙凝视自己",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "web-audio"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T11:49:27Z",
+   "added": "2026-10-13",
+   "duration_s": 202,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/l-mejiac-360673/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/l-mejiac-360673/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105914965387321785",
+   "回链": "https://x.com/maciejkrupowies/status/2105914965387321785",
+   "对象": "@maciejkrupowies",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "Duke Decibel 复古 Boss 战",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T06:57:08Z",
+   "added": "2026-10-13",
+   "duration_s": 46,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/maciejkrupowies-321785/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/maciejkrupowies-321785/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105894547796476225",
+   "回链": "https://x.com/RobIW_dev/status/2105894547796476225",
+   "对象": "@RobIW_dev",
+   "类型": "动效",
+   "子类": "发布片",
+   "摘要": "Paracortex Terminal 更新宣传片",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": "I'd like a motion design video to present on X for our update to paracortex terminal and pi 1.0\n25 seconds should do and I'm giving you free range for what it shows, how it shows it and what to highlight and what to merely mention\nmake it lively",
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T05:36:00Z",
+   "added": "2026-10-13",
+   "duration_s": 25,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/robiw-dev-476225/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/robiw-dev-476225/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105866966988661167",
+   "回链": "https://x.com/Scrappy__4/status/2105866966988661167",
+   "对象": "@Scrappy__4",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "纯 JS 写的 15 秒可玩动画",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": "Create a cool 15s playable animation with pure js",
+   "tech": [
+    "canvas",
+    "playable"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T03:46:24Z",
+   "added": "2026-10-13",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/scrappy-4-661167/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/scrappy-4-661167/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105844734409560379",
+   "回链": "https://x.com/Scrappy__4/status/2105844734409560379",
+   "对象": "@Scrappy__4",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "熔岩灯模拟",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T02:18:04Z",
+   "added": "2026-10-13",
+   "duration_s": 30,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/scrappy-4-560379/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/scrappy-4-560379/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105842745189556672",
+   "回链": "https://x.com/olddonkeyblog/status/2105842745189556672",
+   "对象": "@olddonkeyblog",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "自包含的鹈鹕骑自行车 SVG（max effort）",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105831117677084841",
+   "回链": "https://x.com/imjustnewatai/status/2105831117677084841",
+   "对象": "@imjustnewatai",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "单文件 HTML 复刻 Dig Dug",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": "Recreate the hit arcade game Dig Dug 1:1 as it is in the arcade. Make it as exact as possible. Implement as many features as possible (from music to visuals to EVERYTHING) Use anything and everything to make this game as similar and good as possible. Create it in an HTML file.",
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-10-02T01:23:57Z",
+   "added": "2026-10-13",
+   "duration_s": 62,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-084841/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/imjustnewatai-084841/video.mp4",
+   "demo_url": null,
+   "需要拍板": [
+    "来源间大类不一致：clawshelf=games-interactive / skillry=interactive / coolbat=Interactive 3D"
+   ],
+   "票拟": "按子类收录"
+  },
+  {
+   "id": "2105804692811137242",
+   "回链": "https://x.com/blueemi99/status/2105804692811137242",
+   "对象": "@blueemi99",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "「做一个体素版的你」",
+   "来源": [
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [],
+   "views": null,
+   "posted_at": null,
+   "added": null,
+   "duration_s": null,
+   "poster": null,
+   "video": null,
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105801379956850793",
+   "回链": "https://x.com/l_mejiaC/status/2105801379956850793",
+   "对象": "@l_mejiaC",
+   "类型": "动效",
+   "子类": "科普解释",
+   "摘要": "Humanity Walks：三万年艺术史",
+   "来源": [
+    "clawshelf",
+    "skillry",
+    "coolbat"
+   ],
+   "prompt": null,
+   "tech": [
+    "web-audio"
+   ],
+   "views": null,
+   "posted_at": "2026-10-01T23:25:47Z",
+   "added": "2026-10-13",
+   "duration_s": 74,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/l-mejiac-850793/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/l-mejiac-850793/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105779174921359470",
+   "回链": "https://x.com/ishuagra02/status/2105779174921359470",
+   "对象": "@ishuagra02",
+   "类型": "动效",
+   "子类": "发布片",
+   "摘要": "Nintendo Switch SVG 组装动画",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": "Create an SVG of a Nintendo Switch, with an animation of the controllers getting snapped into the console, and the screen booting up with the logo.",
+   "tech": [
+    "svg"
+   ],
+   "views": null,
+   "posted_at": "2026-10-01T21:57:33Z",
+   "added": "2026-10-10",
+   "duration_s": 5,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/ishuagra02-359470/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/ishuagra02-359470/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2105758042830549235",
+   "回链": "https://x.com/mesmerlord/status/2105758042830549235",
+   "对象": "@mesmerlord",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "纯 JavaScript 画的漫威 DC 英雄群像，眼睛会跟着鼠标走",
+   "来源": [
+    "clawshelf"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": null,
+   "added": "2026-10-10",
+   "duration_s": 15,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/mesmerlord-049235/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/mesmerlord-049235/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "2104424144498754036",
+   "回链": "https://x.com/tonytonggg/status/2104424144498754036",
+   "对象": "@tonytonggg",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "两千关注者庆祝动画",
+   "来源": [
+    "clawshelf",
+    "skillry"
+   ],
+   "prompt": null,
+   "tech": [
+    "canvas"
+   ],
+   "views": null,
+   "posted_at": "2026-09-28T04:13:09Z",
+   "added": "2026-10-13",
+   "duration_s": 20,
+   "poster": "https://media.clawshelf.com/ai-videos/fable-5.5/tonytonggg-754036/poster.jpg",
+   "video": "https://media.clawshelf.com/ai-videos/fable-5.5/tonytonggg-754036/video.mp4",
+   "demo_url": null,
+   "需要拍板": null,
+   "票拟": null
+  }
+ ]
+}
