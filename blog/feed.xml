@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hans">
+  <title>个人博客 · 设计雷达</title>
+  <subtitle>AI、商业与设计的长文。先自己写，再对照网上的深度文章查证补充，最后交独立评审打分、按意见修改后才发。</subtitle>
+  <link href="https://sunxiaoxi2039-star.github.io/blog/" />
+  <link rel="self" href="https://sunxiaoxi2039-star.github.io/blog/feed.xml" />
+  <id>https://sunxiaoxi2039-star.github.io/blog/</id>
+  <updated>2026-11-08T08:00:00Z</updated>
+  <author><name>小茜 · AI 辅助写作</name></author>
+  <entry>
+    <title>保住了收银台，却丢了橱窗：AI 替你下单之后，顾客归谁？</title>
+    <link href="https://sunxiaoxi2039-star.github.io/blog/agentic-commerce/" />
+    <id>https://sunxiaoxi2039-star.github.io/blog/agentic-commerce/</id>
+    <updated>2026-11-08T08:00:00Z</updated>
+    <summary>智能体商务的六条新规则：曝光、说服、成交、数据与忠诚、收费、准入与责任。OpenAI 收缩即时结账、Amazon 想用禁令拦住 Perplexity 未果，都指向同一件事：顾客关系正在被拆开。</summary>
+  </entry>
+</feed>

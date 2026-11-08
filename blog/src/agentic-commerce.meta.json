@@ -1,0 +1,252 @@
+{
+  "slug": "agentic-commerce",
+  "date": "2026-11-08",
+  "version": "20261108",
+  "author": "小茜 · AI 辅助写作",
+  "tags": [
+    "智能体商务",
+    "零售",
+    "AI"
+  ],
+  "description": "当越来越多人把购物决定交给 AI 智能体，顾客关系被拆成几段：智能体平台拿走需求与决策，协议和卡组织接管授权，零售商守住收银台却可能丢掉橱窗。六条正在改写的规则，以及零售商还能做什么。",
+  "blog_desc": "AI、商业与设计的长文。先自己写，再对照网上的深度文章查证补充，最后交独立评审打分、按意见修改后才发。",
+  "anchors": {
+    "先说结论": "answer",
+    "六条正在改写的规则": "rules",
+    "冷静一点：这件事比口号来得慢": "reality",
+    "谁会赢，谁最危险": "winners",
+    "给零售商的五件事": "playbook",
+    "结语：顾客把授权交给谁": "end",
+    "三种可能改写剧本的情景": "scenarios",
+    "「拥有顾客」到底指什么": "parts"
+  },
+  "score": {
+    "total": 82,
+    "label": "五轮独立评审：75 → 80 → 83 → 83 → 82，结论「小修后发布」，已按第五轮意见修改"
+  },
+  "posts": [
+    {
+      "slug": "agentic-commerce",
+      "date": "2026-11-08",
+      "title": "保住了收银台，却丢了橱窗：AI 替你下单之后，顾客归谁？",
+      "desc": "智能体商务的六条新规则：曝光、说服、成交、数据与忠诚、收费、准入与责任。OpenAI 收缩即时结账、Amazon 想用禁令拦住 Perplexity 未果，都指向同一件事：顾客关系正在被拆开。",
+      "tags": [
+        "智能体商务",
+        "零售",
+        "AI"
+      ]
+    }
+  ],
+  "refs": [
+    {
+      "key": "stripe",
+      "who": "Stripe",
+      "title": "Stripe powers Instant Checkout in ChatGPT and releases Agentic Commerce Protocol codeveloped with OpenAI",
+      "url": "https://stripe.com/newsroom/news/stripe-openai-instant-checkout",
+      "note": "2025-09"
+    },
+    {
+      "key": "cnbc",
+      "who": "CNBC",
+      "title": "OpenAI revamps shopping experience in ChatGPT after struggling with Instant Checkout offering",
+      "url": "https://www.cnbc.com/2026/03/24/openai-revamps-shopping-experience-in-chatgpt-after-instant-checkout.html",
+      "note": "2026-03-24"
+    },
+    {
+      "key": "emarketer",
+      "who": "eMarketer",
+      "title": "ChatGPT to charge 4% fee for sales, testing seller appetite for AI shopping",
+      "url": "https://www.emarketer.com/content/chatgpt-checkout-fees-testing-seller-appetite-ai-shopping",
+      "note": "援引 The Information"
+    },
+    {
+      "key": "googlegml",
+      "who": "Google",
+      "title": "How we're helping retailers thrive with new Universal Commerce Protocol features and AI tools on Google",
+      "url": "https://blog.google/products-and-platforms/products/shopping/shopping-updates-google-marketing-live",
+      "note": "2026-05-20"
+    },
+    {
+      "key": "digiday",
+      "who": "Digiday",
+      "title": "Google's latest commerce moves deepen the battle over agentic shopping",
+      "url": "https://digiday.com/marketing/googles-latest-commerce-moves-deepen-the-battle-over-agentic-shopping/",
+      "note": "2026"
+    },
+    {
+      "key": "accenture",
+      "who": "Accenture",
+      "title": "Consumer Pulse Research 2026: Talk to my AI agent",
+      "url": "https://www.accenture.com/gb-en/insights/consulting/talk-my-ai-agent",
+      "note": "16 国 25,590 名消费者，2026-01 调查"
+    },
+    {
+      "key": "adobe",
+      "who": "Digital Commerce 360",
+      "title": "Generative AI drives online holiday shopping traffic in 2025（Adobe Analytics 数据）",
+      "url": "https://www.digitalcommerce360.com/2026/01/13/generative-ai-online-holiday-shopping-traffic-2025/",
+      "note": "2026-01-13"
+    },
+    {
+      "key": "cerre",
+      "who": "CERRE",
+      "title": "Agentic AI and Consumer Protection",
+      "url": "https://cerre.eu/publications/agentic-ai-and-consumer-protection/",
+      "note": "2026-07"
+    },
+    {
+      "key": "bloomberg",
+      "who": "Bloomberg",
+      "title": "Amazon Sues to Stop Perplexity From Using AI Tool to Buy Stuff",
+      "url": "https://www.bloomberg.com/news/articles/2025-11-04/amazon-demands-perplexity-stop-ai-agent-from-making-purchases",
+      "note": "2025-11-04"
+    },
+    {
+      "key": "ninth",
+      "who": "美国第九巡回上诉法院",
+      "title": "Amazon.com Services, LLC v. Perplexity AI, Inc., No. 26-1444（判决书，Justia）",
+      "url": "https://law.justia.com/cases/federal/appellate-courts/ca9/26-1444/26-1444-2026-08-04.html",
+      "note": "2026-08-04"
+    },
+    {
+      "key": "cooley",
+      "who": "Cooley",
+      "title": "Ninth Circuit Rules on AI Agent 'Access' to Third-Party Websites Under CFAA",
+      "url": "https://www.cooley.com/news/insight/2026/2026-08-06-ninth-circuit-rules-on-ai-agent-access-to-third-party-websites-under-cfaa",
+      "note": "2026-08-06"
+    },
+    {
+      "key": "openai_ads",
+      "who": "OpenAI",
+      "title": "Testing ads in ChatGPT",
+      "url": "https://openai.com/index/testing-ads-in-chatgpt/",
+      "note": "2026-01"
+    },
+    {
+      "key": "booking",
+      "who": "Skift",
+      "title": "Booking.com Hit With EU's 'Gatekeeper' Status, Faces Tighter Regulation",
+      "url": "https://skift.com/2024/05/13/booking-com-hit-with-eus-gatekeeper-status-faces-tighter-regulation",
+      "note": "2024-05-13，Booking 被列为 DMA 守门人"
+    },
+    {
+      "key": "cloudflare",
+      "who": "Cloudflare",
+      "title": "Cloudflare Collaborates with Leading Payments Companies to Secure and Enable Agentic Commerce（含 Visa Trusted Agent Protocol、Mastercard Agent Pay）",
+      "url": "https://www.cloudflare.com/press/press-releases/2025/cloudflare-collaborates-with-leading-payments-companies-to-secure-and-enable-agentic-commerce/",
+      "note": "2025-10-14"
+    },
+    {
+      "key": "bitkom",
+      "who": "Textilwirtschaft（援引 Bitkom 调查）",
+      "title": "KI-Agenten: \"Wer jetzt nicht auf den Zug aufspringt, kommt unter die Räder\"",
+      "url": "https://www.textilwirtschaft.de/business/news/agentic-commerce-ki-agenten-wer-jetzt-nicht-auf-den-zug-aufspringt-kommt-unter-die-raeder-253541",
+      "note": "2026"
+    },
+    {
+      "key": "mckinsey",
+      "who": "McKinsey",
+      "title": "The agentic commerce opportunity: How AI agents are ushering in a new era for consumers and merchants",
+      "url": "https://www.mckinsey.com/industries/retail/our-insights/the-agentic-commerce-opportunity-how-ai-agents-are-ushering-in-a-new-era-for-consumers-and-merchants",
+      "note": "2025-10"
+    },
+    {
+      "key": "morganstanley",
+      "who": "Digital Commerce 360",
+      "title": "Morgan Stanley: AI agentic shoppers could drive up to $385 billion in online sales",
+      "url": "https://www.digitalcommerce360.com/2025/12/09/morgan-stanley-ai-agentic-shoppers-385-billion-online-sales/",
+      "note": "2025-12-09"
+    },
+    {
+      "key": "universalcart",
+      "who": "Search Engine Roundtable",
+      "title": "Universal Cart Launches In Google Search (U.S.)",
+      "url": "https://seroundtable.com/universal-cart-google-search-42312.html",
+      "note": "2026-10"
+    },
+    {
+      "key": "enbanc",
+      "who": "MLex",
+      "title": "Amazon fails to get appellate rehearing in US case against Perplexity AI",
+      "url": "https://www.mlex.com/mlex/articles/2523861",
+      "note": "2026-09-10"
+    },
+    {
+      "key": "amzn_openai",
+      "who": "CNBC",
+      "title": "How Amazon's massive stake in OpenAI could boost its AI and cloud businesses",
+      "url": "https://www.cnbc.com/2026/02/27/amazon-open-ai-cloud-jassy-altman.html",
+      "note": "2026-02-27"
+    },
+    {
+      "key": "forrester",
+      "who": "Let's Data Science（援引 Forrester）",
+      "title": "Forrester Frames Agentic Commerce Strategy for 2026",
+      "url": "https://letsdatascience.com/news/forrester-frames-agentic-commerce-strategy-for-2026-22fd13e3",
+      "note": "2026"
+    },
+    {
+      "key": "ap2",
+      "who": "Digital Commerce 360",
+      "title": "Google launches Agent Payments Protocol (AP2) for AI agent purchases",
+      "url": "https://www.digitalcommerce360.com/2025/09/19/google-ai-payments-protocol-ap2/",
+      "note": "2025-09-19"
+    },
+    {
+      "key": "buyforme",
+      "who": "Engadget",
+      "title": "Amazon's 'Buy for Me' AI will purchase stuff from third-party websites",
+      "url": "https://www.engadget.com/ai/amazons-buy-for-me-ai-will-purchase-stuff-from-third-party-websites-123036361.html",
+      "note": "2025-04"
+    },
+    {
+      "key": "qwen",
+      "who": "Alibaba Group",
+      "title": "Alibaba's Qwen App Advances Agentic AI Strategy by Turning Core Ecosystem Services into Executable AI Capabilities",
+      "url": "https://home.alibabagroup.com/document-1948497434959151104",
+      "note": "2026-01"
+    },
+    {
+      "key": "qwen_tnw",
+      "who": "The Next Web",
+      "title": "Alibaba integrates Qwen AI with Taobao",
+      "url": "https://thenextweb.com/news/alibaba-integrates-qwen-ai-with-taobao",
+      "note": "2026-05-10"
+    },
+    {
+      "key": "hotrec",
+      "who": "Hospitality Today",
+      "title": "Hotrec claims Booking.com fails to comply with DMA",
+      "url": "https://hospitality.today/article/hotrec-claims-booking-com-fails-to-comply-with-dma",
+      "note": "2024-11"
+    },
+    {
+      "key": "ec_booking",
+      "who": "European Commission",
+      "title": "Factsheet: How the DMA ensures businesses using Booking.com are free to set their prices",
+      "url": "https://digital-markets-act.ec.europa.eu/factsheet-how-dma-ensures-businesses-using-bookingcom-are-free-set-their-prices-and-bookingcom-2026-09-28_en",
+      "note": "2026-09-28"
+    },
+    {
+      "key": "decepticon",
+      "who": "Cuvin, Zhu, Yang（斯坦福，ICLR 2026）",
+      "title": "DECEPTICON: How Dark Patterns Manipulate Web Agents",
+      "url": "https://arxiv.org/abs/2512.22894",
+      "note": "arXiv 2512.22894"
+    },
+    {
+      "key": "walmart",
+      "who": "MarTech（援引《连线》对 Walmart 高管 Daniel Danker 的采访）",
+      "title": "Walmart says ChatGPT checkout converted 3x worse than its own website",
+      "url": "https://martech.org/walmart-says-chatgpt-checkout-converted-3x-worse-than-its-own-website/",
+      "note": "2026-03"
+    },
+    {
+      "key": "bcg",
+      "who": "Mirakl（转述 BCG 研究）",
+      "title": "Is your marketplace agent-ready? What BCG's new research says about the digital flywheel and agentic commerce",
+      "url": "https://www.mirakl.com/blogs/marketplace/is-your-marketplace-agent-ready-what-bcgs-new-research-says-about-digital-flywheel-and-agentic-commerce/",
+      "note": ""
+    }
+  ]
+}
