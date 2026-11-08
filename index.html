@@ -27,14 +27,26 @@
   <meta itemprop="image" content="https://sunxiaoxi2039-star.github.io/og/latest.jpg?v=202610060031" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <link rel="stylesheet" href="styles.css?v=202610060031" />
+  <style>
+    /* 顶栏入口变多：手机上横向滑动，不换行 */
+    .brand{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    .brand::-webkit-scrollbar{display:none}
+    .brand-mark,.brand-name,.brand-link{flex:0 0 auto;white-space:nowrap}
+    .blog-banner{display:block;max-width:492px;margin:14px auto 0;padding:12px 16px;border-radius:14px;text-decoration:none;
+      background:rgba(232,200,114,.08);border:1px solid rgba(232,200,114,.28);color:#f4f2ec}
+    .blog-banner span{display:block;font-size:12px;letter-spacing:.06em;color:#e8c872;font-weight:700;margin-bottom:3px}
+    .blog-banner b{font-size:15px;font-weight:650;line-height:1.45}
+    @media (max-width:600px){.blog-banner{margin:12px 14px 0}}
+  </style>
 </head>
 <body>
   <header class="topbar" id="topbar">
     <div class="brand">
       <span class="brand-mark">✦</span>
       <span class="brand-name">设计雷达</span>
-      <a class="brand-link" href="map/">知识地图 ›</a>
-      <a class="brand-link" href="fable55/" style="margin-left:12px">Fable 5.5 归档 ›</a>
+      <a class="brand-link" href="blog/">个人博客 ›</a>
+      <a class="brand-link" href="map/" style="margin-left:8px">知识地图 ›</a>
+      <a class="brand-link" href="fable55/" style="margin-left:8px">Fable 5.5 归档 ›</a>
     </div>
     <nav class="filters" id="filters" aria-label="类型筛选">
       <button type="button" class="chip is-active" data-filter="all">全部</button>
@@ -43,6 +55,8 @@
       <button type="button" class="chip" data-filter="小游戏">小游戏</button>
     </nav>
   </header>
+
+  <a class="blog-banner" href="blog/agentic-commerce/"><span>个人博客 · 新文章</span><b>保住了收银台，却丢了橱窗：AI 替你下单之后，顾客归谁？ ›</b></a>
 
   <main id="feed" class="feed" aria-live="polite"></main>
 
