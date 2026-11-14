@@ -55,16 +55,19 @@
     <span class="time" id="time">0:00 / 0:00</span>
     <button id="sound" aria-pressed="true">♪ 配乐</button>
     <button id="fs">⛶ 全屏</button>
-    <span class="badge" id="src">画面：程序绘制</span>
+    <span class="badge" id="src">画面：代码手绘</span>
   </div>
   <div class="eps" id="eps"></div>
   <div class="note">
     画面来源：每一个镜头都有一条 GPT 生图提示词（见 <a href="prompts/PROMPTS.md">prompts/PROMPTS.md</a>）。
-    放入 <code>assets/</code> 后会自动替换为 GPT 画面；未生成的镜头由代码实时绘制。镜头运动、光影粒子、字幕与配乐全部由代码生成。
+    放入 <code>assets/</code> 后会自动替换为 GPT 画面；未生成的镜头由代码实时“手绘”——水粉纸纹、层叠积云、赛璐璐上色的人物、多层视差镜头。光影粒子、字幕与配乐全部由代码生成。
     剧本与世界观：<a href="story/BIBLE.md">story/BIBLE.md</a>。
   </div>
 </main>
 <script src="episodes.js"></script>
+<script src="paint.js"></script>
+<script src="chars.js"></script>
+<script src="scenes.js"></script>
 <script src="engine.js"></script>
 <script>
 (() => {
@@ -84,8 +87,13 @@
   });
   function fmt(s) { s = Math.max(0, s | 0); return `${(s / 60) | 0}:${String(s % 60).padStart(2, '0')}`; }
   function select(i) { epIdx = i; T = 0; [...eps.children].forEach((c, k) => c.setAttribute('aria-current', k === i)); restartAudio(); draw(); }
+  let warmed = -1;
+  function warmNext(i) {
+    if (warmed === i) return; warmed = i; const nx = ep().shots[i + 1];
+    if (nx) (window.requestIdleCallback || ((f) => setTimeout(f, 60)))(() => DL.prepare(nx));
+  }
   function draw() {
-    DL.renderEpisode(ctx, ep(), T);
+    const at = DL.renderEpisode(ctx, ep(), T); warmNext(at.i);
     const d = DL.epDuration(ep()); document.getElementById('fill').style.width = (100 * T / d) + '%';
     document.getElementById('time').textContent = `第${ep().n}集  ${fmt(T)} / ${fmt(d)}`;
   }
@@ -115,7 +123,7 @@
   document.addEventListener('keydown', (e) => { if (e.code === 'Space') { e.preventDefault(); playing ? pause() : start(); } if (e.code === 'ArrowRight') shotJump(1); if (e.code === 'ArrowLeft') shotJump(-1); });
 
   const ready = (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => DL.loadPlates('assets/')).then((n) => {
-    if (n) document.getElementById('src').textContent = `画面：GPT 生图 ${n} 张 + 程序绘制`;
+    if (n) document.getElementById('src').textContent = `画面：GPT 生图 ${n} 张 + 代码手绘`;
     select(epIdx); if (qs.get('t')) seek(+qs.get('t'));
   });
   window.__ready = ready;

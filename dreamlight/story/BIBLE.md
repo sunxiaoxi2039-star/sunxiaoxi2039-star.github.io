@@ -75,7 +75,8 @@ episodes.js  ──►  tools/export_prompts.py  ──►  prompts/PROMPTS.md�
      ├──►  tools/generate_images.py  （OpenAI Images API，角色设定图作参考保持一致）
      │         └─► assets/ep{N}/{镜头}.png  ──►  tools/build_manifest.py ──► assets/manifest.json
      │
-     └──►  engine.js（镜头运动 / 粒子 / 灰度 / 字幕 / 配乐 / 无图时的程序绘制）
+     └──►  paint.js + chars.js + scenes.js（无 GPT 图时的代码手绘：水粉纹理、积云、赛璐璐人物）
+           engine.js（多层视差镜头 / 粒子 / 灰度 / 柔光纸纹 / 字幕 / 配乐）
                ├─► index.html  网页播放器
                └─► tools/render.cjs  ──►  out/ep{N}.mp4
 ```
