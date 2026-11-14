@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小芽与风的种子 · 五集动画</title>
+<meta name="description" content="一个五岁女孩视角的梦幻世界：与现实融合、对抗、领悟。画面、动画与配乐全部由代码生成。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#f6efdf; --ink:#3d2c1e; --muted:#7a5a3a; --accent:#e0a21b; --card:#fffaf0; --line:rgba(122,90,58,.2); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper:#17140f; --ink:#f1e6d2; --muted:#c7a983; --card:#221d16; --line:rgba(199,169,131,.2); } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:"Noto Serif SC","Songti SC",serif; }
+  header { max-width:1100px; margin:0 auto; padding:40px 16px 8px; }
+  h1 { font-size:clamp(30px,5vw,52px); margin:0 0 6px; letter-spacing:.06em; }
+  .en { color:var(--muted); font-style:italic; margin:0 0 14px; }
+  .logline { max-width:760px; line-height:1.9; color:var(--ink); opacity:.88; }
+  main { max-width:1100px; margin:0 auto; padding:0 16px 60px; }
+  .stage { position:relative; background:#000; border-radius:14px; overflow:hidden; box-shadow:0 20px 50px rgba(60,40,10,.25); aspect-ratio:16/9; }
+  canvas { width:100%; height:100%; display:block; }
+  .big-play { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,.25); border:0; cursor:pointer; color:#fff; font:inherit; font-size:22px; }
+  .big-play span { background:rgba(255,250,240,.92); color:#3d2c1e; padding:14px 28px; border-radius:40px; }
+  .controls { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:12px 0 4px; }
+  .controls button { font:inherit; font-size:14px; padding:7px 14px; border-radius:20px; border:1px solid var(--line); background:var(--card); color:var(--ink); cursor:pointer; }
+  .controls button[aria-pressed="true"] { background:var(--accent); color:#2b1d05; border-color:transparent; }
+  .bar { flex:1 1 200px; height:6px; background:var(--line); border-radius:3px; cursor:pointer; position:relative; min-width:140px; }
+  .bar i { position:absolute; left:0; top:0; bottom:0; background:var(--accent); border-radius:3px; }
+  .time { font-size:13px; color:var(--muted); font-variant-numeric:tabular-nums; }
+  .eps { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; margin-top:22px; }
+  .ep { text-align:left; font:inherit; color:inherit; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px; cursor:pointer; }
+  .ep[aria-current="true"] { outline:2px solid var(--accent); }
+  .ep b { display:block; font-size:18px; margin:4px 0; } .ep small { color:var(--muted); } .ep p { font-size:13px; line-height:1.7; margin:8px 0 0; opacity:.85; }
+  .note { margin-top:28px; font-size:14px; line-height:1.9; color:var(--muted); border-top:1px solid var(--line); padding-top:16px; }
+  .note a { color:inherit; }
+  .badge { font-size:12px; padding:3px 10px; border-radius:10px; background:var(--line); }
+</style>
+</head>
+<body>
+<header>
+  <h1>小芽与风的种子</h1>
+  <p class="en">Xiaoya and the Seed of Wind · 五集动画短片</p>
+  <p class="logline" id="logline"></p>
+</header>
+<main>
+  <div class="stage">
+    <canvas id="cv" width="1280" height="720" aria-label="动画画面"></canvas>
+    <button class="big-play" id="bigplay"><span>▶ 播放第一集</span></button>
+  </div>
+  <div class="controls">
+    <button id="play">▶ 播放</button>
+    <button id="prev" title="上一镜">⏮</button>
+    <button id="next" title="下一镜">⏭</button>
+    <div class="bar" id="bar"><i id="fill"></i></div>
+    <span class="time" id="time">0:00 / 0:00</span>
+    <button id="sound" aria-pressed="true">♪ 配乐</button>
+    <button id="fs">⛶ 全屏</button>
+    <span class="badge" id="src">画面：100% 代码手绘</span>
+  </div>
+  <div class="eps" id="eps"></div>
+  <div class="note">
+    每一帧都由浏览器里的代码实时“手绘”：水粉纸纹、层叠积云、带笔压与收锋墨线的赛璐璐人物、多层视差镜头、光影粒子、字幕与八音盒配乐——没有任何图片素材，也不用生图模型。
+    剧本与世界观：<a href="story/BIBLE.md">story/BIBLE.md</a>。
+  </div>
+</main>
+<script src="episodes.js"></script>
+<script src="paint.js"></script>
+<script src="chars.js"></script>
+<script src="scenes.js"></script>
+<script src="engine.js"></script>
+<script>
+(() => {
+  const D = window.DREAMLIGHT, DL = window.DL;
+  const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+  const qs = new URLSearchParams(location.search);
+  let epIdx = Math.max(0, Math.min(4, (+qs.get('ep') || 1) - 1));
+  let T = +qs.get('t') || 0, playing = false, last = 0, sound = true, ac = null, score = null;
+  const ep = () => D.episodes[epIdx];
+  document.getElementById('logline').textContent = D.logline;
+
+  const eps = document.getElementById('eps');
+  D.episodes.forEach((e, i) => {
+    const b = document.createElement('button'); b.className = 'ep';
+    b.innerHTML = `<small>第 ${e.n} 集 · ${e.theme}</small><b>${e.title}</b><small>${fmt(DL.epDuration(e))}</small><p>${e.summary}</p>`;
+    b.onclick = () => { select(i); start(); }; eps.appendChild(b);
+  });
+  function fmt(s) { s = Math.max(0, s | 0); return `${(s / 60) | 0}:${String(s % 60).padStart(2, '0')}`; }
+  function select(i) { epIdx = i; T = 0; [...eps.children].forEach((c, k) => c.setAttribute('aria-current', k === i)); restartAudio(); draw(); }
+  let warmed = -1;
+  function warmNext(i) {
+    if (warmed === i) return; warmed = i; const nx = ep().shots[i + 1];
+    if (nx) (window.requestIdleCallback || ((f) => setTimeout(f, 60)))(() => DL.prepare(nx));
+  }
+  function draw() {
+    const at = DL.renderEpisode(ctx, ep(), T); warmNext(at.i);
+    const d = DL.epDuration(ep()); document.getElementById('fill').style.width = (100 * T / d) + '%';
+    document.getElementById('time').textContent = `第${ep().n}集  ${fmt(T)} / ${fmt(d)}`;
+  }
+  function restartAudio() {
+    if (score) { score.stop(); score = null; }
+    if (!playing || !sound) return;
+    ac = ac || new (window.AudioContext || window.webkitAudioContext)(); ac.resume();
+    score = DL.scheduleScore(ac, ac.destination, ep(), T, ac.currentTime + 0.05);
+  }
+  function loop(ts) {
+    if (!playing) return; const dt = last ? (ts - last) / 1000 : 0; last = ts; T += dt;
+    const d = DL.epDuration(ep());
+    if (T >= d) { if (epIdx < 4) { select(epIdx + 1); playing = true; last = 0; restartAudio(); } else { T = d; pause(); } }
+    draw(); requestAnimationFrame(loop);
+  }
+  function start() { document.getElementById('bigplay').style.display = 'none'; playing = true; last = 0; document.getElementById('play').textContent = '⏸ 暂停'; restartAudio(); requestAnimationFrame(loop); }
+  function pause() { playing = false; document.getElementById('play').textContent = '▶ 播放'; if (score) { score.stop(); score = null; } }
+  function seek(nt) { T = Math.max(0, Math.min(DL.epDuration(ep()) - 0.01, nt)); restartAudio(); draw(); }
+  function shotJump(dir) { const { i, start: s0 } = DL.locate(ep(), T); const shots = ep().shots; let t = 0; for (let k = 0; k < Math.max(0, Math.min(shots.length - 1, i + dir)); k++) t += shots[k].dur; seek(dir < 0 && T - s0 > 1 ? s0 : t + 0.01); }
+  document.getElementById('bigplay').onclick = start;
+  document.getElementById('play').onclick = () => (playing ? pause() : start());
+  document.getElementById('prev').onclick = () => shotJump(-1);
+  document.getElementById('next').onclick = () => shotJump(1);
+  document.getElementById('bar').onclick = (e) => { const r = e.currentTarget.getBoundingClientRect(); seek((e.clientX - r.left) / r.width * DL.epDuration(ep())); };
+  document.getElementById('sound').onclick = (e) => { sound = !sound; e.currentTarget.setAttribute('aria-pressed', sound); restartAudio(); };
+  document.getElementById('fs').onclick = () => document.querySelector('.stage').requestFullscreen?.();
+  document.addEventListener('keydown', (e) => { if (e.code === 'Space') { e.preventDefault(); playing ? pause() : start(); } if (e.code === 'ArrowRight') shotJump(1); if (e.code === 'ArrowLeft') shotJump(-1); });
+
+  const ready = (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => {
+    select(epIdx); if (qs.get('t')) seek(+qs.get('t'));
+  });
+  window.__ready = ready;
+})();
+</script>
+</body>
+</html>
