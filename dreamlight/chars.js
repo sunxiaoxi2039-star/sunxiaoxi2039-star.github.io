@@ -222,13 +222,13 @@
   function girlEyes(ctx, t, expr, seed) {
     const closed = blinkAt(t, seed) && expr !== 'sad' && expr !== 'joy';
     for (const m of [0, 1]) {
-      const D = (d) => { const e = sc(d, -4.5, -79.5, 0.88); return m ? mx(e) : e; };
+      const D = (d) => { const e = sc(d, -4.6, -79.3, 0.76); return m ? mx(e) : e; };
       if (expr === 'joy') { strokeD(ctx, D(G.joy), 0.9, '#2a1812'); continue; }
       if (closed) { strokeD(ctx, D(G.closed), 0.85, '#2a1812'); continue; }
       const ew = p2d(D(G.eyeW)); ctx.fillStyle = '#fffaf3'; ctx.fill(ew);
       ctx.save(); ctx.clip(ew);
-      const ex = m ? 4.3 : -4.3, ey = -79.3 + (expr === 'sad' ? 0.6 : 0) + (expr === 'o' ? 0.25 : 0);
-      ctx.fillStyle = P.lg(ctx, 0, ey - 2.2, 0, ey + 2.2, ['#1c120e', '#352218', '#6c4430']); ctx.beginPath(); ctx.ellipse(ex, ey, 1.5, 1.98, 0, 0, TAU); ctx.fill();
+      const ex = m ? 4.5 : -4.5, ey = -79.2 + (expr === 'sad' ? 0.6 : 0) + (expr === 'o' ? 0.25 : 0);
+      ctx.fillStyle = P.lg(ctx, 0, ey - 2.2, 0, ey + 2.2, ['#1c120e', '#352218', '#6c4430']); ctx.beginPath(); ctx.ellipse(ex, ey, 1.32, 1.72, 0, 0, TAU); ctx.fill();
       ctx.fillStyle = 'rgba(70,40,30,0.28)'; ctx.fillRect(ex - 4, -82.5, 8, 1.6);
       ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.ellipse(ex + 0.5, ey - 0.75, 0.55, 0.6, 0, 0, TAU); ctx.fill();
       ctx.restore();
