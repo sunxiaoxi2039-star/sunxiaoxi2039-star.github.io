@@ -472,5 +472,25 @@
     if (o.haze) { const hh = o.hazeH || 120; ctx.fillStyle = P.vg(ctx, baseY - hh, baseY + 30, [P.css(o.haze, 0), P.css(o.haze, o.hazeA ?? 0.6)]); ctx.fillRect(-M, baseY - hh, W + 2 * M, hh + 30 + H); }
   };
 
+  // hand-made finish for a painted layer: a smooth low-frequency warp so ruler-straight
+  // edges waver like brushwork (applied once per layer when a scene is built)
+  P.handmade = (canvas, amp = 1.7, scale = 52) => {
+    const w = canvas.width, h = canvas.height, x = canvas.getContext('2d');
+    const src = x.getImageData(0, 0, w, h), S = src.data, out = x.createImageData(w, h), O = out.data;
+    const g = 8, gw = Math.ceil(w / g) + 2, gh = Math.ceil(h / g) + 2, DX = new Float32Array(gw * gh), DY = new Float32Array(gw * gh);
+    for (let j = 0; j < gh; j++) for (let i = 0; i < gw; i++) { DX[j * gw + i] = (P.fbm((i * g) / scale, (j * g) / scale, 2) - 0.5) * 2 * amp; DY[j * gw + i] = (P.fbm((i * g) / scale + 31.7, (j * g) / scale - 17.3, 2) - 0.5) * 2 * amp; }
+    for (let y = 0; y < h; y++) {
+      const gy = y / g, j0 = gy | 0, fy = gy - j0;
+      for (let xx = 0; xx < w; xx++) {
+        const gx = xx / g, i0 = gx | 0, fx = gx - i0, k00 = j0 * gw + i0, k10 = k00 + 1, k01 = k00 + gw, k11 = k01 + 1;
+        const dx = (DX[k00] * (1 - fx) + DX[k10] * fx) * (1 - fy) + (DX[k01] * (1 - fx) + DX[k11] * fx) * fy;
+        const dy = (DY[k00] * (1 - fx) + DY[k10] * fx) * (1 - fy) + (DY[k01] * (1 - fx) + DY[k11] * fx) * fy;
+        const sx = Math.min(w - 1, Math.max(0, Math.round(xx + dx))), sy = Math.min(h - 1, Math.max(0, Math.round(y + dy)));
+        const si = (sy * w + sx) * 4, oi = (y * w + xx) * 4; O[oi] = S[si]; O[oi + 1] = S[si + 1]; O[oi + 2] = S[si + 2]; O[oi + 3] = S[si + 3];
+      }
+    }
+    x.putImageData(out, 0, 0);
+  };
+
   window.P = P;
 })();

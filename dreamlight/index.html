@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>小芽与风的种子 · 五集动画</title>
-<meta name="description" content="一个五岁女孩视角的梦幻世界：与现实融合、对抗、领悟。GPT 生图 + 代码动画。">
+<meta name="description" content="一个五岁女孩视角的梦幻世界：与现实融合、对抗、领悟。画面、动画与配乐全部由代码生成。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -55,12 +55,11 @@
     <span class="time" id="time">0:00 / 0:00</span>
     <button id="sound" aria-pressed="true">♪ 配乐</button>
     <button id="fs">⛶ 全屏</button>
-    <span class="badge" id="src">画面：代码手绘</span>
+    <span class="badge" id="src">画面：100% 代码手绘</span>
   </div>
   <div class="eps" id="eps"></div>
   <div class="note">
-    画面来源：每一个镜头都有一条 GPT 生图提示词（见 <a href="prompts/PROMPTS.md">prompts/PROMPTS.md</a>）。
-    放入 <code>assets/</code> 后会自动替换为 GPT 画面；未生成的镜头由代码实时“手绘”——水粉纸纹、层叠积云、赛璐璐上色的人物、多层视差镜头。光影粒子、字幕与配乐全部由代码生成。
+    每一帧都由浏览器里的代码实时“手绘”：水粉纸纹、层叠积云、带笔压与收锋墨线的赛璐璐人物、多层视差镜头、光影粒子、字幕与八音盒配乐——没有任何图片素材，也不用生图模型。
     剧本与世界观：<a href="story/BIBLE.md">story/BIBLE.md</a>。
   </div>
 </main>
@@ -122,8 +121,7 @@
   document.getElementById('fs').onclick = () => document.querySelector('.stage').requestFullscreen?.();
   document.addEventListener('keydown', (e) => { if (e.code === 'Space') { e.preventDefault(); playing ? pause() : start(); } if (e.code === 'ArrowRight') shotJump(1); if (e.code === 'ArrowLeft') shotJump(-1); });
 
-  const ready = (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => DL.loadPlates('assets/')).then((n) => {
-    if (n) document.getElementById('src').textContent = `画面：GPT 生图 ${n} 张 + 代码手绘`;
+  const ready = (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => {
     select(epIdx); if (qs.get('t')) seek(+qs.get('t'));
   });
   window.__ready = ready;

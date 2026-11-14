@@ -717,5 +717,5 @@
     };
   };
 
-  window.S = { build: (shot) => { const b = new Scene(shot); (B[shot.bg] || B.title)(b, shot); return b; }, TINT };
+  window.S = { build: (shot) => { const b = new Scene(shot); (B[shot.bg] || B.title)(b, shot); if (shot.bg !== 'title') for (const L of Object.values(b.layers)) P.handmade(L.c); return b; }, TINT };
 })();

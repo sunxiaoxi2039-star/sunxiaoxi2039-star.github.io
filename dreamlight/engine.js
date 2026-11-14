@@ -4,7 +4,7 @@
  * weather / light effects, film finishing, titles and subtitles, and a small
  * procedural score. Everything is a pure function of (shot, time), so the web
  * player and the frame-by-frame MP4 renderer (tools/render.cjs) match exactly.
- * If a GPT plate exists in assets/, it replaces the painted background.
+ * No image assets are used: every pixel is drawn by code.
  */
 (function () {
   'use strict';
@@ -27,7 +27,6 @@
   const sceneCanvas = P.canvas(W, H), sctx = sceneCanvas.getContext('2d');
   const charCanvas = P.canvas(W, H), cctx = charCanvas.getContext('2d');
   const bloomCanvas = P.canvas(W / 4, H / 4), blx = bloomCanvas.getContext('2d');
-  const plates = {};
 
   function camOf(shot, p) { const c = shot.cam || [1, 1.05, 0, 0], e = ease(p); return { z: lerp(c[0], c[1], e), px: c[2] * e * W, py: c[3] * e * H }; }
   function setCam(ctx, c, d, sh) { const z = 1 + (c.z - 1) * d; ctx.setTransform(z, 0, 0, z, W / 2 - (W / 2) * z + c.px * d + sh[0], H / 2 - (H / 2) * z + c.py * d + sh[1]); }
@@ -60,11 +59,7 @@
     else if (fx.includes('shake-soft')) sh = [Math.sin(t * 31) * 1.6, Math.cos(t * 27) * 1.2];
     sctx.setTransform(1, 0, 0, 1, 0, 0); sctx.globalAlpha = 1; sctx.globalCompositeOperation = 'source-over'; sctx.filter = 'none';
     sctx.fillStyle = '#000'; sctx.fillRect(0, 0, W, H);
-    const img = plates[shot.id];
-    if (img) {
-      setCam(sctx, cam, 0.85, sh); const s = Math.max(W / img.width, H / img.height) * 1.08, iw = img.width * s, ih = img.height * s;
-      sctx.drawImage(img, (W - iw) / 2, (H - ih) / 2, iw, ih);
-    } else {
+    {
       if (sc.sky) { setCam(sctx, cam, 0.1, sh); sc.sky(sctx, t); }
       for (const cl of sc.clouds) { setCam(sctx, cam, cl.d, sh); sctx.globalAlpha = cl.a; sctx.drawImage(cl.img, cl.x + cl.vx * t, cl.y); sctx.globalAlpha = 1; }
       drawLayer(sc, 'back', cam, t, sh);
@@ -197,14 +192,6 @@
   }
   function prepare(shot) { scene(shot); }
 
-  // ---------- GPT plates (optional) ----------
-  function loadPlates(base = 'assets/') {
-    return fetch(base + 'manifest.json').then((r) => (r.ok ? r.json() : {})).catch(() => ({})).then((m) => {
-      const ids = Object.keys(m.plates || {});
-      return Promise.all(ids.map((id) => new Promise((res) => { const im = new Image(); im.onload = () => { plates[id] = im; res(); }; im.onerror = res; im.src = base + m.plates[id]; }))).then(() => ids.filter((id) => plates[id]).length);
-    });
-  }
-
   // ---------- procedural score (WebAudio, works live and offline) ----------
   const NOTE = (m) => 440 * Math.pow(2, (m - 69) / 12);
   const WARM = [[60, 64, 67, 72, 76], [57, 60, 64, 69, 72], [53, 57, 60, 65, 69], [55, 59, 62, 67, 71]]; // C Am F G
@@ -243,5 +230,5 @@
     let bin = ''; const bytes = new Uint8Array(out.buffer); for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000)); return btoa(bin);
   }
 
-  window.DL = { W, H, renderEpisode, renderShot, epDuration, locate, prepare, loadPlates, plates, scheduleScore, renderEpisodeAudioWav };
+  window.DL = { W, H, renderEpisode, renderShot, epDuration, locate, prepare, scheduleScore, renderEpisodeAudioWav };
 })();

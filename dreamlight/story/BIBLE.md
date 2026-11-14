@@ -2,7 +2,7 @@
 
 > 一个五岁女孩视角的梦幻世界：与现实**融合**、与现实**对抗**、最后**领悟**。
 > 五集短片，每集约 1 分钟。手绘水彩质感的日式动画长片美术风格（原创角色、原创故事）。
-> 制作方式：只用 **GPT 生图** + **代码**。
+> 制作方式：**100% 代码**——没有图片素材，也不用生图模型。
 
 ## 一句话
 
@@ -66,19 +66,17 @@
 - **母题**：水洼（门）、蒲公英种子（离别与延续）、黄色（勇气，小芽的雨衣 → 借给妈妈的蜡笔）。
 - **声音**：程序生成的八音盒旋律。温暖段落走 C–Am–F–G，对抗段落转入 Am–F–Em–Am，下雨/起雾时叠加白噪声。
 
-## 制作管线（只用 GPT 生图 + 代码）
+## 制作管线（100% 代码）
 
 ```
-episodes.js  ──►  tools/export_prompts.py  ──►  prompts/PROMPTS.md（复制到 ChatGPT）
-     │                                     └─►  prompts/shots.jsonl
+episodes.js（剧本、台词、镜头、特效）
      │
-     ├──►  tools/generate_images.py  （OpenAI Images API，角色设定图作参考保持一致）
-     │         └─► assets/ep{N}/{镜头}.png  ──►  tools/build_manifest.py ──► assets/manifest.json
-     │
-     └──►  paint.js + chars.js + scenes.js（无 GPT 图时的代码手绘：水粉纹理、积云、赛璐璐人物）
-           engine.js（多层视差镜头 / 粒子 / 灰度 / 柔光纸纹 / 字幕 / 配乐）
-               ├─► index.html  网页播放器
-               └─► tools/render.cjs  ──►  out/ep{N}.mp4
+     ├──►  paint.js   水粉纹理、积云、树木、砖墙、窗户、湿地面 …… + 手绘扭曲
+     ├──►  chars.js   曲线人物：赛璐璐上色 + 墨线渲染（笔压、收锋、手抖）
+     ├──►  scenes.js  19 个场景 × 远/中/近三层
+     └──►  engine.js  视差镜头 / 粒子 / 灰度 / 柔光纸纹 / 字幕 / 配乐
+               ├─► index.html        网页播放器
+               └─► tools/render.cjs  导出 out/ep{N}.mp4
 ```
 
-所有台词、时长、镜头运动（`cam: [起始缩放, 结束缩放, 横移, 纵移]`）、特效（`fx`）和灰度（`gray`）都写在 `episodes.js` 里，改这一个文件就能重新出片。
+没有任何图片素材或生图模型参与，所有画面都在浏览器里由代码实时画出。
