@@ -37,7 +37,7 @@
     }
   }
   // a pencil line: pressure varies along it, ends taper, and a lighter second pass searches beside it
-  function pencil(ctx, pts, w, seed, col = '#3a2619', o = {}) {
+  function PENCIL(ctx, pts, w, seed, col = '#3a2619', o = {}) {
     const r = P.rng(seed), n = pts.length - 1, jit = (o.jitter ?? 0.35) * w;
     const prof = (t) => (0.45 + 0.55 * Math.sin(Math.PI * Math.min(1, t * 1.06 + 0.02))) * (0.75 + 0.5 * P.noise(t * 6 + seed, seed * 0.37));
     const wob = pts.map((p, i) => [p[0] + (P.noise(i * 0.2 + seed, 1.3) - 0.5) * jit, p[1] + (P.noise(i * 0.2 + seed, 7.9) - 0.5) * jit]);
@@ -45,7 +45,7 @@
     if (o.second !== false && n > 6) { const a = Math.floor(n * (0.05 + r() * 0.2)), b = Math.ceil(n * (0.75 + r() * 0.2)); const N = normals(pts), d = (r() - 0.5) * w * 1.6; const seg = pts.slice(a, b + 1).map((p, i) => [p[0] + N[a + i][0] * d + (r() - 0.5) * w * 0.3, p[1] + N[a + i][1] * d + (r() - 0.5) * w * 0.3]); flick(ctx, seg, w * 0.55, css(col, (o.alpha ?? 0.92) * 0.4)); }
   }
   // colour a shape with strokes, not a flat fill: a base wash, then strokes in one direction; shade and light by strokes too
-  function brushFill(ctx, pts, o) {
+  function BRUSHFILL(ctx, pts, o) {
     const r = P.rng(o.seed || 3); let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9; for (const [x, y] of pts) { x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y); }
     ctx.save(); ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath(); ctx.clip();
     ctx.fillStyle = css(o.base); ctx.fillRect(x0 - 2, y0 - 2, x1 - x0 + 4, y1 - y0 + 4);
@@ -60,6 +60,20 @@
     }
     if (o.light) { const lightAt = o.lightAt || (() => 0); for (let i = 0; i < count * 0.35; i++) { const cx = x0 + r() * (x1 - x0), cy = y0 + r() * (y1 - y0); if (lightAt(cx, cy) < r()) continue; const l = L * (0.3 + r() * 0.5); bristle(ctx, quad([cx - dx * l / 2, cy - dy * l / 2], [cx, cy - 1], [cx + dx * l / 2, cy + dy * l / 2], 5), sw * 0.8, o.light, { alpha: 0.6, hairs: 3, seed: i * 7 + 5 }); } }
     ctx.restore();
+  }
+
+  // cel paint: one flat colour and one hard-edged shadow that follows the contour (the shape, nudged toward the light, keeps the base colour)
+  function celFill(ctx, pts, o) {
+    let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9; for (const [x, y] of pts) { x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y); }
+    const path = (dx, dy) => { ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0] + dx, p[1] + dy) : ctx.moveTo(p[0] + dx, p[1] + dy))); ctx.closePath(); };
+    ctx.save(); path(0, 0); ctx.clip();
+    ctx.fillStyle = css(o.shadeCol); ctx.fillRect(x0 - 2, y0 - 2, x1 - x0 + 4, y1 - y0 + 4);
+    const k = o.cel ?? 0.3, bw = x1 - x0, bh = y1 - y0, dx = -Math.min(bw * k, 14 + bw * 0.12), dy = -Math.min(bh * 0.08, 8);
+    ctx.fillStyle = css(o.base); path(dx, dy); ctx.fill();
+    ctx.restore();
+  }
+  function inkLine(ctx, pts, w, seed, col = '#3a2619', o = {}) {
+    flick(ctx, pts, w * 0.72, css(col, Math.min(1, (o.alpha ?? 0.95) + 0.05)), (t) => 0.55 + 0.45 * Math.min(1, t * 6, (1 - t) * 6));
   }
 
   // ------------------------------------------------------------------ the wind
@@ -140,7 +154,8 @@
 
   // ------------------------------------------------------------------ the girl, drawn
   // profile facing left into the wind; units: 100 tall, feet at 0; u px per unit
-  function drawGirl(ctx, gx, gy, u, t, boil) {
+  function drawGirl(ctx, gx, gy, u, t, boil, style) {
+    const cel = style === 'cel', brushFill = cel ? celFill : BRUSHFILL, pencil = cel ? inkLine : PENCIL;
     const w = wind(gx, gy - 150, t), sway = Math.sin(t * 2.1) * 0.6 + w * 1.2, pen = 1.7, ink = '#3b2418';
     const T = (x, y) => [gx + x * u, gy + y * u];
     const TP = (pts) => pts.map(([x, y]) => T(x, y));
@@ -277,5 +292,5 @@
     ctx.restore();
   }
 
-  window.WIND = { render, W, H };
+  window.WIND = { render, W, H, drawGirl, flick, bez, quad, chain };
 })();

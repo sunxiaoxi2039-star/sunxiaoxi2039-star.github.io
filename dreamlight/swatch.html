@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>风吹草坡 · 三种画法</title>
+<style>
+  :root { --paper:#f6efdf; --ink:#3d2c1e; --muted:#7a5a3a; --line:rgba(122,90,58,.25); --card:#fffaf0; --accent:#e0a21b; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper:#17140f; --ink:#f1e6d2; --muted:#c7a983; --card:#221d16; --line:rgba(199,169,131,.25); } }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:"Songti SC","Noto Serif SC",serif; }
+  main { max-width:1100px; margin:0 auto; padding:24px 16px 48px; }
+  h1 { font-size:clamp(22px,4vw,36px); margin:0 0 8px; }
+  p { color:var(--muted); line-height:1.8; margin:0 0 14px; }
+  nav { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 14px; }
+  nav a { padding:6px 14px; border-radius:18px; border:1px solid var(--line); background:var(--card); color:var(--ink); text-decoration:none; }
+  nav a[aria-current="page"] { background:var(--accent); color:#2b1d05; border-color:transparent; }
+  canvas { width:100%; height:auto; display:block; border-radius:12px; background:#000; aspect-ratio:16/9; }
+</style>
+</head>
+<body>
+<main>
+  <h1>风吹草坡 · 三种画法</h1>
+  <nav><a href="?v=A">A · 3D 草地 + 水粉滤镜</a><a href="?v=B">B · 2D 水粉色块</a><a href="?v=C">C · B + 赛璐璐小芽</a></nav>
+  <p id="note"></p>
+  <canvas id="cv" width="1280" height="720"></canvas>
+</main>
+<script src="paint.js"></script>
+<script src="wind.js"></script>
+<script src="swatch.js"></script>
+<script type="module">
+const v = (new URLSearchParams(location.search).get('v') || 'B').toUpperCase();
+const NOTES = {
+  A: '真 3D：山坡是几何体，约二十二万根草叶在显卡上被同一股阵风压弯，阵风经过处草翻出浅色。天空和远景是 B 里画好的背景。最后整帧过一道滤镜，把像素揉成笔触、加纸纹。',
+  B: '2D 水粉：草不一根根画，而是概括成一丛丛色块（暗部蓝绿、中间黄绿、受光处浅黄），只在亮边挑几笔草叶。风是整片草的明暗波浪。',
+  C: '和 B 一样的背景，小芽换成赛璐璐画法：干净细线、一层硬边阴影、不带笔触。她站在没过脚踝的草里。',
+};
+document.getElementById('note').textContent = NOTES[v] || '';
+document.querySelectorAll('nav a').forEach((a) => { if (a.getAttribute('href') === '?v=' + v) a.setAttribute('aria-current', 'page'); });
+const cv = document.getElementById('cv');
+let frame;
+if (v === 'A') { const { createSwatchA } = await import('./swatchA.js'); const A = createSwatchA(cv); frame = (t) => A.render(t); }
+else { const ctx = cv.getContext('2d'); frame = (t) => SWATCH['render' + v](ctx, t); }
+window.__frame = (t) => { frame(t); return cv.toDataURL('image/jpeg', 0.92); };
+window.__ready = true;
+if (!new URLSearchParams(location.search).has('step')) { const t0 = performance.now(); let last = -1; (function loop() { const t = (performance.now() - t0) / 1000, k = Math.floor(t * (v === 'A' ? 24 : 12)); if (k !== last) { last = k; frame(t); } requestAnimationFrame(loop); })(); }
+</script>
+</body>
+</html>
