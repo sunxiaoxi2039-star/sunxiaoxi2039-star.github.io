@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小芽与风的种子 · 手绘 3D 世界</title>
+<style>
+  html, body { margin:0; height:100%; background:#10151c; color:#e8eef4; font-family:"Noto Serif SC","Songti SC",serif; }
+  canvas { width:100%; height:auto; max-height:100vh; display:block; margin:0 auto; aspect-ratio:16/9; }
+  #bar { position:fixed; left:12px; bottom:10px; font-size:13px; opacity:.8; }
+  #bar button { font:inherit; margin-right:6px; padding:4px 10px; border-radius:14px; border:1px solid #567; background:#1c2733; color:inherit; cursor:pointer; }
+</style>
+</head>
+<body>
+<canvas id="cv" width="1280" height="720"></canvas>
+<div id="bar"></div>
+<script src="paint.js"></script>
+<script type="module">
+import { createWorld } from './world.js';
+const qs = new URLSearchParams(location.search);
+const W = createWorld(document.getElementById('cv'), { quality: +(qs.get('q') || 1), width: +(qs.get('w') || 1280), height: +(qs.get('h') || 720) });
+// camera set-ups: [eye relative to the girl, look-at relative to the girl, field of view]
+const SHOTS = {
+  behind: { eye: [0.3, 1.45, 2.7], at: [9.5, -3.4, -30], fov: 54, yaw: -0.3 },
+  wide: { eye: [-5, 3.4, 9], at: [6, -5.5, -40], fov: 58, yaw: -0.2 },
+  front: { eye: [-0.75, 0.5, -2.3], at: [0.05, 0.86, 0.4], fov: 40, yaw: 0.2 },
+  village: { eye: [30, 9, -150], at: [230, -6, -300], fov: 30, yaw: 0 },
+  above: { eye: [2, 9, 9], at: [0, 0, -3], fov: 50, yaw: -0.4 },
+};
+let name = qs.get('shot') || 'behind';
+function setShot(n) { name = n; const s = SHOTS[n], g = W.girl.position; W.placeGirl(0, 0, s.yaw); W.camera.fov = s.fov; W.camera.position.set(g.x + s.eye[0], g.y + s.eye[1], g.z + s.eye[2]); W.camera.lookAt(g.x + s.at[0], g.y + s.at[1], g.z + s.at[2]); W.camera.updateProjectionMatrix(); }
+setShot(name);
+window.__world = W; window.__setShot = setShot; window.__ready = true;
+if (!qs.has('step')) {
+  const bar = document.getElementById('bar');
+  Object.keys(SHOTS).forEach((n) => { const b = document.createElement('button'); b.textContent = n; b.onclick = () => setShot(n); bar.appendChild(b); });
+  const t0 = performance.now(); (function loop() { W.render((performance.now() - t0) / 1000); requestAnimationFrame(loop); })();
+} else W.render(+(qs.get('t') || 1.2));
+</script>
+</body>
+</html>
