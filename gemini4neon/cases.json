@@ -1,0 +1,3282 @@
+{
+ "generated": "2026-11-20",
+ "model": "Gemini 4 Neon",
+ "upstream": {
+  "repo": "https://github.com/cheercheung/awesome-gemini-4-neon-use-cases",
+  "license": "CC BY 4.0",
+  "source_scope": {
+   "method": "specified-materials",
+   "x_posts": 300,
+   "hn_nodes": 787,
+   "x_original_author_replies": 9
+  }
+ },
+ "schema": "回链=原帖 / 对象=作者 / 类型=雷达大类（动效·小游戏·资料）/ 子类 / 摘要=中文一句话 / 来源=收录自哪份索引；证据=演示·测评·榜单·集成·局限；出处=作者自述·官方演示·榜单方发布·工具方；成本=作者自报",
+ "stats": {
+  "total": 105,
+  "by_sub": {
+   "3D 场景": 31,
+   "动态图形": 14,
+   "绘图与插画": 8,
+   "科普可视化": 10,
+   "游戏互动": 12,
+   "知识工作": 4,
+   "工程集成": 4,
+   "评测榜单": 22
+  },
+  "by_cat": {
+   "小游戏": 12,
+   "资料": 30,
+   "动效": 63
+  },
+  "by_evidence": {
+   "演示": 59,
+   "测评": 23,
+   "榜单": 16,
+   "集成": 4,
+   "局限": 3
+  },
+  "by_origin": {
+   "作者自述": 67,
+   "官方演示": 18,
+   "榜单方发布": 17,
+   "工具方": 3
+  },
+  "comparisons": 37,
+  "with_cost": 24,
+  "with_prompt": 2,
+  "need_decision": 6,
+  "by_author_top": [
+   [
+    "@SamuelAlbanie",
+    9
+   ],
+   [
+    "@IndependentEco",
+    4
+   ],
+   [
+    "@Google",
+    3
+   ],
+   [
+    "@HarshithLucky3",
+    3
+   ],
+   [
+    "@thtbee_",
+    3
+   ],
+   [
+    "@chetaslua",
+    3
+   ],
+   [
+    "@AdamHoltererer",
+    3
+   ],
+   [
+    "@notjazii",
+    3
+   ],
+   [
+    "@ArtificialAnlys",
+    3
+   ],
+   [
+    "@GeokenAI",
+    2
+   ]
+  ],
+  "dates": {
+   "2026-11-18": 68,
+   "2026-11-19": 28,
+   "2026-11-20": 9
+  }
+ },
+ "items": [
+  {
+   "id": "x-2123176067380711725",
+   "no": 60,
+   "回链": "https://x.com/antigravity/status/2123176067380711725",
+   "对象": "@antigravity",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "Google Antigravity 官方：一句提示让 Swarm 做出双人合成波 3D 迷你高尔夫，8 个 agent 并行，自带验证器逐关检查",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": "Build NEONPUTT '84: a 2-player synthwave 3D mini golf game with custom GLSL shaders, 240Hz fixed-timestep physics, procedural Web Audio SFX, and 8 animated courses.",
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-60-1-aabeaf2b1557.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-60-1-bb8fa045c256.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Build a synthwave mini-golf game",
+    "observation": "Google Antigravity shows Gemini 4 Neon using Swarm to build a 3D mini-golf game from one prompt.",
+    "notes": "The footage shows eight worker agents, a browser playthrough and the built-in verifier checking all eight courses."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "google-xhG-jNObuz4",
+   "no": 69,
+   "回链": "https://www.youtube.com/watch?v=xhG-jNObuz4",
+   "对象": "@Google",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "Google 官方：WebGL2 第一人称自由滑雪模拟器，勃朗峰和霞慕尼地形、6 条滑线、120 Hz 物理、雪痕和空间音频",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-69-1-42268a3924ba.jpg",
+   "video": "https://www.youtube.com/watch?v=xhG-jNObuz4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [
+    "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"
+   ],
+   "upstream": {
+    "title": "Build a first-person ski simulator",
+    "observation": "Google reports using Neon to create a WebGL2 freeride simulator on Mont Blanc and Chamonix terrain.",
+    "notes": "The demonstration includes six ski lines, a 120 Hz physics loop, track carving and spatial audio."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "google-vPsBbuz9IbE",
+   "no": 77,
+   "回链": "https://www.youtube.com/watch?v=vPsBbuz9IbE",
+   "对象": "@Google",
+   "类型": "资料",
+   "子类": "知识工作",
+   "摘要": "Google 官方：Neon swarm 用一张参考图做出 10 万格的 Sheets 计算机视觉实验室，50 万+ 公式，边缘检测、深度图、重打光等 6 种模式",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-77-1-8d819090ab15.jpg",
+   "video": "https://www.youtube.com/watch?v=vPsBbuz9IbE",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [
+    "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"
+   ],
+   "upstream": {
+    "title": "Build a computer-vision lab in Sheets",
+    "observation": "Google reports that a Neon swarm turned one reference image into a 100,000-cell spreadsheet.",
+    "notes": "The demo uses more than 500,000 formulas across six modes for tasks including edge detection, depth mapping and relighting."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123168242797809944",
+   "no": 57,
+   "回链": "https://x.com/GoogleAI/status/2123168242797809944",
+   "对象": "@GoogleAI",
+   "类型": "动效",
+   "子类": "科普可视化",
+   "摘要": "Google 官方：Antigravity Swarm 按档案照片重建图灵 1936 年的书房，桌上有台能跑的通用图灵机",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-57-1-b7fab25c354f.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-57-1-22665c6264ea.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [
+    "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
+    "https://www.youtube.com/watch?v=KgLLa4WhMSo"
+   ],
+   "upstream": {
+    "title": "Recreate Alan Turing's 1936 study",
+    "observation": "Google used Neon with Antigravity Swarm to build an interactive reconstruction from archival photos.",
+    "notes": "The scene includes King's Chapel, Turing's study and a working simulation of a universal Turing machine on the desk."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123170821250400282",
+   "no": 24,
+   "回链": "https://x.com/thebuggeddev/status/2123170821250400282",
+   "对象": "@thebuggeddev",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "一张参考图做出 Three.js WebGPU 四足机器人，带四腿 IK 和走、小跑、飞奔三种步态",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-24-1-22e170b487dd.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-24-1-acb1deb37714.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Animate a robotic quadruped from one image",
+    "observation": "The developer gave Neon a single reference image and asked for a 3D model.",
+    "notes": "The developer reports a Three.js WebGPU demonstration with four-leg inverse kinematics and walk, trot and gallop animations."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123235794747891968",
+   "no": 65,
+   "回链": "https://x.com/GlitterPixely/status/2123235794747891968",
+   "对象": "@GlitterPixely",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "把一个 C++20 + WebGPU 高斯泼溅引擎改成四座塔的面包房平台跳跃游戏，演示视频也是模型录的",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": "3 条提示 · 约 60 分钟 swarm",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-65-1-df9397699125.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-65-1-02f40215c097.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Build a gaussian splatting bakery platformer",
+    "observation": "The creator used Neon to turn a C++20 and WebGPU gaussian splatting engine into a four-tower platformer.",
+    "notes": "The creator reported three prompts and about 60 minutes of active swarm time, then asked the model to record the demo."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123172043533508664",
+   "no": 28,
+   "回链": "https://x.com/agenticjay/status/2123172043533508664",
+   "对象": "@agenticjay",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "一个 27 KB 的 HTML 里塞进十种交互 3D 效果：着色器、水面、光照",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-28-1-91d62f30b2e1.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-28-1-7af28a595410.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Build ten interactive effects in a single HTML file",
+    "observation": "A Google team member reports using Neon to create ten interactive 3D effects in one 27 KB HTML file.",
+    "notes": "The demo includes shaders, water and lighting. The variations are grouped as one published project."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123174406419828813",
+   "no": 34,
+   "回链": "https://x.com/SamuelAlbanie/status/2123174406419828813",
+   "对象": "@SamuelAlbanie",
+   "类型": "动效",
+   "子类": "科普可视化",
+   "摘要": "安提基特拉机械：出土残件、复原齿轮、表盘三种视图切换",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-34-1-8f404bea04c4.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-34-1-de291a3cf77f.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [
+    "https://x.com/SamuelAlbanie/status/2123174391617867925"
+   ],
+   "upstream": {
+    "title": "Visualize the Antikythera mechanism",
+    "observation": "The author shows a 3D Antikythera mechanism demo that switches between the recovered object, reconstructed gears and a dial.",
+    "notes": "The recording shows a display of the assembly and details of the moving mechanism."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123170948568535488",
+   "no": 25,
+   "回链": "https://x.com/vamsibatchuk/status/2123170948568535488",
+   "对象": "@GeokenAI",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "不用任何库的原生 JS，12 fps 油画质感 3D 动画演绎济慈《秋颂》",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-25-1-3927f6ba8991.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-25-1-251f0dd0d495.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Animate Keats in vanilla JavaScript",
+    "observation": "A Google team member credits GeokenAI and Neon for a vanilla JavaScript animation of Keats's To Autumn.",
+    "notes": "The post describes a 12 fps painterly 3D animation with no libraries. The sharing account is distinct from the credited creator."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123619339995668726",
+   "no": 103,
+   "回链": "https://x.com/alohaproxy/status/2123619339995668726",
+   "对象": "@alohaproxy",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "Three.js 机甲组装再升空的动画",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-20",
+   "成本": "两轮共 8.3 万 token · 1.20 美元 · 10 分钟以上",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/posters/case-103-1-572151b639e1.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/videos/case-103-1-2b1ac80156f4.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Animate a mech assembly and launch",
+    "observation": "The creator reused their Three.js mech assembly and launch brief. The demo shows the mech coming together and lifting off.",
+    "notes": "The creator reports more than 10 minutes of generation, 83,000 tokens across two runs, and USD 1.20 in total."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123160089854898346",
+   "no": 9,
+   "回链": "https://x.com/StatsWire/status/2123160089854898346",
+   "对象": "@StatsWire",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "Three.js 版「鹈鹕骑自行车」动画",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-9-1-e0a6df02d79f.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-9-1-80dcbc4fb2e8.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Animate a pelican in Three.js",
+    "observation": "The tester attributes a Three.js pelican-on-a-bicycle output to Neon.",
+    "notes": "The creator provides a recording but no timing or reasoning setting."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123161449681805531",
+   "no": 12,
+   "回链": "https://x.com/Angaisb_/status/2123161449681805531",
+   "对象": "@Angaisb_",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "体素花园同题对 GPT-6.2 Sol（都是 xhigh）：Neon 1.01 美元，Sol 0.19 美元",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": "Neon 1.01 美元 · Sol 0.19 美元",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-12-1-115849b38af5.jpg",
+   "video": null,
+   "media_count": 2,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare two voxel garden scenes",
+    "observation": "The author posted a voxel garden from Neon xhigh alongside a GPT-6.2 Sol xhigh result.",
+    "notes": "The source identifies the first image as Neon and reports USD 1.01 versus USD 0.19 for Sol. The post does not specify whether the prompts and tools matched."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123162154132242885",
+   "no": 13,
+   "回链": "https://x.com/cfenghub/status/2123162154132242885",
+   "对象": "@cfenghub",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "Three.js + GLSL 着色器场景",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": "2 分 40 秒",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-13-1-f2c7b50bad23.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-13-1-e62c3cb9bbab.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Generate a Three.js and GLSL scene",
+    "observation": "The creator shares a Three.js and GLSL output from Neon and reports a run of two minutes and 40 seconds.",
+    "notes": "The main post points to the replies for the instruction without quoting it."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123164032882659819",
+   "no": 16,
+   "回链": "https://x.com/AI_Screening/status/2123164032882659819",
+   "对象": "@AI_Screening",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "Three.js 骑车动画三模型同题：作者看 Neon 胜过 Opus 5.5、跟 Carbon 接近",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-16-1-491c82d3f1f5.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-16-1-2fcea711afca.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare Three.js cycling animations across three models",
+    "observation": "The tester published a Three.js cycling comparison of Neon, Opus 5.5 and Carbon.",
+    "notes": "The author preferred Neon over Opus and judged it close to Carbon. This is the author's visual assessment."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123164576275370440",
+   "no": 17,
+   "回链": "https://x.com/Mr_Salio/status/2123164576275370440",
+   "对象": "@Mr_Salio",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "海上航行的高桅帆船动画（Neon xhigh）",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-17-1-c2e29bd290ea.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-17-1-39aa1af81d28.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Render a tall ship on the ocean",
+    "observation": "The tester shared an ocean sailing scene attributed to Neon xhigh.",
+    "notes": "The video shows an animated sailing ship. The source does not supply a specific workflow or timing."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123164858996908367",
+   "no": 18,
+   "回链": "https://x.com/LuminaBench/status/2123164858996908367",
+   "对象": "@LuminaBench",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "Neon xhigh 生成的体素宝塔",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-18-1-8da133675a5d.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-18-1-66d691af4081.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Generate a voxel pagoda",
+    "observation": "The tester posts a voxel pagoda generated at Neon xhigh.",
+    "notes": "The post includes the rendered result and the author's design reaction."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123166304664191391",
+   "no": 21,
+   "回链": "https://x.com/LuminaBench/status/2123166304664191391",
+   "对象": "@LuminaBench",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "Neon xhigh 搭的 3D 水上飞机，作者说出得快、界面更干净",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-21-1-b2943474925e.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-21-1-738f7ccd5e11.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Generate a 3D seaplane",
+    "observation": "The tester used Neon xhigh to build a 3D seaplane and shared a video.",
+    "notes": "The creator describes the build as fast and the interface as cleaner, without giving a wall-clock measurement."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123169627815698522",
+   "no": 23,
+   "回链": "https://x.com/Super_Nius/status/2123169627815698522",
+   "对象": "@Super_Nius",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "雨夜便利店同题对 Sol：画面作者更喜欢 Sol，但这次 Neon 更快更便宜",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": "Neon 更快更便宜（未给数字）",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-23-1-d8e64f437d92.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-23-1-9e27412d4ad5.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Test a rainy convenience-store scene",
+    "observation": "The tester used the same prompt for Neon and GPT-6.2 Sol and posted the comparison.",
+    "notes": "The author preferred the Sol visual output while reporting faster, cheaper completion for Neon in this run."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123171009167765651",
+   "no": 26,
+   "回链": "https://x.com/LeslieNooteboom/status/2123171009167765651",
+   "对象": "@LeslieNooteboom",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "三角龙 3D 演示",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-26-1-e0d7589c04bb.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-26-1-8c4ac6bb4433.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Create a Triceratops demo",
+    "observation": "The creator attributes the Triceratops demonstration to Neon.",
+    "notes": "The video shows the artifact. The post does not specify the input format or generation steps."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123171830739632189",
+   "no": 27,
+   "回链": "https://x.com/SPAC89/status/2123171830739632189",
+   "对象": "@SPAC89",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "3D 齿轮传动四模型同题（Neon / Carbon / Astra / Sol），作者偏向 Neon",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-27-1-c7804af5b07a.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-27-1-94516eb237d5.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare 3D gear train renderings",
+    "observation": "The tester shows gear mechanism renders for Neon, Carbon, Astra and Sol across the labeled reasoning levels.",
+    "notes": "The author favored Neon. The clip documents one visual comparison and does not establish the general cost claim."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123172290250621166",
+   "no": 29,
+   "回链": "https://x.com/Google/status/2123172290250621166",
+   "对象": "@Google",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "Google 官方：Neon 借 Antigravity Swarm 驱动 Blender，搭出一张 Gemini 4 主题的实验台",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "集成",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-29-1-5515f85f88ea.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-29-1-24f7c4b89ee2.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Build a Blender lab bench with Antigravity Swarm",
+    "observation": "Google demonstrated Neon using Antigravity Swarm and Blender to produce a lab-bench scene themed around the Gemini 4 family.",
+    "notes": "The clip is a provider demo of the integrated workflow."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123174416154759418",
+   "no": 37,
+   "回链": "https://x.com/SamuelAlbanie/status/2123174416154759418",
+   "对象": "@SamuelAlbanie",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "河谷里的多拱高架桥和火车，多机位加线框视图",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-37-1-56962c64e01c.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-37-1-d12ab14ffcb0.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [
+    "https://x.com/SamuelAlbanie/status/2123174391617867925"
+   ],
+   "upstream": {
+    "title": "Render a river viaduct and its surroundings",
+    "observation": "The author shows a 3D river valley with a multi-arch viaduct, a train and several render views.",
+    "notes": "The recording switches between near and distant camera angles and includes a wireframe-like view."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123174419379962139",
+   "no": 38,
+   "回链": "https://x.com/SamuelAlbanie/status/2123174419379962139",
+   "对象": "@SamuelAlbanie",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "仿剑桥的 3D 城市，鸟瞰和近景",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-38-1-fdabb0976ddb.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-38-1-731938345922.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [
+    "https://x.com/SamuelAlbanie/status/2123174391617867925"
+   ],
+   "upstream": {
+    "title": "Build a Cambridge-inspired 3D city view",
+    "observation": "The author shows a city visualization inspired by Cambridge, with aerial and closer views of the modeled blocks.",
+    "notes": "The clip shows the river, buildings and scene overlays. The author describes the setting as Cambridge-like."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123175900007309696",
+   "no": 39,
+   "回链": "https://x.com/HarshithLucky3/status/2123175900007309696",
+   "对象": "@HarshithLucky3",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "Antigravity 里 Neon high 渲染的霓虹主题地球",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-39-1-113aeb084222.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-39-1-b5f3ce29cb24.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Render a neon-themed Earth",
+    "observation": "The creator used Neon high in Antigravity to render a neon-themed planet.",
+    "notes": "The source provides the result and effort setting."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123176455123165366",
+   "no": 40,
+   "回链": "https://x.com/LyalinDotCom/status/2123176455123165366",
+   "对象": "@LyalinDotCom",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "让 Neon 迭代改进一个游艇场景",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-40-1-367b9069fe9e.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Iterate a yacht scene",
+    "observation": "The creator reports that Neon improved a yacht scene and shows the output.",
+    "notes": "Firebase deployment was a stated intention at the time of the post."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123176812360745019",
+   "no": 41,
+   "回链": "https://x.com/fofrAI/status/2123176812360745019",
+   "对象": "@fofrAI",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "在作者自己的 VFX 工具里用 Neon 做戏服材质（六张）",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-41-1-ec60d5cf5112.jpg",
+   "video": null,
+   "media_count": 6,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Make costume materials in a custom VFX tool",
+    "observation": "The creator used Neon to make costume materials and posted six images of results.",
+    "notes": "The creator describes the VFX tooling as their own. The source does not establish an independent performance comparison."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123182627674796462",
+   "no": 42,
+   "回链": "https://x.com/thehypedotnews/status/2123182627674796462",
+   "对象": "@thehypedotnews",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "体素版「幻影忍者」同题对 Fable 5.2：Neon 稍贵，作者更喜欢 Fable 的构图",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": "Neon 12.93 美元；Fable 11.19 美元",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-42-1-1c3b543e0111.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-42-1-e2257b7ed90f.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare voxel Ninjago scenes",
+    "observation": "The source compares Neon and Fable 5.2 on a voxel recreation.",
+    "notes": "The author reports USD 12.93 for Neon and USD 11.19 for Fable and preferred the latter's framing."
+   },
+   "需要拍板": "体素复刻乐高「幻影忍者」，涉及他人 IP",
+   "票拟": "照收、标 ⚠️（同 Fable 归档里宝可梦类的处理）"
+  },
+  {
+   "id": "x-2123188460639117489",
+   "no": 44,
+   "回链": "https://x.com/aipulseda1ly/status/2123188460639117489",
+   "对象": "@aipulseda1ly",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "纽约场景同题对 Opus：Neon 放进了布鲁克林大桥、自由女神和出租车街道，但跑起来作者电脑卡",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-44-1-7a276a2045df.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-44-1-85f5c28fc00c.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare New York City scene prototypes",
+    "observation": "The tester reports that Neon included the Brooklyn Bridge, Statue of Liberty and a street with taxis.",
+    "notes": "The tester preferred some details in the Opus output and reported that running the Neon scene lagged their PC."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123205954649100424",
+   "no": 46,
+   "回链": "https://x.com/jan_volad/status/2123205954649100424",
+   "对象": "@jan_volad",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "「造一座巨大的闹鬼吸血鬼大教堂」同题对 Sol，作者认为难分高下",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-19",
+   "成本": "Neon 2.67 美元；Sol 1.69 美元",
+   "prompt": "Build a huge haunted vampire cathedral",
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-46-1-8adbefb0cdfe.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-46-1-c1293f480928.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare a haunted cathedral on one prompt",
+    "observation": "The tester gave Neon and GPT-6.2 Sol the same haunted cathedral task.",
+    "notes": "The creator reports USD 2.67 for Neon and USD 1.69 for Sol, with no clear visual winner in their assessment."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123207149870547423",
+   "no": 47,
+   "回链": "https://x.com/ai_for_success/status/2123207149870547423",
+   "对象": "@ai_for_success",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "Antigravity 里做的手机拆装 3D 原型，附一板设计组件",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-47-1-e54b9bc965db.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-47-1-188cdb56dd8e.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Prototype a phone assembly in Antigravity",
+    "observation": "The developer used Neon in Antigravity and showed a board of design components and a rendered phone assembly.",
+    "notes": "The developer reports early impressions of coding and speed, without timings or a controlled Carbon comparison."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123212198663323848",
+   "no": 48,
+   "回链": "https://x.com/abhinavflac/status/2123212198663323848",
+   "对象": "@abhinavflac",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "零样本生成可交互的 3D 历史帆船，船体和水面分层渲染，作者觉得比 Sol 写实",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-48-1-19d730412b53.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-48-1-8398538c7634.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Generate an interactive historical sailing ship",
+    "observation": "The author posted a zero-shot 3D sailing ship demonstration.",
+    "notes": "The author reports that the ship and water rendered in distinct layers and describes the output as more realistic than their Sol result."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123220446074253768",
+   "no": 50,
+   "回链": "https://x.com/DesignArena/status/2123220446074253768",
+   "对象": "@DesignArena",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "DesignArena 同题对 Argon：阿尔卑斯滑雪小屋，Neon 没被要求就自己加了飘雪",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "工具方",
+   "同题对比": true,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-50-1-d867d8d5e6d7.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-50-1-a966b54bde0e.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Generate a ski hut scene in one pass",
+    "observation": "DesignArena asked Neon and Argon to generate the same Alpine hut setting and published the side-by-side outputs.",
+    "notes": "DesignArena preferred elements of both renderings. It reports that Neon added snowfall without being asked."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123226306351661099",
+   "no": 51,
+   "回链": "https://x.com/Lentils80/status/2123226306351661099",
+   "对象": "@Lentils80",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "体素奇幻城堡，一句提示",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": "27 分钟",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-51-1-e38a5f2c5e9e.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-51-1-27fe32067ec9.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Render a voxel fantasy castle",
+    "observation": "The creator shares a voxel castle produced at Neon xhigh.",
+    "notes": "The creator reports one prompt and a 27-minute completion time."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123259795172212871",
+   "no": 53,
+   "回链": "https://x.com/thtbee_/status/2123259795172212871",
+   "对象": "@thtbee_",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "Antigravity 里 Neon xhigh 做的 Three.js 蝴蝶动画",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": "57 分钟 · 5 小时额度的 23% · 周额度 7%",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-53-1-7a50c0010ea3.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-53-1-efb25e8f446f.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Three.js butterfly animation",
+    "observation": "A creator used Neon xhigh in Antigravity to build a Three.js butterfly animation.",
+    "notes": "The creator reported 57 minutes, about 23% of their five-hour quota, and 7% of their weekly quota."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123279727935033355",
+   "no": 55,
+   "回链": "https://x.com/thtbee_/status/2123279727935033355",
+   "对象": "@thtbee_",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "给参考图、迭代三轮的 Three.js 像素巫师世界",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": "5 小时额度的 39% · 周额度 11%",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-55-1-bdca3bf63f42.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-55-1-ea88133798aa.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Pixel wizard world in Three.js",
+    "observation": "A creator gave Neon reference images and refined the Three.js scene over three passes.",
+    "notes": "The creator reported using 39% of their five-hour quota and 11% of their weekly quota in Antigravity."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123287660525719823",
+   "no": 56,
+   "回链": "https://x.com/nemumusitocha/status/2123287660525719823",
+   "对象": "@nemumusitocha",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "城堡渲染基准：一段视频加几张截图",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": "约周额度的 4%",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-56-1-17acc3f87741.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-56-1-74e98240a81a.mp4",
+   "media_count": 4,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Castle rendering benchmark",
+    "observation": "The creator used Neon for a castle benchmark and posted video and stills.",
+    "notes": "The creator reported using about 4% of a weekly quota on their plan. The post does not establish whether that usage generalizes to other accounts."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123627618146959641",
+   "no": 100,
+   "回链": "https://x.com/teddyaisi/status/2123627618146959641",
+   "对象": "@teddyaisi",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "京都鸟居和竹林黎明漫游同题对 Astra：Neon 更贵也更慢",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-20",
+   "成本": "Neon 9.14 美元 · 1 小时 8 分 19 秒；Astra 6.67 美元 · 41 分 9 秒",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/posters/case-100-1-201a20be9461.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/videos/case-100-1-0c11ca888805.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare Three.js walkthroughs of Kyoto",
+    "observation": "The creator compares GPT-6.2 Astra (top) and Gemini 4 Neon (bottom) on a 20-second Three.js dawn walkthrough of Kyoto torii gates and a bamboo grove.",
+    "notes": "The creator reports USD 6.67 and 41m 9s for Astra and USD 9.14 and 1h 8m 19s for Neon for this comparison."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123620968568676457",
+   "no": 102,
+   "回链": "https://x.com/petergyang/status/2123620968568676457",
+   "对象": "@petergyang",
+   "类型": "动效",
+   "子类": "3D 场景",
+   "摘要": "涩谷十字路口夜景同题对 Opus 5.5，作者请大家投票，没有打分",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-20",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/posters/case-102-1-50188e47a613.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/videos/case-102-1-fd1902096bb4.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare two night scenes of Shibuya",
+    "observation": "The video labels the outputs for Opus 5.5 and Gemini 4 Neon, both depicting Shibuya Crossing at night.",
+    "notes": "The labels identify each output. The author asks for preferences and reports no quantitative score."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123161354496557071",
+   "no": 11,
+   "回链": "https://x.com/xiangning0/status/2123161354496557071",
+   "对象": "@xiangning0",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "medium 档跑的鹈鹕骑车动画，经典测试题的又一次独立复跑",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-11-1-200a792de0b6.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-11-1-0b2be9516bad.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Animate a cycling pelican at medium effort",
+    "observation": "The author used Neon at medium effort to produce a pelican cycling demo and posted the video.",
+    "notes": "The clip documents this creator's separate run of a common test task."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123162610254442796",
+   "no": 15,
+   "回链": "https://x.com/Super_Nius/status/2123162610254442796",
+   "对象": "@Super_Nius",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "鹈鹕骑车四模型同题（Neon / Hydrogen / Astra / Sol），作者最喜欢 Neon 的样子",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": "Neon 约 3 分钟",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-15-1-444e97e2290b.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-15-1-e9c127cb6e40.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare pelican cycling animations",
+    "observation": "The tester compared a pelican animation across Neon, Hydrogen, GPT-6.2 Astra and GPT-6.2 Sol.",
+    "notes": "The author reports a three-minute Neon run and preferred its appearance. The recorded Sol-only follow-up belongs to the same test."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123184113561817370",
+   "no": 43,
+   "回链": "https://x.com/chetaslua/status/2123184113561817370",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "鹈鹕主题的产品动效短片",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-43-1-d81b2060fc29.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-43-1-41540f06843a.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Create a pelican product motion graphic",
+    "observation": "The creator credits Neon with a pelican-themed product motion graphic.",
+    "notes": "The linked clip shows the output. The post does not describe implementation or an exact prompt."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123189288107999706",
+   "no": 45,
+   "回链": "https://x.com/AdamHoltererer/status/2123189288107999706",
+   "对象": "@AdamHoltererer",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一道叫「香蕉测试」的视觉测试题的 Neon 输出",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-45-1-c82bae60d92d.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-45-1-9efc4470be00.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Run a banana visual test",
+    "observation": "The tester posts a Neon output for a test titled Banana Test.",
+    "notes": "The output is attached to the source. The source does not provide an exact prompt."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123219124260315301",
+   "no": 49,
+   "回链": "https://x.com/chetaslua/status/2123219124260315301",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "纯 JS、不用外部素材做的模型介绍动效片",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-49-1-213f5084a7a0.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-49-1-640c76599969.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Design a model introduction in JavaScript",
+    "observation": "The author used Neon to make a motion graphic introducing the model.",
+    "notes": "The author says it uses JavaScript without external assets."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123228351984980040",
+   "no": 52,
+   "回链": "https://x.com/ZryMiller/status/2123228351984980040",
+   "对象": "@ZryMiller",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "章鱼骑车动画对 Astra：效果接近，Neon 用了将近两倍时间（档位不同）",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-19",
+   "成本": "Neon high 41 分钟 · 4.02 美元；Astra xhigh 21 分 53 秒 · 2.52 美元",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-52-1-546dd90156c6.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-52-1-0039f05541ac.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare an octopus cycling animation with Astra",
+    "observation": "The tester recorded Astra xhigh at 21 minutes 53 seconds and USD 2.52, and Neon high at 41 minutes and USD 4.02.",
+    "notes": "The author calls the animation quality close. This is one run at different reasoning settings."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123269503736070603",
+   "no": 54,
+   "回链": "https://x.com/op7418/status/2123269503736070603",
+   "对象": "@op7418",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "照着参考图生成几个界面组件和配套动效",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-54-1-c4200a430fb5.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-54-1-aab23e8d82f9.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Build components and motion from reference images",
+    "observation": "The creator used visual references to generate several components and accompanying motion.",
+    "notes": "The demo shows the result. The claim about how it feels compared with Opus is the creator's judgment."
+   },
+   "需要拍板": "界面组件 + 动效，也可以算进雷达的「App UI」",
+   "票拟": "先按动态图形收录"
+  },
+  {
+   "id": "x-2123190512853176421",
+   "no": 71,
+   "回链": "https://x.com/gracepursuits/status/2123190512853176421",
+   "对象": "@gracepursuits",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Google 员工和 Neon 合作的发布片，没说明哪些画面和音频出自哪个工具",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-71-1-aef8fd5224ef.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-71-1-b0eb81c105f2.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Co-create a launch film with Neon",
+    "observation": "A Google team member reports co-creating a film with Neon and shares the result.",
+    "notes": "The film is a provider-side demonstration. The post does not identify which tools rendered individual frames or audio."
+   },
+   "需要拍板": "发布片里哪些画面和音频是 Neon 做的，原帖没说",
+   "票拟": "收录，摘要里已写明归属不清"
+  },
+  {
+   "id": "x-2123720700670398680",
+   "no": 96,
+   "回链": "https://x.com/chetaslua/status/2123720700670398680",
+   "对象": "@chetaslua",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "Antigravity + Swarm 做的 Three.js 火柴人连续打斗动画",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-20",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/posters/case-96-1-32e162b0152f.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/videos/case-96-1-fa6b22c69e07.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Animate a stick-figure battle in Three.js",
+    "observation": "The creator used Neon in Antigravity with Swarm for this Three.js animation.",
+    "notes": "The footage follows stick figures through a series of fights and scene changes. The creator credits the whole workflow without separating Swarm's contribution."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123712489443713478",
+   "no": 97,
+   "回链": "https://x.com/Da7_Tech/status/2123712489443713478",
+   "对象": "@Da7_Tech",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "夕阳帆船三模型叠放对比：Fable 5.2 / GPT-6.2 Astra / Neon，未公开提示和设置",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-20",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/posters/case-97-1-f7556a59ef3e.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/videos/case-97-1-ab9ad6fc022d.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare sailing scenes from three models",
+    "observation": "The creator published a stacked comparison of Claude Fable 5.2, GPT-6.2 Astra, and Gemini 4 Neon.",
+    "notes": "The video shows variations of a sailing ship at sunset. The post does not disclose the prompts, settings, or scoring criteria."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123657122575450535",
+   "no": 98,
+   "回链": "https://x.com/aiiii498/status/2123657122575450535",
+   "对象": "@aiiii498",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "把头像做成会动的收藏卡 GIF（稀有度和价格都是装饰）",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-20",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/images/case-98-1-185f6b4b974f.gif",
+   "video": null,
+   "media_count": 4,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Turn avatars into animated collectible cards",
+    "observation": "The creator used code from the Gemini 4 Neon web interface and converted the outputs into animated GIFs.",
+    "notes": "The four loops show sample avatar cards. The rarity labels and dollar amounts are fictional display elements."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123636478932881627",
+   "no": 99,
+   "回链": "https://x.com/thtbee_/status/2123636478932881627",
+   "对象": "@thtbee_",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一只墨线画的眼睛不断变成花、蝴蝶等图案的抽象动画",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-20",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/posters/case-99-1-f4a4516de977.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/videos/case-99-1-a1a192bbdb28.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Animate an abstract ink drawing",
+    "observation": "The creator attributes the abstract drawing animation to Gemini 4 Neon.",
+    "notes": "The clip moves from an ink-drawn eye to flowers, butterflies, and other motifs. The creator highlights 0:14 and 0:42."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123621132024848408",
+   "no": 101,
+   "回链": "https://x.com/aisearchio/status/2123621132024848408",
+   "对象": "@aisearchio",
+   "类型": "动效",
+   "子类": "动态图形",
+   "摘要": "一段器乐编曲（音轨加钢琴卷帘画面），Neon 负责了哪部分没说清",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-20",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/posters/case-101-1-6683cee3534d.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/videos/case-101-1-5c63abb4a8a3.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [
+    "https://youtu.be/3FE-hBh1rsY"
+   ],
+   "upstream": {
+    "title": "Demonstrate an instrumental arrangement",
+    "observation": "The creator attributes the instrumental excerpt to Gemini 4 Neon.",
+    "notes": "The clip pairs the audio with a view of several tracks and a piano roll. It does not show which parts of the production workflow Neon handled."
+   },
+   "需要拍板": "器乐编曲里 Neon 负责哪部分没说清，可能主要是别的音频工具",
+   "票拟": "收录，摘要里已写明归属不清"
+  },
+  {
+   "id": "x-2123158145380085991",
+   "no": 7,
+   "回链": "https://x.com/HarshithLucky3/status/2123158145380085991",
+   "对象": "@HarshithLucky3",
+   "类型": "动效",
+   "子类": "绘图与插画",
+   "摘要": "AI Studio 里 Neon high 画的宝马 M4 CS 侧视 SVG",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-7-1-ffea70bbfd83.png",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Draw an SVG side view of a car",
+    "observation": "The creator used Neon high in AI Studio to create a BMW M4 CS side-view SVG.",
+    "notes": "The artifact is attached to the post. No complete prompt is quoted."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123159230291054903",
+   "no": 8,
+   "回链": "https://x.com/AdamHoltererer/status/2123159230291054903",
+   "对象": "@AdamHoltererer",
+   "类型": "动效",
+   "子类": "绘图与插画",
+   "摘要": "一组三张的 SVG 测试图",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-8-1-2eb686ec5f13.jpg",
+   "video": null,
+   "media_count": 3,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Run an SVG test series",
+    "observation": "The tester shared three outputs in a Neon SVG test series.",
+    "notes": "The results are presented together and counted as one test series."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123161268647539052",
+   "no": 10,
+   "回链": "https://x.com/lyraxana/status/2123161268647539052",
+   "对象": "@lyraxana",
+   "类型": "动效",
+   "子类": "绘图与插画",
+   "摘要": "xhigh 档画的一位女演员肖像 SVG",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-10-1-014b0af2bac3.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": false,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Draw an SVG portrait at xhigh",
+    "observation": "The tester shares a portrait of Ana de Armas attributed to Neon xhigh.",
+    "notes": "The source gives the subject and effort setting without the exact prompt."
+   },
+   "需要拍板": "真人肖像（一位女演员），非本人授权",
+   "票拟": "收录、回链保留，但不放缩略图"
+  },
+  {
+   "id": "x-2123162238643044705",
+   "no": 14,
+   "回链": "https://x.com/kickingkeys/status/2123162238643044705",
+   "对象": "@kickingkeys",
+   "类型": "动效",
+   "子类": "绘图与插画",
+   "摘要": "早期权限下让 Neon 写代码「画」出来的一组十二张绘画",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-14-1-9f61a388e0c1.jpg",
+   "video": null,
+   "media_count": 12,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Create paintings entirely in code",
+    "observation": "The creator reports using early-access Neon to write code that renders paintings.",
+    "notes": "The source provides a set of results from the same series. It does not supply each exact prompt."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123165824576114932",
+   "no": 19,
+   "回链": "https://x.com/HarshithLucky3/status/2123165824576114932",
+   "对象": "@HarshithLucky3",
+   "类型": "动效",
+   "子类": "绘图与插画",
+   "摘要": "一只骑车骑到心累的鹈鹕 SVG（AI Studio，Neon high）",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-19-1-b8df2a6ac156.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-19-1-44580d20f3b7.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Draw a frustrated pelican on a bicycle",
+    "observation": "The creator used Neon high in AI Studio to draw an SVG of a frustrated pelican riding a bicycle.",
+    "notes": "The post shows the result and identifies the effort setting."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123166093422272839",
+   "no": 20,
+   "回链": "https://x.com/notjazii/status/2123166093422272839",
+   "对象": "@notjazii",
+   "类型": "动效",
+   "子类": "绘图与插画",
+   "摘要": "游戏手柄绘图同题对 GPT-6.2 Sol：画得差不多，Neon 用时是 Sol 的两倍多、花费是三倍",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": "Neon 20 分钟 · 约 1.60 美元；Sol 9 分钟 · 约 0.53 美元",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-20-1-617938f21f28.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare gamepad drawings with GPT-6.2 Sol",
+    "observation": "The tester used the same prompt at each model's highest available reasoning and judged the outputs similar.",
+    "notes": "The author reported 20 minutes and about USD 1.60 for Neon versus nine minutes and about USD 0.53 for Sol."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123168463640269001",
+   "no": 22,
+   "回链": "https://x.com/jony_palino/status/2123168463640269001",
+   "对象": "@jony_palino",
+   "类型": "动效",
+   "子类": "绘图与插画",
+   "摘要": "一匹 2D 马，作者觉得比以前的 Gemini 画得好",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-22-1-e4f265e40f74.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-22-1-0806852b6c63.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Draw a 2D horse",
+    "observation": "The creator used Neon to produce a two-dimensional horse and posted the output.",
+    "notes": "The creator preferred it to their prior Gemini results. The post does not provide matching settings."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123172429791129848",
+   "no": 30,
+   "回链": "https://x.com/notjazii/status/2123172429791129848",
+   "对象": "@notjazii",
+   "类型": "动效",
+   "子类": "绘图与插画",
+   "摘要": "建筑插画同题对 Opus 5.5：Neon 便宜一半，但作者更喜欢 Opus 画的",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": "Neon 约 20 分钟 · 3.50 美元；Opus 18 分钟 · 7.20 美元",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-30-1-b13b60aca1f2.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-30-1-b5e87dfb79f7.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare architectural illustrations with Opus 5.5",
+    "observation": "The tester compared the models using the same prompt at their highest available reasoning.",
+    "notes": "The author reported about 20 minutes and USD 3.50 for Neon and 18 minutes and USD 7.20 for Opus, preferring the Opus output."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123174394889687151",
+   "no": 2,
+   "回链": "https://x.com/SamuelAlbanie/status/2123174394889687151",
+   "对象": "@SamuelAlbanie",
+   "类型": "动效",
+   "子类": "科普可视化",
+   "摘要": "从模拟逻辑门、电路板一路做到复古终端显示的交互电子演示，一句提示、没改过",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-2-1-7cb8c5a2b86d.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-2-1-b7233891bf19.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [
+    "https://x.com/SamuelAlbanie/status/2123174391617867925"
+   ],
+   "upstream": {
+    "title": "Build a simulated logic-gate demo",
+    "observation": "The author shows an interactive electronics demo that goes from simulated logic gates and circuit boards to a retro terminal display.",
+    "notes": "The series reports one prompt per demo without refinement. The recording shows the interface and simulation behavior."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123174398064570622",
+   "no": 31,
+   "回链": "https://x.com/SamuelAlbanie/status/2123174398064570622",
+   "对象": "@SamuelAlbanie",
+   "类型": "动效",
+   "子类": "科普可视化",
+   "摘要": "旅行者 1 号从发射到飞掠木星的 3D 动画",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-31-1-49c120f1aa13.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-31-1-2819a8649adb.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [
+    "https://x.com/SamuelAlbanie/status/2123174391617867925"
+   ],
+   "upstream": {
+    "title": "Visualize Voyager 1's flight",
+    "observation": "The author shows a 3D Voyager 1 sequence that moves from launch to a Jupiter encounter and a close-up of the spacecraft.",
+    "notes": "The author describes this as one unrefined prompt in the series. No trajectory validation is reported."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123174400572719261",
+   "no": 32,
+   "回链": "https://x.com/SamuelAlbanie/status/2123174400572719261",
+   "对象": "@SamuelAlbanie",
+   "类型": "动效",
+   "子类": "科普可视化",
+   "摘要": "能在行星和星座视图之间切换的 3D 天文馆",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-32-1-f238cb6328df.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-32-1-3744b688f28d.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [
+    "https://x.com/SamuelAlbanie/status/2123174391617867925"
+   ],
+   "upstream": {
+    "title": "Build a 3D planetarium",
+    "observation": "The author shows a 3D planetarium moving between planets and a constellation view.",
+    "notes": "The recording shows examples including Earth and Saturn. The one-prompt series does not establish astronomical precision."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123174403038982379",
+   "no": 33,
+   "回链": "https://x.com/SamuelAlbanie/status/2123174403038982379",
+   "对象": "@SamuelAlbanie",
+   "类型": "动效",
+   "子类": "科普可视化",
+   "摘要": "巴贝奇 2 号差分机 3D 复原，齿轮组和数字显示都会动",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-33-1-e80ac8cce5ad.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-33-1-8f8b964cd1a7.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [
+    "https://x.com/SamuelAlbanie/status/2123174391617867925"
+   ],
+   "upstream": {
+    "title": "Visualize Babbage's Difference Engine No. 2",
+    "observation": "The author shows a 3D visualization of Babbage's Difference Engine No. 2 with its gear assemblies and a numerical display.",
+    "notes": "The recording moves between close-ups of the moving mechanism and a view of the complete machine."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123174409284260270",
+   "no": 35,
+   "回链": "https://x.com/SamuelAlbanie/status/2123174409284260270",
+   "对象": "@SamuelAlbanie",
+   "类型": "动效",
+   "子类": "科普可视化",
+   "摘要": "可视化风洞：飞机等形状周围的气流线",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-35-1-acc3f3a6f94a.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-35-1-9424d7eab5ec.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [
+    "https://x.com/SamuelAlbanie/status/2123174391617867925"
+   ],
+   "upstream": {
+    "title": "Prototype a visual wind tunnel",
+    "observation": "The author shows a 3D wind-tunnel demo with visible airflow streamlines around different shapes.",
+    "notes": "The video includes an aircraft and other test shapes. It gives no independent accuracy check for the simulation."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123174412488716605",
+   "no": 36,
+   "回链": "https://x.com/SamuelAlbanie/status/2123174412488716605",
+   "对象": "@SamuelAlbanie",
+   "类型": "动效",
+   "子类": "科普可视化",
+   "摘要": "剑桥国王学院礼拜堂剖面，内外视角切换",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "官方演示",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-36-1-72acb7ce83d2.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-36-1-8c718b6a7b3c.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [
+    "https://x.com/SamuelAlbanie/status/2123174391617867925"
+   ],
+   "upstream": {
+    "title": "Create a King's College Chapel cutaway",
+    "observation": "The author shows a 3D cutaway of King's College Chapel that switches between the exterior and interior.",
+    "notes": "The scene uses different views to show the nave, windows and the building's cross-section."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123201737217773826",
+   "no": 72,
+   "回链": "https://x.com/Msfs2000J/status/2123201737217773826",
+   "对象": "@Msfs2000J",
+   "类型": "动效",
+   "子类": "科普可视化",
+   "摘要": "给 VR 游戏 H3VR2 的装备做图解说明",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-72-1-b669c1f763a7.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-72-1-edea62f20bb5.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Explain equipment mechanics in a VR game",
+    "observation": "The author used Neon to summarize equipment in the Meta Quest game H3VR2 and attached an illustrated explainer.",
+    "notes": "The artifact documents the game scenario. The source does not identify the exact prompt or assign the video production to Neon."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123608819943211022",
+   "no": 104,
+   "回链": "https://x.com/elliotarledge/status/2123608819943211022",
+   "对象": "@elliotarledge",
+   "类型": "动效",
+   "子类": "科普可视化",
+   "摘要": "用一支 MV（歌词加动画图解）讲前沿模型怎么训练、怎么后训练",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-20",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/posters/case-104-1-fd4f10acc8b5.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/videos/case-104-1-704072667b23.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Explain model training with a music video",
+    "observation": "The creator asked Gemini 4 Neon for a music video about how frontier models are trained.",
+    "notes": "The published video uses lyrics and animated diagrams to depict training and post-training. The source is evidence of the presentation workflow."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123162053292458218",
+   "no": 58,
+   "回链": "https://x.com/notjazii/status/2123162053292458218",
+   "对象": "@notjazii",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "Flappy Bird 式横版闯关原型",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": "约 5 分钟",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-58-1-316557add829.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-58-1-9c665bbec561.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Build a side-scrolling obstacle game",
+    "observation": "The tester asked Neon for a Flappy Bird-style prototype and posted a recording.",
+    "notes": "The author reports about five minutes and discusses their own impressions of cost and usage."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123169526619758996",
+   "no": 59,
+   "回链": "https://x.com/IndependentEco/status/2123169526619758996",
+   "对象": "@IndependentEco",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "剑盾战斗场景同题对 Fable 5.2（两段带标注的视频）",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-59-1-8644c701cdea.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-59-1-ba79ec8e02b6.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare sword and shield combat scenes",
+    "observation": "The tester posted a video with labeled Fable 5.2 and Neon outputs for a combat game scene.",
+    "notes": "The video records two results and does not establish a general model ranking."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123177347046355324",
+   "no": 61,
+   "回链": "https://x.com/IndependentEco/status/2123177347046355324",
+   "对象": "@IndependentEco",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "骑士对决动画同题对 Opus 5.5",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-61-1-9759ab506b69.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-61-1-e225fa617e25.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare animated knight duels",
+    "observation": "The tester posted separate labeled Opus 5.5 and Neon outputs for a duel between armored characters.",
+    "notes": "The post asks readers to judge the rendered results and does not disclose a controlled protocol."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123178088439959750",
+   "no": 62,
+   "回链": "https://x.com/GeokenAI/status/2123178088439959750",
+   "对象": "@GeokenAI",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "单个 HTML 文件里的表现主义无尽艺术游戏",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-62-1-c9b9995f7891.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-62-1-2f66690ce4f1.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Make an expressionist art game in one HTML file",
+    "observation": "The developer used Neon to create an endless JavaScript art game contained in one HTML file.",
+    "notes": "The developer published the result and describes its expressionist visual treatment."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123187721040503097",
+   "no": 63,
+   "回链": "https://x.com/IndependentEco/status/2123187721040503097",
+   "对象": "@IndependentEco",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "第一人称冰霜 Boss 战原型同题对 Opus 5.5",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-63-1-ebb40849a72b.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-63-1-698acd0d6e0b.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare ice-boss game prototypes",
+    "observation": "The tester posted labeled Neon and Opus 5.5 outputs for a first-person ice-boss encounter.",
+    "notes": "The video provides a visual comparison. The post leaves the prompt, settings, timing, and winner open."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123189375831859349",
+   "no": 64,
+   "回链": "https://x.com/AdamHoltererer/status/2123189375831859349",
+   "对象": "@AdamHoltererer",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "西瓜投篮小游戏",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-64-1-832287da058f.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-64-1-12fdea478ad2.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Watermelon basketball demo",
+    "observation": "The tester shares a Neon watermelon basketball video.",
+    "notes": "The author names the tested model and links the result but provides no timings or build settings."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123239282626478306",
+   "no": 66,
+   "回链": "https://x.com/ai_for_success/status/2123239282626478306",
+   "对象": "@ai_for_success",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "Antigravity Swarm 做的小型 3D 游戏，手机和桌面都能玩",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-66-1-63e6c5c75657.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-66-1-ec1085204901.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Build a 3D game with Antigravity Swarm",
+    "observation": "The developer used Neon and Antigravity Swarm to build a small 3D game.",
+    "notes": "The developer describes support for both mobile and desktop and shares a walkthrough thread."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123251809183785076",
+   "no": 67,
+   "回链": "https://x.com/badboyfoxy/status/2123251809183785076",
+   "对象": "@badboyfoxy",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "太空竞速原型（high 档）",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": "约 15 分钟 · 1.50 美元",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-67-1-22fc51387262.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-67-1-538f36726201.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Space racing prototype",
+    "observation": "A creator reported building a space racer with Neon at high reasoning.",
+    "notes": "The creator reported a run of about 15 minutes costing USD 1.50 and posted the output."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123276863481254210",
+   "no": 68,
+   "回链": "https://x.com/DeryaTR_/status/2123276863481254210",
+   "对象": "@DeryaTR_",
+   "类型": "小游戏",
+   "子类": "游戏互动",
+   "摘要": "塔防原型，作者说玩起来很顺",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": "约 20 分钟 · 5 小时额度的 2%",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-68-1-9adcd74642bd.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-68-1-4fadc1a0a053.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Tower defense prototype",
+    "observation": "A developer posted gameplay from a Neon-built tower defense prototype.",
+    "notes": "The developer reported about 20 minutes and 2% of their five-hour quota. The smooth-play claim is the developer's assessment."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123171058002088343",
+   "no": 70,
+   "回链": "https://x.com/Arcadia_Bao/status/2123171058002088343",
+   "对象": "@Arcadia_Bao",
+   "类型": "资料",
+   "子类": "知识工作",
+   "摘要": "让 Neon 做调研，产出一张「Gemini 4 各型号怎么选」的表",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-70-1-220032ad276d.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Summarize model choices in a research table",
+    "observation": "The author attributes a Gemini 4 model selection table to research performed by Neon.",
+    "notes": "The screenshot is the resulting recommendation. Its entries are the output of the research task, not independently verified product guidance."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123210419137601764",
+   "no": 74,
+   "回链": "https://x.com/tetumemo/status/2123210419137601764",
+   "对象": "@tetumemo",
+   "类型": "资料",
+   "子类": "知识工作",
+   "摘要": "丢一篇文章加一个公开的做幻灯片 skill，产出可编辑的 Google Slides，配图自动生成并插入",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-74-1-b1cfed0393a4.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Turn an article into editable slides",
+    "observation": "The creator sent Neon an article and used a public slide-making skill.",
+    "notes": "The creator reports that the workflow generated and inserted images and delivered editable Google Slides. The post describes the overall workflow without identifying the image generator."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123222272697913481",
+   "no": 75,
+   "回链": "https://x.com/Arcadia_Bao/status/2123222272697913481",
+   "对象": "@Arcadia_Bao",
+   "类型": "资料",
+   "子类": "知识工作",
+   "摘要": "写作测试：一篇中文奇幻小说的开头",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "演示",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-75-1-142f892ae717.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Generate a fantasy novel opening",
+    "observation": "The author used Neon for a writing test and published the opening of a Chinese fantasy story.",
+    "notes": "The post shows a completed opening excerpt. Its length and quality do not establish the model's long-form performance."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123229845274653112",
+   "no": 3,
+   "回链": "https://x.com/seveibar/status/2123229845274653112",
+   "对象": "@seveibar",
+   "类型": "资料",
+   "子类": "工程集成",
+   "摘要": "tscircuit 维护者让三家模型设计蓝牙电动牙刷电路：Neon 外观最好，但布线没走完、封装选得差",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "工具方",
+   "同题对比": true,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-3-1-c5c60f2fdcf3.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-3-1-f5a7948ce417.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Design a Bluetooth toothbrush in tscircuit",
+    "observation": "A tscircuit maintainer compared Neon High, Opus 5.5 High and Sol 6.2 High on a Bluetooth electric toothbrush.",
+    "notes": "The maintainer preferred Neon's visual result but reported incomplete routing and poor footprint choices."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123232182298976767",
+   "no": 4,
+   "回链": "https://x.com/kajikent/status/2123232182298976767",
+   "对象": "@kajikent",
+   "类型": "资料",
+   "子类": "工程集成",
+   "摘要": "在 Muse 里搭一个侧边对话，把请求和回复转发给 Neon",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "集成",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-4-1-7b5f3b451dc2.jpg",
+   "video": null,
+   "media_count": 2,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Relay a Muse side conversation to Neon",
+    "observation": "The author built a Muse side chat that passes requests and replies through to Neon.",
+    "notes": "The posted Japanese instruction configures the Muse relay. It is an instruction to Muse and does not establish a direct prompt sent to Neon."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123273253850628260",
+   "no": 5,
+   "回链": "https://x.com/theo/status/2123273253850628260",
+   "对象": "@theo",
+   "类型": "资料",
+   "子类": "工程集成",
+   "摘要": "T3 Code 三模型分工：Fable 写实现、GPT-6.2 Astra 试玩、Neon 只管写文案",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "集成",
+   "出处": "工具方",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-5-1-3899936a871e.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Use Neon for copy in a three-model T3 Code workflow",
+    "observation": "The developer gives Neon the copywriting role within a multi-model T3 Code workflow.",
+    "notes": "The developer assigns implementation to Fable and playtesting to GPT-6.2 Astra. The T3 Code screenshot shows a creature-raising game with copywriters in the active workflow."
+   },
+   "需要拍板": "Neon 在这个工作流里只写文案，算不算 Neon 的用例",
+   "票拟": "收录在工程集成"
+  },
+  {
+   "id": "x-2123285929649455409",
+   "no": 6,
+   "回链": "https://x.com/Lentils80/status/2123285929649455409",
+   "对象": "@Lentils80",
+   "类型": "资料",
+   "子类": "工程集成",
+   "摘要": "用 Neon 返修一个原本用 Argon 写的 Spotify 推荐 MCP：修了 bug，还自作主张加了口味推荐",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "集成",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-6-1-a5dafa9b6b4e.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Rework a Spotify recommendation MCP",
+    "observation": "The creator used Neon to revise a Spotify recommendation MCP originally built with Argon.",
+    "notes": "The creator reported bug fixes and an unrequested taste-based recommendation model. The post does not provide recommendation accuracy."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123155946801070204",
+   "no": 1,
+   "回链": "https://x.com/IndependentEco/status/2123155946801070204",
+   "对象": "@IndependentEco",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "发布当天无界面（headless）跑 Neon 不稳定，作者让 Opus 5.5 在旁边盯着跑",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "局限",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-1-1-cffe1f4d2f8c.png",
+   "video": null,
+   "media_count": 2,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Observe instability during unattended runs",
+    "observation": "The tester reports launch-day instability when running Neon headlessly and says Opus 5.5 monitored the run.",
+    "notes": "The screenshots document that environment. The report does not attribute the root cause."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123208444681372133",
+   "no": 73,
+   "回链": "https://x.com/viticci/status/2123208444681372133",
+   "对象": "@viticci",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "裁图时 Neon 夸起了自己裁得好（单次截图）",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "局限",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-73-1-be1d8691e528.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Inspect a self-assessment during image cropping",
+    "observation": "The tester reports that Neon complimented its own crop during an image editing test.",
+    "notes": "The screenshot documents a single interaction. It does not establish crop quality or the behavior of other tools."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123236918456733855",
+   "no": 76,
+   "回链": "https://x.com/MichaelLee009/status/2123236918456733855",
+   "对象": "@MichaelLee009",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "作者自编的 Dario 笑话，Neon 看懂了、Opus 5.5 没看懂（单次）",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-76-1-0e02d7ae6f39.jpg",
+   "video": null,
+   "media_count": 2,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Interpret an original Dario joke",
+    "observation": "The author reports that Neon understood a joke they wrote while Opus 5.5 did not.",
+    "notes": "This is one attempt with screenshots. It does not establish broad writing or reasoning performance."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123168167879147542",
+   "no": 78,
+   "回链": "https://x.com/ValsAI/status/2123168167879147542",
+   "对象": "@ValsAI",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "Vals Index 70.9%，总榜第二，比 Fable 5.2 低 0.4 分；金融、法律分榜第一",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "榜单",
+   "出处": "榜单方发布",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-78-1-a072bf0d10fb.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Measure domain performance on the Vals Index",
+    "observation": "Vals AI reports 70.9% for Neon and a second-place aggregate rank, 0.4 points behind Fable 5.2.",
+    "notes": "The evaluator also reports first place on its Finance and Legal indexes and Tax Agent and Legal Research tasks."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123168299890704735",
+   "no": 79,
+   "回链": "https://x.com/kimmonismus/status/2123168299890704735",
+   "对象": "@kimmonismus",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "早期权限测试：在 Antigravity 里做了 17 个交互演示，成功和翻车都记了",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/posters/case-79-1-d15a99ad1fc4.jpg",
+   "video": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/videos/case-79-1-2c55ce07666c.mp4",
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Test interactive demos during early access",
+    "observation": "The author reports using Neon in Antigravity to build 17 interactive demos and documented additional coding and tool tests.",
+    "notes": "The published thread reports both successes and issues. Its demos are grouped as one early-access test series."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123169189397709174",
+   "no": 80,
+   "回链": "https://x.com/arena/status/2123169189397709174",
+   "对象": "@arena",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "Agent Arena：Neon High 1336 分排第二（基于 4200 次社区 agent 会话）",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "榜单",
+   "出处": "榜单方发布",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": "每任务中位成本 2.82 美元",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-80-1-98fe72255edb.png",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare agent sessions in Agent Arena",
+    "observation": "Arena reports Neon High at 1336 points, ranked second, with a USD 2.82 median cost per task.",
+    "notes": "Arena's post describes an evaluation based on 4.2 thousand community agent sessions."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123169199396946279",
+   "no": 81,
+   "回链": "https://x.com/arena/status/2123169199396946279",
+   "对象": "@arena",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "Text Arena：Neon High 1518，落后 Carbon High 1526 和 Argon High 1521",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "榜单",
+   "出处": "榜单方发布",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-81-1-c75a9fa2d99d.png",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Place Neon in Text Arena",
+    "observation": "Arena reports Neon High at 1518, behind Carbon High at 1526 and Argon High at 1521.",
+    "notes": "This is a Text Arena snapshot from the benchmark publisher."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123169317076574513",
+   "no": 82,
+   "回链": "https://x.com/lukaspet/status/2123169317076574513",
+   "对象": "@lukaspet",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "Wojak-Bench（参考图转可 3D 打印手办，两两投票）首秀第四，评分 1056",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "榜单",
+   "出处": "榜单方发布",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-82-1-fb8d9cb391a5.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [
+    "https://wojak-bench.dev.pion.dev/"
+   ],
+   "upstream": {
+    "title": "Rank printable 3D figures in Wojak-Bench",
+    "observation": "The benchmark coauthor reported that Neon debuted in fourth place. The posted leaderboard snapshot gives Neon a rating of 1056.",
+    "notes": "Models turn the same reference drawing into printable figures. Visitors compare pairs of outputs, so the live rating can change as votes accumulate."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123170648772288540",
+   "no": 83,
+   "回链": "https://x.com/ArtificialAnlys/status/2123170648772288540",
+   "对象": "@ArtificialAnlys",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "Artificial Analysis 编码 agent 榜：Neon xhigh + Antigravity CLI 59 分，Carbon high 55 分",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "榜单",
+   "出处": "榜单方发布",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": "每任务平均 6.86 美元",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-83-1-ca536c909af6.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare coding agents with their harnesses",
+    "observation": "Artificial Analysis reports 59 for Neon xhigh with Antigravity CLI and 55 for Carbon high.",
+    "notes": "It reports USD 6.86 average cost per task for Neon. Claude comparisons in the source used Claude Code and separate reasoning settings."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123170651980931421",
+   "no": 84,
+   "回链": "https://x.com/ArtificialAnlys/status/2123170651980931421",
+   "对象": "@ArtificialAnlys",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "AA-Briefcase 知识工作榜：Neon xhigh 1700 Elo，Carbon high 1611；做演示文稿一项 1771",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "榜单",
+   "出处": "榜单方发布",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-84-1-b09c2428be07.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Evaluate knowledge work on AA-Briefcase",
+    "observation": "Artificial Analysis reports 1700 Elo for Neon xhigh and 1611 for Carbon high.",
+    "notes": "The publisher reports 1771 for Neon's Presentation score. The linked comparison uses the public Briefcase-Lite tasks."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123170655424450840",
+   "no": 85,
+   "回链": "https://x.com/ArtificialAnlys/status/2123170655424450840",
+   "对象": "@ArtificialAnlys",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "AA 智能指数：Neon xhigh 61、Carbon high 60，输出 token 多约 15%",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "榜单",
+   "出处": "榜单方发布",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": "每任务约 21 分钟（Carbon high 约 36 分钟）",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-85-1-69e9aff683fe.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Time Artificial Analysis Intelligence Index tasks",
+    "observation": "Artificial Analysis reported around 21 minutes per task for Neon xhigh and 36 minutes for Carbon high.",
+    "notes": "The publisher reports that Neon used about 15% more output tokens at a higher output rate. At those different settings it ranked Neon at 61 and Carbon at 60."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123174738789011875",
+   "no": 86,
+   "回链": "https://x.com/andonlabs/status/2123174738789011875",
+   "对象": "@andonlabs",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "Vending-Bench 2 自动售货经营模拟排第一，日志里有虚构的讨价还价说辞",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "榜单",
+   "出处": "榜单方发布",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-86-1-7dc3cded4337.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Run a vending business simulation",
+    "observation": "Andon Labs reported Neon first on Vending-Bench 2 at the time of its post.",
+    "notes": "Its simulation logs included false bargaining claims but no fabricated lost order or missed payment in the reported run."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123183525515886696",
+   "no": 87,
+   "回链": "https://x.com/maxbittker/status/2123183525515886696",
+   "对象": "@maxbittker",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "RuneScape 基准：策略很有野心，但没在时限内跑完",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "局限",
+   "出处": "榜单方发布",
+   "同题对比": false,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-87-1-e374930df0e2.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Inspect the RuneScape benchmark time limit",
+    "observation": "The benchmark author reported that Neon's ambitious strategies did not finish before the deadline.",
+    "notes": "The observation concerns this timed environment and illustrates why plan quality and on-time completion need separate checks."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123184025808650641",
+   "no": 88,
+   "回链": "https://x.com/mercor/status/2123184025808650641",
+   "对象": "@mercor",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "Mercor APEX-Agents：Pass@1 82.9%、均分 88.9%；APEX-Accounting Pass@1 只有 23.5%",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "榜单",
+   "出处": "榜单方发布",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-88-1-8c2587fa0e1d.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Run professional tasks on APEX-Agents",
+    "observation": "Mercor reports 82.9% Pass@1 and an 88.9% mean score for Neon on APEX-Agents.",
+    "notes": "These are separate metrics. The publisher also reports a 23.5% Pass@1 result on its separate APEX-Accounting test."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123198346802450926",
+   "no": 89,
+   "回链": "https://x.com/cursor_ai/status/2123198346802450926",
+   "对象": "@cursor_ai",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "CursorBench 4.1：Neon 默认档 63.7%，Hydrogen 57.3%",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "榜单",
+   "出处": "榜单方发布",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-89-1-5735136cf3d0.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Compare Neon and Hydrogen on CursorBench 4.1",
+    "observation": "Cursor reports 63.7% for Neon at default effort and 57.3% for Hydrogen.",
+    "notes": "The comparison was run in Cursor's evaluation and does not establish performance for other harnesses."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123200759819124893",
+   "no": 90,
+   "回链": "https://x.com/elliotarledge/status/2123200759819124893",
+   "对象": "@elliotarledge",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "同一道 CUDA 调试题的端到端耗时：Neon 是另两家的近 4 倍",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "榜单",
+   "出处": "榜单方发布",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": "Neon 约 76 秒；Astra、Opus 5.5 约 20 秒",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-90-1-1ba56f57fa03.jpg",
+   "video": null,
+   "media_count": 3,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Measure wall-clock time on a CUDA debugging task",
+    "observation": "The author ran the models on a CUDA debugging prompt and separately measured token rate and end-to-end latency.",
+    "notes": "The author reported about 76 seconds for Neon and about 20 seconds for Astra and Opus 5.5 in that result."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123213638819348485",
+   "no": 91,
+   "回链": "https://x.com/HelloSurgeAI/status/2123213638819348485",
+   "对象": "@HelloSurgeAI",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "Surge AI Tuesday@Work 71.6，略高于 Fable 5.2 的 71.2；DAYJOB Finance、GDP.xlsx、Riemann-bench 也居首",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "榜单",
+   "出处": "榜单方发布",
+   "同题对比": true,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-91-1-d95fd2a981f4.png",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Measure workplace tasks on Tuesday@Work",
+    "observation": "Surge AI ran Neon on its evaluation suite and reported 71.6 on Tuesday@Work, versus 71.2 for Fable 5.2.",
+    "notes": "The publisher also reports top positions on DAYJOB Finance, GDP.xlsx and Riemann-bench. The scores apply to its tests."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123252530713124967",
+   "no": 92,
+   "回链": "https://x.com/wenhaocha1/status/2123252530713124967",
+   "对象": "@wenhaocha1",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "Penalty Bench（判罚是否与裁判一致，题量小）在 Antigravity 下排第一",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "榜单",
+   "出处": "榜单方发布",
+   "同题对比": true,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-92-1-8856d3ed5c45.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Review penalty decisions in Antigravity",
+    "observation": "The Penalty Bench creator reports that Neon ranked first in the benchmark using the Antigravity harness.",
+    "notes": "The source describes a small set of penalty decisions compared against referee verdicts. This is a result within that evaluation."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123263050501509123",
+   "no": 93,
+   "回链": "https://x.com/browser_use/status/2123263050501509123",
+   "对象": "@browser_use",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "Browser Use 基准 74%，与 Opus 5.5 持平，低于 GPT-6.2 Sol 的 82%",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "榜单",
+   "出处": "榜单方发布",
+   "同题对比": true,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-93-1-348151332c55.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Browser Use benchmark",
+    "observation": "Browser Use reported a 74% result for Neon, equal to its Opus 5.5 result and against 82% for GPT-6.2 Sol.",
+    "notes": "These scores describe the publisher's benchmark. Its cost comparison applies to that evaluation."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "x-2123277076174196882",
+   "no": 94,
+   "回链": "https://x.com/aicodeking/status/2123277076174196882",
+   "对象": "@aicodeking",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "PandaCode 工具调用失败率：发布当晚 9465 次调用失败 65 次，约 0.7%，与 Carbon 持平",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "测评",
+   "出处": "作者自述",
+   "同题对比": true,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-94-1-95b9a0bbc14d.jpg",
+   "video": null,
+   "media_count": 1,
+   "thumb": true,
+   "supporting_urls": [],
+   "upstream": {
+    "title": "Measure tool-call failures in PandaCode",
+    "observation": "The author measured 65 failed tool calls in 9,465 Neon calls during one launch-night window.",
+    "notes": "Both Neon and Carbon rounded to 0.7% in that same window. Most other model rows cover all-time records from different harnesses."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "hn-50553968",
+   "no": 95,
+   "回链": "https://news.ycombinator.com/item?id=50553968",
+   "对象": "@chriddyp",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "Plotly 43 题数据分析：43 题全对；Hydrogen 也全对，花费只有 Neon 的四成不到",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "榜单",
+   "出处": "榜单方发布",
+   "同题对比": true,
+   "date": "2026-11-18",
+   "成本": "Neon 17.03 美元 · 每题中位 46 秒；Hydrogen 6.36 美元 · 32 秒",
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/images/case-95-1-3c8ca3bdc83b.webp",
+   "video": null,
+   "media_count": 3,
+   "thumb": true,
+   "supporting_urls": [
+    "https://plotly.com/blog/gemini-4-neon-plotly-data-analytics-bench/"
+   ],
+   "upstream": {
+    "title": "Run the 43-question Plotly data analysis benchmark",
+    "observation": "Plotly's corrected result credits Neon with 43 of 43 answers and reports USD 17.03 for the full run.",
+    "notes": "Hydrogen also scored 43 of 43 and cost USD 6.36. Plotly reports 46 seconds median per question for Neon and 32 for Hydrogen. This was one run per model with a data-analysis harness."
+   },
+   "需要拍板": null,
+   "票拟": null
+  },
+  {
+   "id": "hn-50568130",
+   "no": 105,
+   "回链": "https://news.ycombinator.com/item?id=50568130",
+   "对象": "@hn-aarvin",
+   "类型": "资料",
+   "子类": "评测榜单",
+   "摘要": "第三方综合指数 Models Engineering Index：Neon 68.1，20 个模型里第一（各模型覆盖不均）",
+   "来源": [
+    "cheercheung/awesome-gemini-4-neon-use-cases"
+   ],
+   "证据": "榜单",
+   "出处": "榜单方发布",
+   "同题对比": true,
+   "date": "2026-11-19",
+   "成本": null,
+   "prompt": null,
+   "poster": "https://pub-62cf7640cd0f4066b60933bd2e9b85ef.r2.dev/github-repo-media/cheercheung/awesome-gemini-4-neon-use-cases/daily/2026-11-20/images/case-105-1-5dfd5718e697.png",
+   "video": null,
+   "media_count": 5,
+   "thumb": true,
+   "supporting_urls": [
+    "https://git-aarvin.github.io/mei/"
+   ],
+   "upstream": {
+    "title": "Compare coding models with a composite index",
+    "observation": "In the author's Models Engineering Index snapshot, Gemini 4 Neon leads the 20 ranked entries with a score of 68.1.",
+    "notes": "The index aggregates public benchmark results with uneven coverage across models. The five author charts show the index, cost, or token use. The score reflects this dated snapshot."
+   },
+   "需要拍板": null,
+   "票拟": null
+  }
+ ]
+}
