@@ -18,7 +18,8 @@
     sunDir: v3.norm([SUN[0], SUN[1] + 0.10, SUN[2]]), key: hex('#ffd9b6'), shade: hex('#8b7fb0'), rimCol: hex('#ffd59c'), rimAmt: 1.0,
     ink: hex('#2c2232'), bounce: hex('#d7a5b8'), bounceAmt: 0.7, fogCol: hex('#e8b08c'), fogDen: 1 / 9000, fogStart: 200,
   };
-  const PLUME_LOOK = { lit: hex('#ffe6cc'), mid: hex('#f2c9bd'), shad: hex('#b49dc0'), deep: hex('#9a86b0'), rim: hex('#fff0d8'), bands: [0.58, 0.42, 0.06, 0.2], edge: [0.3, 0.45, 0.4, 0.0], fog: hex('#e8b08c'), fogDen: 1 / 9000, fogStart: 200 };
+  // backlit by the low sun, the breath glows warm and translucent rather than reading as shadow
+  const PLUME_LOOK = { lit: hex('#fff0d6'), mid: hex('#ffd9bd'), shad: hex('#f0bfa8'), deep: hex('#d9a7a6'), rim: hex('#fff6e2'), bands: [0.50, 0.30, 0.08, 0.1], edge: [0.35, 0.5, 0.8, 0.0], fog: hex('#f2b27a'), fogDen: 1 / 9000, fogStart: 200 };
   const GRADE = { bloom: 0.42, diffuse: 0.32, wrap: 0.34, grain: 0.017, density: 0.12, vignette: 0.16, thresh: 0.72 };
 
   // ------------------------------------------------------------------ 4A
