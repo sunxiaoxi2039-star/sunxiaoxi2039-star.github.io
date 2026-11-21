@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sky Whale</title>
+<meta name="description" content="A 100-second hand-drawn-style anime short, drawn and animated entirely in code.">
+<style>
+  :root { --bg:#0d0f18; --fg:#ece6da; --dim:#9a96aa; --acc:#f2b27a; --line:#2a2f45; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.6 Georgia, 'Times New Roman', serif; }
+  main { max-width:1080px; margin:0 auto; padding:24px 16px 64px; }
+  h1 { font-weight:normal; letter-spacing:.22em; font-size:28px; margin:8px 0 4px; }
+  .sub { color:var(--dim); margin:0 0 20px; }
+  video, img.poster { width:100%; height:auto; display:block; border-radius:4px; background:#000; }
+  h2 { font-weight:normal; font-size:18px; letter-spacing:.08em; margin:36px 0 10px; color:var(--acc); }
+  ol.mov { padding-left:20px; } ol.mov li { margin:6px 0; }
+  a { color:var(--fg); text-decoration-color:var(--acc); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; }
+  .grid a { display:block; border:1px solid var(--line); border-radius:4px; padding:10px 12px; text-decoration:none; }
+  .grid a:hover { border-color:var(--acc); }
+  .small { color:var(--dim); font-size:14px; }
+</style></head>
+<body><main>
+<h1>SKY WHALE</h1>
+<p class="sub">A 100-second anime short, drawn and animated entirely in code. One day, dawn to night.</p>
+<video controls preload="metadata" poster="docs/poster.jpg" src="skywhale_web.mp4"></video>
+<p class="small">1920&times;1080, 48 fps. If the video is missing, open the full film as a live, self-contained page:
+<a href="scenes/film.html">scenes/film.html</a>.</p>
+
+<h2>Five movements</h2>
+<ol class="mov">
+  <li><a href="scenes/1-dawn.html">Dawn: The Breakout</a>. The cloud sea swells, domes and tears as the Old Whale rises through it and breaches into the golden sky.</li>
+  <li><a href="scenes/2-morning.html">Morning: The Crossing</a>. Over a patchwork valley a kilometre below, a great junk-sail fin strokes, and a cream cloud bank swallows the whale.</li>
+  <li><a href="scenes/3-storm.html">Storm: The Squall</a>. Rain and lightning, then the whale bursts out of the storm top into sunlight under a rainbow.</li>
+  <li><a href="scenes/4-dusk.html">Dusk: The Calling</a>. Over a calm sea it breathes, blows and calls. A hard cut on the silence, and no answer comes.</li>
+  <li><a href="scenes/5-night.html">Night: The Answer</a>. Under the moon, warm eyes appear along the cloud band, and the pod rises to meet it.</li>
+</ol>
+
+<h2>How it is made</h2>
+<p>Every frame renders deterministically to a WebGL2 canvas from the code in <code>src/</code>. There are no images,
+footage or AI-generated assets. The whale is an analytic body whose plates, rivets, rust, keel planking, moss, brass eye and ink
+lines are computed per pixel from stable body coordinates, so the line work never boils. The clouds are painted
+puffs pushed around by a simulation in which each whale is a moving solid. The soundtrack is an orchestral score
+written as code and played on real sampled instruments, with whale voices built from real humpback recordings.</p>
+<div class="grid">
+  <a href="docs/model-sheet.jpg">Model sheet</a>
+  <a href="docs/PRODUCTION.md">Production notes</a>
+  <a href="README.md">README</a>
+  <a href="audio/README.md">Sound</a>
+  <a href="audio/CREDITS.md">Credits</a>
+  <a href="timeline.json">Timeline &amp; cues</a>
+</div>
+</main></body></html>

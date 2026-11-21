@@ -1,0 +1,47 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Sky Whale — film renderer</title>
+<style>html,body{margin:0;background:#000}canvas{display:block;width:100vw;height:auto}</style></head>
+<body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<script src="src/core.js"></script>
+<script src="src/gl.js"></script>
+<script src="src/camera.js"></script>
+<script src="src/whale.js"></script>
+<script src="src/whale-render.js"></script>
+<script src="src/pipeline.js"></script>
+<script src="src/garden.js"></script>
+<script src="src/clouds.js"></script>
+<script src="src/sky.js"></script>
+<script src="src/fx.js"></script>
+<script src="src/land.js"></script>
+<script src="src/sea.js"></script>
+<script src="src/film.js"></script>
+<script src="src/scenes/dawn.js"></script>
+<script src="src/scenes/morning.js"></script>
+<script src="src/scenes/storm.js"></script>
+<script src="src/scenes/dusk.js"></script>
+<script src="src/scenes/night.js"></script>
+<script>
+(async function(){
+  try {
+    const timeline = window.SW_TIMELINE || await (await fetch('timeline.json')).json();
+    const q0 = new URLSearchParams(location.search);
+    const cv = document.getElementById('c');
+    if (q0.has('w')) { cv.width = +q0.get('w'); cv.height = +q0.get('h'); }
+    SW.FRAME_W = cv.width; SW.FRAME_H = cv.height;
+    const film = SW.Film(cv, timeline);
+    window.FILM = film;
+    window.SWAPI = {
+      frame: async (o) => { film.renderFrame(o.frame); return document.getElementById('c').toDataURL('image/png'); },
+      frames: async (o) => o.list.map((f) => { film.renderFrame(f); return document.getElementById('c').toDataURL('image/png'); }),
+      render: async (o) => { film.renderFrame(o.frame); return true; },
+    };
+    // interactive playback when opened in a browser: ?play or ?frame=N
+    const q = new URLSearchParams(location.search);
+    if (q.has('frame')) film.renderFrame(+q.get('frame'));
+    if (q.has('play')) { let f = +(q.get('play') || 0); const tick = () => { film.renderFrame(f); f = (f + 1) % timeline.totalFrames; requestAnimationFrame(tick); }; tick(); }
+    window.SW_READY = true;
+  } catch (e) { console.error(e.stack || e); window.SW_ERROR = String(e.stack || e); }
+})();
+</script>
+</body></html>
