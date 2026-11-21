@@ -69,6 +69,8 @@ Requirements: Node 18+, the `playwright` package with Chromium, `ffmpeg`.
 cd skywhale/render
 node render.js --out ../../../_build/frames --workers 2          # all 4805 frames -> PNG (resumable)
 node render.js --out /tmp/preview --step 4 --w 960 --h 540         # quick preview
+python3 qa.py ../../../_build/frames                               # missing / blank / stuck frames, pops
+python3 tileqa.py ../../../_build/frames                            # small local pops, tile by tile
 ./encode.sh ../../../_build/frames ../../../_build/audio/skywhale_mix.wav skywhale.mp4
 node build.js                                                       # rebuild scenes/*.html
 ```
