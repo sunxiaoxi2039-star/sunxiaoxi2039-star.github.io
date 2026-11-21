@@ -72,7 +72,7 @@
       const cam = SW.Camera({ pos, target: tgt, fov: 36, near: 1, far: 40000 });
       F.stage(frame, {
         time: t, cam, light: LIGHT, sky: SKY,
-        whales: [{ whale: w, t: tl, glowScale: 1.2 }],
+        whales: [{ whale: w, t: tl, glowScale: 1.2, shadow: false }],   // (soft moonlight; swaying pine pads made cast shadows blink)
         clouds: [{ puffs: S.puffs, look: LOOK }],
         grade: GRADE,
       });
