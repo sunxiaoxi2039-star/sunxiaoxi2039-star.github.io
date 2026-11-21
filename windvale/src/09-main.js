@@ -117,6 +117,7 @@ async function main() {
   await stage(96, '等风来……');
   setRipples();
 
+  if (STILL) await CHARACTERS.ready; // screenshots & film wait for the girl and the cat; live pages show them as soon as they are sculpted
   await stage(98, '等风来……');
   await precompile(); mark('compile shaders');
   // post-processing (phones skip bloom)
