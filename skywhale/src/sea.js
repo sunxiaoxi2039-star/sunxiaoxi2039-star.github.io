@@ -33,12 +33,20 @@
   uniform vec3 uCamPos; uniform vec3 uSunDir; uniform float uTime; uniform vec2 uAcross;
   uniform vec3 uNear; uniform vec3 uFar; uniform vec3 uSkyHor; uniform vec3 uSkyUp; uniform vec3 uGlint; uniform vec3 uStroke; uniform vec3 uShadow;
   uniform sampler2D uRefl; uniform float uReflAmt; uniform vec3 uReflTint; uniform vec2 uRes; uniform float uGlitter; uniform float uRoadW;
+  uniform mat4 uInvVP; uniform float uYp;
   in vec3 vPos;
   layout(location=0) out vec4 o; layout(location=1) out vec4 oA;
   void main(){
-    vec3 V = vPos - uCamPos; float d = length(V); V /= d;
+    // exact water position from the view ray (interpolating a huge quad jitters fine ripples)
+    vec2 ndc = gl_FragCoord.xy/uRes*2.0 - 1.0;
+    vec4 ra = uInvVP*vec4(ndc, -1.0, 1.0), rb = uInvVP*vec4(ndc, 1.0, 1.0);
+    vec3 rd = normalize(rb.xyz/rb.w - ra.xyz/ra.w);
+    float tt = (uYp - uCamPos.y)/min(rd.y, -1e-5);
+    vec3 P = uCamPos + rd*tt;
+    vec3 V = rd; float d = tt;
+    vec3 vPosE = P;
     // camera-aligned water coordinates: u across the view, v along it
-    vec2 xz = vPos.xz;
+    vec2 xz = vPosE.xz;
     float u = dot(xz, uAcross), v = dot(xz, vec2(-uAcross.y, uAcross.x));
     // long slow swells + small ripples (normals); animation is smooth, every frame
     float t = uTime;
@@ -82,7 +90,7 @@
         const gl = G.gl;
         const f = [cam.fwd[0], cam.fwd[2]], fl = Math.hypot(f[0], f[1]) || 1;
         prog.use({
-          uViewProj: cam.viewProj, uCamPos: cam.pos, uSize: 40000, uY: k.y || 0, uSunDir: k.sunDir, uTime: t, uAcross: [f[1] / fl, -f[0] / fl],
+          uViewProj: cam.viewProj, uInvVP: cam.invViewProj, uYp: k.y || 0, uCamPos: cam.pos, uSize: 40000, uY: k.y || 0, uSunDir: k.sunDir, uTime: t, uAcross: [f[1] / fl, -f[0] / fl],
           uNear: k.near, uFar: k.far, uSkyHor: k.skyHor, uSkyUp: k.skyUp, uGlint: k.glint, uStroke: k.stroke, uShadow: k.shadow,
           uRefl: refl || G.noiseTex, uReflAmt: refl ? (k.reflAmt === undefined ? 0.8 : k.reflAmt) : 0, uReflTint: k.reflTint || [0.75, 0.7, 0.8], uRes: [G.W, G.H],
           uGlitter: k.glitter === undefined ? 1 : k.glitter, uRoadW: k.roadW || 0.06,
