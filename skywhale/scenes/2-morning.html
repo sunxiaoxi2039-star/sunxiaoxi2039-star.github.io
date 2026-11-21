@@ -975,13 +975,13 @@
     vec4 lp = uLightVP * vec4(p + n*0.35, 1.0);
     vec3 c = lp.xyz/lp.w*0.5+0.5;
     if (c.x<0.0||c.x>1.0||c.y<0.0||c.y>1.0||c.z>1.0) return 1.0;
-    vec2 ts = 1.0/vec2(textureSize(uShadow,0));
+    vec2 ts = 0.6/vec2(textureSize(uShadow,0));
     float sum = 0.0;
-    for (int i=-1;i<=1;i++) for (int j=-1;j<=1;j++){
-      float d = texture(uShadow, c.xy + vec2(i,j)*ts).r;
-      sum += (c.z - uShadowBias > d) ? 0.0 : 1.0;
-    }
-    return sum/9.0;
+    sum += (c.z - uShadowBias > texture(uShadow, c.xy + vec2(-ts.x,-ts.y)).r) ? 0.0 : 1.0;
+    sum += (c.z - uShadowBias > texture(uShadow, c.xy + vec2( ts.x,-ts.y)).r) ? 0.0 : 1.0;
+    sum += (c.z - uShadowBias > texture(uShadow, c.xy + vec2(-ts.x, ts.y)).r) ? 0.0 : 1.0;
+    sum += (c.z - uShadowBias > texture(uShadow, c.xy + vec2( ts.x, ts.y)).r) ? 0.0 : 1.0;
+    return sum*0.25;
   }
   vec3 applyFog(vec3 col, vec3 p){
     float dist = length(uCamPos - p);
@@ -2039,7 +2039,7 @@
         uFogCol: light.fogCol || [0.8, 0.85, 0.95], uFogDen: light.fogDen || 0.0, uFogStart: light.fogStart || 0,
         uFlash: light.flash || [0, 0, 0, 0], uFlashCol: light.flashCol || [1, 1, 1],
         uPass: pass || 0, uShadowOn: light.shadowOn && pass !== 1 ? 1 : 0, uShadow: pass === 1 ? G.noiseTex : P.shadow.depthTex, uLightVP: light.lightVP || m4.ident(), uShadowBias: light.shadowBias || 0.0015,
-        uNear: cam.near, uFar: cam.far, uFocal: cam.proj ? cam.proj[5] : 1, uEyeTint: light.eyeTint || [1.15, 1.0, 0.85],
+        uNear: cam.near, uFar: cam.far, uFocal: cam.proj ? cam.proj[5] : 1, uResOverride: cam.res || null, uEyeTint: light.eyeTint || [1.15, 1.0, 0.85],
         inkW: light.inkW, rimW: light.rimW,
       };
     };
@@ -2051,7 +2051,7 @@
       const view = m4.lookAt(eye, center, up);
       const proj = m4.ortho(-radius, radius, -radius, radius, radius * 0.5, radius * 3.5);
       const vp = m4.mul(proj, view);
-      return { pos: eye, view, viewProj: vp, near: radius * 0.5, far: radius * 3.5, pxPerM: () => 2048 / (2 * radius), right: [view[0], view[4], view[8]], fwd: v3.scale(L, -1) };
+      return { pos: eye, view, proj, viewProj: vp, near: radius * 0.5, far: radius * 3.5, pxPerM: () => 2048 / (2 * radius), right: [view[0], view[4], view[8]], fwd: v3.scale(L, -1), ortho: true, res: [2048, 2048] };
     };
 
     P.beginShadow = function () {
@@ -2676,7 +2676,7 @@
     GR.drawSprites = function (data, scene, a2c) {
       if (!data.sprites.length) return;
       inst.setData(data.sprites, data.sprites.length / 16);
-      progS.use(scene).set({ uAtlasC: texC, uAtlasN: texN, uRes: [G.W, G.H] });
+      progS.use(scene).set({ uAtlasC: texC, uAtlasN: texN, uRes: scene.uResOverride || [G.W, G.H] });
       if (a2c) gl.enable(gl.SAMPLE_ALPHA_TO_COVERAGE);
       inst.draw();
       if (a2c) gl.disable(gl.SAMPLE_ALPHA_TO_COVERAGE);
@@ -2904,7 +2904,7 @@
         const sd = hh(5) * 100;
         const add = (p, r, ao, mk, extra) => puffs.push(Object.assign({ p, r, mn: v3.norm(v3.lerp(v3.norm(v3.sub(p, [core[0], core[1] - Rh * 0.6, core[2]])), [0, 1, 0], 0.35)), mk, ao, al: 1, seed: sd + puffs.length * 0.731, soft: 0, rest: p.slice(), layer: 0, lvl: level, st: flat, ax: [0, 1, 0] }, extra || {}));
         add(core, Rh, aoBase * 0.92, 0.65);
-        const nl = Math.round((level === 0 ? 3 + Math.floor(hh(6) * 4) : level < 3 ? 2 : 0) * (o.lobes === undefined ? 1 : o.lobes));
+        const nl = Math.round((level === 0 ? 3 + Math.floor(hh(6) * 4) : level < 3 ? (o.farLobes === undefined ? 2 : o.farLobes) : 0) * (o.lobes === undefined ? 1 : o.lobes));
         for (let k = 0; k < nl; k++) {
           const a = hh(10 + k) * Math.PI * 2, el = 0.35 + 0.5 * hh(20 + k);
           const rl = Rh * (0.42 + 0.25 * hh(30 + k));
@@ -3864,15 +3864,15 @@
   'use strict';
   const { v3, clamp, lerp, smoothstep, hex, keyed, smoothKeys } = SW;
 
-  const SUN = SW.dirFromAzEl(46, 5.0);
+  const SUN = SW.dirFromAzEl(21, 3.6);
   const LOOK = {
-    lit: hex('#ffe2b4'), mid: hex('#efbaa6'), shad: hex('#a39ccb'), deep: hex('#77739f'), rim: hex('#fff1cc'),
-    bands: [0.57, 0.42, 0.035, 0.22], edge: [0.025, 0.08, 0.6, 0.12],
+    lit: hex('#ffe0a8'), mid: hex('#eeb29e'), shad: hex('#9690c6'), deep: hex('#6a6699'), rim: hex('#fff3d0'),
+    bands: [0.58, 0.43, 0.035, 0.24], edge: [0.025, 0.07, 0.75, 0.12],
     fog: hex('#efcfb8'), fogDen: 1 / 2600, fogStart: 160, sat: 1.0,
   };
   const SKY = {
     zen: hex('#34508f'), up: hex('#8f93c6'), hor: hex('#f9d79b'), below: hex('#e8c4b2'), stops: [0.42, 0.1, 0.25, 0.75],
-    sunDir: SUN, sunCol: hex('#fff6dc'), glowCol: hex('#ffbe78'), sun: [0.012, 0.42, 0.55, 1],
+    sunDir: SUN, sunCol: hex('#fffbe8'), glowCol: hex('#ffbb70'), sun: [0.011, 0.40, 0.62, 1],
     hazeCol: hex('#f3cfae'), hazeAmt: 0.55, hazeW: 0.05,
     bandA: [0.09, 0.05, 0.42, 7], bandB: [0.20, 0.06, 0.30, 5], bandC: [0.34, 0.08, 0.22, 4],
     bandLit: hex('#ffd2a0'), bandShade: hex('#a89bc4'), bandAmt: 0.9, brush: 0.03,
@@ -3902,7 +3902,7 @@
       opts.mastRaise = (t) => SW.ease.inOut5((t - 11.6) / 2.2);
       S.whale = new SW.Whale('old', opts);
       // cloud sea: detailed and three layers deep around the breakout, LOD out to the horizon
-      S.seaOpts = { focus: [B[0] + 60, 0, B[2]], y: -16, amp: 24, amp2: 16, scale: 240, spacing: 5.0, detailR: 170, deepR: 130, layers: 3, radius: 12000, seed: 21 };
+      S.seaOpts = { focus: [B[0] + 60, 0, B[2]], y: -16, amp: 24, amp2: 16, scale: 240, spacing: 5.0, detailR: 170, deepR: 130, layers: 3, radius: 12000, seed: 21, farLobes: 1 };
       S.mkSim = () => {
         const puffs = SW.CloudGen.sea(S.seaOpts);
         // only the near region is simulated; far puffs are static scenery
@@ -4007,7 +4007,7 @@
       const cam = SW.Camera({ pos: S.camPos(tl), target: S.camTgt(tl), fov: 33, near: 5, far: 20000 });
       F.stage(frame, {
         time: tl, cam, light: Object.assign({}, LIGHT, { fogDen: 1 / 14000 }), sky: SKY,
-        whales: [{ whale: S.whale, t: tl }],
+        whales: [{ whale: S.whale, t: tl, shadow: false }],
         bg: (c) => S.ground.draw(c, { center: [0, 0, -300], fog: hex('#bfd2df'), fogDen: 1 / 5200, far: hex('#bfd2df'), shadows: S.shadows }),
         clouds: [{ puffs: S.clouds, look: Object.assign({}, LOOK, { lit: hex('#f3f0e8'), mid: hex('#dfe2e8'), shad: hex('#9eadc8'), deep: hex('#8494b4'), fog: hex('#bccfdb'), fogDen: 1 / 1500, fogStart: 0, edge: [0.04, 0.10, 0.1, 0.05], bands: [0.66, 0.5, 0.04, 0.2] }) }],
         grade: GRADE,
@@ -4076,7 +4076,7 @@
       const sun = SW.dirFromAzEl(-40, 42);
       F.stage(frame, {
         time: tl, cam, light: Object.assign({}, LIGHT, { sunDir: sun }), sky: Object.assign({}, SKY, { sunDir: sun }),
-        whales: [{ whale: w, t: tl }],
+        whales: [{ whale: w, t: tl, shadow: false }],
         bg: (c) => S.ground.draw(c, { center: [0, 0, -600], fog: hex('#c9d9e3'), fogDen: 1 / 3000, far: hex('#c9d9e3') }),
         clouds: [{ puffs: S.lower, look: Object.assign({}, LOOK, { fogDen: 1 / 3000 }) }, { puffs: S.bank, look: Object.assign({}, LOOK, { lit: hex('#fff7e6'), mid: hex('#f1ece4'), edge: [0.02, 0.06, 0.2, 0.12] }) }],
         grade: GRADE,
@@ -4221,7 +4221,7 @@
       const light = Object.assign({}, STORM_LIGHT, { key: SW.mixc(hex('#e8e8e4'), STORM_LIGHT.key, k), shade: SW.mixc(hex('#9aa5c4'), STORM_LIGHT.shade, k), fogCol: look.fog, fogDen: lerp(1 / 6000, 1 / 3200, k) });
       F.stage(frame, {
         time: tl, cam, light, sky,
-        whales: [{ whale: S.whale, t: tl }],
+        whales: [{ whale: S.whale, t: tl, shadow: false }],
         clouds: [{ puffs: S.clouds, look }],
         fx: () => rain(F, t, { amount: smoothstep(1.0, 2.2, tl), alpha: 0.9 }),
         grade: { bloom: 0.15, diffuse: 0.12, wrap: 0.18, grain: 0.02, density: 0.18, vignette: 0.22, thresh: 0.85, sat: lerp(0.95, 0.8, k) },
@@ -4266,7 +4266,7 @@
       const near = S.near.map((q) => Object.assign({}, q, { p: [q.p[0] + tl * 9, q.p[1], q.p[2]] }));
       F.stage(frame, {
         time: tl, cam, light, sky,
-        whales: [{ whale: w, t: tl }],
+        whales: [{ whale: w, t: tl, shadow: false }],
         clouds: [{ puffs: S.clouds, look }, { puffs: near, look: Object.assign({}, look, { fogDen: 1 / 4000 }) }],
         preChar: (c) => { if (bolt && I > 0.25 && tl - S.strikes[bi].t < 0.3) drawBolt(F, c, bolt, Math.min(1, I * 1.2)); },
         fx: () => rain(F, t, { amount: 1, alpha: 1 + I * 1.2, panX: -tl * 40 }),
@@ -4457,7 +4457,7 @@
     frame(F, S, tl, t, frame) {
       F.stage(frame, {
         time: t, cam: S.cam, light: LIGHT, sky: SKY,
-        whales: [{ whale: S.whale, t: tl, glowScale: 1.6 }],
+        whales: [{ whale: S.whale, t: tl, glowScale: 1.6, shadow: false }],
         clouds: [{ puffs: S.puffs, look: LOOK }],
         grade: GRADE,
       });
@@ -4564,7 +4564,7 @@
       const all = S.whales;
       S.sim.advance(tl, (tt) => all.filter((w) => tt > w.rise.t - 5 && tt < w.rise.t + 7).map((w) => w.pose(tt, 40)));
       const cam = SW.Camera({ pos: S.camPos(tl), target: S.camTgt(tl), fov: S.fov(tl), near: 2, far: 40000 });
-      const whales = [{ whale: S.old, t: tl, glowScale: 1.4 }].concat(all.map((w) => ({ whale: w, t: tl, shadow: false, glowScale: 1.6, glowAmt: 1.2 })));
+      const whales = [{ whale: S.old, t: tl, glowScale: 1.4, shadow: false }].concat(all.map((w) => ({ whale: w, t: tl, shadow: false, glowScale: 1.6, glowAmt: 1.2 })));
       F.stage(frame, {
         time: t, cam, light: LIGHT, sky: SKY,
         whales,
