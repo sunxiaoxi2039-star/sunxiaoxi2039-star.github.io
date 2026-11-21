@@ -49,7 +49,11 @@ set of full-resolution stills. The main findings and fixes:
 | Sea ripples and glitter dashes popping at dusk (frame-to-frame QA) | Float precision on the 80 km sea quad. Each sea pixel now reconstructs its exact ray-plane hit. |
 | The fin cloth snapping to the other side of its spars in one frame at each turn of the stroke; spars vanishing behind the cloth (frame-to-frame QA) | The cloth belly reversed with a sign flip; it now passes through flat over a few frames. The cloth is laced to each spar's centre line, so the spars are drawn on both faces of the sail. |
 | Patches of cloud changing shade for a frame (frame-to-frame QA) | Two overlapping puffs swapped draw order as the camera panned. Each keyed shot now sorts its vapour along one fixed axis (its mean view direction), so camera moves never reorder puffs. |
-| A huge puff filling a corner of the frame for one frame (frame-to-frame QA) | A puff passing the lens: its imposter spanned the eye until its centre crossed the near plane. Puffs that span the eye now thin away as they approach. |
+| A huge puff filling a corner of the frame for one frame (frame-to-frame QA) | A puff passing the lens: its imposter spanned the eye until its centre crossed the near plane. Puffs that span the eye now thin away as they approach. Separately, the vapour sheets peeling off the hull returned NaN positions during their fade-in lead (a power of a negative time), which drew stray shapes. Fixed, and the cloud renderer now rejects non-finite puffs. |
+| The fluke flipping to its other face for a frame (2B, 2C, 3A, 5A, 5B, 5C) | The camera cheat favours the fluke face on the camera's side of the body. With the camera level with the tail, that side changed as the tail nodded. Those shots now pin the favoured face. A full-film scan of the cheat confirms no flips remain except at cuts. |
+| A sail switching from shade to light in one frame under the moon | A flat panel crossing the terminator changes tone everywhere at once. The light-shade line now sweeps across the bellied cloth. |
+| A pine pad blinking lit for one frame in 5B | Its moon shadow came from a swaying pad above. 5B now drops cast shadows, like the other night shots. |
+| The dusk blow read as a dull smudge, then as nearly invisible | It is backlit, so its face toward us is in its own shade: a cool body darker than the sky, a warm lining on the sun side, taller and crisper. |
 
 ## 4. Frame-by-frame QA
 
