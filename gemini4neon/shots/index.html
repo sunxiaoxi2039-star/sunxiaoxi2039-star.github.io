@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0c0e" />
+  <title>一个 HTML，十个镜头 · 设计雷达</title>
+  <meta name="description" content="重做 Gemini 4 Neon 用例 #28：一个 32 KB 的 HTML 文件，十个纯 GLSL 着色器镜头——黑洞、星系、极光、海、液态金属、水晶、分形、霓虹城、超空间、超新星，按 128 BPM 卡点剪辑，配乐也由代码合成。" />
+  <link rel="canonical" href="https://sunxiaoxi2039-star.github.io/gemini4neon/shots/" />
+  <meta property="og:title" content="一个 HTML，十个镜头" />
+  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/gemini4neon/shots/poster.jpg" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <style>
+    .sh{max-width:960px;margin:0 auto;padding:8px 16px 40px}
+    .sh video{display:block;width:100%;aspect-ratio:16/9;border-radius:14px;background:#000;border:1px solid var(--line)}
+    .sh h1{font-size:24px;margin:18px 0 6px;letter-spacing:-.01em}
+    .sh p{color:var(--muted);font-size:15px;line-height:1.7;margin:8px 0}
+    .sh a{color:var(--gold)}
+    .sh .links{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+    .sh .links a{font-size:14px;text-decoration:none;padding:8px 14px;border:1px solid rgba(232,200,114,.3);border-radius:999px}
+    .sh ol{color:var(--muted);font-size:14px;line-height:1.8;padding-left:22px}
+  </style>
+</head>
+<body>
+  <header class="topbar" id="topbar">
+    <div class="brand">
+      <span class="brand-mark">✦</span>
+      <span class="brand-name">设计雷达</span>
+      <a class="brand-link" href="../">回 Gemini 4 Neon 归档 ›</a>
+    </div>
+  </header>
+  <main class="sh">
+    <video src="shots.mp4" poster="poster.jpg" controls playsinline preload="metadata"></video>
+    <h1>一个 HTML，十个镜头</h1>
+    <p>重做 <a href="https://x.com/agenticjay/status/2123172043533508664" target="_blank" rel="noopener">Gemini 4 Neon 用例 #28</a>（单个 HTML 里的十种交互 3D 效果）。整支片子就一个 32 KB 的 HTML 文件（gzip 后 13 KB）：十个全屏 GLSL 着色器，没有模型、没有贴图、没有库。按 128 BPM 卡点剪辑，配乐也是代码合成的。34 秒，1080p。</p>
+    <div class="links">
+      <a href="live.html">实时版（浏览器里跑）›</a>
+      <a href="shots.mp4" download>下载视频 ›</a>
+      <a href="https://github.com/sunxiaoxi2039-star/sunxiaoxi2039-star.github.io/tree/main/gemini4neon/shots" target="_blank" rel="noopener">源码 ›</a>
+    </div>
+    <ol>
+      <li>黑洞：光线沿史瓦西度规弯曲，吸积盘被引力透镜折到黑洞上方，接近侧因多普勒效应更亮</li>
+      <li>星系：对数螺旋旋臂，发光和尘埃吸收沿薄盘体积积分</li>
+      <li>极光：分层平面上的流动光帘，雪山剪影，湖面带波纹的倒影</li>
+      <li>海：尖峰波叠加的高度场，菲涅尔天空反射、次表面散射、夕阳碎金、浪尖白沫</li>
+      <li>液态金属：七个融合球，带二次反射和薄膜干涉的彩虹光泽</li>
+      <li>水晶：明亮式切工的宝石，折射、三次内反射、RGB 分开色散</li>
+      <li>分形：幂次随时间变化的 Mandelbulb，轨道陷阱上色加辉光</li>
+      <li>霓虹城：重复楼群里的窗格、霓虹招牌、湿路面倒影、光轨和雨</li>
+      <li>超空间：极坐标隧道，环随鼓点闪</li>
+      <li>超新星：恒星坍缩、闪光，湍流壳层膨胀加光芒</li>
+    </ol>
+  </main>
+</body>
+</html>
