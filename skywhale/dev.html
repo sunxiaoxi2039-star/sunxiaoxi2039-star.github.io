@@ -1,0 +1,72 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Sky Whale dev</title>
+<style>html,body{margin:0;background:#111}canvas{display:block}</style></head>
+<body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<script src="src/core.js"></script>
+<script src="src/gl.js"></script>
+<script src="src/camera.js"></script>
+<script src="src/whale.js"></script>
+<script src="src/whale-render.js"></script>
+<script src="src/pipeline.js"></script>
+<script src="src/garden.js"></script>
+<script>
+(function(){
+try {
+  const canvas = document.getElementById('c');
+  const G = SW.GL(canvas);
+  const gl = G.gl;
+  const P = SW.Pipeline(G);
+  const WR = SW.WhaleRenderer(G);
+  const GD = SW.Garden(G);
+  const skyProg = G.program('devsky', G.FS_VS, `
+    in vec2 vUv; uniform vec3 uTop; uniform vec3 uBot; layout(location=0) out vec4 o; layout(location=1) out vec4 a;
+    void main(){ vec3 c = mix(uBot, uTop, smoothstep(0.0,1.0,vUv.y)); c += (vnoise(gl_FragCoord.xy*0.01)-0.5)*0.02; o = vec4(c,1.0); a = vec4(0.0); }`);
+  function straightPath(origin, dir, len) {
+    const pts = []; for (let i = -2; i <= 6; i++) pts.push(SW.v3.madd(origin, dir, i * len / 4));
+    return SW.Path3(pts);
+  }
+  const light = {
+    sunDir: [-0.45, 0.62, 0.55], key: [1.0, 0.97, 0.92], shade: [0.62, 0.66, 0.86], rimCol: [1.0, 0.96, 0.86], rimAmt: 1.0,
+    ink: [0.13, 0.11, 0.12], bounce: [1.12, 1.06, 0.98], bounceAmt: 0.55, fogCol: [0.78, 0.84, 0.92], fogDen: 0.0, shadowOn: true,
+  };
+  function renderView(o) {
+    const key = o.whale || 'old';
+    const d = SW.WHALE.DESIGNS[key];
+    const whale = new SW.Whale(key, { path: straightPath([0, 0, 0], [1, 0, 0], d.L * 3), speed: [[0, 0.0001]], d0: d.L * 0.6, phase: o.phase || 0, wind: [-9, 0, 0] });
+    const t = o.t || 0;
+    const pose = whale.pose(t);
+    const c = pose.C[Math.floor(pose.NS * 0.42)];
+    const az = (o.az || 0) * Math.PI / 180, el = (o.el || 0) * Math.PI / 180;
+    const dist = (o.dist || 2.2) * d.L;
+    const tgt = SW.v3.add(c, o.tOff || [0, 0, 0]);
+    const pos = [tgt[0] + Math.sin(az) * Math.cos(el) * dist, tgt[1] + Math.sin(el) * dist, tgt[2] + Math.cos(az) * Math.cos(el) * dist];
+    const cam = SW.Camera({ pos, target: tgt, fov: o.fov || 30 });
+    const lt = Object.assign({}, light, o.light || {});
+    // shadow
+    const lc = P.lightCam(lt, c, d.L * 0.75);
+    lt.lightVP = lc.viewProj;
+    P.beginShadow();
+    WR.draw(whale, t, lc, P.sceneUniforms(lc, lt, 1), { pose, tubeCam: lc, garden: GD });
+    // main
+    P.beginMain();
+    gl.disable(gl.DEPTH_TEST);
+    skyProg.use({ uTop: o.top || [0.55, 0.7, 0.9], uBot: o.bot || [0.93, 0.9, 0.86] });
+    G.fullscreen();
+    gl.enable(gl.DEPTH_TEST); gl.depthFunc(gl.LEQUAL); gl.depthMask(true);
+    const su = P.sceneUniforms(cam, lt, 0);
+    if (o.inkW) su.inkW = o.inkW;
+    WR.draw(whale, t, cam, su, { pose, a2c: true, garden: GD });
+    P.resolve();
+    P.finish(o.frame || 0, o.grade || {});
+    return canvas.toDataURL('image/png');
+  }
+  window.SWAPI = {
+    view: async (o) => renderView(o),
+    views: async (o) => o.list.map((v) => renderView(v)),
+  };
+  window.SW_READY = true;
+} catch (e) { console.error(e.stack || e); window.SW_ERROR = String(e.stack || e); }
+})();
+</script>
+</body></html>
