@@ -30,7 +30,7 @@
         p[1] -= 0.25 * age * age; // heavy, condensing breath settles a little
         const rad = (o.r0 || 1.2) * (L / 108) + (o.grow || 2.6) * Math.pow(age, 0.8) * (L / 108);
         const fadeIn = smoothstep(0, 0.25, age), fadeOut = 1 - smoothstep(life * 0.35, life, age);
-        out.push({ p, r: rad, mn: [0, 1, 0], mk: 0.55, ao: 0.95, al: (o.alpha || 0.55) * fadeIn * fadeOut, seed: i * 1.37 + sd, soft: 0.35 + 0.25 * age / life, st: 1 + 0.4 * (1 - Math.exp(-age)), ax: v3.norm(v3.add(upv, v3.scale(vw, -0.2))) });
+        out.push({ p, r: rad, mn: [0, 1, 0], mk: 0.55, ao: 0.95, al: (o.alpha || 0.55) * fadeIn * fadeOut, seed: i * 1.37 + sd, soft: (o.soft === undefined ? 0.35 : o.soft) + 0.25 * age / life, st: 1 + 0.4 * (1 - Math.exp(-age)), ax: v3.norm(v3.add(upv, v3.scale(vw, -0.2))) });
       }
     }
     return out;

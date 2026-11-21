@@ -3320,7 +3320,7 @@
         p[1] -= 0.25 * age * age; // heavy, condensing breath settles a little
         const rad = (o.r0 || 1.2) * (L / 108) + (o.grow || 2.6) * Math.pow(age, 0.8) * (L / 108);
         const fadeIn = smoothstep(0, 0.25, age), fadeOut = 1 - smoothstep(life * 0.35, life, age);
-        out.push({ p, r: rad, mn: [0, 1, 0], mk: 0.55, ao: 0.95, al: (o.alpha || 0.55) * fadeIn * fadeOut, seed: i * 1.37 + sd, soft: 0.35 + 0.25 * age / life, st: 1 + 0.4 * (1 - Math.exp(-age)), ax: v3.norm(v3.add(upv, v3.scale(vw, -0.2))) });
+        out.push({ p, r: rad, mn: [0, 1, 0], mk: 0.55, ao: 0.95, al: (o.alpha || 0.55) * fadeIn * fadeOut, seed: i * 1.37 + sd, soft: (o.soft === undefined ? 0.35 : o.soft) + 0.25 * age / life, st: 1 + 0.4 * (1 - Math.exp(-age)), ax: v3.norm(v3.add(upv, v3.scale(vw, -0.2))) });
       }
     }
     return out;
@@ -4409,7 +4409,9 @@
     ink: hex('#2c2232'), bounce: hex('#d7a5b8'), bounceAmt: 0.7, fogCol: hex('#e8b08c'), fogDen: 1 / 9000, fogStart: 200,
   };
   // backlit by the low sun, the breath glows warm and translucent rather than reading as shadow
-  const PLUME_LOOK = { lit: hex('#fff0d6'), mid: hex('#ffd9bd'), shad: hex('#f0bfa8'), deep: hex('#d9a7a6'), rim: hex('#fff6e2'), bands: [0.50, 0.30, 0.08, 0.1], edge: [0.35, 0.5, 0.8, 0.0], fog: hex('#f2b27a'), fogDen: 1 / 9000, fogStart: 200 };
+  // backlit blow: the face toward us is in its own shade (cool mauve, darker than the sky so the
+  // column reads), the sun side glows with a hot warm lining
+  const PLUME_LOOK = { lit: hex('#fff0d0'), mid: hex('#f7c6ad'), shad: hex('#c9a0b8'), deep: hex('#a98bae'), rim: hex('#fff6de'), bands: [0.52, 0.33, 0.05, 0.12], edge: [0.10, 0.16, 1.0, 0.0], fog: hex('#f2b27a'), fogDen: 1 / 9000, fogStart: 200 };
   const GRADE = { bloom: 0.42, diffuse: 0.32, wrap: 0.34, grain: 0.017, density: 0.12, vignette: 0.16, thresh: 0.72 };
 
   // ------------------------------------------------------------------ 4A
@@ -4432,7 +4434,7 @@
     frame(F, S, tl, t, frame) {
       const cam = SW.Camera({ pos: S.camPos(tl), target: S.camTgt(tl), fov: 34, near: 1, far: 40000 });
       const w = S.whale;
-      const plume = SW.plume(w, tl, { t0: 3.4, dur: 1.4, n: 70, life: 4.6, up: 15, fwd: 1.5, alpha: 0.22, grow: 2.2, r0: 0.9, spread: 1.6, wind: [1.4, 0.4, 0] });
+      const plume = SW.plume(w, tl, { t0: 3.4, dur: 1.4, n: 70, life: 4.6, up: 24, fwd: 1.5, alpha: 0.6, soft: 0.1, grow: 2.2, r0: 0.9, spread: 1.4, wind: [1.4, 0.4, 0] });
       F.stage(frame, {
         time: tl, cam, light: LIGHT, sky: SKY,
         whales: [{ whale: w, t: tl, glowScale: 1.3 }],

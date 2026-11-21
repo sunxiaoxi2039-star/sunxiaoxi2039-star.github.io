@@ -19,7 +19,9 @@
     ink: hex('#2c2232'), bounce: hex('#d7a5b8'), bounceAmt: 0.7, fogCol: hex('#e8b08c'), fogDen: 1 / 9000, fogStart: 200,
   };
   // backlit by the low sun, the breath glows warm and translucent rather than reading as shadow
-  const PLUME_LOOK = { lit: hex('#fff0d6'), mid: hex('#ffd9bd'), shad: hex('#f0bfa8'), deep: hex('#d9a7a6'), rim: hex('#fff6e2'), bands: [0.50, 0.30, 0.08, 0.1], edge: [0.35, 0.5, 0.8, 0.0], fog: hex('#f2b27a'), fogDen: 1 / 9000, fogStart: 200 };
+  // backlit blow: the face toward us is in its own shade (cool mauve, darker than the sky so the
+  // column reads), the sun side glows with a hot warm lining
+  const PLUME_LOOK = { lit: hex('#fff0d0'), mid: hex('#f7c6ad'), shad: hex('#c9a0b8'), deep: hex('#a98bae'), rim: hex('#fff6de'), bands: [0.52, 0.33, 0.05, 0.12], edge: [0.10, 0.16, 1.0, 0.0], fog: hex('#f2b27a'), fogDen: 1 / 9000, fogStart: 200 };
   const GRADE = { bloom: 0.42, diffuse: 0.32, wrap: 0.34, grain: 0.017, density: 0.12, vignette: 0.16, thresh: 0.72 };
 
   // ------------------------------------------------------------------ 4A
@@ -42,7 +44,7 @@
     frame(F, S, tl, t, frame) {
       const cam = SW.Camera({ pos: S.camPos(tl), target: S.camTgt(tl), fov: 34, near: 1, far: 40000 });
       const w = S.whale;
-      const plume = SW.plume(w, tl, { t0: 3.4, dur: 1.4, n: 70, life: 4.6, up: 15, fwd: 1.5, alpha: 0.22, grow: 2.2, r0: 0.9, spread: 1.6, wind: [1.4, 0.4, 0] });
+      const plume = SW.plume(w, tl, { t0: 3.4, dur: 1.4, n: 70, life: 4.6, up: 24, fwd: 1.5, alpha: 0.6, soft: 0.1, grow: 2.2, r0: 0.9, spread: 1.4, wind: [1.4, 0.4, 0] });
       F.stage(frame, {
         time: tl, cam, light: LIGHT, sky: SKY,
         whales: [{ whale: w, t: tl, glowScale: 1.3 }],
