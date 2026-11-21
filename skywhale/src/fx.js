@@ -97,7 +97,7 @@
         if (a > it.slide + it.life) continue;
         let p, st = 1, ax = [1, 0, 0], al = (o.alpha || 0.95) * smoothstep(-0.15, 0.25, a), rad = it.r, soft = 0.05;
         if (a < it.slide) {
-          const u = a / it.slide;
+          const u = Math.max(0, a / it.slide);          // (a < 0 during the fade-in lead)
           const phi = it.phi0 + it.side * it.sweep * Math.pow(u, 1.6);
           const sf = SW.WHALE.surf(pose, Math.min(0.98, it.s + it.ds * u), phi, rad * 0.25);
           p = sf.p;

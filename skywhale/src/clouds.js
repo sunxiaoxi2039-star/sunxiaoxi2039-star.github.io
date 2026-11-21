@@ -131,27 +131,59 @@
       opts = opts || {};
       const n = puffs.length;
       if (!n || cnt0(puffs)) return;
-      // back-to-front by view depth (use far edge so big puffs sort sensibly)
-      const f = cam.fwd, cp = cam.pos;
+      // back-to-front by depth along the shot's sort axis (fixed for the whole shot when given, so
+      // camera moves never reorder overlapping puffs from one frame to the next)
+      const f = opts.sortDir || cam.fwd, cp = cam.pos;
       const order = new Array(n);
-      for (let i = 0; i < n; i++) { const q = puffs[i].p; order[i] = [(q[0] - cp[0]) * f[0] + (q[1] - cp[1]) * f[1] + (q[2] - cp[2]) * f[2] + (opts.sortBias || 0) * puffs[i].r, i]; }
+      // Simulated puffs sort by their rest place plus only the large part of their displacement:
+      // two neighbours wandering a few metres would otherwise swap order mid-shot and pop.
+      for (let i = 0; i < n; i++) {
+        const P = puffs[i], q = P.p, rs = P.rest;
+        let x = q[0], y = q[1], z = q[2];
+        if (rs) {
+          const dx = q[0] - rs[0], dy = q[1] - rs[1], dz = q[2] - rs[2];
+          const w = smoothstep(0.4 * P.r, 1.5 * P.r, Math.hypot(dx, dy, dz));
+          x = rs[0] + dx * w; y = rs[1] + dy * w; z = rs[2] + dz * w;
+        }
+        order[i] = [(x - cp[0]) * f[0] + (y - cp[1]) * f[1] + (z - cp[2]) * f[2] + (opts.sortBias || 0) * P.r, i];
+      }
       order.sort((a, b) => b[0] - a[0]);
       if (buf.length < n * 16) buf = new Float32Array(n * 16 * 2);
       let k = 0, cnt = 0;
       const bb = opts.bbox; // screen rect of characters for the front pass [x0,y0,x1,y1] (top-left origin) and max depth
       for (const [dep, i] of order) {
         const q = puffs[i];
-        if (dep < -q.r * 2 || q.al <= 0.002) continue;
+        const vdep = cam.depth(q.p);
+        if (!(q.al > 0.002) || !(vdep >= -q.r * 2) || !Number.isFinite(q.r)) continue;   // (also rejects NaN)
+        // A puff about to pass the lens (its imposter spans the eye) thins away instead of filling the
+        // frame and then vanishing on the frame its centre crosses the near plane. Puffs that slide
+        // out past the frame edge are left alone.
+        let nearK = 1;
+        const rr = q.r * Math.max(1, q.st || 1);
+        // stretched sheets turn their quad to face each ray, so beside the lens they swing into view:
+        // fade them by plain distance
+        if (!opts.noNearFade && (q.st || 1) > 1.05) {
+          nearK = smoothstep(1.2 * rr, 2.4 * rr, Math.hypot(q.p[0] - cp[0], q.p[1] - cp[1], q.p[2] - cp[2]));
+          if (nearK <= 0.002) continue;
+        }
+        if (!opts.noNearFade && vdep < 1.6 * rr) {
+          const dx = q.p[0] - cp[0], dy = q.p[1] - cp[1], dz = q.p[2] - cp[2];
+          const ex = Math.abs(dx * cam.right[0] + dy * cam.right[1] + dz * cam.right[2]) / (1.08 * rr);
+          const ey = Math.abs(dx * cam.upv[0] + dy * cam.upv[1] + dz * cam.upv[2]) / (1.08 * rr);
+          const span = (1 - smoothstep(0.75, 1.15, ex)) * (1 - smoothstep(0.75, 1.15, ey));
+          nearK *= 1 - span * (1 - smoothstep(0.35 * rr, 1.6 * rr, vdep));
+          if (nearK <= 0.002) continue;
+        }
         if (opts.mode === 2) {
-          if (!bb || dep - q.r * 1.2 > bb[4]) continue;
-          const sp = cam.project(q.p), rp = q.r * 1.1 * Math.max(1, q.st || 1) * cam.pxPerRad / Math.max(1, dep);
+          if (!bb || vdep - q.r * 1.2 > bb[4]) continue;
+          const sp = cam.project(q.p), rp = q.r * 1.1 * Math.max(1, q.st || 1) * cam.pxPerRad / Math.max(1, vdep);
           if (sp[0] + rp < bb[0] || sp[0] - rp > bb[2] || sp[1] + rp < bb[1] || sp[1] - rp > bb[3]) continue;
         }
         const ax = q.ax || [1, 0, 0], mn = q.mn || [0, 1, 0];
         buf[k++] = q.p[0]; buf[k++] = q.p[1]; buf[k++] = q.p[2]; buf[k++] = q.r;
         buf[k++] = ax[0]; buf[k++] = ax[1]; buf[k++] = ax[2]; buf[k++] = q.st || 1;
         buf[k++] = mn[0]; buf[k++] = mn[1]; buf[k++] = mn[2]; buf[k++] = q.mk === undefined ? 0.5 : q.mk;
-        buf[k++] = q.ao === undefined ? 1 : q.ao; buf[k++] = q.al === undefined ? 1 : q.al; buf[k++] = q.seed || 0; buf[k++] = q.soft || 0;
+        buf[k++] = q.ao === undefined ? 1 : q.ao; buf[k++] = (q.al === undefined ? 1 : q.al) * nearK; buf[k++] = q.seed || 0; buf[k++] = q.soft || 0;
         cnt++;
       }
       inst.setData(buf.subarray(0, k), cnt);

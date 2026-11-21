@@ -80,7 +80,7 @@
       const cs = 1 / P.cloudScale;
       if ((spec.clouds || []).length) {
         P.beginCloud();
-        for (const c of spec.clouds) F.CR.draw(c.puffs, cam, su, c.look, Object.assign({ charDepth: null, mode: 0, charScale: cs }, c.opts || {}));
+        for (const c of spec.clouds) F.CR.draw(c.puffs, cam, su, c.look, Object.assign({ charDepth: null, mode: 0, charScale: cs, sortDir: F.sortDir }, c.opts || {}));
         P.compositeCloud(false);
       }
       if (spec.preChar) spec.preChar(cam, light);
@@ -90,7 +90,7 @@
       if (rect) {
         const bb = [rect[0], F.G.H - rect[3], rect[2], F.G.H - rect[1], maxDepth];
         P.beginCloud();
-        for (const c of spec.clouds || []) F.CR.draw(c.puffs, cam, su, c.look, Object.assign({ charDepth, charMin, mode: 2, bbox: bb, charScale: cs }, c.opts || {}));
+        for (const c of spec.clouds || []) F.CR.draw(c.puffs, cam, su, c.look, Object.assign({ charDepth, charMin, mode: 2, bbox: bb, charScale: cs, sortDir: F.sortDir }, c.opts || {}));
         P.compositeCloud(true);
       }
       if (spec.fx) spec.fx(cam, light, su);
@@ -115,13 +115,23 @@
       if (!any) return null;
       return [x0 - pad, F.G.H - (y1 + pad), x1 + pad, F.G.H - (y0 - pad), dmax + L * 0.4];
     };
+    // One cloud sort axis per shot: the mean view direction of a keyed camera. Sorting along a fixed
+    // axis means a pan or tilt never swaps two overlapping puffs (which would pop their overlap).
+    function shotSortDir(S, shot) {
+      if (typeof S.camPos !== 'function' || typeof S.camTgt !== 'function') return null;
+      const dur = (shot.endFrame - shot.startFrame) / F.fps;
+      let acc = [0, 0, 0];
+      for (let k = 0; k <= 16; k++) { const tl = dur * k / 16; acc = v3.add(acc, v3.norm(v3.sub(S.camTgt(tl), S.camPos(tl)))); }
+      return v3.len(acc) > 1e-6 ? v3.norm(acc) : null;
+    }
     F.renderFrame = function (frame) {
       const shot = F.shotAt(frame);
       const def = SW.SHOTS[shot.id];
       const t = frame / F.fps;
       const tl = (frame - shot.startFrame) / F.fps;
       if (!def) { gl.bindFramebuffer(gl.FRAMEBUFFER, null); gl.clearColor(0.1, 0.1, 0.1, 1); gl.clear(gl.COLOR_BUFFER_BIT); return; }
-      if (!F.cache[shot.id]) { F.cache[shot.id] = {}; if (def.init) def.init(F, F.cache[shot.id], shot); }
+      if (!F.cache[shot.id]) { F.cache[shot.id] = {}; if (def.init) def.init(F, F.cache[shot.id], shot); F.cache[shot.id]._sortDir = shotSortDir(F.cache[shot.id], shot); }
+      F.sortDir = F.cache[shot.id]._sortDir;
       def.frame(F, F.cache[shot.id], tl, t, frame, shot);
     };
     return F;

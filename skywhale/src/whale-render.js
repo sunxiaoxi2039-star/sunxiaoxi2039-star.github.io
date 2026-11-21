@@ -704,7 +704,8 @@
             const pa = A.pts[Math.round(r * 14)], pb = B.pts[Math.round(r * 14)];
             let p = v3.lerp(pa, pb, f);
             // cloth billow
-            const bil = 0.012 * L * fs * Math.sin(Math.PI * f) * Math.sin(Math.PI * r) * (0.5 + 0.8 * Math.abs(elevV)) * Math.sign(-elevV || 1);
+            // the belly reverses through flat over a few frames as the stroke turns (no one-frame snap)
+            const bil = -0.012 * L * fs * Math.sin(Math.PI * f) * Math.sin(Math.PI * r) * (0.5 * elevV / Math.hypot(elevV, 0.1) + 0.8 * elevV);
             p = v3.madd(p, nrm, bil * side);
             const len = lerp(A.len, B.len, f);
             verts.push(p[0], p[1], p[2], nrm[0] * side, nrm[1] * side, nrm[2] * side, r, f, i, len);
@@ -715,7 +716,8 @@
       const pal = d.pal;
       for (const sp of spars) {
         const radii = sp.pts.map((_, j) => (sp.k === 0 ? 0.62 : 0.42) * (1 - 0.55 * j / 14) * (L / 108) * fs);
-        tubes.push({ pts: sp.pts, radii, color: hex(pal.spar), mat: 1 });
+        // the cloth is laced to the spar's centre line, so the spar shows on both faces of the sail
+        tubes.push({ pts: sp.pts, radii, color: hex(pal.spar), mat: 1, pull: 1.6 });
       }
       return new Float32Array(verts);
     }
@@ -792,8 +794,10 @@
           const sL = v3.dot(side, lightDir), vL = v3.dot(v3.scale(vd, -1), lightDir);
           if (k > 0) along += v3.dist(p, pts[k - 1]);
           const c = tb.color;
-          const vA = [p[0] + side[0] * r, p[1] + side[1] * r, p[2] + side[2] * r, 1, along, rpx, tb.mat || 0, sL, vL, 0, 0, c[0], c[1], c[2]];
-          const vB = [p[0] - side[0] * r, p[1] - side[1] * r, p[2] - side[2] * r, -1, along, rpx, tb.mat || 0, sL, vL, 0, 0, c[0], c[1], c[2]];
+          // optional depth pull toward the eye (along the view ray, so the screen position is unchanged)
+          const q = tb.pull ? v3.madd(p, vd, -tb.pull * r) : p;
+          const vA = [q[0] + side[0] * r, q[1] + side[1] * r, q[2] + side[2] * r, 1, along, rpx, tb.mat || 0, sL, vL, 0, 0, c[0], c[1], c[2]];
+          const vB = [q[0] - side[0] * r, q[1] - side[1] * r, q[2] - side[2] * r, -1, along, rpx, tb.mat || 0, sL, vL, 0, 0, c[0], c[1], c[2]];
           if (k > 0) { verts.push(...tb._pa, ...tb._pb, ...vA, ...tb._pb, ...vB, ...vA); }
           tb._pa = vA; tb._pb = vB;
         }

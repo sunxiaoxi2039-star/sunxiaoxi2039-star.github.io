@@ -46,8 +46,21 @@ set of full-resolution stills. The main findings and fixes:
 | Sun disc darker than its glow; moon like a cookie | The sun disc is always brighter than its surround; the moon is cooler white with soft maria. |
 | The tiny dusk whale bleached grey | Darker key and no atmospheric haze on the whale, so it reads as a crisp silhouette on the sun road. |
 | Cloud sea "popcorn" | Built from cumulus heads of varied size with hierarchy, strata toward the horizon, cloud fog matched to the horizon haze, calmer lobes at night. Still the area with the most room to improve. |
+| Sea ripples and glitter dashes popping at dusk (frame-to-frame QA) | Float precision on the 80 km sea quad. Each sea pixel now reconstructs its exact ray-plane hit. |
+| The fin cloth snapping to the other side of its spars in one frame at each turn of the stroke; spars vanishing behind the cloth (frame-to-frame QA) | The cloth belly reversed with a sign flip; it now passes through flat over a few frames. The cloth is laced to each spar's centre line, so the spars are drawn on both faces of the sail. |
+| Patches of cloud changing shade for a frame (frame-to-frame QA) | Two overlapping puffs swapped draw order as the camera panned. Each keyed shot now sorts its vapour along one fixed axis (its mean view direction), so camera moves never reorder puffs. |
+| A huge puff filling a corner of the frame for one frame (frame-to-frame QA) | A puff passing the lens: its imposter spanned the eye until its centre crossed the near plane. Puffs that span the eye now thin away as they approach. |
 
-## 4. Known limitations
+## 4. Frame-by-frame QA
+
+Every rendered frame goes through `render/qa.py`. It flags missing or blank frames, stuck frames,
+and pops: frame-to-frame changes far above the local motion level that do not persist. It skips
+cuts and lightning. A second, tile-based pass compares every 64 px tile with its own local motion
+level. That pass catches small, local pops that the whole-frame average hides, such as the fin
+cloth, the sea dashes and the puff swaps above. Each flagged frame was inspected as a crop next to
+its neighbours before the cause was fixed.
+
+## 5. Known limitations
 
 - The cloud seas are the weakest part against a theatrical Ghibli standard: the puff
   structure is still visible at close range, and the breakout reads as a solid pushing

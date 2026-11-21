@@ -1656,7 +1656,8 @@
             const pa = A.pts[Math.round(r * 14)], pb = B.pts[Math.round(r * 14)];
             let p = v3.lerp(pa, pb, f);
             // cloth billow
-            const bil = 0.012 * L * fs * Math.sin(Math.PI * f) * Math.sin(Math.PI * r) * (0.5 + 0.8 * Math.abs(elevV)) * Math.sign(-elevV || 1);
+            // the belly reverses through flat over a few frames as the stroke turns (no one-frame snap)
+            const bil = -0.012 * L * fs * Math.sin(Math.PI * f) * Math.sin(Math.PI * r) * (0.5 * elevV / Math.hypot(elevV, 0.1) + 0.8 * elevV);
             p = v3.madd(p, nrm, bil * side);
             const len = lerp(A.len, B.len, f);
             verts.push(p[0], p[1], p[2], nrm[0] * side, nrm[1] * side, nrm[2] * side, r, f, i, len);
@@ -1667,7 +1668,8 @@
       const pal = d.pal;
       for (const sp of spars) {
         const radii = sp.pts.map((_, j) => (sp.k === 0 ? 0.62 : 0.42) * (1 - 0.55 * j / 14) * (L / 108) * fs);
-        tubes.push({ pts: sp.pts, radii, color: hex(pal.spar), mat: 1 });
+        // the cloth is laced to the spar's centre line, so the spar shows on both faces of the sail
+        tubes.push({ pts: sp.pts, radii, color: hex(pal.spar), mat: 1, pull: 1.6 });
       }
       return new Float32Array(verts);
     }
@@ -1744,8 +1746,10 @@
           const sL = v3.dot(side, lightDir), vL = v3.dot(v3.scale(vd, -1), lightDir);
           if (k > 0) along += v3.dist(p, pts[k - 1]);
           const c = tb.color;
-          const vA = [p[0] + side[0] * r, p[1] + side[1] * r, p[2] + side[2] * r, 1, along, rpx, tb.mat || 0, sL, vL, 0, 0, c[0], c[1], c[2]];
-          const vB = [p[0] - side[0] * r, p[1] - side[1] * r, p[2] - side[2] * r, -1, along, rpx, tb.mat || 0, sL, vL, 0, 0, c[0], c[1], c[2]];
+          // optional depth pull toward the eye (along the view ray, so the screen position is unchanged)
+          const q = tb.pull ? v3.madd(p, vd, -tb.pull * r) : p;
+          const vA = [q[0] + side[0] * r, q[1] + side[1] * r, q[2] + side[2] * r, 1, along, rpx, tb.mat || 0, sL, vL, 0, 0, c[0], c[1], c[2]];
+          const vB = [q[0] - side[0] * r, q[1] - side[1] * r, q[2] - side[2] * r, -1, along, rpx, tb.mat || 0, sL, vL, 0, 0, c[0], c[1], c[2]];
           if (k > 0) { verts.push(...tb._pa, ...tb._pb, ...vA, ...tb._pb, ...vB, ...vA); }
           tb._pa = vA; tb._pb = vB;
         }
@@ -2827,27 +2831,59 @@
       opts = opts || {};
       const n = puffs.length;
       if (!n || cnt0(puffs)) return;
-      // back-to-front by view depth (use far edge so big puffs sort sensibly)
-      const f = cam.fwd, cp = cam.pos;
+      // back-to-front by depth along the shot's sort axis (fixed for the whole shot when given, so
+      // camera moves never reorder overlapping puffs from one frame to the next)
+      const f = opts.sortDir || cam.fwd, cp = cam.pos;
       const order = new Array(n);
-      for (let i = 0; i < n; i++) { const q = puffs[i].p; order[i] = [(q[0] - cp[0]) * f[0] + (q[1] - cp[1]) * f[1] + (q[2] - cp[2]) * f[2] + (opts.sortBias || 0) * puffs[i].r, i]; }
+      // Simulated puffs sort by their rest place plus only the large part of their displacement:
+      // two neighbours wandering a few metres would otherwise swap order mid-shot and pop.
+      for (let i = 0; i < n; i++) {
+        const P = puffs[i], q = P.p, rs = P.rest;
+        let x = q[0], y = q[1], z = q[2];
+        if (rs) {
+          const dx = q[0] - rs[0], dy = q[1] - rs[1], dz = q[2] - rs[2];
+          const w = smoothstep(0.4 * P.r, 1.5 * P.r, Math.hypot(dx, dy, dz));
+          x = rs[0] + dx * w; y = rs[1] + dy * w; z = rs[2] + dz * w;
+        }
+        order[i] = [(x - cp[0]) * f[0] + (y - cp[1]) * f[1] + (z - cp[2]) * f[2] + (opts.sortBias || 0) * P.r, i];
+      }
       order.sort((a, b) => b[0] - a[0]);
       if (buf.length < n * 16) buf = new Float32Array(n * 16 * 2);
       let k = 0, cnt = 0;
       const bb = opts.bbox; // screen rect of characters for the front pass [x0,y0,x1,y1] (top-left origin) and max depth
       for (const [dep, i] of order) {
         const q = puffs[i];
-        if (dep < -q.r * 2 || q.al <= 0.002) continue;
+        const vdep = cam.depth(q.p);
+        if (!(q.al > 0.002) || !(vdep >= -q.r * 2) || !Number.isFinite(q.r)) continue;   // (also rejects NaN)
+        // A puff about to pass the lens (its imposter spans the eye) thins away instead of filling the
+        // frame and then vanishing on the frame its centre crosses the near plane. Puffs that slide
+        // out past the frame edge are left alone.
+        let nearK = 1;
+        const rr = q.r * Math.max(1, q.st || 1);
+        // stretched sheets turn their quad to face each ray, so beside the lens they swing into view:
+        // fade them by plain distance
+        if (!opts.noNearFade && (q.st || 1) > 1.05) {
+          nearK = smoothstep(1.2 * rr, 2.4 * rr, Math.hypot(q.p[0] - cp[0], q.p[1] - cp[1], q.p[2] - cp[2]));
+          if (nearK <= 0.002) continue;
+        }
+        if (!opts.noNearFade && vdep < 1.6 * rr) {
+          const dx = q.p[0] - cp[0], dy = q.p[1] - cp[1], dz = q.p[2] - cp[2];
+          const ex = Math.abs(dx * cam.right[0] + dy * cam.right[1] + dz * cam.right[2]) / (1.08 * rr);
+          const ey = Math.abs(dx * cam.upv[0] + dy * cam.upv[1] + dz * cam.upv[2]) / (1.08 * rr);
+          const span = (1 - smoothstep(0.75, 1.15, ex)) * (1 - smoothstep(0.75, 1.15, ey));
+          nearK *= 1 - span * (1 - smoothstep(0.35 * rr, 1.6 * rr, vdep));
+          if (nearK <= 0.002) continue;
+        }
         if (opts.mode === 2) {
-          if (!bb || dep - q.r * 1.2 > bb[4]) continue;
-          const sp = cam.project(q.p), rp = q.r * 1.1 * Math.max(1, q.st || 1) * cam.pxPerRad / Math.max(1, dep);
+          if (!bb || vdep - q.r * 1.2 > bb[4]) continue;
+          const sp = cam.project(q.p), rp = q.r * 1.1 * Math.max(1, q.st || 1) * cam.pxPerRad / Math.max(1, vdep);
           if (sp[0] + rp < bb[0] || sp[0] - rp > bb[2] || sp[1] + rp < bb[1] || sp[1] - rp > bb[3]) continue;
         }
         const ax = q.ax || [1, 0, 0], mn = q.mn || [0, 1, 0];
         buf[k++] = q.p[0]; buf[k++] = q.p[1]; buf[k++] = q.p[2]; buf[k++] = q.r;
         buf[k++] = ax[0]; buf[k++] = ax[1]; buf[k++] = ax[2]; buf[k++] = q.st || 1;
         buf[k++] = mn[0]; buf[k++] = mn[1]; buf[k++] = mn[2]; buf[k++] = q.mk === undefined ? 0.5 : q.mk;
-        buf[k++] = q.ao === undefined ? 1 : q.ao; buf[k++] = q.al === undefined ? 1 : q.al; buf[k++] = q.seed || 0; buf[k++] = q.soft || 0;
+        buf[k++] = q.ao === undefined ? 1 : q.ao; buf[k++] = (q.al === undefined ? 1 : q.al) * nearK; buf[k++] = q.seed || 0; buf[k++] = q.soft || 0;
         cnt++;
       }
       inst.setData(buf.subarray(0, k), cnt);
@@ -3351,7 +3387,7 @@
         if (a > it.slide + it.life) continue;
         let p, st = 1, ax = [1, 0, 0], al = (o.alpha || 0.95) * smoothstep(-0.15, 0.25, a), rad = it.r, soft = 0.05;
         if (a < it.slide) {
-          const u = a / it.slide;
+          const u = Math.max(0, a / it.slide);          // (a < 0 during the fade-in lead)
           const phi = it.phi0 + it.side * it.sweep * Math.pow(u, 1.6);
           const sf = SW.WHALE.surf(pose, Math.min(0.98, it.s + it.ds * u), phi, rad * 0.25);
           p = sf.p;
@@ -3660,12 +3696,20 @@
   uniform vec3 uCamPos; uniform vec3 uSunDir; uniform float uTime; uniform vec2 uAcross;
   uniform vec3 uNear; uniform vec3 uFar; uniform vec3 uSkyHor; uniform vec3 uSkyUp; uniform vec3 uGlint; uniform vec3 uStroke; uniform vec3 uShadow;
   uniform sampler2D uRefl; uniform float uReflAmt; uniform vec3 uReflTint; uniform vec2 uRes; uniform float uGlitter; uniform float uRoadW;
+  uniform mat4 uInvVP; uniform float uYp;
   in vec3 vPos;
   layout(location=0) out vec4 o; layout(location=1) out vec4 oA;
   void main(){
-    vec3 V = vPos - uCamPos; float d = length(V); V /= d;
+    // exact water position from the view ray (interpolating a huge quad jitters fine ripples)
+    vec2 ndc = gl_FragCoord.xy/uRes*2.0 - 1.0;
+    vec4 ra = uInvVP*vec4(ndc, -1.0, 1.0), rb = uInvVP*vec4(ndc, 1.0, 1.0);
+    vec3 rd = normalize(rb.xyz/rb.w - ra.xyz/ra.w);
+    float tt = (uYp - uCamPos.y)/min(rd.y, -1e-5);
+    vec3 P = uCamPos + rd*tt;
+    vec3 V = rd; float d = tt;
+    vec3 vPosE = P;
     // camera-aligned water coordinates: u across the view, v along it
-    vec2 xz = vPos.xz;
+    vec2 xz = vPosE.xz;
     float u = dot(xz, uAcross), v = dot(xz, vec2(-uAcross.y, uAcross.x));
     // long slow swells + small ripples (normals); animation is smooth, every frame
     float t = uTime;
@@ -3709,7 +3753,7 @@
         const gl = G.gl;
         const f = [cam.fwd[0], cam.fwd[2]], fl = Math.hypot(f[0], f[1]) || 1;
         prog.use({
-          uViewProj: cam.viewProj, uCamPos: cam.pos, uSize: 40000, uY: k.y || 0, uSunDir: k.sunDir, uTime: t, uAcross: [f[1] / fl, -f[0] / fl],
+          uViewProj: cam.viewProj, uInvVP: cam.invViewProj, uYp: k.y || 0, uCamPos: cam.pos, uSize: 40000, uY: k.y || 0, uSunDir: k.sunDir, uTime: t, uAcross: [f[1] / fl, -f[0] / fl],
           uNear: k.near, uFar: k.far, uSkyHor: k.skyHor, uSkyUp: k.skyUp, uGlint: k.glint, uStroke: k.stroke, uShadow: k.shadow,
           uRefl: refl || G.noiseTex, uReflAmt: refl ? (k.reflAmt === undefined ? 0.8 : k.reflAmt) : 0, uReflTint: k.reflTint || [0.75, 0.7, 0.8], uRes: [G.W, G.H],
           uGlitter: k.glitter === undefined ? 1 : k.glitter, uRoadW: k.roadW || 0.06,
@@ -3806,7 +3850,7 @@
       const cs = 1 / P.cloudScale;
       if ((spec.clouds || []).length) {
         P.beginCloud();
-        for (const c of spec.clouds) F.CR.draw(c.puffs, cam, su, c.look, Object.assign({ charDepth: null, mode: 0, charScale: cs }, c.opts || {}));
+        for (const c of spec.clouds) F.CR.draw(c.puffs, cam, su, c.look, Object.assign({ charDepth: null, mode: 0, charScale: cs, sortDir: F.sortDir }, c.opts || {}));
         P.compositeCloud(false);
       }
       if (spec.preChar) spec.preChar(cam, light);
@@ -3816,7 +3860,7 @@
       if (rect) {
         const bb = [rect[0], F.G.H - rect[3], rect[2], F.G.H - rect[1], maxDepth];
         P.beginCloud();
-        for (const c of spec.clouds || []) F.CR.draw(c.puffs, cam, su, c.look, Object.assign({ charDepth, charMin, mode: 2, bbox: bb, charScale: cs }, c.opts || {}));
+        for (const c of spec.clouds || []) F.CR.draw(c.puffs, cam, su, c.look, Object.assign({ charDepth, charMin, mode: 2, bbox: bb, charScale: cs, sortDir: F.sortDir }, c.opts || {}));
         P.compositeCloud(true);
       }
       if (spec.fx) spec.fx(cam, light, su);
@@ -3841,13 +3885,23 @@
       if (!any) return null;
       return [x0 - pad, F.G.H - (y1 + pad), x1 + pad, F.G.H - (y0 - pad), dmax + L * 0.4];
     };
+    // One cloud sort axis per shot: the mean view direction of a keyed camera. Sorting along a fixed
+    // axis means a pan or tilt never swaps two overlapping puffs (which would pop their overlap).
+    function shotSortDir(S, shot) {
+      if (typeof S.camPos !== 'function' || typeof S.camTgt !== 'function') return null;
+      const dur = (shot.endFrame - shot.startFrame) / F.fps;
+      let acc = [0, 0, 0];
+      for (let k = 0; k <= 16; k++) { const tl = dur * k / 16; acc = v3.add(acc, v3.norm(v3.sub(S.camTgt(tl), S.camPos(tl)))); }
+      return v3.len(acc) > 1e-6 ? v3.norm(acc) : null;
+    }
     F.renderFrame = function (frame) {
       const shot = F.shotAt(frame);
       const def = SW.SHOTS[shot.id];
       const t = frame / F.fps;
       const tl = (frame - shot.startFrame) / F.fps;
       if (!def) { gl.bindFramebuffer(gl.FRAMEBUFFER, null); gl.clearColor(0.1, 0.1, 0.1, 1); gl.clear(gl.COLOR_BUFFER_BIT); return; }
-      if (!F.cache[shot.id]) { F.cache[shot.id] = {}; if (def.init) def.init(F, F.cache[shot.id], shot); }
+      if (!F.cache[shot.id]) { F.cache[shot.id] = {}; if (def.init) def.init(F, F.cache[shot.id], shot); F.cache[shot.id]._sortDir = shotSortDir(F.cache[shot.id], shot); }
+      F.sortDir = F.cache[shot.id]._sortDir;
       def.frame(F, F.cache[shot.id], tl, t, frame, shot);
     };
     return F;
@@ -4354,7 +4408,8 @@
     sunDir: v3.norm([SUN[0], SUN[1] + 0.10, SUN[2]]), key: hex('#ffd9b6'), shade: hex('#8b7fb0'), rimCol: hex('#ffd59c'), rimAmt: 1.0,
     ink: hex('#2c2232'), bounce: hex('#d7a5b8'), bounceAmt: 0.7, fogCol: hex('#e8b08c'), fogDen: 1 / 9000, fogStart: 200,
   };
-  const PLUME_LOOK = { lit: hex('#ffe6cc'), mid: hex('#f2c9bd'), shad: hex('#b49dc0'), deep: hex('#9a86b0'), rim: hex('#fff0d8'), bands: [0.58, 0.42, 0.06, 0.2], edge: [0.3, 0.45, 0.4, 0.0], fog: hex('#e8b08c'), fogDen: 1 / 9000, fogStart: 200 };
+  // backlit by the low sun, the breath glows warm and translucent rather than reading as shadow
+  const PLUME_LOOK = { lit: hex('#fff0d6'), mid: hex('#ffd9bd'), shad: hex('#f0bfa8'), deep: hex('#d9a7a6'), rim: hex('#fff6e2'), bands: [0.50, 0.30, 0.08, 0.1], edge: [0.35, 0.5, 0.8, 0.0], fog: hex('#f2b27a'), fogDen: 1 / 9000, fogStart: 200 };
   const GRADE = { bloom: 0.42, diffuse: 0.32, wrap: 0.34, grain: 0.017, density: 0.12, vignette: 0.16, thresh: 0.72 };
 
   // ------------------------------------------------------------------ 4A
