@@ -63,7 +63,7 @@
       S.ground = land(F);
       S.path = SW.Path3([[-600, 1000, 0], [-200, 1003, -10], [200, 1006, -30], [600, 1008, -60]]);
       // fin strokes timed to the sound cues: downstrokes at 1.1 s and 3.8 s (shot time)
-      S.whale = new SW.Whale('old', { path: S.path, speed: [[0, 12]], d0: 420, period: 6.0, phase: 2.0, finPeriod: 2.7, finPhase: -0.02, wind: [0, 0, 0], eye: () => 0.9 });
+      S.whale = new SW.Whale('old', { path: S.path, speed: [[0, 12]], d0: 420, period: 6.0, phase: 2.0, flukeSide: 1, finPeriod: 2.7, finPhase: -0.02, wind: [0, 0, 0], eye: () => 0.9 });
     },
     frame(F, S, tl, t, frame) {
       const w = S.whale;
@@ -91,7 +91,7 @@
       const h = v3.norm([0.86, 0, -0.5]);
       const O = [0, 1000, 0];
       S.path = SW.Path3([v3.madd(O, h, -500), v3.madd(O, h, -200), v3.madd(O, h, 100), v3.add(v3.madd(O, h, 400), [0, 12, 0]), v3.add(v3.madd(O, h, 800), [0, 30, 0])]);
-      S.whale = new SW.Whale('old', { path: S.path, speed: [[0, 15], [2.5, 17], [6, 19]], d0: 500, period: 5.4, phase: 1.0, wind: [0, 0, 0], eye: () => 0.85,
+      S.whale = new SW.Whale('old', { path: S.path, speed: [[0, 15], [2.5, 17], [6, 19]], d0: 500, period: 5.4, phase: 1.0, flukeSide: 1, wind: [0, 0, 0], eye: () => 0.85,
         finKeys: [[0, 1.0], [2.0, 0.6], [6, 0.4]] });
       const head18 = S.whale.pose(1.8, 40).C[0];
       S.head18 = head18;

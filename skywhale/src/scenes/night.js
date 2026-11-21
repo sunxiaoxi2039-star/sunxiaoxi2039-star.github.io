@@ -55,7 +55,7 @@
       const h = v3.norm([Math.cos(MOON_AZ * Math.PI / 180), 0, Math.sin(MOON_AZ * Math.PI / 180) - 0.15]);
       S.path = SW.Path3([v3.add(v3.scale(h, -300), [0, 34, -160]), v3.add(v3.scale(h, -100), [0, 35, -160]), v3.add(v3.scale(h, 100), [0, 36, -160]), v3.add(v3.scale(h, 300), [0, 37, -160])]);
       S.whale = new SW.Whale('old', {
-        path: S.path, speed: [[0, 7], [5.5, 6]], d0: 300, period: 7.0, waveAmp: 0.04, phase: 1.0,
+        path: S.path, speed: [[0, 7], [5.5, 6]], d0: 300, period: 7.0, waveAmp: 0.04, phase: 1.0, flukeSide: -1,
         headLift: (t) => keyed([[0, 0], [0.5, 0.02], [1.6, 0.17], [4.2, 0.2], [5.5, 0.12]], t, SW.ease.sine),
         eye: (t) => keyed([[0, 1.0], [0.7, 1.1], [1.8, 1.7], [4.4, 1.6], [5.5, 1.3]], t, SW.ease.sine),
         finKeys: [[0, 0.8], [1.5, 1.1], [5.5, 1.0]],
@@ -97,7 +97,7 @@
         { key: 'drover', lat: -110, along: 175, t: 2.5, speed: 11 },
         { key: 'pip', lat: 30, along: 150, t: 4.1, speed: 11 },
         { key: 'elder', lat: -280, along: 40, t: 4.7, speed: 10 },
-        { key: 'mend', lat: -70, along: -175, t: 6.1, speed: 10 },
+        { key: 'mend', lat: -70, along: -175, t: 6.1, speed: 10, flukeSide: -1 },
         { key: 'swift', lat: -190, along: 330, t: 7.5, speed: 12, leap: true },
       ];
       S.whales = [];
@@ -113,7 +113,7 @@
           : [P(-160, -150), P(-80, -70), P(-25, -18), P(0, 6), P(30, top - 4), P(75, top + 3), P(150, top + 6), P(400, top + 6), P(900, top + 6)];
         const path = SW.Path3(pts);
         const sp = p.leap ? [[0, 22], [p.t + 2.0, 19], [p.t + 4, p.speed], [13, p.speed]] : [[0, 16], [p.t + 1.5, 15], [p.t + 4.0, p.speed + 1], [13, p.speed]];
-        const opts = { path, speed: sp, period: d.swimPeriod, phase: p.lat * 0.01, eye: (t) => 0.4 + 0.8 * smoothstep(p.t - 1.6, p.t + 0.6, t),
+        const opts = { path, speed: sp, period: d.swimPeriod, phase: p.lat * 0.01, flukeSide: p.flukeSide || 0, eye: (t) => 0.4 + 0.8 * smoothstep(p.t - 1.6, p.t + 0.6, t),
           finKeys: [[0, 0.3], [p.t + 0.8, 0.3], [p.t + 2.2, 1.0]], pennantK: (t) => smoothstep(p.t + 0.8, p.t + 2.4, t), mastRaise: (t) => SW.ease.inOut5((t - p.t - 0.6) / 1.8) };
         const probe = new SW.Whale(p.key, Object.assign({}, opts, { d0: 0 }));
         opts.d0 = SW.nearestArc(path, P(0, 6)) - probe.headDist(p.t);

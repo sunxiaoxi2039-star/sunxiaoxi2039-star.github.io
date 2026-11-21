@@ -113,7 +113,7 @@
   SW.SHOTS['3A'] = {
     init(F, S) {
       S.path = SW.Path3([[-500, 0, 60], [-200, -5, 20], [100, -12, -20], [400, -20, -70], [700, -26, -120]]);
-      S.whale = new SW.Whale('old', { path: S.path, speed: [[0, 14], [4, 11]], d0: 430, period: 5.0, waveAmp: 0.07, phase: 0.3, eye: () => 0.75 });
+      S.whale = new SW.Whale('old', { path: S.path, speed: [[0, 14], [4, 11]], d0: 430, period: 5.0, waveAmp: 0.07, phase: 0.3, flukeSide: 1, eye: () => 0.75 });
       S.clouds = stormField(S.path, { n: 30, clear: 110, spread: 520, vspread: 200, vclear: 150, w0: 160, w1: 280, seed: 12, sideSign: -1 });
       // the looming storm wall ahead
       S.clouds.push(...SW.CloudGen.cumulus({ center: [650, -260, -380], width: 900, height: 900, towers: 8, seed: 71, puff: 60, mk: 0.6 }));
