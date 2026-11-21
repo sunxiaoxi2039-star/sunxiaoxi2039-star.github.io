@@ -164,9 +164,9 @@ function buildForest(scene) {
     const item = { x, y: y - 0.4, z, s: sc, h: R(0.9, 1.25), col: (isCon ? pick(conPal) : pick(palette)).clone().offsetHSL(R(-0.02, 0.02), R(-0.05, 0.05), R(-0.05, 0.05)) };
     if (isCon) con.push(item); else (dist < 380 ? near : far).push(item);
   };
-  for (let i = 0; i < 30000; i++) { const a = R(0, TAU), rr = 40 + Math.pow(R(), 1.6) * 1500; tryPlace(Math.cos(a) * rr + 20, Math.sin(a) * rr - 160); }
-  for (let i = 0; i < 9000; i++) tryPlace(R(-160, 280), R(-460, 140));
-  for (let i = 0; i < 5000; i++) { const z = R(-300, 120); const x = riverAt(z).cx + riverAt(z).w + R(30, 220); tryPlace(x, z); }
+  for (let i = 0; i < 30000 * DENS; i++) { const a = R(0, TAU), rr = 40 + Math.pow(R(), 1.6) * 1500; tryPlace(Math.cos(a) * rr + 20, Math.sin(a) * rr - 160); }
+  for (let i = 0; i < 9000 * DENS; i++) tryPlace(R(-160, 280), R(-460, 140));
+  for (let i = 0; i < 5000 * DENS; i++) { const z = R(-300, 120); const x = riverAt(z).cx + riverAt(z).w + R(30, 220); tryPlace(x, z); }
   rand = old;
   // split each tree type into angular sectors so whole sectors are frustum-culled
   const mk = (geo, list, scaleBase, mats = mat) => {
@@ -270,7 +270,7 @@ function populatePlants() {
     addClump(V3(x, terrainH(x, z), z), kind === 'mixed' ? pick(['pink', 'daisy', 'yellow', 'lavender', 'geranium']) : kind, R(0.8, 1.3), 0.8);
   }
   // meadow wildflowers + grass tufts
-  for (let i = 0; i < 9000; i++) {
+  for (let i = 0; i < 9000 * DENS; i++) {
     const x = R(-60, 12), z = R(-90, 70); const y = terrainH(x, z); if (y < -0.5) continue;
     if (x > TERRACE.x0 - 0.3 && z > TERRACE.z0 - 0.3 && z < TERRACE.z1 + 0.3) continue;
     const sdist = streetDist(x, z); if (sdist < -0.1) continue;
@@ -282,7 +282,7 @@ function populatePlants() {
   // along the quay top / terrace edges
   for (let z = -70; z < 70; z += 0.5) { const x = quayX(z) - R(0.6, 1.4); if (z > TERRACE.z0 && z < TERRACE.z1) continue; if (R() < 0.6) grassAt(x, 0.02, z, 0.6); }
   // far bank meadow
-  for (let i = 0; i < 2500; i++) { const z = R(-120, 70); const x = riverAt(z).cx + riverAt(z).w + R(3, 40); const y = terrainH(x, z); grassAt(x, y, z, 1.3); if (R() < 0.08) FL.heads.push({ p: V3(x, y + 0.3, z), s: 0.06, c: C(pick([...FLOWER_COLS.white, ...FLOWER_COLS.yellow])), up: 1 }); }
+  for (let i = 0; i < 2500 * DENS; i++) { const z = R(-120, 70); const x = riverAt(z).cx + riverAt(z).w + R(3, 40); const y = terrainH(x, z); grassAt(x, y, z, 1.3); if (R() < 0.08) FL.heads.push({ p: V3(x, y + 0.3, z), s: 0.06, c: C(pick([...FLOWER_COLS.white, ...FLOWER_COLS.yellow])), up: 1 }); }
   rand = old;
 }
 function buildPlantMeshes(scene) {

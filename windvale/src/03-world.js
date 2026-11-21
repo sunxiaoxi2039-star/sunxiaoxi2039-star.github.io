@@ -52,7 +52,7 @@ function terrainH(x, z) {
 
 /* ---------------- terrain mesh: polar grid, dense near town, sparse far away ---------------- */
 function buildTerrain() {
-  const CXo = 6, CZo = -14, rings = 360, segs = 460, r0 = 1.2, rMax = 5200;
+  const CXo = 6, CZo = -14, rings = LOW ? 250 : 360, segs = LOW ? 320 : 460, r0 = 1.2, rMax = 5200;
   const k = Math.pow(rMax / r0, 1 / rings);
   const nV = (rings + 1) * segs + 1;
   const pos = new Float32Array(nV * 3), col = new Float32Array(nV * 3), uv = new Float32Array(nV * 2);

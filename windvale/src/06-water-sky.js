@@ -58,7 +58,7 @@ function updateClouds(t, cam) {
 }
 
 /* ---------------- river ---------------- */
-const REFL = { rt: null, cam: new THREE.PerspectiveCamera(), texMat: new THREE.Matrix4(), scale: 0.45 };
+const REFL = { rt: null, cam: new THREE.PerspectiveCamera(), texMat: new THREE.Matrix4(), scale: LOW ? 0.35 : 0.45 };
 const MAX_RIPPLES = 40;
 const SHORE_BOX = { x0: -40, z0: -560, sx: 200, sz: 680 };
 let WATER = null;
