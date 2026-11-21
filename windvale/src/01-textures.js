@@ -12,6 +12,20 @@ function tnoiseXY(x, y, px, py) {
   const a = hash2(wx(xi), wy(yi)), b = hash2(wx(xi + 1), wy(yi)), c = hash2(wx(xi), wy(yi + 1)), d = hash2(wx(xi + 1), wy(yi + 1));
   return lerp(lerp(a, b, u), lerp(c, d, u), v);
 }
+/* tileable noise baked once onto a small grid, then sampled bilinearly (much cheaper than per-pixel fBm) */
+const _fields = new Map();
+function NF(key, N, fn) {
+  let F = _fields.get(key);
+  if (!F) { F = new Float32Array(N * N); for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) F[j * N + i] = fn(i / N, j / N); _fields.set(key, F); }
+  return (u, v) => {
+    const x = (u - Math.floor(u)) * N, y = (v - Math.floor(v)) * N; const xi = x | 0, yi = y | 0, fx = x - xi, fy = y - yi;
+    const x1 = xi + 1 === N ? 0 : xi + 1, y1 = yi + 1 === N ? 0 : yi + 1;
+    const a = F[yi * N + xi], b = F[yi * N + x1], c = F[y1 * N + xi], d = F[y1 * N + x1];
+    return a + (b - a) * fx + (c - a) * fy + (a - b - c + d) * fx * fy;
+  };
+}
+function blurCanvas(c, px) { const t = canvas(c.cv.width, c.cv.height); t.ctx.filter = `blur(${px}px)`; t.ctx.drawImage(c.cv, 0, 0); c.ctx.clearRect(0, 0, c.cv.width, c.cv.height); c.ctx.drawImage(t.cv, 0, 0); }
+
 /* per-pixel pass: fn(x, y, out[4]) writes rgba 0..255 */
 function pixelPass(ctx, w, h, fn, keep = false) {
   const img = keep ? ctx.getImageData(0, 0, w, h) : ctx.createImageData(w, h); const d = img.data; const o = [0, 0, 0, 255];
@@ -34,12 +48,13 @@ const TEX = {};
 
 function texPlaster() {
   const S = 512; const { cv, ctx } = canvas(S); const b = canvas(S);
+  const fA = NF('pl-a', 160, (u, v) => tfbm(u * 6, v * 6, 6, 5)), fB = NF('pl-b', 64, (u, v) => tfbm(u * 3 + 5, v * 3 + 2, 3, 4)), fC = NF('pl-c', 64, (u, v) => tfbm(u * 4, v * 2 + 9, 4, 3));
   pixelPass(ctx, S, S, (x, y, o) => {
     const u = x / S, v = y / S;
-    const n1 = tfbm(u * 6, v * 6, 6, 5);
+    const n1 = fA(u, v);
     const n2 = tnoise(u * 96, v * 96, 96);
-    const stain = smooth(0.56, 0.78, tfbm(u * 3 + 5, v * 3 + 2, 3, 4));
-    const streak = Math.pow(tnoiseXY(u * 70, v * 3, 70, 3), 3) * smooth(0.3, 0.7, tfbm(u * 4, v * 2 + 9, 4, 3));
+    const stain = smooth(0.56, 0.78, fB(u, v));
+    const streak = Math.pow(tnoiseXY(u * 70, v * 3, 70, 3), 3) * smooth(0.3, 0.7, fC(u, v));
     let l = 0.95 + (n1 - 0.5) * 0.16 + (n2 - 0.5) * 0.05 - streak * 0.10;
     const r = 244 * l - stain * 18, g = 238 * l - stain * 22, bl = 226 * l - stain * 34;
     o[0] = r; o[1] = g; o[2] = bl;
@@ -81,13 +96,15 @@ function texStone() {
         gr.addColorStop(0, 'rgba(255,250,235,0.14)'); gr.addColorStop(1, 'rgba(60,45,30,0.12)');
         ctx.fillStyle = gr; ctx.fill(path);
         ctx.lineWidth = 2; ctx.strokeStyle = 'rgba(90,72,54,0.16)'; ctx.stroke(path);
-        b.ctx.fillStyle = `rgb(${R(170, 220) | 0},${0},${0})`; b.ctx.filter = 'blur(2px)'; b.ctx.fill(path); b.ctx.filter = 'none';
+        b.ctx.fillStyle = `rgb(${R(170, 220) | 0},${0},${0})`; b.ctx.fill(path);
       });
       x += w;
     }
   }
+  blurCanvas(b, 2);
+  const sA = NF('st-a', 256, (u, v) => tfbm(u * 32, v * 32, 32, 3)), sB = NF('st-b', 48, (u, v) => tfbm(u * 4, v * 4, 4, 3));
   pixelPass(ctx, S, S, (x, y, o) => {
-    const u = x / S, v = y / S; const n = tfbm(u * 32, v * 32, 32, 3) - 0.5; const big = tfbm(u * 4, v * 4, 4, 3) - 0.5;
+    const u = x / S, v = y / S; const n = sA(u, v) - 0.5; const big = sB(u, v) - 0.5;
     const lich = smooth(0.74, 0.8, tnoise(u * 40 + 3, v * 40, 40));
     o[0] = o[0] * (1 + n * 0.16 + big * 0.08) + lich * 10; o[1] = o[1] * (1 + n * 0.16 + big * 0.07) + lich * 14; o[2] = o[2] * (1 + n * 0.17 + big * 0.06) + lich * 2;
   }, true);
@@ -97,7 +114,8 @@ function texStone() {
 
 function texTrim() {
   const S = 256; const { cv, ctx } = canvas(S);
-  pixelPass(ctx, S, S, (x, y, o) => { const u = x / S, v = y / S; const n = tfbm(u * 8, v * 8, 8, 4), f = tnoise(u * 64, v * 64, 64);
+  const tA = NF('tr-a', 96, (u, v) => tfbm(u * 8, v * 8, 8, 4));
+  pixelPass(ctx, S, S, (x, y, o) => { const u = x / S, v = y / S; const n = tA(u, v), f = tnoise(u * 64, v * 64, 64);
     const l = 0.9 + (n - 0.5) * 0.2 + (f - 0.5) * 0.08; o[0] = 236 * l; o[1] = 226 * l; o[2] = 206 * l; });
   TEX.trim = toTex(cv);
 }
@@ -118,21 +136,23 @@ function texRoof() {
         path.moveTo(x, y); path.lineTo(x + w, y); path.lineTo(x + w, y + h - w * 0.45);
         path.quadraticCurveTo(x + w, y + h, x + w / 2, y + h); path.quadraticCurveTo(x, y + h, x, y + h - w * 0.45); path.closePath();
         if (!isB) {
-          c2.save(); c2.translate(0, 4); c2.filter = 'blur(3px)'; c2.fillStyle = 'rgba(30,18,10,0.55)'; c2.fill(path); c2.restore();
+          c2.save(); c2.translate(0, 5); c2.fillStyle = 'rgba(30,18,10,0.22)'; c2.fill(path); c2.translate(0, -2); c2.fillStyle = 'rgba(30,18,10,0.3)'; c2.fill(path); c2.restore();
           c2.fillStyle = rgb(...base); c2.fill(path);
           const g = c2.createLinearGradient(0, y, 0, y + h); g.addColorStop(0, 'rgba(40,25,15,0.35)'); g.addColorStop(0.35, 'rgba(0,0,0,0)'); g.addColorStop(0.92, 'rgba(255,245,230,0.12)'); g.addColorStop(1, 'rgba(60,35,20,0.25)');
           c2.fillStyle = g; c2.fill(path);
           const g2 = c2.createLinearGradient(x, 0, x + w, 0); g2.addColorStop(0, 'rgba(0,0,0,0.12)'); g2.addColorStop(0.4, 'rgba(255,255,255,0.06)'); g2.addColorStop(1, 'rgba(0,0,0,0.16)');
           c2.fillStyle = g2; c2.fill(path);
         } else {
-          c2.save(); c2.translate(0, 4); c2.filter = 'blur(3px)'; c2.fillStyle = '#000'; c2.fill(path); c2.restore();
+          c2.save(); c2.translate(0, 4); c2.fillStyle = '#000'; c2.fill(path); c2.restore();
           const g = c2.createLinearGradient(0, y, 0, y + h); g.addColorStop(0, '#303030'); g.addColorStop(1, '#e0e0e0'); c2.fillStyle = g; c2.fill(path);
         }
       };
       wrapDraw(S, x0, y0, tw, rh * 1.3, (px, py) => { ctx.save(); ctx.translate(px - x0, py - y0); draw(ctx, false); ctx.restore(); b.ctx.save(); b.ctx.translate(px - x0, py - y0); draw(b.ctx, true); b.ctx.restore(); });
     }
   }
-  pixelPass(ctx, S, S, (x, y, o) => { const u = x / S, v = y / S; const n = tnoise(u * 80, v * 80, 80) - 0.5, m = tfbm(u * 5, v * 5, 5, 4);
+  blurCanvas(b, 1.5);
+  const rA = NF('rf-a', 80, (u, v) => tfbm(u * 5, v * 5, 5, 4));
+  pixelPass(ctx, S, S, (x, y, o) => { const u = x / S, v = y / S; const n = tnoise(u * 80, v * 80, 80) - 0.5, m = rA(u, v);
     const moss = smooth(0.62, 0.72, m) * 0.6;
     o[0] = lerp(o[0] * (1 + n * 0.18), 150, moss); o[1] = lerp(o[1] * (1 + n * 0.18), 165, moss); o[2] = lerp(o[2] * (1 + n * 0.2), 95, moss); }, true);
   TEX.roof = toTex(cv); TEX.roofBump = toTex(b.cv, { srgb: false });
@@ -177,7 +197,7 @@ function texWood() {
 /* cobblestone street: 1024 px covers 3.2 m.  Voronoi setts with dirt & moss in the joints */
 const COBBLE_M = 3.2;
 function texCobble() {
-  const S = 1024, nx = 17, ny = 21; const cw = S / nx, ch = S / ny;
+  const S = LOW ? 512 : 1024, nx = 17, ny = 21; const cw = S / nx, ch = S / ny; const k = S / 1024;
   const pts = []; const cols = [];
   for (let j = 0; j < ny; j++) for (let i = 0; i < nx; i++) {
     const rowOff = (j & 1) ? 0.5 : 0;
@@ -191,28 +211,28 @@ function texCobble() {
   }
   const { cv, ctx } = canvas(S); const b = canvas(S);
   const img = ctx.createImageData(S, S), bi = b.ctx.createImageData(S, S); const d = img.data, bd = bi.data;
+  const cG = NF('cb-g', 80, (u, v) => tnoise(u * 20, v * 20, 20)), cN = NF('cb-n', 128, (u, v) => tfbm(u * 12, v * 12, 12, 3)), cM = NF('cb-m', 96, (u, v) => tfbm(u * 6 + 1.3, v * 6, 6, 4));
   for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
     const ci = Math.floor(x / cw), cj = Math.floor(y / ch);
-    let d1 = 1e9, d2 = 1e9, id = 0;
-    for (let oj = -2; oj <= 2; oj++) for (let oi = -2; oi <= 2; oi++) {
-      const ii = ((ci + oi) % nx + nx) % nx, jj = ((cj + oj) % ny + ny) % ny;
-      const p = pts[jj * nx + ii];
-      let px = p[0] + Math.floor((ci + oi) / nx) * S, py = p[1] + Math.floor((cj + oj) / ny) * S;
-      // aspect: setts slightly elongated across the street
-      const dx = (x - px) * 0.85, dy = (y - py) * 1.0; const dd = Math.sqrt(dx * dx + dy * dy);
-      if (dd < d1) { d2 = d1; d1 = dd; id = jj * nx + ii; } else if (dd < d2) d2 = dd;
-    }
-    const edge = d2 - d1; const u = x / S, v = y / S;
-    const gapW = 3.2 + tnoise(u * 20, v * 20, 20) * 3.0;
-    const stoneMask = smooth(gapW, gapW + 2.5, edge);
-    const dome = Math.sqrt(clamp((edge - gapW) / 18, 0, 1));
-    const c = cols[id]; const n = tnoise(u * 160, v * 160, 160) - 0.5, n2 = tfbm(u * 12, v * 12, 12, 3) - 0.5;
+    let d1 = 1e12, d2 = 1e12, id = 0;
+    for (let oj = -1; oj <= 1; oj++) { const cjj = cj + oj, jj = (cjj % ny + ny) % ny, oy = Math.floor(cjj / ny) * S;
+      for (let oi = -2; oi <= 1; oi++) {
+        const cii = ci + oi, ii = (cii % nx + nx) % nx; const k = jj * nx + ii; const p = pts[k];
+        // aspect: setts slightly elongated across the street
+        const dx = (x - p[0] - Math.floor(cii / nx) * S) * 0.85, dy = y - p[1] - oy; const dd = dx * dx + dy * dy;
+        if (dd < d1) { d2 = d1; d1 = dd; id = k; } else if (dd < d2) d2 = dd;
+      } }
+    const edge = Math.sqrt(d2) - Math.sqrt(d1); const u = x / S, v = y / S;
+    const gapW = (3.2 + cG(u, v) * 3.0) * k;
+    const stoneMask = smooth(gapW, gapW + 2.5 * k, edge);
+    const dome = Math.sqrt(clamp((edge - gapW) / (18 * k), 0, 1));
+    const c = cols[id]; const n = hash2(x & 255, (y * 3 + (x >> 8)) & 255) - 0.5, n2 = cN(u, v) - 0.5;
     const sh = (0.78 + dome * 0.28) * c[3] * (1 + n * 0.16 + n2 * 0.1);
-    const moss = smooth(0.5, 0.68, tfbm(u * 6 + 1.3, v * 6, 6, 4));
+    const moss = smooth(0.5, 0.68, cM(u, v));
     let gr = 82 + n * 30, gg = 70 + n * 26, gb = 56 + n * 20;
     gr = lerp(gr, 86, moss); gg = lerp(gg, 104, moss); gb = lerp(gb, 46, moss);
     // a little moss creeping onto stone edges
-    const edgeMoss = moss * (1 - smooth(gapW, gapW + 6, edge)) * 0.7;
+    const edgeMoss = moss * (1 - smooth(gapW, gapW + 6 * k, edge)) * 0.7;
     let sr = c[0] * sh, sg = c[1] * sh, sb = c[2] * sh;
     sr = lerp(sr, 120, edgeMoss); sg = lerp(sg, 130, edgeMoss); sb = lerp(sb, 70, edgeMoss);
     const i4 = (y * S + x) * 4;
@@ -235,10 +255,12 @@ function texFlag() {
       wrapDraw(S, x + 2, ry + 2, w - 4, rh - 4, (px, py) => {
         ctx.fillStyle = rgb(200 * l + warm, 186 * l, 160 * l - warm); ctx.beginPath(); ctx.roundRect(px, py, w - 4, rh - 4, 4); ctx.fill();
         ctx.strokeStyle = 'rgba(70,55,40,0.25)'; ctx.lineWidth = 2; ctx.stroke();
-        b.ctx.fillStyle = rgb(200, 200, 200); b.ctx.filter = 'blur(1.5px)'; b.ctx.beginPath(); b.ctx.roundRect(px, py, w - 4, rh - 4, 4); b.ctx.fill(); b.ctx.filter = 'none';
+        b.ctx.fillStyle = rgb(200, 200, 200); b.ctx.beginPath(); b.ctx.roundRect(px, py, w - 4, rh - 4, 4); b.ctx.fill();
       }); x += w; } }
-  pixelPass(ctx, S, S, (x, y, o) => { const u = x / S, v = y / S; const n = tnoise(u * 100, v * 100, 100) - 0.5, m = tfbm(u * 8, v * 8, 8, 4) - 0.5;
-    const isGap = o[0] < 140; const moss = isGap ? smooth(0.45, 0.6, tfbm(u * 10 + 4, v * 10, 10, 3)) : 0;
+  blurCanvas(b, 1.5);
+  const gA = NF('fl-a', 96, (u, v) => tfbm(u * 8, v * 8, 8, 4)), gB = NF('fl-b', 96, (u, v) => tfbm(u * 10 + 4, v * 10, 10, 3));
+  pixelPass(ctx, S, S, (x, y, o) => { const u = x / S, v = y / S; const n = tnoise(u * 100, v * 100, 100) - 0.5, m = gA(u, v) - 0.5;
+    const isGap = o[0] < 140; const moss = isGap ? smooth(0.45, 0.6, gB(u, v)) : 0;
     o[0] = lerp(o[0] * (1 + n * 0.12 + m * 0.14), 92, moss); o[1] = lerp(o[1] * (1 + n * 0.12 + m * 0.12), 112, moss); o[2] = lerp(o[2] * (1 + n * 0.12 + m * 0.1), 52, moss); }, true);
   pixelPass(b.ctx, S, S, (x, y, o) => { const n = tnoise(x / S * 128, y / S * 128, 128); o[0] = o[1] = o[2] = o[0] * 0.8 + n * 50; }, true);
   TEX.flag = toTex(cv, { aniso: 16 }); TEX.flagBump = toTex(b.cv, { srgb: false });
@@ -247,10 +269,11 @@ function texFlag() {
 /* ground detail: covers 6 m, near-neutral so vertex colours carry the hue */
 function texGround() {
   const S = 512; const { cv, ctx } = canvas(S);
+  const gdA = NF('gd-a', 96, (u, v) => tfbm(u * 8, v * 8, 8, 4)), gdB = NF('gd-b', 48, (u, v) => tfbm(u * 4 + 7, v * 4, 4, 3));
   pixelPass(ctx, S, S, (x, y, o) => { const u = x / S, v = y / S;
-    const a = tfbm(u * 8, v * 8, 8, 4), f = tnoise(u * 128, v * 128, 128), g = tnoise(u * 48, v * 48, 48);
+    const a = gdA(u, v), f = tnoise(u * 128, v * 128, 128), g = tnoise(u * 48, v * 48, 48);
     const l = 0.82 + (a - 0.5) * 0.28 + (f - 0.5) * 0.16 + (g - 0.5) * 0.12;
-    const warm = (tfbm(u * 4 + 7, v * 4, 4, 3) - 0.5) * 30;
+    const warm = (gdB(u, v) - 0.5) * 30;
     o[0] = 225 * l + warm; o[1] = 230 * l; o[2] = 210 * l - warm * 0.5; });
   // brush dabs
   for (let i = 0; i < 2600; i++) { const x = R(0, S), y = R(0, S), l = R(0.75, 1.15);
@@ -454,19 +477,20 @@ function texRock() {
   const S = 512, n = 7; const { cv, ctx } = canvas(S); const pts = [];
   for (let j = 0; j < n; j++) for (let i = 0; i < n; i++) pts.push([(i + R(0.1, 0.9)) * S / n, (j + R(0.1, 0.9)) * S / n, R(0.82, 1.12)]);
   const img = ctx.createImageData(S, S); const d = img.data; const cw = S / n;
+  const rkA = NF('rk-a', 128, (u, v) => tfbm(u * 12, v * 12, 12, 4)), rkB = NF('rk-b', 48, (u, v) => tfbm(u * 5 + 2, v * 5, 5, 3));
   for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
-    const ci = Math.floor(x / cw), cj = Math.floor(y / cw); let d1 = 1e9, d2 = 1e9, id = 0;
+    const ci = Math.floor(x / cw), cj = Math.floor(y / cw); let d1 = 1e12, d2 = 1e12, id = 0;
     for (let oj = -1; oj <= 1; oj++) for (let oi = -1; oi <= 1; oi++) {
       const ii = ((ci + oi) % n + n) % n, jj = ((cj + oj) % n + n) % n; const p = pts[jj * n + ii];
-      const px = p[0] + Math.floor((ci + oi) / n) * S, py = p[1] + Math.floor((cj + oj) / n) * S; const dd = Math.hypot(x - px, (y - py) * 1.4);
+      const px = p[0] + Math.floor((ci + oi) / n) * S, py = p[1] + Math.floor((cj + oj) / n) * S; const dd = (x - px) ** 2 + ((y - py) * 1.4) ** 2;
       if (dd < d1) { d2 = d1; d1 = dd; id = jj * n + ii; } else if (dd < d2) d2 = dd;
     }
-    const u = x / S, v = y / S; const e = d2 - d1;
+    const u = x / S, v = y / S; const e = Math.sqrt(d2) - Math.sqrt(d1);
     const crack = 1 - smooth(1.5, 6, e) * 0.55 - smooth(6, 0, e) * 0.0;
-    const nn = tfbm(u * 12, v * 12, 12, 4), fine = tnoise(u * 90, v * 90, 90);
+    const nn = rkA(u, v), fine = tnoise(u * 90, v * 90, 90);
     const strata = 0.94 + 0.06 * Math.sin(v * TAU * 9 + nn * 4);
     const shade = (0.72 + 0.34 * nn + 0.08 * (fine - 0.5)) * strata * pts[id][2] * (1 - smooth(4, 0, e) * 0.45);
-    const lich = smooth(0.62, 0.76, tfbm(u * 5 + 2, v * 5, 5, 3));
+    const lich = smooth(0.62, 0.76, rkB(u, v));
     const i4 = (y * S + x) * 4;
     d[i4] = lerp(196, 170, lich) * shade; d[i4 + 1] = lerp(186, 182, lich) * shade; d[i4 + 2] = lerp(168, 128, lich) * shade; d[i4 + 3] = 255;
   }
@@ -491,10 +515,10 @@ function texCheck() {
 }
 
 async function buildTextures() {
-  texPlaster(); texStone(); texTrim(); await stage(12, '正在调和灰泥与石色……');
-  texRoof(); texSlate(); texWood(); await stage(20, '正在烧制屋瓦……');
-  texCobble(); texFlag(); await stage(30, '正在铺石板路……');
-  texGround(); texBark(); texFoliage(); texAwning(); texGlass(); texSign(); texChalk(); texFascia(); texPuff(); texWing(); texRock(); texWicker(); texCheck();
-  TEX.clouds = [cloudTex(11), cloudTex(23), cloudTex(37), cloudTex(41, 512, 200)];
+  texPlaster(); mark('tex plaster'); texStone(); mark('tex stone'); texTrim(); await stage(12, '正在调和灰泥与石色……');
+  texRoof(); mark('tex roof'); texSlate(); texWood(); mark('tex slate+wood'); await stage(20, '正在烧制屋瓦……');
+  texCobble(); mark('tex cobble'); texFlag(); mark('tex flag'); await stage(30, '正在铺石板路……');
+  texGround(); texBark(); mark('tex ground+bark'); texFoliage(); mark('tex foliage'); texAwning(); texGlass(); texSign(); texChalk(); texFascia(); texPuff(); texWing(); mark('tex small'); texRock(); mark('tex rock'); texWicker(); texCheck();
+  TEX.clouds = [cloudTex(11), cloudTex(23), cloudTex(37), cloudTex(41, 512, 200)]; mark('tex clouds');
   await stage(38, '正在缝遮阳棚……');
 }

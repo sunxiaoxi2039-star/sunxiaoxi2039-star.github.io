@@ -15,6 +15,9 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 const PARAMS = new URLSearchParams(location.search);
 const STILL = PARAMS.has('still');            // freeze time (for screenshots)
 const DEBUG = PARAMS.get('debug') || '';
+/* quality tier: phones/tablets (coarse pointer or small screen) get a lighter scene; ?q=low|high overrides */
+const LOW = PARAMS.get('q') ? PARAMS.get('q') === 'low' : (matchMedia('(pointer: coarse)').matches || Math.min(screen.width, screen.height) < 700);
+const DENS = LOW ? 0.55 : 1;   // density multiplier for scattered instances
 
 const V3 = (x = 0, y = 0, z = 0) => new THREE.Vector3(x, y, z);
 const C = (hex) => new THREE.Color(hex);
@@ -83,14 +86,17 @@ function T(x = 0, y = 0, z = 0, ry = 0, rx = 0, rz = 0, sx = 1, sy = 1, sz = 1) 
   _e.set(rx, ry, rz, 'YXZ'); _q.setFromEuler(_e);
   return new THREE.Matrix4().compose(_p.set(x, y, z), _q, _s.set(sx, sy, sz));
 }
+const _geoCache = new Map();
 function boxM(w, h, d) {
-  const g = new THREE.BoxGeometry(w, h, d);
+  const key = `b${w.toFixed(3)},${h.toFixed(3)},${d.toFixed(3)}`; const hit = _geoCache.get(key); if (hit) return hit;
+  const g = new THREE.BoxGeometry(w, h, d); _geoCache.set(key, g);
   const uv = g.attributes.uv; const dims = [[d, h], [d, h], [w, d], [w, d], [w, h], [w, h]];
   for (let f = 0; f < 6; f++) for (let i = 0; i < 4; i++) { const k = f * 4 + i; uv.setXY(k, uv.getX(k) * dims[f][0], uv.getY(k) * dims[f][1]); }
   return g;
 }
 function cylM(rt, rb, h, seg = 16, open = false) {
-  const g = new THREE.CylinderGeometry(rt, rb, h, seg, 1, open);
+  const key = `c${rt.toFixed(3)},${rb.toFixed(3)},${h.toFixed(3)},${seg},${open}`; const hit = _geoCache.get(key); if (hit) return hit;
+  const g = new THREE.CylinderGeometry(rt, rb, h, seg, 1, open); _geoCache.set(key, g);
   const uv = g.attributes.uv; const circ = Math.PI * (rt + rb);
   const sideCount = (seg + 1) * 2;
   for (let i = 0; i < uv.count; i++) {
@@ -148,33 +154,54 @@ function surfaceGeo(nu, nv, fn, uvfn) {
 
 /* ---------- Batch: collects parts per material, merges into few draw calls ---------- */
 class Batch {
-  constructor() { this.parts = new Map(); this.stack = [new THREE.Matrix4()]; }
+  /* Writes transformed vertices straight into flat arrays per material key (no per-part
+     BufferGeometry objects), then builds one mesh per key. Source geometries are only read. */
+  constructor() { this.parts = new Map(); this.stack = [new THREE.Matrix4()]; this._m = new THREE.Matrix4(); this._n = new THREE.Matrix3(); }
   get top() { return this.stack[this.stack.length - 1]; }
   push(m) { this.stack.push(this.top.clone().multiply(m)); return this; }
   pop() { this.stack.pop(); return this; }
   add(key, geo, color, m) {
-    let g = geo.index ? geo.toNonIndexed() : geo.clone();
-    for (const k of Object.keys(g.attributes)) if (!['position', 'normal', 'uv', 'color', 'aWind'].includes(k)) g.deleteAttribute(k);
-    if (!g.attributes.normal) g.computeVertexNormals();
-    const n = g.attributes.position.count;
-    if (!g.attributes.uv) g.setAttribute('uv', new THREE.Float32BufferAttribute(new Float32Array(n * 2), 2));
-    if (!g.attributes.aWind) g.setAttribute('aWind', new THREE.Float32BufferAttribute(new Float32Array(n), 1));
-    if (!g.attributes.color) {
-      const c = color === undefined ? WHITE : (color.isColor ? color : C(color));
-      const arr = new Float32Array(n * 3); for (let i = 0; i < n; i++) { arr[i * 3] = c.r; arr[i * 3 + 1] = c.g; arr[i * 3 + 2] = c.b; }
-      g.setAttribute('color', new THREE.Float32BufferAttribute(arr, 3));
+    const M = m ? this._m.multiplyMatrices(this.top, m) : this.top; const e = M.elements;
+    const ne = this._n.getNormalMatrix(M).elements;
+    const idx = geo.index ? geo.index.array : null; const A = geo.attributes;
+    const P = A.position.array, N = A.normal ? A.normal.array : null, UV = A.uv ? A.uv.array : null, CO = A.color ? A.color.array : null, W = A.aWind ? A.aWind.array : null;
+    const pi = A.position.itemSize;
+    const n = idx ? idx.length : A.position.count;
+    const pos = new Float32Array(n * 3), nor = new Float32Array(n * 3), uv = new Float32Array(n * 2), col = new Float32Array(n * 3), wind = new Float32Array(n);
+    const c = CO ? null : (color === undefined ? WHITE : (color.isColor ? color : C(color)));
+    for (let k = 0; k < n; k++) {
+      const i = idx ? idx[k] : k;
+      const x = P[i * pi], y = P[i * pi + 1], z = P[i * pi + 2];
+      pos[k * 3] = e[0] * x + e[4] * y + e[8] * z + e[12]; pos[k * 3 + 1] = e[1] * x + e[5] * y + e[9] * z + e[13]; pos[k * 3 + 2] = e[2] * x + e[6] * y + e[10] * z + e[14];
+      if (N) { const a = N[i * 3], b = N[i * 3 + 1], d = N[i * 3 + 2];
+        let nx = ne[0] * a + ne[3] * b + ne[6] * d, ny = ne[1] * a + ne[4] * b + ne[7] * d, nz = ne[2] * a + ne[5] * b + ne[8] * d;
+        const l = Math.hypot(nx, ny, nz) || 1; nor[k * 3] = nx / l; nor[k * 3 + 1] = ny / l; nor[k * 3 + 2] = nz / l; }
+      if (UV) { uv[k * 2] = UV[i * 2]; uv[k * 2 + 1] = UV[i * 2 + 1]; }
+      if (CO) { col[k * 3] = CO[i * 3]; col[k * 3 + 1] = CO[i * 3 + 1]; col[k * 3 + 2] = CO[i * 3 + 2]; } else { col[k * 3] = c.r; col[k * 3 + 1] = c.g; col[k * 3 + 2] = c.b; }
+      if (W) wind[k] = W[i];
     }
-    const M = m ? this.top.clone().multiply(m) : this.top;
-    g.applyMatrix4(M);
+    if (!N) { // flat normals per triangle
+      for (let t = 0; t + 2 < n; t += 3) {
+        const ax = pos[t * 3], ay = pos[t * 3 + 1], az = pos[t * 3 + 2];
+        const ux = pos[t * 3 + 3] - ax, uy = pos[t * 3 + 4] - ay, uz = pos[t * 3 + 5] - az, vx = pos[t * 3 + 6] - ax, vy = pos[t * 3 + 7] - ay, vz = pos[t * 3 + 8] - az;
+        let nx = uy * vz - uz * vy, ny = uz * vx - ux * vz, nz = ux * vy - uy * vx; const l = Math.hypot(nx, ny, nz) || 1; nx /= l; ny /= l; nz /= l;
+        for (let q = 0; q < 3; q++) { nor[(t + q) * 3] = nx; nor[(t + q) * 3 + 1] = ny; nor[(t + q) * 3 + 2] = nz; }
+      }
+    }
     if (!this.parts.has(key)) this.parts.set(key, []);
-    this.parts.get(key).push(g);
-    return g;
+    this.parts.get(key).push({ pos, nor, uv, col, wind, n });
   }
   build(mats, opts = {}) {
     const group = new THREE.Group();
     for (const [key, list] of this.parts) {
       const mat = mats[key]; if (!mat) { console.warn('no material', key); continue; }
-      const geo = mergeGeometries(list, false); list.length = 0;
+      let n = 0; for (const p of list) n += p.n;
+      const pos = new Float32Array(n * 3), nor = new Float32Array(n * 3), uv = new Float32Array(n * 2), col = new Float32Array(n * 3), wind = new Float32Array(n);
+      let o = 0; for (const p of list) { pos.set(p.pos, o * 3); nor.set(p.nor, o * 3); uv.set(p.uv, o * 2); col.set(p.col, o * 3); wind.set(p.wind, o); o += p.n; }
+      list.length = 0;
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(pos, 3)); geo.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
+      geo.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); geo.setAttribute('color', new THREE.BufferAttribute(col, 3)); geo.setAttribute('aWind', new THREE.BufferAttribute(wind, 1));
       geo.computeBoundingSphere();
       const mesh = new THREE.Mesh(geo, mat);
       mesh.castShadow = opts.cast !== undefined ? opts.cast : !(mat.userData.noCast);
@@ -191,6 +218,11 @@ function jitter(hex, h = 0.02, s = 0.06, l = 0.06) {
   const c = C(hex); const hsl = {}; c.getHSL(hsl);
   return new THREE.Color().setHSL((hsl.h + R(-h, h) + 1) % 1, clamp(hsl.s + R(-s, s), 0, 1), clamp(hsl.l + R(-l, l), 0, 1));
 }
+
+/* load-time profiling (read with window.__prof) */
+const PROF = [['module ready @', Math.round(performance.now())]]; let _profT = performance.now();
+function mark(name) { const t = performance.now(); PROF.push([name, Math.round(t - _profT)]); _profT = t; }
+window.__prof = PROF;
 
 const nextFrame = () => new Promise((r) => requestAnimationFrame(() => r()));
 const loadFill = document.getElementById('loadfill');
