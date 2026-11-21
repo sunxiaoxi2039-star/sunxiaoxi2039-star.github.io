@@ -68,7 +68,7 @@
     frame(F, S, tl, t, frame) {
       F.stage(frame, {
         time: tl, cam: S.cam, light: LIGHT, sky: SKY,
-        whales: [{ whale: S.whale, t: tl, shadow: false, glowScale: 2.2, glowAmt: 1.4 }],
+        whales: [{ whale: S.whale, t: tl, shadow: false, glowScale: 2.2, glowAmt: 1.4, light: { key: hex('#8a6a80'), shade: hex('#6a5a88'), fogDen: 1 / 60000, rimAmt: 1.0 } }],
         reflect: { y: 0 },
         bg: (c, l, refl) => S.sea.draw(c, SEA, t, refl),
         grade: GRADE,

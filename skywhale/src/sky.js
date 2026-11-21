@@ -94,14 +94,14 @@
         vec3 mr = normalize(cross(md, vec3(0.0,1.0,0.0))); vec3 mu = cross(mr, md);
         vec2 q = vec2(dot(d - md, mr), dot(d - md, mu))/uMoon.x;
         float disc = 1.0 - smoothstep(0.96, 1.0, length(q));
-        float maria = fbm(q*2.2 + 5.0, 4);
-        vec3 mc = mix(vec3(1.0, 0.97, 0.88), vec3(0.80, 0.80, 0.86), smoothstep(0.5, 0.68, maria)*0.8);
-        mc *= 0.95 + 0.05*(1.0 - length(q));
+        float maria = fbm(q*1.6 + 5.0, 3);
+        vec3 mc = mix(vec3(1.0, 0.99, 0.95), vec3(0.86, 0.87, 0.93), smoothstep(0.55, 0.66, maria)*0.55);
+        mc *= 1.0 + 0.04*(1.0 - length(q));
         c = mix(c, mc*uMoonCol, disc);
       }
     }
     // sun disc
-    if (uSun.w > 0.0) c = mix(c, uSunCol, (1.0 - smoothstep(uSun.x*0.92, uSun.x, ang))*uSun.w);
+    if (uSun.w > 0.0) c = mix(c, max(c*1.08, uSunCol*1.35), (1.0 - smoothstep(uSun.x*0.9, uSun.x, ang))*uSun.w);
     // brush texture fixed to the dome
     c *= 1.0 + (fbm(vec2(az*60.0, el*220.0), 3) - 0.5)*uBrush + (vnoise(vec2(az*400.0, el*90.0)) - 0.5)*uBrush*0.4;
     o = vec4(c, 1.0); oAux = vec4(0.0);

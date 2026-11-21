@@ -440,7 +440,9 @@
         const fr = base.fr;
         const H = 18 * sc * (g.mastTall || 1);
         const sw1 = sway(w, t, sm, 0.2);
-        const top = v3.madd(v3.madd(base.p, fr.U, H), fr.T, -H * (0.06 + 0.01 * sw1));
+        const raise = w.mastRaise ? w.mastRaise(t) : 1;
+        const mdir = v3.norm(v3.rot(fr.U, fr.R, (1 - raise) * 1.38));
+        const top = v3.madd(v3.madd(base.p, mdir, H), fr.T, -H * (0.06 + 0.01 * sw1) * raise);
         const mastPts = [base.p, v3.lerp(base.p, top, 0.5), top];
         tubes.push({ pts: mastPts, radii: [0.55 * sc, 0.45 * sc, 0.32 * sc], color: hex('#7a5638'), mat: 1 });
         const yc = v3.lerp(base.p, top, 0.78);

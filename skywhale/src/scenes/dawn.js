@@ -35,12 +35,13 @@
         path: S.path, speed: [[0, 9], [8, 9.5], [11.5, 13], [15, 14], [21, 13]], period: 6.2, waveAmp: 0.06,
         ampKeys: [[0, 0.8], [9, 1.15], [15, 1.1], [21, 0.95]],
         finKeys: [[0, 0.25], [13.0, 0.25], [14.6, 1.0], [21, 0.95]],
-        pennantK: (t) => smoothstep(12.0, 14.2, t),
+        pennantK: (t) => smoothstep(12.6, 14.6, t),
         eye: (t) => 0.35 + 0.65 * smoothstep(11.2, 12.4, t),
         wind: [2, 0, 0],
       };
       const probe = new SW.Whale('old', Object.assign({}, opts, { d0: 0 }));
       opts.d0 = arcB - probe.headDist(9.0) + 6;
+      opts.mastRaise = (t) => SW.ease.inOut5((t - 11.6) / 2.2);
       S.whale = new SW.Whale('old', opts);
       // cloud sea: detailed and three layers deep around the breakout, LOD out to the horizon
       S.seaOpts = { focus: [B[0] + 60, 0, B[2]], y: -16, amp: 24, amp2: 16, scale: 240, spacing: 5.0, detailR: 170, deepR: 130, layers: 3, radius: 12000, seed: 21 };
@@ -59,6 +60,8 @@
       S.camTgt = smoothKeys([[0, [30, 20, -600]], [5.5, [15, 12, -600]], [9.0, v3.add(B, [5, -2, 0])], [11.5, v3.add(wh(11.5), [-5, -6, 0])], [14.0, v3.add(wh(14), [-16, -6, 0])], [17.0, v3.add(wm(17), [10, 2, 0])], [21.0, v3.add(wm(21), [12, 4, 0])]]);
       S.fov = smoothKeys([[0, 34], [9, 33], [12, 30], [16, 34], [21, 40]]);
       S.seaH = (x, z) => SW.CloudGen.seaHeight(x, z, S.seaOpts) + 18;
+      // vapour sheets riding the back and pouring off the flanks as each station breaks out
+      S.drape = SW.Drape(S.whale, { surfY: (x, z) => SW.CloudGen.seaHeight(x, z, S.seaOpts) + 10, t0: 4, t1: 21, s0: 0.03, s1: 0.78, ds: 0.03, perStation: 8, slide: 1.9, life: 2.8, r: 6.0, seed: 5 });
       // when the brass eye clears the cloud surface (deterministic, computed once)
       S.eyeOut = 1e9;
       for (let t = 6; t < 18; t += 1 / 48) { const e = SW.WHALE.surf(S.whale.pose(t, 40), 0.222, -0.02, 0.4).p; if (e[1] > S.seaH(e[0], e[2])) { S.eyeOut = t; break; } }
@@ -69,7 +72,7 @@
       S.sim.advance(tl, (tt) => [whale.pose(tt, 48)]);
       const cam = SW.Camera({ pos: S.camPos(tl), target: S.camTgt(tl), fov: S.fov(tl), near: 2, far: 30000 });
       const plume = SW.plume(whale, tl, { t0: 14.2, dur: 1.5, n: 40, life: 4.2, up: 18, fwd: 3, alpha: 0.55, grow: 2.8, r0: 1.4, wind: [-3, 0, 0] });
-      const puffs = S.puffs;
+      const puffs = S.puffs.concat(S.drape(tl, whale.pose(tl)));
       F.stage(frame, {
         time: tl, cam, light: LIGHT, sky: SKY,
         whales: [{ whale, t: tl }],

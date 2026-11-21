@@ -45,7 +45,7 @@
     vec4 bg = texture(uBg, vUv);
     vec3 bgc = bg.rgb/max(bg.a, 1e-3);
     float mb = texture(uGlow, vUv).a;            // blurred mask (narrow)
-    float wrap = m * clamp((1.0 - mb)*1.6, 0.0, 1.0) * smoothstep(0.02, 0.2, bg.a);
+    float wrap = smoothstep(0.6, 1.0, m) * clamp((1.0 - mb)*1.6, 0.0, 1.0) * smoothstep(0.02, 0.2, bg.a);
     c = c + (1.0 - c) * bgc * wrap * uWrap;       // screen
     // light-side diffusion and bloom
     vec3 g1 = texture(uGlow, vUv).rgb, g2 = texture(uGlow2, vUv).rgb;
@@ -81,12 +81,24 @@
     P.charMS = G.fbo({ w: W, h: H, colors: ['rgba8', 'rgba8'], depth: true, samples: 4 });
     P.charRes = G.fbo({ w: W, h: H, colors: ['rgba8', 'rgba8'] });
     P.refl = G.fbo({ w: W, h: H, colors: ['rgba8'] });
+    P.reflMS = G.fbo({ w: W, h: H, colors: ['rgba8'], depth: true, samples: 4 });
+    // SwiftShader/ANGLE: sampling a texture right after an MSAA blit into it can read stale texels
+    // unless the pipeline is flushed; a 1-pixel readback forces completion (cheap, deterministic).
+    const syncPx = new Uint8Array(4);
+    P.sync = function (fbo) { gl.bindFramebuffer(gl.FRAMEBUFFER, fbo.fb); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, syncPx); gl.bindFramebuffer(gl.FRAMEBUFFER, null); };
+    P.beginReflection = function () {
+      G.bind(P.reflMS); gl.drawBuffers([gl.COLOR_ATTACHMENT0]);
+      gl.clearColor(0, 0, 0, 0); gl.depthMask(true);
+      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+      gl.enable(gl.DEPTH_TEST); gl.depthFunc(gl.LEQUAL);
+    };
     P.resolveReflection = function () {
-      gl.bindFramebuffer(gl.READ_FRAMEBUFFER, P.charMS.fb);
+      gl.bindFramebuffer(gl.READ_FRAMEBUFFER, P.reflMS.fb);
       gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER, P.refl.fb);
       gl.readBuffer(gl.COLOR_ATTACHMENT0); gl.drawBuffers([gl.COLOR_ATTACHMENT0]);
       gl.blitFramebuffer(0, 0, W, H, 0, 0, W, H, gl.COLOR_BUFFER_BIT, gl.NEAREST);
       gl.bindFramebuffer(gl.READ_FRAMEBUFFER, null); gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER, null);
+      P.sync(P.refl);
     };
     P.cloudScale = SW.CLOUD_SCALE || 0.5;
     P.cloud = G.fbo({ w: Math.round(W * P.cloudScale), h: Math.round(H * P.cloudScale), colors: ['rgba16f'] });
@@ -117,7 +129,7 @@
           o = vec4(m);
         }`),
       up: G.program('upsample', G.FS_VS, `
-        in vec2 vUv; uniform sampler2D uT; uniform float uAux;
+        in vec2 vUv; uniform sampler2D uT; uniform float uAux; uniform float uCubic;
         layout(location=0) out vec4 o; layout(location=1) out vec4 oA;
         vec4 cr(vec2 uv, vec2 ts){
           vec2 sp = uv*ts; vec2 t1 = floor(sp - 0.5) + 0.5; vec2 f = sp - t1;
@@ -129,8 +141,8 @@
           return r;
         }
         void main(){
-          vec4 c = cr(vUv, vec2(textureSize(uT, 0)));
-          c.a = clamp(c.a, 0.0, 1.0); c.rgb = clamp(c.rgb, vec3(0.0), vec3(c.a*1.2 + 0.001));
+          vec4 c = uCubic > 0.5 ? cr(vUv, vec2(textureSize(uT, 0))) : texture(uT, vUv);
+          c.a = clamp(c.a, 0.0, 1.0); c.rgb = clamp(c.rgb, vec3(0.0), vec3(c.a));
           if (c.a < 0.002) discard;
           o = c; oA = vec4(0.0, 0.0, 0.0, c.a*uAux);
         }`),
@@ -177,14 +189,14 @@
     };
 
     P.beginShadow = function () {
-      G.bind(P.shadow);
+      G.bind(P.shadow); gl.depthMask(true);
       gl.clear(gl.DEPTH_BUFFER_BIT);
       gl.enable(gl.DEPTH_TEST); gl.depthFunc(gl.LEQUAL); gl.depthMask(true);
       G.blend(null);
     };
     P.beginPre = function () {
       G.bind(P.pre);
-      gl.clearColor(1e9, 0, 0, 0);
+      gl.clearColor(1e9, 0, 0, 0); gl.depthMask(true);
       gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
       gl.enable(gl.DEPTH_TEST); gl.depthFunc(gl.LEQUAL); gl.depthMask(true);
       G.blend(null);
@@ -192,7 +204,7 @@
     P.beginMain = function () {
       G.bind(P.main);
       gl.drawBuffers([gl.COLOR_ATTACHMENT0, gl.COLOR_ATTACHMENT1]);
-      gl.clearColor(0, 0, 0, 0);
+      gl.clearColor(0, 0, 0, 0); gl.depthMask(true);
       gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     };
     P.resolve = function () { };
@@ -210,7 +222,7 @@
     P.compositeCloud = function (aux) {
       G.bind(P.main); gl.drawBuffers([gl.COLOR_ATTACHMENT0, gl.COLOR_ATTACHMENT1]);
       gl.disable(gl.DEPTH_TEST); G.blend('premult');
-      progs.up.use({ uT: P.cloud.colors[0], uAux: aux ? 1 : 0 });
+      progs.up.use({ uT: P.cloud.colors[0], uAux: aux ? 1 : 0, uCubic: aux ? 0 : 1 });
       G.fullscreen();
       G.blend(null); gl.enable(gl.DEPTH_TEST);
     };
@@ -218,13 +230,13 @@
     P.beginChar = function () {
       G.bind(P.charMS);
       gl.drawBuffers([gl.COLOR_ATTACHMENT0, gl.COLOR_ATTACHMENT1]);
-      gl.clearColor(0, 0, 0, 0);
+      gl.clearColor(0, 0, 0, 0); gl.depthMask(true);
       gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
       gl.enable(gl.DEPTH_TEST); gl.depthFunc(gl.LEQUAL); gl.depthMask(true);
     };
-    P.compositeChar = function (rect) {
-      // rect in pixels [x0,y0,x1,y1] (GL origin bottom-left)
-      const r = rect.map((v, i) => Math.max(0, Math.min(i % 2 ? H : W, Math.round(v))));
+    const clampRect = (rect) => rect.map((v, i) => Math.max(0, Math.min(i % 2 ? H : W, Math.round(v))));
+    P.resolveChar = function (rect) {
+      const r = clampRect(rect);
       if (r[2] <= r[0] || r[3] <= r[1]) return;
       gl.bindFramebuffer(gl.READ_FRAMEBUFFER, P.charMS.fb);
       gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER, P.charRes.fb);
@@ -234,6 +246,13 @@
         gl.blitFramebuffer(r[0], r[1], r[2], r[3], r[0], r[1], r[2], r[3], gl.COLOR_BUFFER_BIT, gl.NEAREST);
       }
       gl.bindFramebuffer(gl.READ_FRAMEBUFFER, null);
+      gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER, null);
+      P.sync(P.charRes);
+    };
+    P.compositeChar = function (rect) {
+      // rect in pixels [x0,y0,x1,y1] (GL origin bottom-left)
+      const r = clampRect(rect);
+      if (r[2] <= r[0] || r[3] <= r[1]) return;
       G.bind(P.main);
       gl.drawBuffers([gl.COLOR_ATTACHMENT0, gl.COLOR_ATTACHMENT1]);
       gl.disable(gl.DEPTH_TEST);

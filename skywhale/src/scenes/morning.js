@@ -39,7 +39,7 @@
         const c = [(r() - 0.5) * 1500, 450 + r() * 200, -300 + (r() - 0.5) * 1200];
         const k = c[1] / SUN[1];
         S.shadows.push([c[0] - SUN[0] * k, c[2] - SUN[2] * k, 70 + r() * 50, 1.0]);
-        S.clouds.push(...SW.CloudGen.cumulus({ center: c, width: 110 + r() * 120, height: 45 + r() * 35, towers: 4, seed: 40 + i, fill: false, puff: 16, depthK: 0.9 }));
+        S.clouds.push(...SW.CloudGen.cumulus({ center: c, width: 170 + r() * 140, height: 45 + r() * 30, towers: 5, seed: 40 + i, fill: false, puff: 20, depthK: 1.0, mk: 0.75 }));
       }
       const wm = (t) => S.whale.pose(t, 40).C[18];
       S.camPos = smoothKeys([[0, v3.add(wm(0), [120, 470, 470])], [7.5, v3.add(wm(7.5), [80, 466, 455])]]);
@@ -51,7 +51,7 @@
         time: tl, cam, light: Object.assign({}, LIGHT, { fogDen: 1 / 14000 }), sky: SKY,
         whales: [{ whale: S.whale, t: tl }],
         bg: (c) => S.ground.draw(c, { center: [0, 0, -300], fog: hex('#bfd2df'), fogDen: 1 / 5200, far: hex('#bfd2df'), shadows: S.shadows }),
-        clouds: [{ puffs: S.clouds, look: Object.assign({}, LOOK, { fog: hex('#c4d5df'), fogDen: 1 / 2600, fogStart: 0, edge: [0.03, 0.08, 0.2, 0.06] }) }],
+        clouds: [{ puffs: S.clouds, look: Object.assign({}, LOOK, { lit: hex('#f3f0e8'), mid: hex('#dfe2e8'), shad: hex('#9eadc8'), deep: hex('#8494b4'), fog: hex('#bccfdb'), fogDen: 1 / 1500, fogStart: 0, edge: [0.04, 0.10, 0.1, 0.05], bands: [0.66, 0.5, 0.04, 0.2] }) }],
         grade: GRADE,
       });
     },

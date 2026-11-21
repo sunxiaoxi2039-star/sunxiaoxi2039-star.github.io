@@ -1,0 +1,226 @@
+{
+ "_comment": "Pinned sources for skywhale/audio. fetch_assets.py downloads/builds everything listed here into $SKYWHALE_AUDIO_BUILD (default /workspace/_build/audio) and verifies hashes.",
+ "git": {
+  "sfizz": {
+   "url": "https://github.com/sfztools/sfizz.git",
+   "ref": "1.2.3",
+   "commit": "4e70dc0bef53b41f2853ed46e26f5911114c92d0",
+   "dir": "src/sfizz",
+   "submodules": true,
+   "patch": "patches/sfizz_render_float32.patch",
+   "licence": "BSD-2-Clause"
+  },
+  "vsco2ce": {
+   "url": "https://github.com/sgossner/VSCO-2-CE.git",
+   "ref": "SFZ",
+   "commit": "6dd651d55dde97fd4028699be9d4481f26917891",
+   "dir": "src/vsco2ce",
+   "sparse": [
+    "/*.sfz",
+    "/*.txt",
+    "/LICENSE",
+    "/README.md",
+    "/Strings/Violin Section/",
+    "/Strings/Viola Section/",
+    "/Strings/Cello Section/",
+    "/Strings/Solo Contrabass/",
+    "/Strings/Solo Violin/",
+    "/Woodwinds/",
+    "/Brass/F Horn/",
+    "/Brass/Tuba/",
+    "/Brass/Tenor Trombone/",
+    "/Percussion/",
+    "/VSCO 1 Percussion/varWood/"
+   ],
+   "licence": "CC0-1.0"
+  },
+  "salamander": {
+   "url": "https://github.com/sfzinstruments/SalamanderGrandPiano.git",
+   "ref": "master",
+   "commit": "3382bf9496bba2486f5ab0de55a264d1dfc38404",
+   "dir": "src/salamander",
+   "licence": "CC-BY-3.0"
+  }
+ },
+ "files": [
+  {
+   "id": "librosa_glba",
+   "url": "https://raw.githubusercontent.com/librosa/data/5285c94e33c74bbe97501f5c9fa95e5e2ce55d48/audio/glacier-bay-humpback.hq.ogg",
+   "dest": "downloads/librosa/glacier-bay-humpback.hq.ogg",
+   "sha256": "c3250ff526898aa5528aeb6b81a49aff58f63400ec2ddb8bcb86caf611d33144",
+   "credit": "NPS / Chris Gabriele, humpback whale song, Glacier Bay National Park, 2020 (distributed in librosa/data)",
+   "licence": "Public domain (U.S. NPS)"
+  },
+  {
+   "id": "nps_11_13_2020_03_48_13",
+   "url": "https://storage.googleapis.com/noaa-passive-bioacoustic/nps/audio/glacier_bay/bartlettcove/glacierbay_bartlettcove_2020/audio/11_13_2020_03_48_13.aif",
+   "dest": "downloads/nps_glba_2020/11_13_2020_03_48_13.aif",
+   "md5": "e5d9a7bd6fd1a018ad35fe13d910784b",
+   "credit": "U.S. National Park Service, Glacier Bay National Park & Preserve, Bartlett Cove hydrophone (2020), via NOAA NCEI Passive Acoustic Data Archive",
+   "licence": "Public domain (U.S. Government work)"
+  },
+  {
+   "id": "nps_11_13_2020_03_53_13",
+   "url": "https://storage.googleapis.com/noaa-passive-bioacoustic/nps/audio/glacier_bay/bartlettcove/glacierbay_bartlettcove_2020/audio/11_13_2020_03_53_13.aif",
+   "dest": "downloads/nps_glba_2020/11_13_2020_03_53_13.aif",
+   "md5": "6913560c1d064d418e2216e4c076b0b5",
+   "credit": "U.S. National Park Service, Glacier Bay National Park & Preserve, Bartlett Cove hydrophone (2020), via NOAA NCEI Passive Acoustic Data Archive",
+   "licence": "Public domain (U.S. Government work)"
+  },
+  {
+   "id": "nps_11_13_2020_04_03_13",
+   "url": "https://storage.googleapis.com/noaa-passive-bioacoustic/nps/audio/glacier_bay/bartlettcove/glacierbay_bartlettcove_2020/audio/11_13_2020_04_03_13.aif",
+   "dest": "downloads/nps_glba_2020/11_13_2020_04_03_13.aif",
+   "md5": "ccd6e08f654e05c6ae6692e1dd655fa8",
+   "credit": "U.S. National Park Service, Glacier Bay National Park & Preserve, Bartlett Cove hydrophone (2020), via NOAA NCEI Passive Acoustic Data Archive",
+   "licence": "Public domain (U.S. Government work)"
+  },
+  {
+   "id": "nps_11_13_2020_04_13_13",
+   "url": "https://storage.googleapis.com/noaa-passive-bioacoustic/nps/audio/glacier_bay/bartlettcove/glacierbay_bartlettcove_2020/audio/11_13_2020_04_13_13.aif",
+   "dest": "downloads/nps_glba_2020/11_13_2020_04_13_13.aif",
+   "md5": "c5acd9455676ae4e8b334ec011fc2e29",
+   "credit": "U.S. National Park Service, Glacier Bay National Park & Preserve, Bartlett Cove hydrophone (2020), via NOAA NCEI Passive Acoustic Data Archive",
+   "licence": "Public domain (U.S. Government work)"
+  },
+  {
+   "id": "nps_11_13_2020_04_23_13",
+   "url": "https://storage.googleapis.com/noaa-passive-bioacoustic/nps/audio/glacier_bay/bartlettcove/glacierbay_bartlettcove_2020/audio/11_13_2020_04_23_13.aif",
+   "dest": "downloads/nps_glba_2020/11_13_2020_04_23_13.aif",
+   "md5": "f1db7b16f4dcd1e2b11487871b192d3d",
+   "credit": "U.S. National Park Service, Glacier Bay National Park & Preserve, Bartlett Cove hydrophone (2020), via NOAA NCEI Passive Acoustic Data Archive",
+   "licence": "Public domain (U.S. Government work)"
+  },
+  {
+   "id": "ir_30th-st-station",
+   "url": "https://media.githubusercontent.com/media/meta-meta/ImpulseResponses/f0e0cc8b33d1bb423208f5ea6e47177ca7930968/2018-11-28-30th-St-Station.wav",
+   "dest": "downloads/ir_metameta/2018-11-28-30th-St-Station.wav",
+   "sha256": "7a106272ee0430c2c8a190c4b500ac6768921c8d89d9e403df9488d2fbd1eb4e",
+   "credit": "meta-meta/ImpulseResponses (balloon pops / firecrackers recorded in real spaces)",
+   "licence": "Free use in films incl. commercial, no attribution required; raw files may not be redistributed as a collection (LICENSE.MD)"
+  },
+  {
+   "id": "ir_silver-bay-woods",
+   "url": "https://media.githubusercontent.com/media/meta-meta/ImpulseResponses/f0e0cc8b33d1bb423208f5ea6e47177ca7930968/2021-05-01--Silver-Bay-Woods.wav",
+   "dest": "downloads/ir_metameta/2021-05-01--Silver-Bay-Woods.wav",
+   "sha256": "d457ef0b4e6adb8f49ce3cdb274b2d93cbbaec02660b16f5eb655a8e15d803cb",
+   "credit": "meta-meta/ImpulseResponses (balloon pops / firecrackers recorded in real spaces)",
+   "licence": "Free use in films incl. commercial, no attribution required; raw files may not be redistributed as a collection (LICENSE.MD)"
+  },
+  {
+   "id": "fx_2019-04-9-ids-center-airwrench",
+   "url": "https://media.githubusercontent.com/media/meta-meta/ImpulseResponses/f0e0cc8b33d1bb423208f5ea6e47177ca7930968/2019-04-9-IDS-center-airwrench.wav",
+   "dest": "downloads/metameta_fx/2019-04-9-IDS-center-airwrench.wav",
+   "sha256": "d0b241e95e60eef88220d296ef2676810df3f7f48ba0301df701c63e7551c0a4",
+   "credit": "meta-meta/ImpulseResponses: an air wrench (compressed-air bursts) in the IDS Center atrium",
+   "licence": "Free use in films incl. commercial, no attribution required; raw files may not be redistributed as a collection (LICENSE.MD)"
+  },
+  {
+   "id": "fx_2019-07-04--firework-sizzle",
+   "url": "https://media.githubusercontent.com/media/meta-meta/ImpulseResponses/f0e0cc8b33d1bb423208f5ea6e47177ca7930968/2019-07-04--Firework-sizzle.wav",
+   "dest": "downloads/metameta_fx/2019-07-04--Firework-sizzle.wav",
+   "sha256": "3a2a164c6dd240a344b2177df8727458808dbfcff01b5e3c81ddf82d7a08ae72",
+   "credit": "meta-meta/ImpulseResponses: a firework fountain's sizzle",
+   "licence": "Free use in films incl. commercial, no attribution required; raw files may not be redistributed as a collection (LICENSE.MD)"
+  },
+  {
+   "id": "fx_09-psha-ah-vooh",
+   "url": "https://media.githubusercontent.com/media/meta-meta/ImpulseResponses/f0e0cc8b33d1bb423208f5ea6e47177ca7930968/2020-07-04-fireworks/09-psha-ah-vooh.wav",
+   "dest": "downloads/metameta_fx/09-psha-ah-vooh.wav",
+   "sha256": "d3c48a9960b80a6eed66e5547de2092b9f92d310f25ecefc0abeb67950b33571",
+   "credit": "meta-meta/ImpulseResponses: firework launch: rushing air",
+   "licence": "Free use in films incl. commercial, no attribution required; raw files may not be redistributed as a collection (LICENSE.MD)"
+  },
+  {
+   "id": "fx_20-pshah-ah-ah-ah-ah-ah-ah",
+   "url": "https://media.githubusercontent.com/media/meta-meta/ImpulseResponses/f0e0cc8b33d1bb423208f5ea6e47177ca7930968/2020-07-04-fireworks/20-pshah-ah-ah-ah-ah-ah-ah.wav",
+   "dest": "downloads/metameta_fx/20-pshah-ah-ah-ah-ah-ah-ah.wav",
+   "sha256": "4083a95930d278c290267e3d66409fabb19b99b3607363b6127263c11119f786",
+   "credit": "meta-meta/ImpulseResponses: firework launch: rushing air",
+   "licence": "Free use in films incl. commercial, no attribution required; raw files may not be redistributed as a collection (LICENSE.MD)"
+  },
+  {
+   "id": "fx_22-pshoow",
+   "url": "https://media.githubusercontent.com/media/meta-meta/ImpulseResponses/f0e0cc8b33d1bb423208f5ea6e47177ca7930968/2020-07-04-fireworks/22-pshoow.wav",
+   "dest": "downloads/metameta_fx/22-pshoow.wav",
+   "sha256": "4664fc997b35f9255045b56cd50dc80682f822b7d685a245113377f3dfc4650c",
+   "credit": "meta-meta/ImpulseResponses: firework launch: rushing air",
+   "licence": "Free use in films incl. commercial, no attribution required; raw files may not be redistributed as a collection (LICENSE.MD)"
+  }
+ ],
+ "optional_wikimedia": {
+  "_comment": "Work With Sounds recordings (CC BY 4.0) for lib/recordings.py SOURCE_SET='wws'. Not used for the delivered mix: Wikimedia rate-limited the build machine (HTTP 429). fetch_assets.py --wws fetches them.",
+  "files": [
+   {
+    "id": "commons_WWS_SteamlocomotiveS06-018Steamrelease",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/WWS_SteamlocomotiveS06-018Steamrelease.ogg",
+    "dest": "downloads/commons/WWS_SteamlocomotiveS06-018Steamrelease.ogg",
+    "sha1": "a9be7a890e0dcc2a363cf9d93f19ab8f32718597",
+    "page": "https://commons.wikimedia.org/wiki/File:WWS_SteamlocomotiveS06-018Steamrelease.ogg",
+    "credit": "WWS SteamlocomotiveS06-018Steamrelease.ogg - Work With Sounds / Technical Museum of Slovenia",
+    "licence": "CC BY 4.0",
+    "fallback_transcode": true
+   },
+   {
+    "id": "commons_WWS_SteamIron",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/WWS_SteamIron.ogg",
+    "dest": "downloads/commons/WWS_SteamIron.ogg",
+    "sha1": "fee040e632dccd13af6283d637b31c9eb0e49ed5",
+    "page": "https://commons.wikimedia.org/wiki/File:WWS_SteamIron.ogg",
+    "credit": "WWS SteamIron.ogg - Work With Sounds / Werstas",
+    "licence": "CC BY 4.0",
+    "fallback_transcode": true
+   },
+   {
+    "id": "commons_WWS_Smithyblacksmithbellows1",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/WWS_Smithyblacksmithbellows1.ogg",
+    "dest": "downloads/commons/WWS_Smithyblacksmithbellows1.ogg",
+    "sha1": "0b482e591300860e32db86df737ee8d474863a25",
+    "page": "https://commons.wikimedia.org/wiki/File:WWS_Smithyblacksmithbellows1.ogg",
+    "credit": "WWS Smithyblacksmithbellows1.ogg - Work With Sounds / Museum of Municipal Engineering",
+    "licence": "CC BY 4.0",
+    "fallback_transcode": true
+   },
+   {
+    "id": "commons_WWS_Creakingfloors",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/WWS_Creakingfloors.ogg",
+    "dest": "downloads/commons/WWS_Creakingfloors.ogg",
+    "sha1": "a9e0cfdf6d720ab2d670fb07dd91246f8750925b",
+    "page": "https://commons.wikimedia.org/wiki/File:WWS_Creakingfloors.ogg",
+    "credit": "WWS Creakingfloors.ogg - Work With Sounds / Torsten Nilsson",
+    "licence": "CC BY 4.0",
+    "fallback_transcode": true
+   },
+   {
+    "id": "commons_WWS_Woodenwagon",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a9/WWS_Woodenwagon.ogg",
+    "dest": "downloads/commons/WWS_Woodenwagon.ogg",
+    "sha1": "7fb52eb5a88ca36ee03ea8bd98b46f870b76bf5f",
+    "page": "https://commons.wikimedia.org/wiki/File:WWS_Woodenwagon.ogg",
+    "credit": "WWS Woodenwagon.ogg - Work With Sounds / Museum of Municipal Engineering",
+    "licence": "CC BY 4.0",
+    "fallback_transcode": true
+   },
+   {
+    "id": "commons_WWS_WindTurbine",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/00/WWS_WindTurbine.ogg",
+    "dest": "downloads/commons/WWS_WindTurbine.ogg",
+    "sha1": "0b8d4ed13bf9fb72aa1c9dbb18b80731ca684173",
+    "page": "https://commons.wikimedia.org/wiki/File:WWS_WindTurbine.ogg",
+    "credit": "WWS WindTurbine.ogg - Work With Sounds / Werstas",
+    "licence": "CC BY 4.0",
+    "fallback_transcode": true
+   },
+   {
+    "id": "commons_WWS_Bloweroftheforge",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/WWS_Bloweroftheforge.ogg",
+    "dest": "downloads/commons/WWS_Bloweroftheforge.ogg",
+    "sha1": "1d5e3225695ffe9c1c68ed69280506bfeb12fc83",
+    "page": "https://commons.wikimedia.org/wiki/File:WWS_Bloweroftheforge.ogg",
+    "credit": "WWS Bloweroftheforge.ogg - Work With Sounds / La Fonderie",
+    "licence": "CC BY 4.0",
+    "fallback_transcode": true
+   }
+  ]
+ }
+}

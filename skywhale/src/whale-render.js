@@ -342,7 +342,7 @@
       float ff = dot(n2, normalize(fdv.xy + 1e-6));
       float flit = aastep(0.25, fl) * uFlash.w;
       col = mix(col, base*uFlashCol*0.9, flit*0.55);
-      float frim = (1.0 - smoothstep(uInkW + 5.0, uInkW + 6.0, dpx)) * aastep(0.1, ff) * uFlash.w;
+      float frim = (1.0 - smoothstep(uInkW + 8.0, uInkW + 9.0, dpx)) * aastep(0.0, ff) * uFlash.w;
       col = mix(col, uFlashCol, frim);
     }
 
@@ -721,20 +721,33 @@
     }
 
     // ---------- fluke
-    function flukeGeometry(pose, t) {
+    function flukeGeometry(pose, t, cam) {
       const w = pose.whale, d = pose.d, L = d.L;
       const i = pose.NS - 1;
       const C = pose.C[i], T = pose.T[i], U = pose.U[i], Rt = pose.R[i];
       const ph = TAU * w.swimPhase(t) + w.phase;
       // fluke pitch leads the heave by ~90 deg (angle of attack), plus body slope
       const pitch = 0.42 * Math.cos(ph - TAU / 1.15) * Math.min(1, w.ampAt(t) / Math.max(1e-6, w.waveAmp));
-      const Tf = v3.rot(T, Rt, pitch), Uf = v3.rot(U, Rt, pitch);
+      let Tf = v3.rot(T, Rt, pitch), Uf = v3.rot(U, Rt, pitch), RtF = Rt;
+      // animator's cheat: roll the fluke toward the camera so it never reads as a needle. One-sided
+      // (always favours the surface on the camera's side of the body), so it stays continuous.
+      if (cam && !cam.mirrored) {
+        const V = v3.norm(v3.sub(cam.pos, C));
+        const s0 = v3.dot(U, V) >= 0 ? 1 : -1;
+        const k = v3.dot(Uf, V) * s0, minK = Math.sin(26 * Math.PI / 180);
+        if (k < minK) {
+          const want = Math.asin(minK) - Math.asin(clamp(k, -1, 1));
+          const dir = v3.dot(v3.cross(Tf, Uf), V) * s0 >= 0 ? 1 : -1;
+          Uf = v3.rot(Uf, Tf, want * dir); RtF = v3.rot(Rt, Tf, want * dir);
+        }
+      }
       const zt = 0.155 * L * d.flukeScale;
       const xmax = 0.78 * zt;
       const NX = 18, NZ = 30;
       const verts = [];
       const vel = -Math.sin(ph - TAU / 1.15);
       const P = (x, z) => {
+        const Rt = RtF;
         const a = Math.abs(z) / zt;
         // spanwise flex (tips lag) and chordwise flex
         const flex = (0.10 * a * a + 0.04 * Math.pow(x / xmax, 2)) * zt * vel * 0.6;
@@ -835,13 +848,13 @@
       sailData.set(fins[0], 0); sailData.set(fins[1], fins[0].length);
       meshes.sail.setData(sailData);
       progs.sail.use(common).set(du).set({ uScallop: 0.07 });
-      if (opts.a2c) gl.enable(gl.SAMPLE_ALPHA_TO_COVERAGE);
+      if (opts.a2c) G.blend('alpha');
       meshes.sail.draw();
       // fluke
-      meshes.fluke.setData(flukeGeometry(pose, t));
+      meshes.fluke.setData(flukeGeometry(pose, t, cam));
       progs.fluke.use(common).set(du);
       meshes.fluke.draw();
-      if (opts.a2c) gl.disable(gl.SAMPLE_ALPHA_TO_COVERAGE);
+      if (opts.a2c) G.blend(null);
       // garden (sprites, pine, mast, rigging, pennants)
       let gdata = null;
       if (opts.garden) { gdata = opts.garden.build(pose, t, opts.tubeCam || cam); tubes.push(...gdata.tubes); }
@@ -851,9 +864,9 @@
       if (tv.length) {
         meshes.tube.setData(tv);
         progs.tube.use(common);
-        if (opts.a2c) gl.enable(gl.SAMPLE_ALPHA_TO_COVERAGE);
+        if (opts.a2c) G.blend('alpha');
         meshes.tube.draw();
-        if (opts.a2c) gl.disable(gl.SAMPLE_ALPHA_TO_COVERAGE);
+        if (opts.a2c) G.blend(null);
       }
       if (gdata) {
         opts.garden.drawRibbons(gdata, common, d.pal);

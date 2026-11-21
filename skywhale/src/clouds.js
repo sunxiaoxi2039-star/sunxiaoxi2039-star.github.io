@@ -94,7 +94,7 @@
       bool front = cdm < 1e8 && vd < cdm;
       if (uMode == 1 && front) discard;
       if (uMode == 2 && !front) discard;          // (front pass restores vapour over the whale's dilated footprint only)
-      if (front) a *= smoothstep(0.0, vX.z*0.55, min(cd, cdm + vX.z*0.2) - vd);
+      if (front && cd < 1e8) a *= smoothstep(0.0, vX.z*0.22, cd - vd);
     }
     col = mix(col, uCloudFog, vX.x);
     if (a < 0.003) discard;
@@ -208,14 +208,14 @@
         const sd = hh(5) * 100;
         const add = (p, r, ao, mk, extra) => puffs.push(Object.assign({ p, r, mn: v3.norm(v3.lerp(v3.norm(v3.sub(p, [core[0], core[1] - Rh * 0.6, core[2]])), [0, 1, 0], 0.35)), mk, ao, al: 1, seed: sd + puffs.length * 0.731, soft: 0, rest: p.slice(), layer: 0, lvl: level, st: flat, ax: [0, 1, 0] }, extra || {}));
         add(core, Rh, aoBase * 0.92, 0.65);
-        const nl = level === 0 ? 3 + Math.floor(hh(6) * 4) : level < 3 ? 2 : 0;
+        const nl = Math.round((level === 0 ? 3 + Math.floor(hh(6) * 4) : level < 3 ? 2 : 0) * (o.lobes === undefined ? 1 : o.lobes));
         for (let k = 0; k < nl; k++) {
           const a = hh(10 + k) * Math.PI * 2, el = 0.35 + 0.5 * hh(20 + k);
           const rl = Rh * (0.42 + 0.25 * hh(30 + k));
           const dir = [Math.cos(a) * Math.cos(el), Math.sin(el), Math.sin(a) * Math.cos(el)];
           add(v3.madd(core, dir, Rh * 0.72), rl, Math.min(1, aoBase + 0.12 + 0.1 * dir[1]), 0.55);
         }
-        if (level === 0) for (let k = 0; k < 2; k++) {
+        if (level === 0 && o.detail !== false) for (let k = 0; k < 2; k++) {
           const a = hh(40 + k) * Math.PI * 2;
           const dir = [Math.cos(a) * 0.5, 0.85, Math.sin(a) * 0.5];
           add(v3.madd(core, dir, Rh * 0.95), Rh * (0.22 + 0.12 * hh(50 + k)), Math.min(1, aoBase + 0.2), 0.45);

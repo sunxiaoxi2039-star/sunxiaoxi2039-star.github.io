@@ -10,9 +10,9 @@
   // ----------------------------------------------------------------------------------------
   const BASE_PROFILE = {
     // dorsal line (top of section), ventral line, half-width — humpback-like: big head, deep belly
-    top: [[0, 0.016], [0.03, 0.046], [0.08, 0.069], [0.14, 0.086], [0.22, 0.101], [0.32, 0.112], [0.42, 0.112], [0.52, 0.103], [0.62, 0.086], [0.72, 0.064], [0.82, 0.043], [0.91, 0.028], [1.0, 0.020]],
-    bot: [[0, -0.004], [0.03, -0.050], [0.08, -0.090], [0.15, -0.119], [0.23, -0.131], [0.32, -0.129], [0.42, -0.117], [0.52, -0.099], [0.62, -0.076], [0.72, -0.053], [0.82, -0.033], [0.91, -0.021], [1.0, -0.015]],
-    wid: [[0, 0.012], [0.03, 0.056], [0.08, 0.089], [0.15, 0.112], [0.23, 0.126], [0.32, 0.130], [0.42, 0.124], [0.52, 0.108], [0.62, 0.084], [0.72, 0.057], [0.82, 0.032], [0.91, 0.019], [1.0, 0.013]],
+    top: [[0, 0.016], [0.03, 0.046], [0.08, 0.069], [0.14, 0.086], [0.22, 0.101], [0.32, 0.112], [0.42, 0.112], [0.52, 0.103], [0.62, 0.086], [0.72, 0.068], [0.82, 0.050], [0.91, 0.037], [1.0, 0.030]],
+    bot: [[0, -0.004], [0.03, -0.050], [0.08, -0.090], [0.15, -0.119], [0.23, -0.131], [0.32, -0.129], [0.42, -0.117], [0.52, -0.099], [0.62, -0.076], [0.72, -0.056], [0.82, -0.039], [0.91, -0.028], [1.0, -0.022]],
+    wid: [[0, 0.012], [0.03, 0.056], [0.08, 0.089], [0.15, 0.112], [0.23, 0.126], [0.32, 0.130], [0.42, 0.124], [0.52, 0.108], [0.62, 0.084], [0.72, 0.058], [0.82, 0.035], [0.91, 0.023], [1.0, 0.017]],
   };
   const TIP_Y = 0.006;     // vertical position of the snout tip relative to the spine axis
   const CAP = 0.065;       // length of the rounded nose cap (fraction of L)
@@ -54,27 +54,27 @@
     old: design({ name: 'Old Whale', L: 108, seed: 11, patches: 7, rust: 1.0 }),
     drover: design({
       name: 'Drover', L: 120, girth: 1.17, finScale: 1.45, headScale: 1.04, seed: 23, rust: 0.7, patches: 3, swimPeriod: 6.8,
-      pal: Object.assign({}, PAL_OLD, { hull: ['#3b7d86', '#447f8f', '#336d78', '#4f8f96', '#2b6170', '#5f9ea4'], stripe: '#a8473a', pennants: ['#b06a50', '#cfb57a'] }),
+      pal: Object.assign({}, PAL_OLD, { hull: ['#2f5f86', '#386a92', '#2a557a', '#41739a', '#244b6c', '#4d80a4'], stripe: '#c9a23c', sail: '#e6d9b4', pennants: ['#c9a23c', '#cfb57a'] }),
       garden: { density: 0.8, pine: 0.0, mast: true, mastTall: 1.55, shrubs: 1.3, flowers: 0.6, pennants: 2 },
     }),
     pip: design({
       name: 'Pip', L: 46, girth: 1.14, headScale: 1.14, finScale: 0.95, seed: 37, rust: 0.15, patches: 0, chips: 0.3, swimPeriod: 3.2, waveAmp: 0.07,
-      pal: Object.assign({}, PAL_OLD, { hull: ['#5aa79a', '#64b0a0', '#4f9a90', '#6fb9a6', '#4a9088', '#7cc2ad'], pennants: ['#d77a5e'] }),
+      pal: Object.assign({}, PAL_OLD, { hull: ['#6db8a0', '#78c2a8', '#62ad96', '#86ccb2', '#5aa38e', '#93d4bb'], stripe: '#e07a5f', pennants: ['#e07a5f'] }),
       garden: { density: 0.45, pine: 0.0, sapling: true, mast: false, shrubs: 0.4, flowers: 1.4, pennants: 1 },
     }),
     elder: design({
       name: 'Elder', L: 114, girth: 1.06, headScale: 1.05, seed: 51, rust: 1.6, patches: 9, chips: 1.6, swimPeriod: 7.4,
-      pal: Object.assign({}, PAL_OLD, { hull: ['#4f7f7a', '#5a8a80', '#456f6e', '#668f84', '#3d6566', '#71988a'], moss: '#5f8f3a', pennants: ['#a87868', '#bfae88'] }),
+      pal: Object.assign({}, PAL_OLD, { hull: ['#66756a', '#717f72', '#5a6a60', '#7c887a', '#505f57', '#88927f'], moss: '#5f8f3a', stripe: '#8a5a48', sail: '#ddd0b0', pennants: ['#a87868', '#bfae88'] }),
       garden: { density: 1.7, pine: 1.75, pineS: 0.40, mast: true, shrubs: 1.6, flowers: 1.0, pennants: 2 },
     }),
     mend: design({
       name: 'Mend', L: 92, girth: 1.0, seed: 67, rust: 0.8, patches: 16, swimPeriod: 5.6,
-      pal: Object.assign({}, PAL_OLD, { hull: ['#4a9590', '#56a094', '#3f8580', '#62a99a', '#38787a', '#73b4a2'], patch: ['#b0875a', '#5d86a8', '#8aa86a', '#c09060', '#7a6a9a'], pennants: ['#d0a070', '#7f9cb8'] }),
+      pal: Object.assign({}, PAL_OLD, { hull: ['#5a8f86', '#66998c', '#4f837c', '#73a394', '#467671', '#80ad9c'], patch: ['#c0905a', '#5d86a8', '#a8b86a', '#d0a070', '#8a6aaa'], stripe: '#6f8fc0', pennants: ['#d0a070', '#7f9cb8'] }),
       garden: { density: 1.0, pine: 0.0, mast: true, shrubs: 1.0, flowers: 1.6, pennants: 2 },
     }),
     swift: design({
       name: 'Swift', L: 98, girth: 0.76, lean: 0.88, finScale: 0.85, flukeScale: 1.28, seed: 79, rust: 0.5, patches: 2, swimPeriod: 4.2, waveAmp: 0.065, surge: 0.14,
-      pal: Object.assign({}, PAL_OLD, { hull: ['#3f8f94', '#479aa0', '#357f86', '#55a7aa', '#2e7079', '#63b2b0'], pennants: ['#c25a4a', '#e0c98e', '#4d6a96'] }),
+      pal: Object.assign({}, PAL_OLD, { hull: ['#2f9aa6', '#38a6b0', '#288a96', '#46b2ba', '#227a86', '#55bec4'], stripe: '#f0f0e6', sail: '#e9eef0', pennants: ['#f0f0e6', '#e0c98e', '#4d6a96'] }),
       garden: { density: 0.6, pine: 0.0, mast: true, shrubs: 0.6, flowers: 0.8, pennants: 3 },
     }),
   };
@@ -130,6 +130,7 @@
       this.mouth = o.mouth || null;
       this.wind = o.wind || [0, 0, 0];
       this.pennantK = o.pennantK || null;
+      this.mastRaise = o.mastRaise || null;
       this.tStart = o.tStart || 0;
       // integrate arc length with fixed steps (deterministic), cache table
       this._dt = 1 / 480;

@@ -171,16 +171,18 @@
       let I = 0, bi = -1;
       S.strikes.forEach((s, i) => { const v = flashAt(tl, [s]); if (v > I) { I = v; bi = i; } });
       const bolt = bi >= 0 ? S.bolts[bi] : null;
-      const look = Object.assign({}, STORM_LOOK, bolt ? { flashPos: bolt.pos, flashI: I * 1.1, flashR: 300 } : {});
-      const light = Object.assign({}, STORM_LIGHT, bolt ? { flash: [bolt.pos[0], bolt.pos[1], bolt.pos[2], I] } : {});
+      const look = Object.assign({}, STORM_LOOK, bolt ? { flashPos: bolt.pos, flashI: I * 1.8, flashR: 650 } : {});
+      // the whale is struck by the light: hard white rim, lit silhouette, darker kage contrast
+      const light = Object.assign({}, STORM_LIGHT, bolt ? { flash: [bolt.pos[0], bolt.pos[1], bolt.pos[2], Math.min(1, I * 1.3)], key: SW.mixc(STORM_LIGHT.key, [0.62, 0.66, 0.78], I * 0.6) } : {});
+      const sky = bolt ? Object.assign({}, STORM_SKY, { zen: SW.mixc(STORM_SKY.zen, [0.75, 0.8, 0.95], I * 0.5), up: SW.mixc(STORM_SKY.up, [0.82, 0.86, 1.0], I * 0.6), hor: SW.mixc(STORM_SKY.hor, [0.88, 0.9, 1.0], I * 0.6) }) : STORM_SKY;
       const near = S.near.map((q) => Object.assign({}, q, { p: [q.p[0] + tl * 9, q.p[1], q.p[2]] }));
       F.stage(frame, {
-        time: tl, cam, light, sky: STORM_SKY,
+        time: tl, cam, light, sky,
         whales: [{ whale: w, t: tl }],
-        bg: (c) => { if (bolt && I > 0.3 && tl - S.strikes[bi].t < 0.25) drawBolt(F, c, bolt, I); },
         clouds: [{ puffs: S.clouds, look }, { puffs: near, look: Object.assign({}, look, { fogDen: 1 / 4000 }) }],
-        fx: () => rain(F, t, { amount: 1, alpha: 1 + I * 0.8, panX: -tl * 40 }),
-        grade: { bloom: 0.25 + I * 0.3, diffuse: 0.15, wrap: 0.18, grain: 0.022, density: 0.2, vignette: 0.24, thresh: 0.8, sat: 0.78, exposure: 1 + I * 0.15 },
+        preChar: (c) => { if (bolt && I > 0.25 && tl - S.strikes[bi].t < 0.3) drawBolt(F, c, bolt, Math.min(1, I * 1.2)); },
+        fx: () => rain(F, t, { amount: 1, alpha: 1 + I * 1.2, panX: -tl * 40 }),
+        grade: { bloom: 0.25 + I * 0.5, diffuse: 0.15 + I * 0.2, wrap: 0.18 + I * 0.4, grain: 0.022, density: 0.2, vignette: 0.24 * (1 - I * 0.6), thresh: 0.8 - I * 0.2, sat: 0.78 - I * 0.25, exposure: 1 + I * 0.35, tint: SW.mixc([1, 1, 1], [0.92, 0.97, 1.08], I) },
       });
     },
   };
@@ -205,15 +207,18 @@
         S.sim = SW.CloudSim(puffs.filter((q) => q.rest), { t0: 0, dt: 1 / 144, k: { spring: 0.04, springY: 0.05, drag: 0.9, flow: 1.3, swirl: 0.8, friction: 0.6, stretchK: 0.10, noise: 0.5 } });
       };
       S.mkSim();
+      S.drape = SW.Drape(S.whale, { surfY: (x, z) => SW.CloudGen.seaHeight(x, z, S.seaOpts) + 14, t0: 0, t1: 6.5, s0: 0.03, s1: 0.8, ds: 0.03, perStation: 9, slide: 1.2, life: 2.4, r: 6.5, seed: 9, alpha: 0.95 });
       const wm = (t) => S.whale.pose(t, 40).C[16];
-      S.camPos = smoothKeys([[0, [B[0] - 40, 58, B[2] + 200]], [1.7, [B[0] - 36, 62, B[2] + 190]], [3.5, v3.add(wm(3.5), [-60, 22, 205])], [6.5, v3.add(wm(6.5), [-80, 18, 225])]]);
-      S.camTgt = smoothKeys([[0, [B[0] - 10, 6, B[2]]], [1.7, [B[0] + 0, 22, B[2]]], [3.5, v3.add(wm(3.5), [-25, 6, 0])], [6.5, v3.add(wm(6.5), [-45, 14, 0])]]);
+      // low and close, looking up: the whale tears out of the storm top and lifts clear into the light
+      const lift = (p, ymin) => [p[0], Math.max(p[1], ymin), p[2]];
+      S.camPos = smoothKeys([[0, v3.add(B, [-90, 64, 125])], [1.7, v3.add(B, [-88, 66, 120])], [3.5, lift(v3.add(wm(3.5), [-80, 2, 155]), 72)], [6.5, lift(v3.add(wm(6.5), [-100, -2, 190]), 86)]]);
+      S.camTgt = smoothKeys([[0, v3.add(B, [5, 14, 0])], [1.7, v3.add(B, [15, 40, 0])], [3.5, v3.add(wm(3.5), [0, 8, 0])], [6.5, v3.add(wm(6.5), [10, 14, 0])]]);
     },
     frame(F, S, tl, t, frame) {
       if (S.sim.t > tl + 1e-6) S.mkSim();
       const w = S.whale;
       S.sim.advance(tl, (tt) => [w.pose(tt, 48)]);
-      const cam = SW.Camera({ pos: S.camPos(tl), target: S.camTgt(tl), fov: 40, near: 1, far: 30000 });
+      const cam = SW.Camera({ pos: S.camPos(tl), target: S.camTgt(tl), fov: 44, near: 1, far: 30000 });
       const sun = S.sun;
       const out = smoothstep(1.2, 2.4, tl);      // relief: light floods in as the whale clears the top
       const sky = {
@@ -223,15 +228,15 @@
         rainbow: [0.42 * smoothstep(2.4, 4.4, tl), 0.733, 0.03, -0.02], rbDir: v3.scale(sun, -1), brush: 0.03,
       };
       const look = {
-        lit: hex('#fff0da'), mid: hex('#eac6cf'), shad: hex('#9888bd'), deep: hex('#564a80'), rim: hex('#ffffff'),
-        bands: [0.60, 0.46, 0.035, 0.26], edge: [0.02, 0.07, 0.35, 0.14], fog: hex('#ddd3e2'), fogDen: 1 / 9000, fogStart: 400,
+        lit: hex('#ffeed6'), mid: hex('#e0bccd'), shad: hex('#8b7fb4'), deep: hex('#3f3c66'), rim: hex('#ffffff'),
+        bands: [0.64, 0.49, 0.035, 0.30], edge: [0.02, 0.07, 0.35, 0.16], fog: hex('#d6cde0'), fogDen: 1 / 9000, fogStart: 400,
       };
       const light = { sunDir: sun, key: SW.mixc(hex('#aeb7c8'), hex('#fff6e8'), out), shade: SW.mixc(hex('#6a7591'), hex('#a7a4d2'), out), rimCol: hex('#fffbe8'), rimAmt: 0.8,
         ink: hex('#22232c'), bounce: hex('#efe3f2'), bounceAmt: 0.6, fogCol: hex('#e2dbe6'), fogDen: 1 / 5000, fogStart: 100 };
       F.stage(frame, {
         time: tl, cam, light, sky,
         whales: [{ whale: w, t: tl }],
-        clouds: [{ puffs: S.puffs, look }],
+        clouds: [{ puffs: S.puffs.concat(S.drape(tl, w.pose(tl))), look }],
         fx: () => { if (tl < 1.6) rain(F, t, { amount: 1 - smoothstep(0.6, 1.6, tl), alpha: 0.8 }); },
         grade: { bloom: 0.38, diffuse: 0.3, wrap: 0.3, grain: 0.017, density: 0.12, vignette: 0.12, thresh: 0.75, exposure: lerp(0.8, 1.0, out) },
       });

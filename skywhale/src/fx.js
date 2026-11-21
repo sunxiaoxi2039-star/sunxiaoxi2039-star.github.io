@@ -36,6 +36,94 @@
     return out;
   }
 
+  // ------------------------------------------------------------------ drape: vapour sheets sliding off the hull
+  // As each body station crosses the cloud surface (snout first), puffs ride on its back, slide
+  // down the flanks toward the tail, detach, stretch into strands and fray away. Deterministic.
+  function Drape(whale, o) {
+    const L = whale.d.L, d = whale.d;
+    const surfY = o.surfY;             // function(x,z) -> cloud-top height
+    const T0 = o.t0 || 0, T1 = o.t1 || 30;
+    const r = rng(o.seed || 1);
+    const items = [];
+    const stations = [];
+    for (let s = o.s0 || 0.04; s <= (o.s1 || 0.8); s += o.ds || 0.035) stations.push(s);
+    // crossing time per station: when the top of the section rises through the surface
+    const cross = stations.map((s) => {
+      const topOff = d.prof.top(s) * L * SW.WHALE.capf(s);
+      let prev = null;
+      for (let t = T0; t < T1; t += 1 / 24) {
+        const p = whale.path.at(whale.headDist(t) - s * L);
+        const above = p[1] + topOff - surfY(p[0], p[2]);
+        if (above > -(o.early || 2)) {
+          if (prev === null) return t;
+          return t;
+        }
+        prev = t;
+      }
+      return null;
+    });
+    stations.forEach((s, k) => {
+      const tc = cross[k];
+      if (tc === null) return;
+      const n = o.perStation || 7;
+      for (let i = 0; i < n; i++) {
+        const side = i % 2 ? 1 : -1;
+        const phi0 = Math.PI / 2 + side * (0.08 + 0.75 * r() * r());
+        items.push({
+          s, tc: tc + r() * 0.25, side, phi0, ds: 0.02 + 0.05 * r(),
+          slide: (o.slide || 1.8) * (0.7 + 0.6 * r()), sweep: 1.0 + 0.6 * r(),
+          life: (o.life || 2.6) * (0.7 + 0.6 * r()), r: (o.r || 5.5) * (L / 108) * (0.55 + 0.7 * r()),
+          seed: r() * 100, fall: 2 + 4 * r(), out: 2 + 5 * r(),
+        });
+      }
+    });
+    const cache = new Map();
+    function detach(it) {
+      if (cache.has(it)) return cache.get(it);
+      const td = it.tc + it.slide;
+      const pose = whale.pose(td, 48);
+      const phi = it.phi0 + it.side * it.sweep;
+      const sf = SW.WHALE.surf(pose, Math.min(0.98, it.s + it.ds), phi, it.r * 0.25);
+      const v = whale.velocity(td);
+      const res = { p: sf.p, n: sf.n, v };
+      cache.set(it, res);
+      return res;
+    }
+    return function (t, pose) {
+      const out = [];
+      for (const it of items) {
+        if (t < it.tc - 0.15) continue;
+        const a = t - it.tc;
+        if (a > it.slide + it.life) continue;
+        let p, st = 1, ax = [1, 0, 0], al = (o.alpha || 0.95) * smoothstep(-0.15, 0.25, a), rad = it.r, soft = 0.05;
+        if (a < it.slide) {
+          const u = a / it.slide;
+          const phi = it.phi0 + it.side * it.sweep * Math.pow(u, 1.6);
+          const sf = SW.WHALE.surf(pose, Math.min(0.98, it.s + it.ds * u), phi, rad * 0.25);
+          p = sf.p;
+          ax = sf.fr.T; st = 1 + 0.6 * u;
+        } else {
+          const D = detach(it), e = a - it.slide;
+          const k = 1.2;
+          const drift = v3.scale(D.v, (1 - Math.exp(-k * e)) / k * 0.55);
+          p = v3.add(D.p, drift);
+          p = v3.madd(p, D.n, it.out * (1 - Math.exp(-1.5 * e)));
+          p[1] -= it.fall * e * e * 0.5;
+          const rel = v3.sub(v3.scale(D.v, Math.exp(-k * e) * 0.55), D.v);
+          const rl = v3.len(rel) || 1;
+          ax = v3.scale(rel, 1 / rl);
+          st = 1.6 + 1.6 * (1 - Math.exp(-1.2 * e));
+          rad = it.r * (1 - 0.35 * Math.min(1, e / it.life));
+          al *= 1 - smoothstep(it.life * 0.3, it.life, e);
+          soft = 0.08 + 0.3 * Math.min(1, e / it.life);
+        }
+        out.push({ p, r: rad, ax, st, mn: [0, 1, 0], mk: 0.6, ao: 0.92, al, seed: it.seed, soft });
+      }
+      return out;
+    };
+  }
+  SW.Drape = Drape;
+
   // ------------------------------------------------------------------ 2D overlay effects (rain, bolt, glints)
   const LINE_VS = `
   in vec2 aPos; in vec4 aCol;

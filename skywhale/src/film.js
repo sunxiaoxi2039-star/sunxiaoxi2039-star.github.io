@@ -32,17 +32,6 @@
       P.beginPre();
       const preU = P.sceneUniforms(cam, light, 2);
       for (const it of items) F.WR.draw(it.whale, it.t, cam, preU, { pose: it.pose, garden: F.GD, noGlow: true });
-      // 1b. planar reflection of the characters (mirrored camera), for water
-      if (spec.reflect && items.length) {
-        const rc = SW.reflectCamera(cam, spec.reflect.y || 0);
-        P.beginChar();
-        for (const it of items) {
-          const lt = Object.assign({}, light, it.light || {}, { shadowOn: false });
-          F.WR.draw(it.whale, it.t, rc, P.sceneUniforms(rc, lt, 0), { pose: it.pose, a2c: true, garden: F.GD, noGlow: true, tubeCam: rc });
-        }
-        P.resolveReflection();
-        spec.reflTex = P.refl.colors[0];
-      }
       // 2. characters: shadow + MSAA colour pass into their own transparent target
       let rect = null, maxDepth = 0;
       if (items.length) {
@@ -67,6 +56,18 @@
           if (b) { rect = rect ? [Math.min(rect[0], b[0]), Math.min(rect[1], b[1]), Math.max(rect[2], b[2]), Math.max(rect[3], b[3])] : b; maxDepth = Math.max(maxDepth, b[4]); }
         }
       }
+      if (rect) P.resolveChar(rect);
+      // 2b. planar reflection of the characters (mirrored camera), for water
+      if (spec.reflect && items.length) {
+        const rc = SW.reflectCamera(cam, spec.reflect.y || 0);
+        P.beginReflection();
+        for (const it of items) {
+          const lt = Object.assign({}, light, it.light || {}, { shadowOn: false });
+          F.WR.draw(it.whale, it.t, rc, P.sceneUniforms(rc, lt, 0), { pose: it.pose, a2c: true, garden: F.GD, noGlow: true, tubeCam: rc });
+        }
+        P.resolveReflection();
+        spec.reflTex = P.refl.colors[0];
+      }
       // 3. main pass: sky, background, vapour behind, characters, vapour in front, effects
       P.beginMain();
       if (spec.sky) F.SKY.draw(cam, spec.sky, spec.time);
@@ -82,6 +83,7 @@
         for (const c of spec.clouds) F.CR.draw(c.puffs, cam, su, c.look, Object.assign({ charDepth: null, mode: 0, charScale: cs }, c.opts || {}));
         P.compositeCloud(false);
       }
+      if (spec.preChar) spec.preChar(cam, light);
       if (rect) P.compositeChar(rect);
       for (const it of items) F.WR.draw(it.whale, it.t, cam, it.su, { pose: it.pose, glowOnly: true, glowScale: it.glowScale });
       if (spec.mid) spec.mid(cam, light);
