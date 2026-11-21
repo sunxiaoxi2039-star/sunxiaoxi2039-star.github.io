@@ -49,7 +49,7 @@
       const cam = SW.Camera({ pos: S.camPos(tl), target: S.camTgt(tl), fov: 33, near: 5, far: 20000 });
       F.stage(frame, {
         time: tl, cam, light: Object.assign({}, LIGHT, { fogDen: 1 / 14000 }), sky: SKY,
-        whales: [{ whale: S.whale, t: tl }],
+        whales: [{ whale: S.whale, t: tl, shadow: false }],
         bg: (c) => S.ground.draw(c, { center: [0, 0, -300], fog: hex('#bfd2df'), fogDen: 1 / 5200, far: hex('#bfd2df'), shadows: S.shadows }),
         clouds: [{ puffs: S.clouds, look: Object.assign({}, LOOK, { lit: hex('#f3f0e8'), mid: hex('#dfe2e8'), shad: hex('#9eadc8'), deep: hex('#8494b4'), fog: hex('#bccfdb'), fogDen: 1 / 1500, fogStart: 0, edge: [0.04, 0.10, 0.1, 0.05], bands: [0.66, 0.5, 0.04, 0.2] }) }],
         grade: GRADE,
@@ -118,7 +118,7 @@
       const sun = SW.dirFromAzEl(-40, 42);
       F.stage(frame, {
         time: tl, cam, light: Object.assign({}, LIGHT, { sunDir: sun }), sky: Object.assign({}, SKY, { sunDir: sun }),
-        whales: [{ whale: w, t: tl }],
+        whales: [{ whale: w, t: tl, shadow: false }],
         bg: (c) => S.ground.draw(c, { center: [0, 0, -600], fog: hex('#c9d9e3'), fogDen: 1 / 3000, far: hex('#c9d9e3') }),
         clouds: [{ puffs: S.lower, look: Object.assign({}, LOOK, { fogDen: 1 / 3000 }) }, { puffs: S.bank, look: Object.assign({}, LOOK, { lit: hex('#fff7e6'), mid: hex('#f1ece4'), edge: [0.02, 0.06, 0.2, 0.12] }) }],
         grade: GRADE,

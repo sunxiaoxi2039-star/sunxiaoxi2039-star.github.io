@@ -133,7 +133,7 @@
       const light = Object.assign({}, STORM_LIGHT, { key: SW.mixc(hex('#e8e8e4'), STORM_LIGHT.key, k), shade: SW.mixc(hex('#9aa5c4'), STORM_LIGHT.shade, k), fogCol: look.fog, fogDen: lerp(1 / 6000, 1 / 3200, k) });
       F.stage(frame, {
         time: tl, cam, light, sky,
-        whales: [{ whale: S.whale, t: tl }],
+        whales: [{ whale: S.whale, t: tl, shadow: false }],
         clouds: [{ puffs: S.clouds, look }],
         fx: () => rain(F, t, { amount: smoothstep(1.0, 2.2, tl), alpha: 0.9 }),
         grade: { bloom: 0.15, diffuse: 0.12, wrap: 0.18, grain: 0.02, density: 0.18, vignette: 0.22, thresh: 0.85, sat: lerp(0.95, 0.8, k) },
@@ -178,7 +178,7 @@
       const near = S.near.map((q) => Object.assign({}, q, { p: [q.p[0] + tl * 9, q.p[1], q.p[2]] }));
       F.stage(frame, {
         time: tl, cam, light, sky,
-        whales: [{ whale: w, t: tl }],
+        whales: [{ whale: w, t: tl, shadow: false }],
         clouds: [{ puffs: S.clouds, look }, { puffs: near, look: Object.assign({}, look, { fogDen: 1 / 4000 }) }],
         preChar: (c) => { if (bolt && I > 0.25 && tl - S.strikes[bi].t < 0.3) drawBolt(F, c, bolt, Math.min(1, I * 1.2)); },
         fx: () => rain(F, t, { amount: 1, alpha: 1 + I * 1.2, panX: -tl * 40 }),

@@ -1,0 +1,58 @@
+# SKY WHALE: production notes
+
+How the film was made, in the order it was made, and what each review found.
+
+## 1. Design first: the model sheet
+
+The Old Whale was locked before any shot was staged (`docs/model-sheet.png`, rendered by
+`dev.html` → `SWAPI.modelSheet`). Key decisions:
+
+- **Silhouette:** a humpback's big head, deep throat and long fluke, chunkier than an airship.
+  The body is about 1/4 as tall as it is long, so it reads as a whale before it reads as a
+  machine.
+- **Creature and vessel grown together:** riveted strakes run nose to tail like a ship's
+  plating; the cream throat pleats are planking; the tubercles on the rostrum are bolt heads;
+  the eye is a brass porthole whose glow carries the emotion; the blowholes are brass vents.
+- **Garden:** a moss bed with drips down the flanks, sod clumps, shrubs gathered near the pine,
+  flowers, grass, one wind-bent cloud-pruned pine, a mast with a yard, rigging and three long
+  faded pennants.
+- **Fins:** fan-shaped junk sails with wooden spars, cream cloth, two red stripes and a scalloped
+  trailing edge. They open on the downstroke and close on the recovery, like breath.
+- **The pod:** every whale comes from the same generator with its own proportions, palette,
+  fins, garden and wear. Drover is large, deep blue, with tall sails and a tall mast. Pip is
+  small with a big head and eye. Elder is grey-green with heavy rust and the biggest pine.
+  Mend is covered in patches. Swift is lean, with a long fluke and white stripes.
+
+## 2. Style frames, then motion tests
+
+Each movement was first developed as a handful of stills, then as half-second contact sheets
+(motion tests), then as a 1-fps preview of the whole film for continuity
+(`render.js --step 48 --w 960 --h 540`).
+
+## 3. Reviews and what they changed
+
+The renders were reviewed shot by shot, and an independent "fresh eyes" review was run over a
+set of full-resolution stills. The main findings and fixes:
+
+| Finding | Fix |
+| --- | --- |
+| A white ghost outline of a hidden whale drawn through clouds | Two causes: ringing from the bicubic upsample of the in-front vapour pass, and stale texels read right after MSAA resolves (a SwiftShader/ANGLE hazard). The in-front pass now uses bilinear upsampling with colour clamped to alpha, and every resolve is followed by a 1-px sync. |
+| The upright whale missing at dusk; only its reflection drawn | Same stale-read hazard. The reflection now has its own MSAA target. |
+| No cast shadows at all | The shadow pass sampled its own depth target (a feedback loop, so every draw was rejected). Fixed. |
+| Checkerboard dither on the fluke and sails | They now use blending instead of alpha-to-coverage. |
+| The fluke read as a needle from the side | An animator's cheat: the fluke rolls toward the camera (one-sided, so it stays continuous), and the tail stalk is thicker. |
+| Lightning didn't register | Bolts in 3D behind the whale, cloud interiors flashing over a wide radius, a hard white rim on the whale, sky and grade flaring for a few frames. |
+| Finale: whales seen nose-on as "teardrops", overlapping, moon cropped | Restaged: the family swims across the frame toward a moon in the upper right, spread in depth, with the Old Whale nearest. |
+| Sun disc darker than its glow; moon like a cookie | The sun disc is always brighter than its surround; the moon is cooler white with soft maria. |
+| The tiny dusk whale bleached grey | Darker key and no atmospheric haze on the whale, so it reads as a crisp silhouette on the sun road. |
+| Cloud sea "popcorn" | Built from cumulus heads of varied size with hierarchy, strata toward the horizon, cloud fog matched to the horizon haze, calmer lobes at night. Still the area with the most room to improve. |
+
+## 4. Known limitations
+
+- The cloud seas are the weakest part against a theatrical Ghibli standard: the puff
+  structure is still visible at close range, and the breakout reads as a solid pushing
+  through layered heads more than as a single sculpted mass.
+- The camera grammar is in place (one crane take, locked-off wides, a hard cut, a pull-back),
+  but some framings (the 2A aerial and the 3C burst) are wider and higher than ideal.
+- Rendering is CPU-only in this environment (SwiftShader), which limited how many full-rate
+  iterations each shot could get.

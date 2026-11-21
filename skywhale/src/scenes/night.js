@@ -41,7 +41,7 @@
     frame(F, S, tl, t, frame) {
       F.stage(frame, {
         time: t, cam: S.cam, light: LIGHT, sky: SKY,
-        whales: [{ whale: S.whale, t: tl, glowScale: 1.6 }],
+        whales: [{ whale: S.whale, t: tl, glowScale: 1.6, shadow: false }],
         clouds: [{ puffs: S.puffs, look: LOOK }],
         grade: GRADE,
       });
@@ -148,7 +148,7 @@
       const all = S.whales;
       S.sim.advance(tl, (tt) => all.filter((w) => tt > w.rise.t - 5 && tt < w.rise.t + 7).map((w) => w.pose(tt, 40)));
       const cam = SW.Camera({ pos: S.camPos(tl), target: S.camTgt(tl), fov: S.fov(tl), near: 2, far: 40000 });
-      const whales = [{ whale: S.old, t: tl, glowScale: 1.4 }].concat(all.map((w) => ({ whale: w, t: tl, shadow: false, glowScale: 1.6, glowAmt: 1.2 })));
+      const whales = [{ whale: S.old, t: tl, glowScale: 1.4, shadow: false }].concat(all.map((w) => ({ whale: w, t: tl, shadow: false, glowScale: 1.6, glowAmt: 1.2 })));
       F.stage(frame, {
         time: t, cam, light: LIGHT, sky: SKY,
         whales,

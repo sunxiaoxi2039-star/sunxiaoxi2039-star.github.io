@@ -23,13 +23,13 @@
     vec4 lp = uLightVP * vec4(p + n*0.35, 1.0);
     vec3 c = lp.xyz/lp.w*0.5+0.5;
     if (c.x<0.0||c.x>1.0||c.y<0.0||c.y>1.0||c.z>1.0) return 1.0;
-    vec2 ts = 1.0/vec2(textureSize(uShadow,0));
+    vec2 ts = 0.6/vec2(textureSize(uShadow,0));
     float sum = 0.0;
-    for (int i=-1;i<=1;i++) for (int j=-1;j<=1;j++){
-      float d = texture(uShadow, c.xy + vec2(i,j)*ts).r;
-      sum += (c.z - uShadowBias > d) ? 0.0 : 1.0;
-    }
-    return sum/9.0;
+    sum += (c.z - uShadowBias > texture(uShadow, c.xy + vec2(-ts.x,-ts.y)).r) ? 0.0 : 1.0;
+    sum += (c.z - uShadowBias > texture(uShadow, c.xy + vec2( ts.x,-ts.y)).r) ? 0.0 : 1.0;
+    sum += (c.z - uShadowBias > texture(uShadow, c.xy + vec2(-ts.x, ts.y)).r) ? 0.0 : 1.0;
+    sum += (c.z - uShadowBias > texture(uShadow, c.xy + vec2( ts.x, ts.y)).r) ? 0.0 : 1.0;
+    return sum*0.25;
   }
   vec3 applyFog(vec3 col, vec3 p){
     float dist = length(uCamPos - p);

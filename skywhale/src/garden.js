@@ -506,7 +506,7 @@
     GR.drawSprites = function (data, scene, a2c) {
       if (!data.sprites.length) return;
       inst.setData(data.sprites, data.sprites.length / 16);
-      progS.use(scene).set({ uAtlasC: texC, uAtlasN: texN, uRes: [G.W, G.H] });
+      progS.use(scene).set({ uAtlasC: texC, uAtlasN: texN, uRes: scene.uResOverride || [G.W, G.H] });
       if (a2c) gl.enable(gl.SAMPLE_ALPHA_TO_COVERAGE);
       inst.draw();
       if (a2c) gl.disable(gl.SAMPLE_ALPHA_TO_COVERAGE);

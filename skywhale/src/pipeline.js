@@ -173,7 +173,7 @@
         uFogCol: light.fogCol || [0.8, 0.85, 0.95], uFogDen: light.fogDen || 0.0, uFogStart: light.fogStart || 0,
         uFlash: light.flash || [0, 0, 0, 0], uFlashCol: light.flashCol || [1, 1, 1],
         uPass: pass || 0, uShadowOn: light.shadowOn && pass !== 1 ? 1 : 0, uShadow: pass === 1 ? G.noiseTex : P.shadow.depthTex, uLightVP: light.lightVP || m4.ident(), uShadowBias: light.shadowBias || 0.0015,
-        uNear: cam.near, uFar: cam.far, uFocal: cam.proj ? cam.proj[5] : 1, uEyeTint: light.eyeTint || [1.15, 1.0, 0.85],
+        uNear: cam.near, uFar: cam.far, uFocal: cam.proj ? cam.proj[5] : 1, uResOverride: cam.res || null, uEyeTint: light.eyeTint || [1.15, 1.0, 0.85],
         inkW: light.inkW, rimW: light.rimW,
       };
     };
@@ -185,7 +185,7 @@
       const view = m4.lookAt(eye, center, up);
       const proj = m4.ortho(-radius, radius, -radius, radius, radius * 0.5, radius * 3.5);
       const vp = m4.mul(proj, view);
-      return { pos: eye, view, viewProj: vp, near: radius * 0.5, far: radius * 3.5, pxPerM: () => 2048 / (2 * radius), right: [view[0], view[4], view[8]], fwd: v3.scale(L, -1) };
+      return { pos: eye, view, proj, viewProj: vp, near: radius * 0.5, far: radius * 3.5, pxPerM: () => 2048 / (2 * radius), right: [view[0], view[4], view[8]], fwd: v3.scale(L, -1), ortho: true, res: [2048, 2048] };
     };
 
     P.beginShadow = function () {
