@@ -30,13 +30,13 @@
     :root:not([data-theme="light"]) {
       --ink: #f3eadb; --ink-soft: rgba(243, 234, 219, .75);
       --paper: rgba(38, 32, 27, .62); --paper-strong: rgba(38, 32, 27, .86);
-      --line: rgba(243, 234, 219, .18); --accent: #e58a6c; --bg: #1d1915;
+      --line: rgba(243, 234, 219, .18); --accent: #e58a6c; --bg: #1d1915; color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --ink: #f3eadb; --ink-soft: rgba(243, 234, 219, .75);
     --paper: rgba(38, 32, 27, .62); --paper-strong: rgba(38, 32, 27, .86);
-    --line: rgba(243, 234, 219, .18); --accent: #e58a6c; --bg: #1d1915;
+    --line: rgba(243, 234, 219, .18); --accent: #e58a6c; --bg: #1d1915; color-scheme: dark;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); color: var(--ink);
@@ -78,6 +78,7 @@
   #showui button { appearance: none; border: 1px solid var(--line); background: var(--paper); color: var(--ink); font: inherit; font-size: 12px;
     padding: 7px 12px; border-radius: 10px; cursor: pointer; opacity: .55; backdrop-filter: blur(8px); }
   #showui button:hover { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { #loader, .ui, .load-bar i { transition: none; } }
   @media (max-width: 640px) {
     #title { padding: 9px 13px; } #title h2 { font-size: 18px; } #title p { display: none; }
     #hint { display: none; }
