@@ -6,15 +6,15 @@
   'use strict';
   const { v3, clamp, lerp, smoothstep, hex, keyed, smoothKeys } = SW;
 
-  const SUN = SW.dirFromAzEl(46, 5.0);
+  const SUN = SW.dirFromAzEl(21, 3.6);
   const LOOK = {
-    lit: hex('#ffe2b4'), mid: hex('#efbaa6'), shad: hex('#a39ccb'), deep: hex('#77739f'), rim: hex('#fff1cc'),
-    bands: [0.57, 0.42, 0.035, 0.22], edge: [0.025, 0.08, 0.6, 0.12],
+    lit: hex('#ffe0a8'), mid: hex('#eeb29e'), shad: hex('#9690c6'), deep: hex('#6a6699'), rim: hex('#fff3d0'),
+    bands: [0.58, 0.43, 0.035, 0.24], edge: [0.025, 0.07, 0.75, 0.12],
     fog: hex('#efcfb8'), fogDen: 1 / 2600, fogStart: 160, sat: 1.0,
   };
   const SKY = {
     zen: hex('#34508f'), up: hex('#8f93c6'), hor: hex('#f9d79b'), below: hex('#e8c4b2'), stops: [0.42, 0.1, 0.25, 0.75],
-    sunDir: SUN, sunCol: hex('#fff6dc'), glowCol: hex('#ffbe78'), sun: [0.012, 0.42, 0.55, 1],
+    sunDir: SUN, sunCol: hex('#fffbe8'), glowCol: hex('#ffbb70'), sun: [0.011, 0.40, 0.62, 1],
     hazeCol: hex('#f3cfae'), hazeAmt: 0.55, hazeW: 0.05,
     bandA: [0.09, 0.05, 0.42, 7], bandB: [0.20, 0.06, 0.30, 5], bandC: [0.34, 0.08, 0.22, 4],
     bandLit: hex('#ffd2a0'), bandShade: hex('#a89bc4'), bandAmt: 0.9, brush: 0.03,
@@ -44,7 +44,7 @@
       opts.mastRaise = (t) => SW.ease.inOut5((t - 11.6) / 2.2);
       S.whale = new SW.Whale('old', opts);
       // cloud sea: detailed and three layers deep around the breakout, LOD out to the horizon
-      S.seaOpts = { focus: [B[0] + 60, 0, B[2]], y: -16, amp: 24, amp2: 16, scale: 240, spacing: 5.0, detailR: 170, deepR: 130, layers: 3, radius: 12000, seed: 21 };
+      S.seaOpts = { focus: [B[0] + 60, 0, B[2]], y: -16, amp: 24, amp2: 16, scale: 240, spacing: 5.0, detailR: 170, deepR: 130, layers: 3, radius: 12000, seed: 21, farLobes: 1 };
       S.mkSim = () => {
         const puffs = SW.CloudGen.sea(S.seaOpts);
         // only the near region is simulated; far puffs are static scenery

@@ -208,7 +208,7 @@
         const sd = hh(5) * 100;
         const add = (p, r, ao, mk, extra) => puffs.push(Object.assign({ p, r, mn: v3.norm(v3.lerp(v3.norm(v3.sub(p, [core[0], core[1] - Rh * 0.6, core[2]])), [0, 1, 0], 0.35)), mk, ao, al: 1, seed: sd + puffs.length * 0.731, soft: 0, rest: p.slice(), layer: 0, lvl: level, st: flat, ax: [0, 1, 0] }, extra || {}));
         add(core, Rh, aoBase * 0.92, 0.65);
-        const nl = Math.round((level === 0 ? 3 + Math.floor(hh(6) * 4) : level < 3 ? 2 : 0) * (o.lobes === undefined ? 1 : o.lobes));
+        const nl = Math.round((level === 0 ? 3 + Math.floor(hh(6) * 4) : level < 3 ? (o.farLobes === undefined ? 2 : o.farLobes) : 0) * (o.lobes === undefined ? 1 : o.lobes));
         for (let k = 0; k < nl; k++) {
           const a = hh(10 + k) * Math.PI * 2, el = 0.35 + 0.5 * hh(20 + k);
           const rl = Rh * (0.42 + 0.25 * hh(30 + k));

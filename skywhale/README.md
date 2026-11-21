@@ -80,6 +80,6 @@ the start of its shot.
 
 ## Model sheet
 
-`docs/model-sheet.png` shows the Old Whale and the pod (Drover, Pip, Elder, Mend, Swift); every
+`docs/model-sheet.jpg` shows the Old Whale and the pod (Drover, Pip, Elder, Mend, Swift); every
 whale comes from the same generator with its own proportions, palette, fins, garden and wear
 (`SW.WHALE.DESIGNS` in `src/whale.js`).

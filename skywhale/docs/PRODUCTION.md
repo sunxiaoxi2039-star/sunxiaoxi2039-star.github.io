@@ -4,7 +4,7 @@ How the film was made, in the order it was made, and what each review found.
 
 ## 1. Design first: the model sheet
 
-The Old Whale was locked before any shot was staged (`docs/model-sheet.png`, rendered by
+The Old Whale was locked before any shot was staged (`docs/model-sheet.jpg`, rendered by
 `dev.html` → `SWAPI.modelSheet`). Key decisions:
 
 - **Silhouette:** a humpback's big head, deep throat and long fluke, chunkier than an airship.
