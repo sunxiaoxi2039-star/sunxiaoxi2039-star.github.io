@@ -35,7 +35,7 @@
     init(F, S) {
       S.puffs = SW.CloudGen.sea({ focus: [0, 0, -400], y: -20, amp: 26, amp2: 16, scale: 240, spacing: 9, detailR: 300, deepR: 0, radius: 12000, seed: 61, lobes: 0.6, detail: false });
       S.path = SW.Path3([[-500, 60, -270], [-200, 62, -262], [100, 64, -256], [400, 66, -252]]);
-      S.whale = new SW.Whale('old', { path: S.path, speed: [[0, 18]], d0: 440, period: 5.6, waveAmp: 0.065, phase: 0.2, eye: () => 1.0 });
+      S.whale = new SW.Whale('old', { path: S.path, speed: [[0, 18]], d0: 440, period: 5.6, waveAmp: 0.065, phase: 0.2, flukeSide: 1, eye: () => 1.0 });
       S.cam = SW.Camera({ pos: [-10, 66, 0], target: [20, 86, -400], fov: 38, near: 2, far: 40000 });
     },
     frame(F, S, tl, t, frame) {

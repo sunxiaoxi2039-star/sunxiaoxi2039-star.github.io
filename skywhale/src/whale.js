@@ -125,6 +125,7 @@
       this.finStroke = o.finStroke !== undefined ? o.finStroke : 1.0;
       this.finPhase = o.finPhase || 0;
       this.finPeriod = o.finPeriod || 0;
+      this.flukeSide = o.flukeSide || 0;     // +1/-1 pins which face of the fluke the camera cheat favours
       this.headLift = o.headLift || null; // function(t) -> radians (call pose)
       this.eye = o.eye || (() => 1.0);    // eye glow function(t)
       this.mouth = o.mouth || null;

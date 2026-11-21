@@ -400,7 +400,10 @@
     // painted red stripes (concentric bands)
     float st = max(aastep(0.585, r)*(1.0-aastep(0.665, r)), aastep(0.775, r)*(1.0-aastep(0.815, r)));
     base = mix(base, uStripe, st*0.95);
-    float lit = aastep(0.0, ndl);
+    // the cloth bellies, so as a fin turns the light-shade line sweeps across it (a flat panel would
+    // flip its whole tone in one frame)
+    float ndlS = ndl + 0.16*(f - 0.5) + 0.10*(r - 0.5) + 0.05*(vnoise(vec2(r*2.3, f*2.1 + pidx) + uSeed) - 0.5);
+    float lit = aastep(0.0, ndlS);
     lit *= aastep(0.5, shadowAt(vPos, N));
     vec3 col = base*mix(uKey*uShade, uKey, lit);
     // translucency: light from behind the cloth glows through it
@@ -735,7 +738,8 @@
       // (always favours the surface on the camera's side of the body), so it stays continuous.
       if (cam && !cam.mirrored) {
         const V = v3.norm(v3.sub(cam.pos, C));
-        const s0 = v3.dot(U, V) >= 0 ? 1 : -1;
+        // a shot whose camera sits level with the body pins the favoured face (else it would flip)
+        const s0 = w.flukeSide || (v3.dot(U, V) >= 0 ? 1 : -1);
         const k = v3.dot(Uf, V) * s0, minK = Math.sin(26 * Math.PI / 180);
         if (k < minK) {
           const want = Math.asin(minK) - Math.asin(clamp(k, -1, 1));
