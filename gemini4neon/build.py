@@ -158,6 +158,7 @@ def write_readme(rows, st, path):
              "本页的中文摘要、子类和成本表是重新写的；X、blog.google 和媒体图床在本会话里都连不上，所以没有逐条打开原帖核对。\n")
     L.append("> 注意：清单里有 Google、Google AI、Antigravity 官方账号的帖子，看上去模型已正式发布；但各条成绩、成本和效果都是作者或榜单方自己说的，没有独立复核。\n")
 
+    L.append("> 我们自己重做了一条：[#103 机甲组装与升空 → `n01/`](n01/)（原创机甲，纯代码 Three.js，26 秒带配乐）。\n")
     L.append("## 三句话看完\n")
     L.append(f"- **做什么最多**：{st['by_sub']['3D 场景']} 条 3D 场景、{st['by_sub']['动态图形']} 条动态图形——Three.js / 体素 / SVG 的同题对比是主力，经典题还是「鹈鹕骑自行车」。")
     L.append(f"- **成本**：{COST_TAKEAWAY}")
@@ -315,7 +316,7 @@ def write_html(rows, st, path):
     </div>
     <nav class="filters" id="filters" aria-label="子类筛选">{''.join(chips)}</nav>
   </header>
-  <p class="g4-note">X、Hacker News 和 Google 官方渠道上的 Gemini 4 Neon 用例共 {n} 条：{st['by_sub']['3D 场景'] + st['by_sub']['动态图形'] + st['by_sub']['绘图与插画'] + st['by_sub']['科普可视化']} 条视觉作品、{st['by_sub']['游戏互动']} 个小游戏，加上工程、知识工作和榜单成绩。效果、成本、排名都是作者或发布方自述，没有逐条核实。点卡片直达原帖。<a href="README.md">清单、成本表与方法 ›</a> · <a href="cases.json">cases.json ›</a></p>
+  <p class="g4-note">X、Hacker News 和 Google 官方渠道上的 Gemini 4 Neon 用例共 {n} 条：{st['by_sub']['3D 场景'] + st['by_sub']['动态图形'] + st['by_sub']['绘图与插画'] + st['by_sub']['科普可视化']} 条视觉作品、{st['by_sub']['游戏互动']} 个小游戏，加上工程、知识工作和榜单成绩。效果、成本、排名都是作者或发布方自述，没有逐条核实。点卡片直达原帖。<a href="README.md">清单、成本表与方法 ›</a> · <a href="cases.json">cases.json ›</a> · <a href="n01/">我们重做的 #103 机甲升空 ›</a></p>
   <main id="feed" class="feed"><section class="day"><div class="day-head"><div class="day-date">Gemini 4 Neon · {GENERATED} 归档</div><div class="day-count" id="count">{n} 条</div></div>{''.join(card(r, r["id"] in picks) for r in rows)}</section></main>
   <p class="g4-foot">整理自 <a href="{UPSTREAM_URL}" target="_blank" rel="noopener">{UPSTREAM_REPO}</a>（CC BY 4.0），中文摘要为本站改写；原帖、图片和视频归各自作者。</p>
   <script>{JS}  </script>
