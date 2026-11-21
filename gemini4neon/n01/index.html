@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0c0e" />
+  <title>N-01 霓 · 机甲组装与升空 · 设计雷达</title>
+  <meta name="description" content="重做 Gemini 4 Neon 用例 #103：一台原创机甲从蓝图扫描、逐件对接、反应堆点亮到点火升空，纯代码 Three.js 渲染，26 秒，配乐也由代码合成。" />
+  <link rel="canonical" href="https://sunxiaoxi2039-star.github.io/gemini4neon/n01/" />
+  <meta property="og:title" content="N-01 霓 · 机甲组装与升空" />
+  <meta property="og:image" content="https://sunxiaoxi2039-star.github.io/gemini4neon/n01/poster.jpg" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <style>
+    .n01{max-width:960px;margin:0 auto;padding:8px 16px 40px}
+    .n01 video{display:block;width:100%;aspect-ratio:16/9;border-radius:14px;background:#000;border:1px solid var(--line)}
+    .n01 h1{font-size:24px;margin:18px 0 6px;letter-spacing:-.01em}
+    .n01 p{color:var(--muted);font-size:15px;line-height:1.7;margin:8px 0}
+    .n01 a{color:var(--gold)}
+    .n01 .links{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+    .n01 .links a{font-size:14px;text-decoration:none;padding:8px 14px;border:1px solid rgba(232,200,114,.3);border-radius:999px}
+    .n01 ol{color:var(--muted);font-size:14px;line-height:1.8;padding-left:20px}
+  </style>
+</head>
+<body>
+  <header class="topbar" id="topbar">
+    <div class="brand">
+      <span class="brand-mark">✦</span>
+      <span class="brand-name">设计雷达</span>
+      <a class="brand-link" href="../">回 Gemini 4 Neon 归档 ›</a>
+    </div>
+  </header>
+  <main class="n01">
+    <video src="n01.mp4" poster="poster.jpg" controls playsinline preload="metadata"></video>
+    <h1>N-01 霓 · 机甲组装与升空</h1>
+    <p>重做 <a href="https://x.com/alohaproxy/status/2123619339995668726" target="_blank" rel="noopener">Gemini 4 Neon 用例 #103</a>。机甲是原创造型；画面全部是 Three.js 代码实时渲染出来的，没有模型文件和贴图。配乐也是代码合成的，跟画面卡点。26 秒，1080p。</p>
+    <div class="links">
+      <a href="live.html">实时版（浏览器里跑）›</a>
+      <a href="n01.mp4" download>下载视频 ›</a>
+      <a href="https://github.com/sunxiaoxi2039-star/sunxiaoxi2039-star.github.io/tree/main/gemini4neon/n01" target="_blank" rel="noopener">源码 ›</a>
+    </div>
+    <ol>
+      <li>0–3 秒：全息蓝图扫描</li>
+      <li>3–11 秒：14 个部件从四面飞来逐件对接，火花与锁定提示</li>
+      <li>11–14 秒：反应堆启动，灯带自下而上点亮，护目镜亮起，冲击波</li>
+      <li>15–17 秒：顶棚打开，下蹲，推进器点火，倒计时</li>
+      <li>17–26 秒：升空穿出屋顶，夜景城市上空拖出尾焰，片名</li>
+    </ol>
+  </main>
+</body>
+</html>

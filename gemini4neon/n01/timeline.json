@@ -1,0 +1,31 @@
+{
+  "fps": 30,
+  "duration": 26.0,
+  "blueprint": [0.3, 3.0],
+  "parts": [
+    {"name": "footL",     "label": "LEFT FOOT",       "t0": 3.0,  "dur": 0.85},
+    {"name": "footR",     "label": "RIGHT FOOT",      "t0": 3.3,  "dur": 0.85},
+    {"name": "shinL",     "label": "LEFT SHIN",       "t0": 3.9,  "dur": 0.85},
+    {"name": "shinR",     "label": "RIGHT SHIN",      "t0": 4.2,  "dur": 0.85},
+    {"name": "thighL",    "label": "LEFT THIGH",      "t0": 4.8,  "dur": 0.85},
+    {"name": "thighR",    "label": "RIGHT THIGH",     "t0": 5.1,  "dur": 0.85},
+    {"name": "pelvis",    "label": "PELVIS FRAME",    "t0": 5.8,  "dur": 0.9},
+    {"name": "torso",     "label": "CORE CHASSIS",    "t0": 6.6,  "dur": 1.0},
+    {"name": "backpack",  "label": "THRUST PACK",     "t0": 7.5,  "dur": 0.9},
+    {"name": "shoulderL", "label": "LEFT PAULDRON",   "t0": 8.2,  "dur": 0.8},
+    {"name": "shoulderR", "label": "RIGHT PAULDRON",  "t0": 8.5,  "dur": 0.8},
+    {"name": "armL",      "label": "LEFT ARM",        "t0": 9.1,  "dur": 0.8},
+    {"name": "armR",      "label": "RIGHT ARM",       "t0": 9.4,  "dur": 0.8},
+    {"name": "head",      "label": "SENSOR HEAD",     "t0": 10.2, "dur": 1.0}
+  ],
+  "powerup": [11.6, 14.0],
+  "visor": 13.6,
+  "shockwave": 14.2,
+  "hatch": [14.8, 17.0],
+  "crouch": [14.9, 15.9],
+  "ignition": 15.4,
+  "liftoff": 17.2,
+  "cut": 20.4,
+  "title": 22.6,
+  "fadeout": [25.3, 26.0]
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<title>N-01 霓 · 实时版</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }
+</script>
+<style>
+  html,body{margin:0;background:#000;overflow:hidden;height:100%}
+  #stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;overflow:hidden;background:#000;transform-origin:center}
+  body.capture #stage{left:0;top:0;transform:none}
+  #soundBtn{position:fixed;right:16px;bottom:16px;z-index:5;font:600 14px/1 "Inter","PingFang SC",sans-serif;color:#0b0d12;background:#7ff4ff;border:0;border-radius:999px;padding:12px 18px;cursor:pointer;box-shadow:0 0 18px rgba(127,244,255,.6)}
+  #back{position:fixed;left:16px;bottom:16px;z-index:5;font:13px/1 sans-serif;color:#7ff4ff;text-decoration:none;opacity:.8}
+  canvas{display:block}
+  .hud{position:absolute;font-family:"JetBrains Mono",monospace;color:#7ff4ff;letter-spacing:.12em;text-shadow:0 0 8px rgba(80,240,255,.55)}
+  #hudTL{left:64px;top:56px;font-size:20px;line-height:1.7}
+  #hudTL .dim{color:rgba(127,244,255,.55);font-size:16px}
+  #bar{width:360px;height:4px;background:rgba(127,244,255,.15);margin-top:10px}
+  #barFill{height:100%;width:0;background:#7ff4ff;box-shadow:0 0 12px #7ff4ff}
+  #hudBR{right:64px;bottom:56px;font-size:18px;text-align:right;line-height:1.7}
+  #lockMsg{position:absolute;left:64px;top:200px;font-family:"JetBrains Mono",monospace;font-size:26px;color:#fff;letter-spacing:.18em;text-shadow:0 0 14px #ff4fe0,0 0 2px #fff}
+  #title{position:absolute;left:0;right:0;bottom:150px;text-align:center;color:#fff;opacity:0}
+  #title .k{font-family:"JetBrains Mono",monospace;font-size:22px;letter-spacing:.5em;color:#7ff4ff;text-shadow:0 0 12px rgba(80,240,255,.8)}
+  #title .big{font-family:"Inter Display","Inter","WenQuanYi Zen Hei",sans-serif;font-weight:800;font-size:132px;letter-spacing:.06em;margin:10px 0 6px;
+    text-shadow:0 0 30px rgba(255,79,224,.65),0 0 80px rgba(80,240,255,.35)}
+  #title .big b{font-family:"WenQuanYi Zen Hei",sans-serif;font-weight:400;margin-left:.25em}
+  #title .sub{font-family:"WenQuanYi Zen Hei","Inter",sans-serif;font-size:26px;letter-spacing:.3em;color:rgba(255,255,255,.78)}
+  #title .cr{font-family:"Inter","WenQuanYi Zen Hei",sans-serif;font-size:18px;letter-spacing:.12em;color:rgba(255,255,255,.45);margin-top:22px}
+</style>
+</head>
+<body>
+<script>
+  if (location.search.includes('capture') || location.search.includes('t=')) document.body.classList.add('capture');
+  else { const fit = () => { const s = Math.min(innerWidth / 1920, innerHeight / 1080); document.getElementById('stage').style.transform = `translate(-50%,-50%) scale(${s})`; }; addEventListener('resize', fit); addEventListener('DOMContentLoaded', fit); }
+</script>
+<div id="stage">
+  <div class="hud" id="hudTL"><div>N-01 // ASSEMBLY SEQUENCE</div><div class="dim" id="hudSub">BLUEPRINT SCAN</div><div id="bar"><div id="barFill"></div></div></div>
+  <div id="lockMsg"></div>
+  <div class="hud" id="hudBR"></div>
+  <div id="title">
+    <div class="k">ASSEMBLY · IGNITION · LAUNCH</div>
+    <div class="big">N-01<b>霓</b></div>
+    <div class="sub">机甲组装与升空 · 纯代码实时渲染</div>
+    <div class="cr">Three.js · 灵感来自 Gemini 4 Neon 用例 #103（@alohaproxy）</div>
+  </div>
+</div>
+<audio id="snd" src="soundtrack.m4a" preload="auto"></audio>
+<button id="soundBtn" type="button">▶ 从头播放（有声）</button>
+<a id="back" href="./">‹ 视频版</a>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
