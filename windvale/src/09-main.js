@@ -189,8 +189,8 @@ async function main() {
     const out = document.createElement('canvas'); const o2 = out.getContext('2d');
     window.__renderFrame = (o) => {
       t = o.t; U.time.value = t; WATER.material.uniforms.uTime.value = t; grade.uniforms.uTime.value = t; if (FALLS.mat) FALLS.mat.uniforms.uTime.value = t;
-      for (const u of UPDATERS) u(t, o.dt, camera);
       camera.position.set(...o.pos); controls.target.set(...o.tgt); camera.lookAt(controls.target); camera.updateMatrixWorld();
+      for (const u of UPDATERS) u(t, o.dt, camera);
       updateClouds(t, camera); renderReflection(renderer, scene, camera); composer.render();
       const cv = renderer.domElement; out.width = cv.width; out.height = cv.height; o2.drawImage(cv, 0, 0);
       if (o.overlay) o.overlay(o2, out.width, out.height);

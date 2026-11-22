@@ -46,7 +46,7 @@ function particles({ emitters, perEmitter = 18, life = 8, rise = 6, spread = 1.2
 }
 
 function lathe(pts, seg = 16, phiStart = 0, phiLen = TAU) { return new THREE.LatheGeometry(pts.map(([r, y]) => new THREE.Vector2(r, y)), seg, phiStart, phiLen); }
-/* buildGirl / buildCat live in 08b-characters.js */
+/* the girl and her cat (2D drawings on camera-facing cards) live in 08b-characters.js */
 const CHARACTERS = { ready: null };
 
 /* ---------------- boats ---------------- */
@@ -223,8 +223,8 @@ function buildFountainWater(scene) {
 
 function buildLife(scene) {
   buildFountainWater(scene);
-  // the girl and her cat are sculpted in time slices; main() decides whether to wait for them
-  CHARACTERS.ready = (async () => { const girl = await buildGirl(scene); mark('life: girl'); await buildCat(scene, girl); mark('life: cat'); })();
+  buildCharacters(scene); mark('life: girl & cat');
+  CHARACTERS.ready = Promise.resolve();
   const xq = quayX(-5);
   buildBoat(scene, xq + 5.2, DOCK.z0 - 1.25, Math.PI / 2 + 0.06, '#3f6f9a');
   buildBoat(scene, xq + 10.2, DOCK.z1 + 1.2, Math.PI / 2 - 0.05, '#b8523d', { stripe: '#f1e6cf' });
