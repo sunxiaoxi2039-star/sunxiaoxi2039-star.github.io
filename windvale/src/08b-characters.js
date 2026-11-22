@@ -715,6 +715,7 @@ function buildCharacters(scene) {
       swing: 1, sway: 0.028 * Math.sin(t * 1.7) + 0.012 * Math.sin(t * 3.3 + 1) + 0.01 * Math.sin(t * 0.37),
       blink: Math.min(1, pulse(blinks, t, 0.17) * 1.3), yaw: follow(looks, t, 'yaw'), gaze: follow(looks, t - 0.25, 'gaze', 0.4),
     };
+    if (th < 0) { o.yaw = -o.yaw; o.gaze = -o.gaze; }   // mirrored drawing: her left/right swap on paper
     const which = ath < 1.135 ? 'f' : ath < 2.005 ? 's' : 'b';
     const cam = G.camera(ath, ph);
     // body (legs drawn on their own card)
@@ -735,6 +736,7 @@ function buildCharacters(scene) {
     const cth = Math.atan2(tmp.dot(LEFT), tmp.dot(FWD)), cmir = cth < 0, ca = Math.abs(cth);
     const co = { t, yaw: follow(catLooks, t, 'yaw', 0.5), blink: Math.min(1, pulse(catBlinks, t, 0.2) * 1.3), tail: pulse(flicks, t, 0.8), ear: pulse(twitches, t, 0.25) };
     const cw = ca < 1.135 ? 'f' : ca < 2.005 ? 's' : 'b', ckey = cw === 'f' ? 0.7 : cw === 's' ? Math.PI / 2 : 2.44;
+    if (cmir) co.yaw = -co.yaw;
     co.yaw += (ckey - ca) * 0.6;
     c = cat.begin(s, catWorld, cmir);
     if (cw === 'f') G.cat07(c, [0, 0], co); else if (cw === 's') G.catSide(c, [0, 0], co); else G.catBack(c, [0, 0], co);
