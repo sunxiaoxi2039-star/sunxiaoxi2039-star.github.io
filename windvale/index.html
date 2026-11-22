@@ -3067,7 +3067,7 @@ function buildLife(scene) {
 // Units: 1 = the girl's head height. y points down on the canvas.
 const G2D = (() => {
   // ============================== ink engine ==============================
-  const INK = { line: '#2e211c', paper: '#f7f2e8', mode: 'color', light: [-0.045, -0.03], minW: 0 };
+  const INK = { line: '#2e211c', paper: '#f7f2e8', mode: 'color', light: [-0.045, -0.03], minW: 0, partK: 1, noLines: false };
   const rnd = (s) => () => ((s = Math.imul(s ^ (s >>> 15), 0x2c1b3c6d) + 0x9e3779b9 | 0) >>> 0) / 4294967296;
   const smooth = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
 
@@ -3093,12 +3093,16 @@ const G2D = (() => {
 
   // tapered, slightly pressure-varying ink line (a dip pen, not a marker)
   function stroke(ctx, pts, w = 0.012, o = {}) {
-    const { tin = 0.18, tout = 0.25, min = 0.2, wob = 0.07, seed = 7, closed = false, color = INK.line } = o;
+    const { tin = 0.18, tout = 0.25, min = 0.2, wob = 0.07, seed = 7, closed = false, color = INK.line, lost = 0 } = o;
+    if (INK.noLines) return;
     w = Math.max(w, INK.minW);
+    const ll = Math.hypot(INK.light[0], INK.light[1]) || 1, sdx = -INK.light[0] / ll, sdy = -INK.light[1] / ll;   // toward the shadow side
     const P = spline(pts, closed); if (closed) P.push(P[0]);
     const n = P.length; if (n < 2) return;
     const L = [0]; for (let i = 1; i < n; i++) L.push(L[i - 1] + Math.hypot(P[i][0] - P[i - 1][0], P[i][1] - P[i - 1][1]));
     const tot = L[n - 1] || 1, r = rnd(seed * 9973 + 1), ph = r() * 6.28, fr = 2 + r() * 3;
+    let area = 0; if (lost) for (let i = 0; i < n - 1; i++) area += P[i][0] * P[i + 1][1] - P[i + 1][0] * P[i][1];
+    const os = area > 0 ? -1 : 1;
     const lf = [], rt = [];
     for (let i = 0; i < n; i++) {
       const a = P[Math.max(0, i - 1)], b = P[Math.min(n - 1, i + 1)];
@@ -3106,6 +3110,7 @@ const G2D = (() => {
       const t = L[i] / tot;
       let k = closed ? 1 : Math.min(min + (1 - min) * smooth(0, tin, t), min + (1 - min) * smooth(1, 1 - tout, t));
       k *= 1 + wob * Math.sin(t * fr * 6.28 + ph);
+      if (lost) { const d = (-ty * sdx + tx * sdy) * os; k *= (1 - lost) + lost * Math.max(0, Math.min(1, 0.45 + 0.9 * d)); }
       const hw = w * k * 0.5;
       lf.push([P[i][0] - ty * hw, P[i][1] + tx * hw]); rt.push([P[i][0] + ty * hw, P[i][1] - tx * hw]);
     }
@@ -3121,6 +3126,7 @@ const G2D = (() => {
     const { fill, shade, hi, sk = 1, w = 0.016, line = true, seed = 3, color } = o;
     const P = spline(pts, true);
     if (fill) {
+      if (INK.noLines) { path(ctx, P); ctx.fillStyle = '#000'; ctx.fill(); return P; }   // mask pass: silhouette only
       if (INK.mode === 'paper') { path(ctx, P); ctx.fillStyle = INK.paper; ctx.fill(); }
       else if (shade || hi) {
         const lx = INK.light[0] * sk * (hi ? -1 : 1), ly = INK.light[1] * sk * (hi ? -1 : 1);
@@ -3128,12 +3134,49 @@ const G2D = (() => {
         ctx.save(); ctx.clip(); ctx.translate(lx, ly); path(ctx, P); ctx.fillStyle = fill; ctx.fill(); ctx.restore();
       } else { path(ctx, P); ctx.fillStyle = fill; ctx.fill(); }
     }
-    if (line) stroke(ctx, pts, w, { closed: true, seed, color });
+    if (line) stroke(ctx, pts, w * INK.partK, { closed: true, seed, color, lost: 0.7 });
     return P;
   }
+
+  // ---- the outer contour: render the figure's fills to a mask, follow its edge, ink it as one line ----
+  const _masks = new Map();
+  function silhouette(ctx, draw, w = 0.02, o = {}) {
+    const cv = ctx.canvas, T = ctx.getTransform();
+    const ds = o.ds || 2, W = Math.ceil(cv.width / ds), H = Math.ceil(cv.height / ds);
+    const mk = W + 'x' + H; let mc = _masks.get(mk);
+    if (!mc) { if (_masks.size > 8) _masks.clear(); mc = document.createElement('canvas'); mc.width = W; mc.height = H; _masks.set(mk, mc); }
+    const m = mc.getContext('2d', { willReadFrequently: true });
+    m.setTransform(1, 0, 0, 1, 0, 0); m.clearRect(0, 0, W, H);
+    m.setTransform(T.a / ds, T.b / ds, T.c / ds, T.d / ds, T.e / ds, T.f / ds);
+    const nl = INK.noLines; INK.noLines = true; draw(m); INK.noLines = nl;
+    const a = m.getImageData(0, 0, W, H).data, on = (x, y) => x >= 0 && y >= 0 && x < W && y < H && a[(y * W + x) * 4 + 3] > 110;
+    const seen = new Uint8Array(W * H), inv = T.inverse();
+    for (let y0 = 0; y0 < H; y0++) for (let x0 = 0; x0 < W; x0++) {
+      if (!on(x0, y0) || seen[y0 * W + x0]) continue;
+      // flood-fill the island so it is traced once
+      const st = [y0 * W + x0]; seen[y0 * W + x0] = 1; let cnt = 0;
+      while (st.length) { const k = st.pop(), x = k % W, y = (k / W) | 0; cnt++; for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) { const X = x + dx, Y = y + dy; if (on(X, Y) && !seen[Y * W + X]) { seen[Y * W + X] = 1; st.push(Y * W + X); } } }
+      if (cnt < 40) continue;
+      // Moore-neighbour edge following from the island's first (top-left) pixel
+      const D = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]];
+      let x = x0, y = y0, dir = 6; const chain = [];
+      for (let it = 0; it < 200000; it++) {
+        chain.push([x, y]);
+        let found = false;
+        for (let k = 0; k < 8; k++) { const d = (dir + 6 + k) % 8, X = x + D[d][0], Y = y + D[d][1]; if (on(X, Y)) { x = X; y = Y; dir = d; found = true; break; } }
+        if (!found || (x === x0 && y === y0 && chain.length > 2)) break;
+      }
+      if (chain.length < 12) continue;
+      const step = 3, pts = [];
+      for (let i = 0; i < chain.length; i += step) { const [px, py] = chain[i]; const X = (px + 0.5) * ds, Y = (py + 0.5) * ds; pts.push([inv.a * X + inv.c * Y + inv.e, inv.b * X + inv.d * Y + inv.f]); }
+      const n = pts.length, sm = pts.map((_, i) => { let x = 0, y = 0; for (let k = -1; k <= 1; k++) { const q = pts[(i + k + n) % n]; x += q[0]; y += q[1]; } return [x / 3, y / 3]; });   // soften pixel steps
+      stroke(ctx, sm, w, { closed: true, lost: o.lost ?? 0.55, seed: 91, wob: 0.1, color: o.color });
+    }
+  }
+
   // a cast shadow: the occluder's silhouette, offset, painted only inside the receiver
   function cast(ctx, occ, recv, off, color) {
-    if (INK.mode === 'paper') return;
+    if (INK.mode === 'paper' || INK.noLines) return;
     ctx.save(); path(ctx, spline(recv, true)); ctx.clip(); ctx.translate(off[0], off[1]); path(ctx, spline(occ, true)); ctx.fillStyle = color; ctx.fill(); ctx.restore();
   }
   // cloth fold: a soft shadow wedge with a thin line in it
@@ -3143,7 +3186,7 @@ const G2D = (() => {
   }
   function ellipse(ctx, cx, cy, rx, ry, rot, color) { ctx.beginPath(); ctx.ellipse(cx, cy, Math.max(1e-4, rx), Math.max(1e-4, ry), rot, 0, Math.PI * 2); ctx.fillStyle = color; ctx.fill(); }
   function blush(ctx, cx, cy, rx, ry, a = 0.55) {
-    if (INK.mode === 'paper') return;
+    if (INK.mode === 'paper' || INK.noLines) return;
     ctx.save(); ctx.translate(cx, cy); ctx.scale(1, ry / rx);
     const g = ctx.createRadialGradient(0, 0, 0, 0, 0, rx); g.addColorStop(0, `rgba(244,128,118,${a})`); g.addColorStop(1, 'rgba(244,128,118,0)');
     ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, rx, 0, 6.2832); ctx.fill(); ctx.restore();
@@ -3235,7 +3278,7 @@ const G2D = (() => {
   }
 
   // ============================== limbs (any camera angle) ==============================
-  const W0 = 0.017;
+  const W0 = 0.013;
   function arm(ctx, cam, J, side) {
     const pts = limbOutline([cam.p2(J['sh' + side]), cam.p2(J['el' + side]), cam.p2(J['wr' + side])], [[0, 0.08], [0.22, 0.075], [0.47, 0.057], [0.6, 0.063], [1, 0.045]]);
     shape(ctx, pts, { fill: COL.skin, shade: COL.skinS, sk: 0.8, w: W0 * 0.8, seed: side === 'L' ? 11 : 12 });
@@ -3285,6 +3328,7 @@ const G2D = (() => {
   // An eye in head-local coords: centre (cx,cy), width w, height h. open: 1 open .. 0 shut.
   // gaze: iris shift as a fraction of the width. dir: +1 when the outer corner is on the right.
   function eye(ctx, H, cx, cy, w, h, o) {
+    if (INK.noLines) return;
     const { open = 1, gaze = 0, dir = 1, lid = 0.022 } = o;
     const N = 9, up = [], lo = [];
     for (let i = 0; i <= N; i++) {
@@ -3298,9 +3342,9 @@ const G2D = (() => {
       ctx.save(); path(ctx, opening); ctx.clip();
       if (INK.mode !== 'paper') { path(ctx, opening); ctx.fillStyle = '#ffffff'; ctx.fill(); }
       const ic = H([[cx + gaze * w, cy + h * 0.06]])[0];
-      ellipse(ctx, ic[0], ic[1], w * 0.3, h * 0.5, 0, INK.mode === 'paper' ? INK.line : COL.iris);
-      if (INK.mode !== 'paper') { ellipse(ctx, ic[0], ic[1] + h * 0.04, w * 0.17, h * 0.3, 0, COL.pupil); }
-      const hl = H([[cx + gaze * w - w * 0.1, cy - h * 0.14]])[0]; ellipse(ctx, hl[0], hl[1], w * 0.085, w * 0.085, 0, '#fff');
+      ellipse(ctx, ic[0], ic[1], w * 0.4, h * 0.47, 0, INK.mode === 'paper' ? INK.line : COL.iris);
+      if (INK.mode !== 'paper') { ellipse(ctx, ic[0], ic[1] + h * 0.03, w * 0.23, h * 0.29, 0, COL.pupil); }
+      const hl = H([[cx + gaze * w - w * 0.13, cy - h * 0.17]])[0]; ellipse(ctx, hl[0], hl[1], w * 0.11, w * 0.11, 0, '#fff');
       // upper lid casts a little shadow on the eye white
       if (INK.mode !== 'paper') { ctx.translate(0, h * 0.12); path(ctx, H([...up, ...up.slice().reverse().map(([x, y]) => [x, y - h])])); ctx.fillStyle = 'rgba(120,90,110,0.25)'; ctx.fill(); }
       ctx.restore();
@@ -3315,7 +3359,8 @@ const G2D = (() => {
   // ============================== the girl's head, 3/4 view ==============================
   // Layers sit at different depths and slide past each other when she turns her head (yaw),
   // the way a 2D animation rig fakes rotation. Hair tips sway; the eyes blink and look around.
-  const FACE34 = [[-0.36, -0.16], [-0.39, -0.02], [-0.385, 0.12], [-0.355, 0.26], [-0.29, 0.38], [-0.19, 0.46], [-0.09, 0.485], [0.04, 0.455], [0.17, 0.37], [0.26, 0.23], [0.31, 0.04], [0.31, -0.25], [0.1, -0.42], [-0.22, -0.38]];
+  // proportions measured from a hand-drawn reference frame: round face, full cheeks, soft small chin, longer lower face
+  const FACE34 = [[-0.36, -0.18], [-0.395, -0.04], [-0.4, 0.1], [-0.385, 0.24], [-0.335, 0.37], [-0.25, 0.46], [-0.13, 0.505], [0.0, 0.49], [0.13, 0.42], [0.24, 0.29], [0.305, 0.1], [0.31, -0.22], [0.1, -0.42], [-0.22, -0.38]];
   function head34(ctx, at, o = {}) {
     const { yaw = 0, roll = -0.05, blink = 0, sway = 0, gaze = 0 } = o;
     const S = Math.sin(yaw);
@@ -3333,27 +3378,28 @@ const G2D = (() => {
     shape(ctx, H(D(SW([[0.5, -0.31], [0.6, -0.24], [0.61, -0.15, 1], [0.54, -0.17], [0.48, -0.25, 1]], 0.3), bowD)), { fill: COL.ribbon, shade: COL.ribbonS, sk: 0.4, w: W * 0.75 });
     // face
     const face = H(FACE34.map(([x, y, c]) => [x - (x < -0.2 ? 0.1 * Math.max(0, S) * smooth(-0.2, -0.36, x) : 0) + (x > 0.2 ? -0.04 * Math.max(0, -S) : 0), y, c]));
-    shape(ctx, face, { fill: COL.skin, shade: COL.skinS, sk: 0.7, w: W });
+    shape(ctx, face, { fill: COL.skin, w: W });                                            // faces stay flat-lit
     // ---- everything on the face is clipped to it and slides with the turn ----
     ctx.save(); path(ctx, spline(face, true)); ctx.clip();
     const F = (p, cx, cy) => H(DS(p, 1, cx, cy));
     // shadow of the fringe on the forehead
-    if (INK.mode !== 'paper') { path(ctx, spline(H(DS([[-0.42, -0.5], [0.3, -0.5], [0.26, 0.0], [0.15, 0.05], [0.05, 0.075], [-0.05, 0.08], [-0.16, 0.07], [-0.3, 0.075], [-0.42, 0.06]])), true)); ctx.fillStyle = COL.skinS; ctx.fill(); }
-    blush(ctx, ...F([[0.07, 0.275]])[0].slice(0, 2), 0.085, 0.045); blush(ctx, ...F([[-0.29, 0.275]])[0].slice(0, 2), 0.04, 0.04, 0.45);
+    if (INK.mode !== 'paper') { path(ctx, spline(H(DS([[-0.42, -0.5], [0.3, -0.5], [0.26, -0.02], [0.15, 0.0], [0.05, 0.01], [-0.05, 0.015], [-0.16, 0.0], [-0.3, 0.015], [-0.42, 0.0]])), true)); ctx.fillStyle = COL.skinS; ctx.fill(); }
+    blush(ctx, ...F([[0.085, 0.235]])[0].slice(0, 2), 0.082, 0.036, 0.62); blush(ctx, ...F([[-0.3, 0.235]])[0].slice(0, 2), 0.036, 0.03, 0.5);
     const open = 1 - blink;
-    eye(ctx, (p) => F(p, 0.02, 0.125), 0.02, 0.125, 0.2 * (1 - 0.15 * S), 0.13, { open, gaze, dir: 1, lid: 0.024 });
-    eye(ctx, (p) => F(p, -0.265, 0.125), -0.265 - 0.02 * S, 0.125, 0.115 * (1 + 0.55 * S), 0.12, { open, gaze, dir: -1, lid: 0.021 });
-    stroke(ctx, F([[-0.03, 0.0], [0.03, -0.012], [0.09, -0.004]]), 0.008, { tin: 0.3, tout: 0.5 });
-    stroke(ctx, F([[-0.315, 0.008], [-0.285, -0.004], [-0.255, -0.002]]), 0.007, { tin: 0.3, tout: 0.5 });
-    stroke(ctx, F([[-0.268, 0.24], [-0.255, 0.262], [-0.24, 0.266]], -0.255, 0.255), 0.009, { tin: 0.3, tout: 0.4 });
-    stroke(ctx, F([[-0.215, 0.35], [-0.18, 0.358], [-0.145, 0.352]]), 0.01, { tin: 0.3, tout: 0.4 });
+    // tall oval eyes near the middle of the face, almost all iris
+    eye(ctx, (p) => F(p, 0.03, 0.09), 0.03, 0.09, 0.145 * (1 - 0.15 * S), 0.19, { open, gaze, dir: 1, lid: 0.02 });
+    eye(ctx, (p) => F(p, -0.228, 0.09), -0.228 - 0.02 * S, 0.09, 0.092 * (1 + 0.55 * S), 0.18, { open, gaze, dir: -1, lid: 0.018 });
+    stroke(ctx, F([[-0.02, -0.03], [0.04, -0.045], [0.09, -0.036]]), 0.008, { tin: 0.3, tout: 0.5 });
+    stroke(ctx, F([[-0.29, -0.026], [-0.262, -0.036], [-0.238, -0.034]]), 0.007, { tin: 0.3, tout: 0.5 });
+    stroke(ctx, F([[-0.262, 0.268], [-0.248, 0.28]], -0.255, 0.27), 0.008, { tin: 0.3, tout: 0.4 });
+    stroke(ctx, F([[-0.2, 0.392], [-0.172, 0.398], [-0.148, 0.394]]), 0.009, { tin: 0.3, tout: 0.4 });
     ctx.restore();
     // shadow under the jaw is drawn by the neck; ear hidden by hair
     // ---- crown + near-side lock (front hair). The forehead edge rides on the face (parallax). ----
     const capD = (p) => p.map(([x, y, c]) => [x + (y > -0.3 && x < 0.24 ? sd(x, y) : 0) * S, y, c]);
     shape(ctx, H(capD(SW([
       [-0.4, 0.0], [-0.44, -0.2], [-0.38, -0.4], [-0.2, -0.55], [0.05, -0.61], [0.3, -0.56], [0.47, -0.42], [0.56, -0.2], [0.56, 0.05], [0.5, 0.25], [0.4, 0.5, 1],
-      [0.33, 0.3], [0.27, 0.12], [0.22, -0.04], [0.15, -0.14], [0.0, -0.17], [-0.15, -0.16], [-0.3, -0.12], [-0.38, -0.1],
+      [0.33, 0.3], [0.27, 0.12], [0.22, -0.04], [0.19, -0.12], [0.12, -0.19], [0.0, -0.22], [-0.15, -0.21], [-0.3, -0.17], [-0.38, -0.13],
     ], 0.3))), { fill: COL.hair, shade: COL.hairS, sk: 1.2, w: W });
     // fringe locks, outer ones first; chunky, few, tips leaning to her front
     const lock = (root, tip, w, bend, seed, k = 0.12) => {
@@ -3362,13 +3408,13 @@ const G2D = (() => {
       const pts = SW([[root[0] - nx * w * 0.5, root[1] - ny * w * 0.5], m(0.35, -0.55), m(0.75, -0.32), [tip[0], tip[1], 1], m(0.72, 0.38), m(0.35, 0.55), [root[0] + nx * w * 0.5, root[1] + ny * w * 0.5]], k);
       const P = H(DS(pts));
       shape(ctx, P, { fill: COL.hair, shade: COL.hairS, sk: 0.6, line: false });
-      stroke(ctx, P, 0.012, { tin: 0.05, tout: 0.05, min: 0.6, seed });
+      stroke(ctx, P, 0.0095, { tin: 0.05, tout: 0.05, min: 0.55, seed, lost: 0.5, closed: false });
     };
-    lock([0.17, -0.26], [0.145, 0.03], 0.1, 0.02, 61);
-    lock([-0.33, -0.26], [-0.375, 0.05], 0.1, -0.02, 62);
-    lock([0.05, -0.3], [-0.025, 0.05], 0.15, 0.035, 63);
-    lock([-0.2, -0.29], [-0.29, 0.035], 0.14, 0.03, 64);
-    lock([-0.075, -0.31], [-0.165, 0.025], 0.13, 0.03, 65);
+    lock([0.17, -0.31], [0.152, -0.035], 0.1, 0.02, 61);
+    lock([-0.33, -0.3], [-0.372, -0.02], 0.1, -0.02, 62);
+    lock([0.05, -0.36], [-0.02, -0.045], 0.15, 0.035, 63);
+    lock([-0.2, -0.35], [-0.29, -0.04], 0.14, 0.03, 64);
+    lock([-0.075, -0.36], [-0.165, -0.065], 0.13, 0.03, 65);
     // crown flow + the gathered half-up band
     for (const s of [[[0.05, -0.6], [-0.1, -0.5], [-0.2, -0.4]], [[0.12, -0.6], [0.26, -0.5], [0.33, -0.38]], [[0.46, -0.08], [0.48, 0.1], [0.45, 0.28]]])
       stroke(ctx, H(D(SW(s, 0.3), 0.1)), 0.007, { tin: 0.25, tout: 0.5 });
@@ -3652,7 +3698,7 @@ const G2D = (() => {
     for (let x = x0 + 1.0; x < x1; x += 1.05) stroke(ctx, [P([x, -1.12, f]), P([x, -2.0, f])], 0.006, { color: lc });
   }
 
-  return { INK, COL, LEDGE, pose, camera, spline, stroke, shape, cast, fold, ellipse, blush, xf, path, limbOutline, arm, hand, sleeve, shin, shoe, eye, head34, headBack, headSide, girl07, girlSide, girlBack, cat07, catSide, catBack, TS, skinner, ledge, TH07, TB, W0 };
+  return { silhouette, INK, COL, LEDGE, pose, camera, spline, stroke, shape, cast, fold, ellipse, blush, xf, path, limbOutline, arm, hand, sleeve, shin, shoe, eye, head34, headBack, headSide, girl07, girlSide, girlBack, cat07, catSide, catBack, TS, skinner, ledge, TH07, TB, W0 };
 })();
 
 /* =====================  the girl & her cat in the 3D town  ===================== *
@@ -3720,7 +3766,7 @@ class Card {
 }
 
 function buildCharacters(scene) {
-  const G = G2D; G.INK.mode = 'color';
+  const G = G2D; G.INK.mode = 'color'; G.INK.partK = 0.62;   // inner lines lighter than the outer contour
   const body = new Card(scene, [-1.7, 1.7, -3.15, 0.5], 0.45, 0);
   const legs = new Card(scene, [-1.3, 1.3, -1.0, 1.05], 0.05, 0);
   const cat = new Card(scene, [-0.7, 0.7, -1.65, 0.22], 0.2, 1);
@@ -3781,8 +3827,10 @@ function buildCharacters(scene) {
     const which = ath < 1.135 ? 'f' : ath < 2.005 ? 's' : 'b';
     const cam = G.camera(ath, ph);
     // body (legs drawn on their own card)
+    const SW = G.W0 * 1.75, sil = { ds: Math.max(2, Math.round(s / 45)) };   // weight of the one continuous outer line; mask resolution
     let c = body.begin(s, GIRL_AT, mirror);
-    if (which === 'f') G.girl07(c, t, { ...o, legs: false }, ath); else if (which === 's') G.girlSide(c, t, { ...o, legs: false }, ath); else G.girlBack(c, t, o, ath);
+    const drawBody = (cc) => { if (which === 'f') G.girl07(cc, t, { ...o, legs: false }, ath); else if (which === 's') G.girlSide(cc, t, { ...o, legs: false }, ath); else G.girlBack(cc, t, o, ath); };
+    drawBody(c); G.silhouette(c, drawBody, SW, sil);
     body.end();
     // legs: shins + shoes, drawn relative to the legs' anchor so they sit at their true depth
     const la = cam.p2(LEGS_AT);
@@ -3791,7 +3839,8 @@ function buildCharacters(scene) {
       // skirt silhouette for the shadow it casts on the shins (rough: lap ellipse around the knees)
       const kn = camA.p2(J.kneeL), kr = camA.p2(J.kneeR);
       const lap = [[kn[0] - 0.25, kn[1] - 0.2], [kr[0] - 0.25, kr[1] - 0.2], [kr[0] + 0.2, kr[1] + 0.12], [kn[0] + 0.2, kn[1] + 0.14]];
-      G.shin(c, camA, J, 'R', lap); G.shoe(c, camA, J, 'R'); G.shin(c, camA, J, 'L', lap); G.shoe(c, camA, J, 'L'); }
+      const drawLegs = (cc) => { G.shin(cc, camA, J, 'R', lap); G.shoe(cc, camA, J, 'R'); G.shin(cc, camA, J, 'L', lap); G.shoe(cc, camA, J, 'L'); };
+      drawLegs(c); G.silhouette(c, drawLegs, SW, sil); }
     legs.end();
     // the cat: its own yaw in its own spot
     tmp.subVectors(camera.position, catWorld);
@@ -3801,7 +3850,8 @@ function buildCharacters(scene) {
     if (cmir) co.yaw = -co.yaw;
     co.yaw += (ckey - ca) * 0.6;
     c = cat.begin(s, catWorld, cmir);
-    if (cw === 'f') G.cat07(c, [0, 0], co); else if (cw === 's') G.catSide(c, [0, 0], co); else G.catBack(c, [0, 0], co);
+    const drawCat = (cc) => { if (cw === 'f') G.cat07(cc, [0, 0], co); else if (cw === 's') G.catSide(cc, [0, 0], co); else G.catBack(cc, [0, 0], co); };
+    drawCat(c); G.silhouette(c, drawCat, SW * 0.9, { ...sil, color: '#0d0b10' });
     cat.end();
   });
 }
