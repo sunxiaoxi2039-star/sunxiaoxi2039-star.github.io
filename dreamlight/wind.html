@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>风里的小芽 · 笔触手绘</title>
+<style>
+  :root { --paper:#f6efdf; --ink:#3d2c1e; --muted:#7a5a3a; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper:#17140f; --ink:#f1e6d2; --muted:#c7a983; } }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:"Songti SC","Noto Serif SC",serif; }
+  main { max-width:1100px; margin:0 auto; padding:24px 16px 48px; }
+  h1 { font-size:clamp(24px,4vw,40px); margin:0 0 6px; letter-spacing:.06em; }
+  p { color:var(--muted); line-height:1.8; margin:0 0 16px; }
+  canvas { width:100%; height:auto; display:block; border-radius:12px; box-shadow:0 18px 44px rgba(60,40,10,.25); background:#000; }
+</style>
+</head>
+<body>
+<main>
+  <h1>风里的小芽</h1>
+  <p>没有一个形状是平涂的：天空是一笔笔湿刷铺出来的，云是圆头笔点出来的，每一根草都是被同一阵风压弯的一笔，人物是铅笔线加顺着形体走的色笔。画面按“一拍二”的节奏（每秒 12 张）重画，线条每张都略有抖动，像手绘原画一样。</p>
+  <canvas id="cv" width="1280" height="720" aria-label="一个穿黄雨衣的小女孩站在风吹过的山坡上"></canvas>
+</main>
+<script src="paint.js"></script>
+<script src="wind.js"></script>
+<script>
+  const cv = document.getElementById('cv'), ctx = cv.getContext('2d'); let t0 = 0, last = -1;
+  function loop(ts) { if (!t0) t0 = ts; const t = (ts - t0) / 1000, k = Math.floor(t * 12); if (k !== last) { last = k; WIND.render(ctx, t); } requestAnimationFrame(loop); }
+  requestAnimationFrame(loop);
+</script>
+</body>
+</html>
