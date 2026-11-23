@@ -1297,8 +1297,10 @@ const G2D = (() => {
 /* =====================  the girl & her cat in the 3D town  ===================== *
  * They are 2D drawings (G2D above), redrawn every frame into small canvases and shown on
  * camera-facing cards. Front, profile and back are traced from the user's own reference drawings
- * (curves only, no image data); a three-quarter back view is drawn to match. Each key bends toward
- * the real camera angle with the 3D skeleton before the next one takes over. Her legs are a separate card at their true depth so the parapet hides them correctly.
+ * (curves only, no image data); a three-quarter back view is drawn to match. The camera always sees
+ * one of these drawings exactly as drawn (never bent out of shape), with a short cross-fade where one
+ * hands over to the next. Her legs are a separate card at their true depth so the parapet hides them
+ * correctly; that card is nudged on screen so the legs stay attached to whichever drawing is showing.
  * Shading follows the town's sun; fog and a soft contact shadow sit them in the scene.          */
 const HU = 0.25;                                   // one head height in metres
 const GIRL_AT = V3(17.23 - 0.70 * HU, 0.54, 15.05); // centre of her hips on the parapet top; the wall edge is under her knees
@@ -1306,14 +1308,14 @@ const FWD = V3(1, 0, 0), LEFT = V3(0, 0, -1);      // she faces the river (+x); 
 
 function spriteMaterial(bias) {
   const m = new THREE.ShaderMaterial({
-    uniforms: THREE.UniformsUtils.merge([THREE.UniformsLib.fog, { map: { value: null }, uAnchor: { value: V3() }, uRect: { value: new THREE.Vector4() }, uBias: { value: bias }, uLight: { value: new THREE.Color(1, 1, 1) } }]),
+    uniforms: THREE.UniformsUtils.merge([THREE.UniformsLib.fog, { map: { value: null }, uAnchor: { value: V3() }, uRect: { value: new THREE.Vector4() }, uBias: { value: bias }, uLight: { value: new THREE.Color(1, 1, 1) }, uShift: { value: new THREE.Vector2() }, uScale: { value: 1 } }]),
     vertexShader: /* glsl */`
-      uniform vec3 uAnchor; uniform vec4 uRect; uniform float uBias; varying vec2 vUv;
+      uniform vec3 uAnchor; uniform vec4 uRect; uniform float uBias; uniform vec2 uShift; uniform float uScale; varying vec2 vUv;
       #include <fog_pars_vertex>
       void main() {
         vUv = uv;
         vec4 mvPosition = viewMatrix * vec4(uAnchor, 1.0);
-        mvPosition.xy += vec2(mix(uRect.x, uRect.y, uv.x), mix(uRect.z, uRect.w, uv.y));
+        mvPosition.xy += uShift + uScale * vec2(mix(uRect.x, uRect.y, uv.x), mix(uRect.z, uRect.w, uv.y));
         gl_Position = projectionMatrix * mvPosition;
         vec4 pb = projectionMatrix * vec4(mvPosition.xy, mvPosition.z + uBias, 1.0);   // depth as if a little nearer
         gl_Position.z = pb.z / pb.w * gl_Position.w;
@@ -1353,7 +1355,21 @@ class Card {
     this.mat.uniforms.uAnchor.value.copy(anchor);
     const W = this.cv.width / s, H = this.cv.height / s, L = mirror ? -x1 : x0;
     this.mat.uniforms.uRect.value.set(L * HU, (L + W) * HU, -(y0 + H) * HU, -y0 * HU);   // view-plane rect in metres
+    this.T = c.getTransform();
     return c;
+  }
+  // draw one or two weighted drawings; two are cross-dissolved (A·(1−w) + B·w, additive in premultiplied alpha)
+  blend(draws) {
+    const c = this.ctx;
+    if (draws.length === 1) { draws[0][1](c); return; }
+    this.offs = this.offs || [document.createElement('canvas'), document.createElement('canvas')];
+    draws.forEach(([, fn], i) => {
+      const o = this.offs[i]; if (o.width !== this.cv.width || o.height !== this.cv.height) { o.width = this.cv.width; o.height = this.cv.height; }
+      const oc = o.getContext('2d'); oc.setTransform(1, 0, 0, 1, 0, 0); oc.clearRect(0, 0, o.width, o.height); oc.setTransform(this.T); fn(oc);
+    });
+    c.save(); c.setTransform(1, 0, 0, 1, 0, 0);
+    draws.forEach(([w], i) => { c.globalAlpha = w; c.globalCompositeOperation = i ? 'lighter' : 'source-over'; c.drawImage(this.offs[i], 0, 0); });
+    c.restore();
   }
   end() { this.tex.needsUpdate = true; }
 }
@@ -1387,7 +1403,19 @@ function buildCharacters(scene) {
   const pulse = (list, t, d) => { let v = 0; for (const e of list) { if (e.t > t) break; const u = (t - e.t) / d; if (u < 1) v = Math.max(v, Math.sin(u * Math.PI)); } return v; };
   const follow = (list, t, key, dur = 0.9) => { let prev = 0, cur = 0, t0 = -1e9; for (const e of list) { if (e.t > t) break; prev = cur; cur = e[key]; t0 = e.t; } return prev + (cur - prev) * ease((t - t0) / dur); };
 
-  const tmp = V3(), vs = V3();
+  // the drawn angles (camera yaw in her frame) and where one hands over to the next
+  const GIRL_KEYS = [0, Math.PI / 2, 2.44, Math.PI], GIRL_EDGES = [Math.PI / 4, 2.0, 2.8];
+  const CAT_KEYS = [0, Math.PI / 2, Math.PI], CAT_EDGES = [Math.PI / 4, 3 * Math.PI / 4];
+  const BAND = 0.07;   // cross-fade half-width, radians
+  function keyMix(a, keys, edges) {
+    for (let i = 0; i < edges.length; i++) {
+      const e = edges[i];
+      if (a < e - BAND) return [[1, keys[i]]];
+      if (a <= e + BAND) { const w = ease((a - e + BAND) / (2 * BAND)); return [[1 - w, keys[i]], [w, keys[i + 1]]]; }
+    }
+    return [[1, keys[keys.length - 1]]];
+  }
+  const tmp = V3(), vs = V3(), vb = V3(), vl = V3();
   let lastDraw = -1, lastKey = '';
   UPDATERS.push((t, dt, camera) => {
     // camera yaw/elevation in her frame (drawing-left = +z)
@@ -1416,16 +1444,22 @@ function buildCharacters(scene) {
       swing: 1, sway: 0.028 * Math.sin(t * 1.7) + 0.012 * Math.sin(t * 3.3 + 1) + 0.01 * Math.sin(t * 0.37),
       blink: Math.min(1, pulse(blinks, t, 0.17) * 1.3), yaw: follow(looks, t, 'yaw'), gaze: follow(looks, t - 0.25, 'gaze', 0.4),
     };
-    // body (legs drawn on their own card)
-    // the drawing handles both sides itself (the design is asymmetric), so this card is never mirrored
-    let c = body.begin(s, GIRL_AT, false);
-    G.girlAny(c, t, { ...o, legs: false }, th);
+    // which drawing(s) to show: the nearest key, cross-faded over a few degrees at each hand-over
+    const sg = th < 0 ? -1 : 1, mix = keyMix(ath, GIRL_KEYS, GIRL_EDGES);
+    let c = body.begin(s, GIRL_AT, false);   // the drawings handle both sides themselves (the design is asymmetric)
+    body.blend(mix.map(([w, k]) => [w, (cc) => G.girlAny(cc, t, { ...o, legs: false }, k * sg)]));
     body.end();
-    // legs: drawn relative to the legs' anchor so they sit at their true depth (front and side keys;
-    // from behind, the parapet hides them and nothing is drawn)
-    const la = G.camera(th, ph).p2(LEGS_AT);
-    c = legs.begin(s, legsWorld, false); c.translate(-la[0], -la[1]);
-    G.legsAny(c, t, o, th);
+    // legs: on their own card at their true depth, nudged on screen to meet the drawing that is showing
+    const kd = mix.reduce((m, e) => (e[0] > m[0] ? e : m))[1] * sg;
+    const P = G.camera(kd).p2(LEGS_AT);
+    vb.copy(GIRL_AT).applyMatrix4(camera.matrixWorldInverse); vl.copy(legsWorld).applyMatrix4(camera.matrixWorldInverse);
+    const kz = vl.z / vb.z;
+    legs.mat.uniforms.uScale.value = kz;
+    legs.mat.uniforms.uShift.value.set((vb.x + P[0] * HU) * kz - vl.x, (vb.y - P[1] * HU) * kz - vl.y);
+    c = legs.begin(s, legsWorld, false); c.translate(-P[0], -P[1]);
+    const withLegs = mix.filter(([, k]) => k < 2.0);
+    if (withLegs.length === mix.length) legs.blend(mix.map(([w, k]) => [w, (cc) => G.legsAny(cc, t, o, k * sg)]));
+    else if (withLegs.length) { c.globalAlpha = withLegs[0][0]; G.legsAny(c, t, o, withLegs[0][1] * sg); c.globalAlpha = 1; }   // fading out behind the wall
     legs.end();
     // the cat: its own yaw in its own spot
     tmp.subVectors(camera.position, catWorld);
@@ -1434,7 +1468,7 @@ function buildCharacters(scene) {
     const co = { t, yaw: follow(catLooks, t, 'yaw', 0.5), blink: Math.min(1, pulse(catBlinks, t, 0.2) * 1.3), tail: pulse(flicks, t, 0.8), ear: pulse(twitches, t, 0.25) };
     if (cmir) co.yaw = -co.yaw;
     c = cat.begin(s, catWorld, cmir);
-    G.catAny(c, [0, 0], co, ca);
+    cat.blend(keyMix(ca, CAT_KEYS, CAT_EDGES).map(([w, k]) => [w, (cc) => G.catAny(cc, [0, 0], co, k)]));
     cat.end();
   });
 }
