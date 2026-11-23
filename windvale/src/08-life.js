@@ -45,133 +45,9 @@ function particles({ emitters, perEmitter = 18, life = 8, rise = 6, spread = 1.2
   return m;
 }
 
-/* ---------------- the girl ---------------- */
 function lathe(pts, seg = 16, phiStart = 0, phiLen = TAU) { return new THREE.LatheGeometry(pts.map(([r, y]) => new THREE.Vector2(r, y)), seg, phiStart, phiLen); }
-function buildGirl(scene) {
-  const g = new Batch();
-  const skin = '#f2d0b8', hair = '#4b2f23', dress = '#5d84bf', white = '#f6f3ec', red = '#c8413a';
-  // local frame: +z forward (toward the river), seat contact at origin
-  // legs: thighs forward, shins hanging over the edge
-  for (const sx of [-1, 1]) {
-    const hx = sx * 0.085;
-    g.add('dress', new THREE.CapsuleGeometry(0.068, 0.3, 4, 10), dress, T(hx, 0.075, 0.17, 0, Math.PI / 2 - 0.06));
-    g.add('skin', new THREE.CapsuleGeometry(0.046, 0.3, 4, 10), skin, T(hx + sx * 0.005, -0.12, 0.395, 0, -0.08));
-    g.add('white', cylM(0.045, 0.043, 0.12, 10), white, T(hx + sx * 0.005, -0.27, 0.405, 0, -0.08));
-    g.add('shoe', new THREE.CapsuleGeometry(0.045, 0.1, 4, 10), '#5b3a2b', T(hx + sx * 0.005, -0.335, 0.435, 0, Math.PI / 2 - 0.1, 0, 0.95, 1, 0.85));
-  }
-  // skirt: bell over the hips + lap drape + hem that flutters
-  g.add('dress', lathe([[0.0, 0.32], [0.11, 0.3], [0.13, 0.2], [0.17, 0.08], [0.19, 0.02], [0.0, 0.02]], 20), dress, T(0, 0, -0.01, 0, 0, 0, 1, 1, 0.9));
-  const hem = surfaceGeo(24, 4, (u, v, p) => { const x = (u - 0.5) * 0.36; p.set(x, 0.12 - v * 0.17 - 0.03 * (u - 0.5) ** 2, 0.36 + v * 0.05 + 0.012 * Math.sin(u * 30)); });
-  const hw = new Float32Array(hem.attributes.position.count); for (let i = 0; i < hw.length; i++) hw[i] = (Math.floor(i / 25) / 4) * 0.5;
-  hem.setAttribute('aWind', new THREE.BufferAttribute(hw, 1));
-  g.add('dress2', hem, dress);
-  g.add('dress', new THREE.CapsuleGeometry(0.1, 0.32, 4, 12), dress, T(0, 0.12, 0.17, 0, Math.PI / 2, 0, 1.9, 1, 0.55));
-  // torso & collar
-  g.add('dress', lathe([[0.0, 0.0], [0.115, 0.0], [0.108, 0.1], [0.12, 0.22], [0.13, 0.3], [0.105, 0.36], [0.05, 0.39], [0.0, 0.39]], 20), dress, T(0, 0.2, -0.02, 0, 0.06, 0, 1, 1, 0.72));
-  { const col = new THREE.RingGeometry(0.045, 0.15, 24, 1, Math.PI * 0.62, Math.PI * 1.76); col.rotateX(-Math.PI / 2); g.add('white2', col, white, T(0, 0.575, -0.005, 0, 0.18, 0, 1, 1, 0.78)); }
-  g.add('skin', cylM(0.034, 0.038, 0.08, 10), skin, T(0, 0.62, 0.0));
-  // arms: hands resting on the coping beside the hips
-  for (const sx of [-1, 1]) {
-    const sh = V3(sx * 0.13, 0.54, -0.01), el = V3(sx * 0.175, 0.31, -0.07), wr = V3(sx * 0.2, 0.07, -0.1);
-    const up = new THREE.Vector3().subVectors(el, sh), lo = new THREE.Vector3().subVectors(wr, el);
-    const mA = new THREE.Matrix4().compose(sh.clone().add(el).multiplyScalar(0.5), new THREE.Quaternion().setFromUnitVectors(V3(0, 1, 0), up.clone().normalize()), V3(1, 1, 1));
-    const mB = new THREE.Matrix4().compose(el.clone().add(wr).multiplyScalar(0.5), new THREE.Quaternion().setFromUnitVectors(V3(0, 1, 0), lo.clone().normalize()), V3(1, 1, 1));
-    g.add('dress', new THREE.CapsuleGeometry(0.042, 0.06, 4, 8), dress, T(sh.x, sh.y - 0.02, sh.z));
-    g.add('skin', new THREE.CapsuleGeometry(0.032, up.length() - 0.04, 4, 8), skin, mA);
-    g.add('skin', new THREE.CapsuleGeometry(0.028, lo.length() - 0.03, 4, 8), skin, mB);
-    g.add('skin', new THREE.SphereGeometry(0.035, 8, 6), skin, T(wr.x, wr.y - 0.02, wr.z + 0.02, 0, 0, 0, 0.8, 0.55, 1.3));
-  }
-  // head (slightly tilted up, turned toward the waterfall upstream = her left)
-  const head = new THREE.Matrix4().compose(V3(0, 0.755, 0.01), new THREE.Quaternion().setFromEuler(new THREE.Euler(-0.14, 0.3, 0.04, 'YXZ')), V3(1, 1, 1));
-  g.push(head);
-  g.add('skin', new THREE.SphereGeometry(0.1, 20, 14), skin, T(0, 0, 0, 0, 0, 0, 0.93, 1.06, 0.98));
-  g.add('skin', new THREE.SphereGeometry(0.06, 12, 8), skin, T(0, -0.045, 0.045, 0, 0, 0, 1, 0.8, 0.8));
-  for (const sx of [-1, 1]) { g.add('eye', new THREE.SphereGeometry(0.014, 8, 6), '#2b1d18', T(sx * 0.036, 0.005, 0.088, 0, 0, 0, 0.8, 1.25, 0.5)); g.add('blush', new THREE.CircleGeometry(0.016, 10), '#f0a796', T(sx * 0.05, -0.03, 0.083, sx * 0.35)); g.add('skin', new THREE.SphereGeometry(0.02, 8, 6), skin, T(sx * 0.093, -0.005, 0.0, 0, 0, 0, 0.6, 1, 1)); }
-  // hair: cap + bob (open at the face) + loose strands
-  g.add('hair', new THREE.SphereGeometry(0.108, 22, 14, 0, TAU, 0, Math.PI * 0.55), hair, T(0, 0.012, -0.004, 0, -0.12, 0, 1.0, 1.04, 1.04));
-  g.add('hair', lathe([[0.104, 0.07], [0.113, 0.02], [0.117, -0.04], [0.121, -0.09], [0.128, -0.13], [0.135, -0.152], [0.12, -0.156]], 24, Math.PI * 0.2, Math.PI * 1.6), hair, T(0, 0.0, -0.008, 0, 0, 0, 1, 1, 1.04));
-  g.add('hair', lathe([[0.1, 0.075], [0.11, 0.05], [0.105, 0.02]], 22, -Math.PI * 0.32, Math.PI * 0.64), hair, T(0, 0.0, 0.004));
-  for (let i = 0; i < 12; i++) {
-    const a = Math.PI * 1.08 + i / 11 * Math.PI * 0.84; const r = 0.118;
-    const strip = surfaceGeo(1, 5, (u, v, p) => { const w = 0.036 * (1 - v * 0.6); const rr = 0.128 + v * 0.012; p.set(Math.cos(a) * rr + (u - 0.5) * w * Math.sin(a), -0.115 - v * 0.05, Math.sin(a) * rr - (u - 0.5) * w * Math.cos(a)); });
-    const ww = new Float32Array(strip.attributes.position.count); for (let k = 0; k < ww.length; k++) ww[k] = Math.floor(k / 2) / 5 * 0.25;
-    strip.setAttribute('aWind', new THREE.BufferAttribute(ww, 1));
-    const flip = strip.clone(); flip.setIndex(Array.from(strip.index.array).reverse()); flip.computeVertexNormals();
-    g.add('hair2', strip, hair, T(0, 0, 0, 0, 0, 0, 1, 1, 1)); g.add('hair2', flip, hair);
-  }
-  // red ribbon bow at the back of the head, tails flutter
-  g.push(T(0.0, 0.07, -0.095, 0, -0.3));
-  for (const sx of [-1, 1]) g.add('red', new THREE.TorusGeometry(0.03, 0.011, 6, 12), red, T(sx * 0.03, 0, 0, sx * 0.4, 0, 0, 1, 0.6, 0.4));
-  g.add('red', new THREE.SphereGeometry(0.014, 8, 6), red, T(0, 0, 0));
-  for (const sx of [-1, 1]) { const tail = surfaceGeo(1, 6, (u, v, p) => p.set(sx * 0.012 + sx * v * 0.03 + (u - 0.5) * 0.022, -v * 0.11, -v * 0.02));
-    const tw = new Float32Array(tail.attributes.position.count); for (let k = 0; k < tw.length; k++) tw[k] = Math.floor(k / 2) / 6 * 0.6; tail.setAttribute('aWind', new THREE.BufferAttribute(tw, 1));
-    const fl = tail.clone(); fl.setIndex(Array.from(tail.index.array).reverse()); fl.computeVertexNormals(); g.add('red2', tail, red); g.add('red2', fl, red); }
-  g.pop(); g.pop();
-  const std = (o) => new THREE.MeshStandardMaterial(Object.assign({ vertexColors: true, roughness: 0.8 }, o));
-  const mats = {
-    skin: std({ roughness: 0.6 }), hair: std({ roughness: 0.55 }), dress: std({ roughness: 0.85 }), white: std({ roughness: 0.8 }), shoe: std({ roughness: 0.5 }), eye: std({ roughness: 0.3 }), blush: std({ roughness: 0.9, transparent: true, opacity: 0.55 }), red: std({ roughness: 0.6 }),
-    white2: std({ roughness: 0.8, side: THREE.DoubleSide }),
-    dress2: patchMat(std({ roughness: 0.85, side: THREE.DoubleSide }), { vary: 0, wind: 'attr', windAmp: 0.05 }),
-    hair2: patchMat(std({ roughness: 0.55 }), { vary: 0, wind: 'attr', windAmp: 0.05 }),
-    red2: patchMat(std({ roughness: 0.6 }), { vary: 0, wind: 'attr', windAmp: 0.07 }),
-  };
-  const girl = g.build(mats);
-  girl.position.set(TERRACE.x1 - 0.32, 0.545, (TERRACE.seatZ0 + TERRACE.seatZ1) / 2 - 0.45); girl.rotation.y = Math.PI / 2;
-  girl.name = 'girl'; scene.add(girl);
-  return girl;
-}
-
-/* ---------------- the black cat ---------------- */
-function buildCat(scene, girl) {
-  const root = new THREE.Group(); root.name = 'cat';
-  const fur = new THREE.MeshStandardMaterial({ color: 0x1c1b21, roughness: 0.55, metalness: 0.0 });
-  const eyeM = new THREE.MeshStandardMaterial({ color: 0xd8c64a, emissive: 0x3a3510, roughness: 0.2 });
-  const pinkM = new THREE.MeshStandardMaterial({ color: 0x6a4248, roughness: 0.7 });
-  const add = (parent, geo, mat, x, y, z, sx = 1, sy = 1, sz = 1, rx = 0, ry = 0, rz = 0) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.scale.set(sx, sy, sz); m.rotation.set(rx, ry, rz); m.castShadow = true; parent.add(m); return m; };
-  // sitting body (pear), haunches, chest, front legs
-  add(root, new THREE.SphereGeometry(0.1, 16, 12), fur, 0, 0.12, -0.02, 0.95, 1.25, 1.1, -0.25);
-  for (const sx of [-1, 1]) add(root, new THREE.SphereGeometry(0.07, 12, 10), fur, sx * 0.065, 0.06, -0.05, 0.9, 0.9, 1.25);
-  add(root, new THREE.SphereGeometry(0.065, 12, 10), fur, 0, 0.2, 0.05, 1, 1.1, 0.9);
-  for (const sx of [-1, 1]) { add(root, new THREE.CapsuleGeometry(0.018, 0.14, 4, 8), fur, sx * 0.035, 0.08, 0.075, 1, 1, 1, 0.08); add(root, new THREE.SphereGeometry(0.024, 8, 6), fur, sx * 0.035, 0.012, 0.09, 1, 0.6, 1.3); }
-  // head on a pivot
-  const neck = new THREE.Group(); neck.position.set(0, 0.27, 0.04); root.add(neck);
-  const head = new THREE.Group(); neck.add(head);
-  add(head, new THREE.SphereGeometry(0.068, 16, 12), fur, 0, 0.03, 0.02, 1.08, 0.95, 1);
-  add(head, new THREE.SphereGeometry(0.03, 10, 8), fur, 0, 0.012, 0.075, 1.3, 0.8, 0.9);
-  add(head, new THREE.SphereGeometry(0.008, 6, 4), pinkM, 0, 0.022, 0.1);
-  const ears = [];
-  for (const sx of [-1, 1]) {
-    const ear = add(head, new THREE.ConeGeometry(0.03, 0.06, 4), fur, sx * 0.042, 0.095, 0.0, 1, 1, 0.55, 0, 0, -sx * 0.25); ears.push(ear);
-    add(head, new THREE.SphereGeometry(0.013, 8, 6), eyeM, sx * 0.03, 0.04, 0.072, 1, 0.75, 0.5);
-  }
-  // tail: chain of joints
-  let parent = root; const joints = [];
-  const base = new THREE.Group(); base.position.set(0, 0.025, -0.15); root.add(base); parent = base;
-  for (let i = 0; i < 10; i++) {
-    const j = new THREE.Group(); if (i > 0) j.position.set(0, 0, -0.045); parent.add(j);
-    const seg = add(j, new THREE.CapsuleGeometry(0.017 - i * 0.0006, 0.035, 3, 6), fur, 0, 0, -0.022, 1, 1, 1, Math.PI / 2);
-    joints.push(j); parent = j;
-  }
-  // place beside the girl, on her right (toward the camera)
-  root.position.copy(girl.position).add(V3(0, 0, 0.44)); root.rotation.y = Math.PI / 2 - 0.35;
-  scene.add(root);
-  // animation: slow tail sway with occasional flicks; head lifts/turns now and then
-  let nextFlick = 4, flickT = -10, nextLook = 6, lookFrom = [0, 0], lookTo = [0, 0], lookT = 0;
-  UPDATERS.push((t) => {
-    if (t > nextFlick) { flickT = t; nextFlick = t + R(4.5, 9); }
-    const fk = t - flickT; const flick = fk < 1.4 ? Math.sin(fk * 9) * Math.exp(-fk * 2.2) : 0;
-    joints.forEach((j, i) => {
-      const k = i / joints.length;
-      j.rotation.y = (i === 0 ? 0.9 : 0.2) + (0.12 * Math.sin(t * 0.7 - i * 0.35) + flick * 0.55 * k) * (0.3 + k);
-      j.rotation.x = i >= 6 ? 0.1 + 0.04 * Math.sin(t * 0.9 - i * 0.4) : 0;
-    });
-    if (t > nextLook) { lookFrom = [head.rotation.y, head.rotation.x]; lookTo = R() < 0.45 ? [R(0.5, 0.95), R(-0.15, 0.05)] : R() < 0.5 ? [R(-0.2, 0.2), R(-0.35, -0.2)] : [R(-0.15, 0.15), 0]; lookT = t; nextLook = t + R(5, 11); }
-    const e = smooth(0, 1.2, t - lookT);
-    head.rotation.y = lerp(lookFrom[0], lookTo[0], e); head.rotation.x = lerp(lookFrom[1], lookTo[1], e);
-    const tw = Math.max(0, Math.sin(t * 0.83) - 0.96) * 6; ears[0].rotation.x = tw; ears[1].rotation.x = Math.max(0, Math.sin(t * 0.61 + 2) - 0.97) * 6;
-  });
-  return root;
-}
+/* the girl and her cat (2D drawings on camera-facing cards) live in 08b-characters.js */
+const CHARACTERS = { ready: null };
 
 /* ---------------- boats ---------------- */
 function hullGeo(L, Bm, D, inner = false) {
@@ -347,7 +223,8 @@ function buildFountainWater(scene) {
 
 function buildLife(scene) {
   buildFountainWater(scene);
-  const girl = buildGirl(scene); buildCat(scene, girl);
+  buildCharacters(scene); mark('life: girl & cat');
+  CHARACTERS.ready = Promise.resolve();
   const xq = quayX(-5);
   buildBoat(scene, xq + 5.2, DOCK.z0 - 1.25, Math.PI / 2 + 0.06, '#3f6f9a');
   buildBoat(scene, xq + 10.2, DOCK.z1 + 1.2, Math.PI / 2 - 0.05, '#b8523d', { stripe: '#f1e6cf' });
